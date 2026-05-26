@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ใบงานที่ 1.3: การวิเคราะห์ผลกระทบของเทคโนโลยีรอบตัว</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #2563eb;
+      --text-color: #1e293b;
+      --border-color: #cbd5e1;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Sarabun', sans-serif;
+      color: var(--text-color);
+      line-height: 1.6;
+      background-color: #f1f5f9;
+      padding: 2rem;
+    }
+    .no-print-zone {
+      max-width: 800px;
+      margin: 0 auto 1.5rem auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 0.5rem 1.25rem;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn:hover {
+      background-color: #1d4ed8;
+    }
+    .btn-secondary {
+      background-color: #64748b;
+    }
+    .btn-secondary:hover {
+      background-color: #475569;
+    }
+    .worksheet-page {
+      background: white;
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      padding: 2.5cm;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+      border-radius: 4px;
+      position: relative;
+    }
+    .student-meta {
+      width: 100%;
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--border-color);
+      padding: 1rem;
+      border-radius: 6px;
+      background-color: #f8fafc;
+    }
+    .meta-field {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .meta-field span {
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .meta-line {
+      flex-grow: 1;
+      border-bottom: 1px dotted #94a3b8;
+      height: 1.5rem;
+    }
+    h1 {
+      font-size: 1.4rem;
+      text-align: center;
+      margin-bottom: 0.5rem;
+      color: #0f172a;
+    }
+    .subtitle {
+      text-align: center;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      color: #475569;
+    }
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin: 1.5rem 0 0.5rem 0;
+      border-left: 4px solid var(--primary-color);
+      padding-left: 0.5rem;
+    }
+    .instruction {
+      background-color: #f8fafc;
+      border: 1px solid var(--border-color);
+      padding: 1rem;
+      border-radius: 6px;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+    .question-block {
+      margin-bottom: 1.5rem;
+    }
+    .question-title {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .writing-line {
+      border-bottom: 1px dotted #94a3b8;
+      height: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    .grid-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+    .grid-table th, .grid-table td {
+      border: 1px solid var(--border-color);
+      padding: 0.75rem;
+      text-align: left;
+    }
+    .grid-table th {
+      background-color: #f8fafc;
+      font-weight: 600;
+    }
+    .score-box {
+      border: 2px solid var(--primary-color);
+      border-radius: 8px;
+      padding: 1rem;
+      width: 150px;
+      text-align: center;
+      float: right;
+      margin-bottom: 1.5rem;
+    }
+    .score-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--primary-color);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.25rem;
+      margin-bottom: 0.5rem;
+    }
+    .score-value {
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+    .clear {
+      clear: both;
+    }
+    @media print {
+      body {
+        background-color: white;
+        padding: 0;
+      }
+      .no-print-zone {
+        display: none;
+      }
+      .worksheet-page {
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="no-print-zone">
+    <span><i class='bx bx-info-circle'></i> ท่านสามารถสั่งพิมพ์ใบงานนี้หรือบันทึกเป็น PDF ได้โดยตรง</span>
+    <div style="display: flex; gap: 0.5rem;">
+      <a href="../worksheets.html" class="btn btn-secondary"><i class='bx bx-arrow-back'></i> ย้อนกลับ</a>
+      <button onclick="window.print()" class="btn"><i class='bx bx-printer'></i> พิมพ์ใบงาน / บันทึก PDF</button>
+    </div>
+  </div>
+
+  <div class="worksheet-page">
+    <div class="score-box">
+      <div class="score-title">คะแนนที่ได้</div>
+      <div class="score-value">&nbsp;&nbsp;&nbsp;&nbsp; / 10</div>
+    </div>
+    
+    <div class="clear"></div>
+
+    <h1>ใบงานที่ 1.3: การวิเคราะห์ผลกระทบของเทคโนโลยีรอบตัว</h1>
+    <div class="subtitle">รายวิชาเทคโนโลยี (การออกแบบและเทคโนโลยี) ชั้นมัธยมศึกษาปีที่ 4</div>
+
+    <div class="student-meta">
+      <div class="meta-field">
+        <span>ชื่อ-นามสกุล:</span>
+        <div class="meta-line"></div>
+      </div>
+      <div class="meta-field" style="max-width: 150px;">
+        <span>ชั้น ม.4 /</span>
+        <div class="meta-line"></div>
+      </div>
+      <div class="meta-field" style="max-width: 120px;">
+        <span>เลขที่:</span>
+        <div class="meta-line"></div>
+      </div>
+    </div>
+
+    <div class="instruction">
+      <strong>คำชี้แจง:</strong> ให้นักเรียนเลือกประเด็นเทคโนโลยีที่มีบทบาทอย่างมากในปัจจุบัน 1 เรื่อง (เช่น เทคโนโลยีปัญญาประดิษฐ์ (AI), บรรจุภัณฑ์พลาสติกย่อยสลายได้, รถยนต์ไฟฟ้า (EV)) จากนั้นวิเคราะห์ผลกระทบทั้งในแง่บวกและแง่ลบต่อมิติต่างๆ
+    </div>
+
+    <div class="question-block">
+      <div class="question-title">1. เทคโนโลยีที่นักเรียนเลือกศึกษาคือ: __________________________________________________</div>
+    </div>
+
+    <div class="section-title">ตารางวิเคราะห์ผลกระทบของเทคโนโลยี (Impact Matrix)</div>
+    
+    <table class="grid-table">
+      <thead>
+        <tr>
+          <th style="width: 25%;">ด้านที่ได้รับผลกระทบ</th>
+          <th style="width: 37%;">ผลกระทบทางบวก (ด้านดี/โอกาส)</th>
+          <th style="width: 38%;">ผลกระทบทางลบ (ข้อเสีย/ผลเสีย)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="height: 100px;">
+          <td><strong>1. ด้านมนุษย์และสังคม</strong></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr style="height: 100px;">
+          <td><strong>2. ด้านเศรษฐกิจ</strong></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr style="height: 100px;">
+          <td><strong>3. ด้านสิ่งแวดล้อม</strong></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="section-title">คำถามวิเคราะห์เพิ่มเติม</div>
+    
+    <div class="question-block">
+      <div class="question-title">2. จากตารางด้านบน นักเรียนจะมีข้อเสนอแนะในการป้องกัน ลด หรือแก้ไขผลกระทบด้านลบที่อาจเกิดขึ้นจากเทคโนโลยีนี้อย่างไรบ้าง?</div>
+      <div class="writing-line"></div>
+      <div class="writing-line"></div>
+      <div class="writing-line"></div>
+    </div>
+
+  </div>
+
+</body>
+</html>
