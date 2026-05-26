@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="แหล่งเรียนรู้ออนไลน์ รายวิชาการออกแบบและเทคโนโลยี ม.4 โรงเรียนวังน้ำเย็นวิทยาคม รวบรวมใบงาน สื่อการเรียนรู้ E-book และแบบทดสอบเก็บคะแนน">
+  <meta name="keywords" content="การออกแบบและเทคโนโลยี, ม.4, วังน้ำเย็นวิทยาคม, ใบงาน, สื่อการสอน, ข้อสอบ อจท, แบบทดสอบ ม.4">
+  <meta property="og:title" content="วิชาการออกแบบและเทคโนโลยี ม.4">
+  <meta property="og:description" content="แหล่งเรียนรู้ออนไลน์ รายวิชาการออกแบบและเทคโนโลยี ม.4 โรงเรียนวังน้ำเย็นวิทยาคม รวบรวมใบงาน สื่อการเรียนรู้ E-book และแบบทดสอบเก็บคะแนน">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/LOGOprofile.gif">
+  <title>ติดต่อครูผู้สอน - วิชาการออกแบบและเทคโนโลยี ม.4</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/gif" href="assets/LOGOprofile.gif">
+  
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .lesson-header {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 8rem 2rem 4rem;
+      text-align: center;
+    }
+    .lesson-header h1 {
+      color: white;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .lesson-header p {
+      font-size: 1.25rem;
+      opacity: 0.9;
+    }
+    .content-section {
+      padding: 4rem 2rem;
+      background-color: var(--surface-color);
+      min-height: 50vh;
+    }
+    .content-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .topic-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+      text-align: center;
+    }
+    .teacher-profile {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 1.5rem;
+      border: 4px solid var(--primary-color);
+    }
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--bg-color);
+      padding: 1rem;
+      border-radius: var(--radius-md);
+    }
+    .contact-item i {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+    }
+    .contact-item svg {
+      width: 1.5rem;
+      height: 1.5rem;
+      fill: #06C755;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <i class='bx bx-laptop'></i> Design<span>Tech</span>
+      </a>
+      <div class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link">หน้าแรก</a>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link">บทเรียน <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="unit1.html">หน่วยที่ 1</a>
+            <a href="unit2.html">หน่วยที่ 2</a>
+            <a href="unit3.html">หน่วยที่ 3</a>
+          </div>
+        </div>
+        <a href="media.html" class="nav-link">สื่อการเรียนรู้</a>
+        <a href="worksheets.html" class="nav-link">ใบงาน</a>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link">ส่งงาน <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="submit.html">ส่งใบงาน</a>
+            <a href="check_submissions.html">ตรวจสอบการส่งงาน (นักเรียน)</a>
+            <a href="teacher_dashboard.html">แดชบอร์ดครูผู้สอน</a>
+          </div>
+        </div>
+        <a href="quizzes.html" class="nav-link">แบบทดสอบ</a>
+        <a href="contact.html" class="nav-link active">ติดต่อครูผู้สอน</a>
+      </div>
+      <div class="nav-toggle" id="navToggle">
+        <i class='bx bx-menu'></i>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="lesson-header">
+    <div class="container">
+      <h1>ติดต่อครูผู้สอน</h1>
+      <p>สอบถามข้อมูลหรือขอคำปรึกษาเกี่ยวกับการเรียน</p>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <main class="content-section">
+    <div class="content-container">
+      
+      <div class="topic-card">
+        <img src="assets/profile1.jpg" alt="Teacher Profile" class="teacher-profile">
+        <h2>ครูปณิฏฐา บุญยงค์</h2>
+        <p style="color: var(--text-muted); font-weight: 500; margin-bottom: 0.5rem;">ครูผู้สอน วิชาการออกแบบและเทคโนโลยี</p>
+        <p>คุณครูสามารถให้คำปรึกษาและตอบข้อสงสัยเกี่ยวกับบทเรียน โครงงาน หรือการทำใบงานได้ตามช่องทางด้านล่าง</p>
+        
+        <div class="contact-info">
+          <div class="contact-item">
+            <i class='bx bx-envelope'></i>
+            <span>panittha.edu@gmail.com</span>
+          </div>
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24">
+              <path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.586.39.084.922.258 1.058.592.12.301.079.77.038 1.074l-.171 1.027c-.053.303-.251 1.185 1.082.647 1.333-.538 7.177-4.225 9.799-7.236 1.83-2.072 2.158-3.791 2.158-5.69zm-15.488 2.64h-2.52a.567.567 0 0 1-.568-.568v-4.14a.567.567 0 0 1 .568-.568h.568a.567.567 0 0 1 .568.568v3.572h1.384a.567.567 0 0 1 .568.568v.568a.567.567 0 0 1-.568.568zm2.272 0h-.568a.568.568 0 0 1-.568-.568v-4.14c0-.314.254-.568.568-.568h.568c.314 0 .568.254.568.568v4.14c0 .314-.254.568-.568.568zm4.568 0h-.568a.567.567 0 0 1-.555-.446l-1.921-2.913v2.791a.567.567 0 0 1-.568.568h-.568a.567.567 0 0 1-.568-.568v-4.14a.567.567 0 0 1 .568-.568h.568a.567.567 0 0 1 .555.446l1.921 2.913v-2.791a.567.567 0 0 1 .568-.568h.568c.314 0 .568.254.568.568v4.14a.567.567 0 0 1-.568.568zm4.52 0h-2.52a.567.567 0 0 1-.568-.568v-4.14a.567.567 0 0 1 .568-.568h2.52a.567.567 0 0 1 .568.568v.568a.567.567 0 0 1-.568.568h-1.384v.907h1.384a.567.567 0 0 1 .568.568v.568a.567.567 0 0 1-.568.568h-1.384v.907h1.384a.567.567 0 0 1 .568.568v.568a.567.567 0 0 1-.568.568z"/>
+            </svg>
+            <span>Line ID : ticker001</span>
+          </div>
+          <div class="contact-item">
+            <i class='bx bx-time'></i>
+            <span>เวลาทำการ: จันทร์ - ศุกร์ (08:30 - 16:30 น.)</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+      <div class="footer-bottom">
+        <p>&copy; 2026 วิชาการออกแบบและเทคโนโลยี | PANIITTHA BOONYONG </p>
+        <p>WANGNAMYENWITTAYAKOM SCHOOL . SECONDARY EDUCATIONAL SERVICE AREA OFFICE SA KAEO</p>
+      </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="แหล่งเรียนรู้ออนไลน์ รายวิชาการออกแบบและเทคโนโลยี ม.4 โรงเรียนวังน้ำเย็นวิทยาคม รวบรวมใบงาน สื่อการเรียนรู้ E-book และแบบทดสอบเก็บคะแนน">
+  <meta name="keywords" content="การออกแบบและเทคโนโลยี, ม.4, วังน้ำเย็นวิทยาคม, ใบงาน, สื่อการสอน, ข้อสอบ อจท, แบบทดสอบ ม.4">
+  <meta property="og:title" content="วิชาการออกแบบและเทคโนโลยี ม.4">
+  <meta property="og:description" content="แหล่งเรียนรู้ออนไลน์ รายวิชาการออกแบบและเทคโนโลยี ม.4 โรงเรียนวังน้ำเย็นวิทยาคม รวบรวมใบงาน สื่อการเรียนรู้ E-book และแบบทดสอบเก็บคะแนน">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/LOGOprofile.gif">
+  <title>หน่วยที่ 3 - ผลงานการออกแบบและเทคโนโลยี</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/gif" href="assets/LOGOprofile.gif">
+  
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .lesson-header {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 8rem 2rem 4rem;
+      text-align: center;
+    }
+    .lesson-header h1 {
+      color: white;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .lesson-header p {
+      font-size: 1.25rem;
+      opacity: 0.9;
+    }
+    .content-section {
+      padding: 4rem 2rem;
+      background-color: var(--surface-color);
+    }
+    .content-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .topic-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+    }
+    .topic-card h2 {
+      color: var(--primary-color);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .grid-2, .grid-4 {
+        grid-template-columns: 1fr;
+      }
+    }
+    .info-box {
+      background: var(--bg-color);
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+    .info-box:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary-color);
+    }
+    .info-box h4 {
+      color: var(--secondary-color);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .info-box p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .detail-list {
+      margin-top: 0.75rem;
+      padding-left: 1.25rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .detail-list li {
+      margin-bottom: 0.25rem;
+    }
+    .highlight-box {
+      background: rgba(20, 184, 166, 0.04);
+      border-left: 4px solid var(--accent-color);
+      padding: 1.25rem;
+      border-radius: var(--radius-md);
+      margin-top: 1.5rem;
+    }
+    .highlight-box h5 {
+      color: var(--accent-color);
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .page-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-color);
+    }
+    .lesson-image {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+      margin: 1.5rem 0;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <i class='bx bx-laptop'></i> Design<span>Tech</span>
+      </a>
+      <div class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link">หน้าแรก</a>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link active">บทเรียน <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="unit1.html">หน่วยที่ 1</a>
+            <a href="unit2.html">หน่วยที่ 2</a>
+            <a href="unit3.html">หน่วยที่ 3</a>
+          </div>
+        </div>
+        <a href="media.html" class="nav-link">สื่อการเรียนรู้</a>
+        <a href="worksheets.html" class="nav-link">ใบงาน</a>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link">ส่งงาน <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="submit.html">ส่งใบงาน</a>
+            <a href="check_submissions.html">ตรวจสอบการส่งงาน (นักเรียน)</a>
+            <a href="teacher_dashboard.html">แดชบอร์ดครูผู้สอน</a>
+          </div>
+        </div>
+        <a href="quizzes.html" class="nav-link">แบบทดสอบ</a>
+        <a href="contact.html" class="nav-link">ติดต่อครูผู้สอน</a>
+      </div>
+      <div class="nav-toggle" id="navToggle">
+        <i class='bx bx-menu'></i>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="lesson-header">
+    <div class="container">
+      <h1>หน่วยการเรียนรู้ที่ 3</h1>
+      <p>ผลงานการออกแบบและเทคโนโลยี</p>
+    </div>
+  </header>
+
+  <main class="content-section">
+    <div class="content-container">
+      
+      <!-- Topic 1: Materials -->
+      <div class="topic-card">
+        <h2><i class='bx bx-cube-alt'></i> ประเภทและสมบัติของวัสดุ (Materials & Properties)</h2>
+        <p>
+          การเลือกใช้วัสดุในการสร้างชิ้นงานให้เหมาะสมและปลอดภัย จำเป็นต้องเรียนรู้ประเภทและสมบัติเฉพาะตัวของวัสดุต่าง ๆ ซึ่งในงานช่างเทคนิคพื้นฐานสามารถแบ่งออกได้เป็น 4 กลุ่มหลัก:
+        </p>
+        
+        <div class="grid-4">
+          <div class="info-box">
+            <h4><i class='bx bx-tree'></i> 1. ไม้ (Wood)</h4>
+            <p>น้ำหนักเบา แปรรูปง่าย แต่ดูดซับความชื้นและติดไฟง่าย</p>
+            <ul class="detail-list">
+              <li><strong>ไม้ธรรมชาติ:</strong> แข็งแรง ลายสวยงาม ราคาสูง</li>
+              <li><strong>ไม้ประกอบ/แปรรูป:</strong> เช่น ไม้อัด พาร์ติเคิลบอร์ด ราคาประหยัดและควบคุมขนาดได้ง่าย</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4><i class='bx bx-shield'></i> 2. โลหะ (Metal)</h4>
+            <p>แข็งแรง ทนความร้อน นำไฟฟ้าและนำความร้อนได้ดี</p>
+            <ul class="detail-list">
+              <li><strong>กลุ่มเหล็ก (Ferrous):</strong> มีเหล็กผสม เช่น เหล็กเหนียว เหล็กกล้า เกิดสนิมง่าย</li>
+              <li><strong>นอกกลุ่มเหล็ก (Non-Ferrous):</strong> เช่น อลูมิเนียม ทองแดง ไม่เป็นสนิม น้ำหนักเบากว่า</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4><i class='bx bx-drink'></i> 3. พลาสติก (Plastic)</h4>
+            <p>เหนียว น้ำหนักเบา เป็นฉนวนไฟฟ้า ทนต่อสารเคมี</p>
+            <ul class="detail-list">
+              <li><strong>เทอร์โมพลาสติก:</strong> หลอมเหลวซ้ำและรีไซเคิลได้ เช่น ขวด PET, ท่อ PVC, ถุง PP</li>
+              <li><strong>เทอร์โมเซตติ้ง:</strong> ทนความร้อนสูง หลอมซ้ำไม่ได้ เช่น เมลามีน, เรซิน, อีพ็อกซี</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4><i class='bx bx-circle'></i> 4. ยาง (Rubber)</h4>
+            <p>ยืดหยุ่นสูง ซับแรงกระแทกได้ดี กันน้ำซึมผ่าน</p>
+            <ul class="detail-list">
+              <li><strong>ยางธรรมชาติ:</strong> สปริงตัวดี ทนต่อแรงดึง แต่เสื่อมสภาพเร็วเมื่อถูกความร้อนและแสงแดด</li>
+              <li><strong>ยางสังเคราะห์:</strong> ทนความร้อนและน้ำมันได้ดีกว่า เช่น ยางนีโอพรีน</li>
+            </ul>
+          </div>
+        </div>
+        <img src="assets/industrial_materials.png" alt="Assorted Industrial Raw Materials" class="lesson-image">
+      </div>
+
+      <!-- Topic 2: Basic Hand Tools -->
+      <div class="topic-card">
+        <h2><i class='bx bx-wrench'></i> อุปกรณ์และเครื่องมือช่างพื้นฐาน (Basic Hand Tools)</h2>
+        <p>
+          การเลือกใช้เครื่องมือที่ตรงกับวัตถุประสงค์ไม่เพียงช่วยให้ชิ้นงานสำเร็จด้วยดี แต่ยังเป็นสิ่งสำคัญที่สุดในการป้องกันอันตรายจากการทำงานช่าง:
+        </p>
+        
+        <div class="grid-2">
+          <div class="info-box">
+            <h4><i class='bx bx-line-chart'></i> เครื่องมือวัด (Measuring Tools)</h4>
+            <p>ใช้ในการกำหนดขนาดและระยะเพื่อให้ชิ้นงานประกอบได้พอดี</p>
+            <ul class="detail-list">
+              <li><strong>ไม้บรรทัดเหล็ก / ตลับเมตร:</strong> วัดระยะพื้นฐานทั่วไป</li>
+              <li><strong>เวอร์เนียร์คาลิเปอร์:</strong> วัดความโตนอก ความโตภายใน และความลึกระดับมิลลิเมตรได้อย่างแม่นยำ</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4><i class='bx bx-cut'></i> เครื่องมือตัด (Cutting Tools)</h4>
+            <p>ใช้สำหรับแยกชิ้นส่วนของวัสดุออกจากกัน</p>
+            <ul class="detail-list">
+              <li><strong>คัตเตอร์ตัดพลาสติก:</strong> สำหรับแผ่นอะคริลิกหรือพลาสติกหนา</li>
+              <li><strong>เลื่อยฉลุ / เลื่อยโครงเหล็ก:</strong> สำหรับตัดไม้เนื้ออ่อนหรือท่อโลหะ/ท่อ PVC</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4><i class='bx bx-bullseye'></i> เครื่องมือเจาะ (Drilling Tools)</h4>
+            <p>ใช้สร้างรูบนวัสดุเพื่อการยึดประกอบ</p>
+            <ul class="detail-list">
+              <li><strong>ที่เจาะกระดาษ / เหล็กนำศูนย์:</strong> ทำเครื่องหมายนำร่อง</li>
+              <li><strong>สว่านไฟฟ้า / สว่านมือ:</strong> เจาะรูบนไม้ โลหะ หรือพลาสติกด้วยดอกสว่านขนาดต่าง ๆ</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4><i class='bx bx-link'></i> เครื่องมือยึดติด (Fastening Tools)</h4>
+            <p>ใช้สำหรับยึดประสานชิ้นส่วนต่าง ๆ เข้าด้วยกัน</p>
+            <ul class="detail-list">
+              <li><strong>ไขควง / ประแจ:</strong> ยึดแน่นด้วยสกรูและน็อต สามารถถอดประกอบได้</li>
+              <li><strong>ปืนกาวร้อน / หัวแร้งบัดกรี:</strong> ยึดด้วยความร้อนและกาว/ตะกั่วบัดกรีในงานวงจรอิเล็กทรอนิกส์</li>
+            </ul>
+          </div>
+        </div>
+        <img src="assets/hand_tools.png" alt="Measuring and Hand Tools for Engineering" class="lesson-image">
+      </div>
+
+      <!-- Topic 3: Mechanisms & Electronics -->
+      <div class="topic-card">
+        <h2><i class='bx bx-plug'></i> ระบบกลไกและอุปกรณ์อิเล็กทรอนิกส์พื้นฐาน</h2>
+        <p>
+          ชิ้นงานเทคโนโลยีมักประยุกต์ใช้ **กลไก** เพื่อผ่อนแรงหรือเปลี่ยนทิศทางการเคลื่อนที่ ร่วมกับ **อุปกรณ์ไฟฟ้าและอิเล็กทรอนิกส์** เพื่อควบคุมระบบให้ทำงานอัตโนมัติ:
+        </p>
+        
+        <div class="grid-2">
+          <div class="info-box">
+            <h4><i class='bx bx-redo'></i> กลไกผ่อนแรง (Mechanisms)</h4>
+            <ul class="detail-list" style="font-size: 0.9rem;">
+              <li><strong>ล้อและเพลา (Wheel & Axle):</strong> ช่วยผ่อนแรงในการหมุน เช่น ลูกบิดประตู พวงมาลัยรถยนต์</li>
+              <li><strong>รอก (Pulley):</strong> ช่วยยกของหนักขึ้นที่สูงโดยการดึงเชือกผ่านล้อหมุน</li>
+              <li><strong>เฟือง (Gears):</strong> ส่งกำลังและเปลี่ยนความเร็ว/ทิศทางในการหมุน เช่น ในนาฬิกาหรือของเล่นไขลาน</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4><i class='bx bx-microchip'></i> อุปกรณ์ไฟฟ้า/อิเล็กทรอนิกส์ & เซนเซอร์</h4>
+            <ul class="detail-list" style="font-size: 0.9rem;">
+              <li><strong>ตัวต้านทาน (Resistor):</strong> ควบคุมปริมาณกระแสไฟฟ้าในวงจร</li>
+              <li><strong>ไดโอดเปล่งแสง (LED):</strong> แสดงสถานะการทำงานด้วยการส่องแสง</li>
+              <li><strong>เซนเซอร์ตรวจจับแสง (LDR):</strong> วัดความเข้มแสงเพื่อเปิดปิดไฟอัตโนมัติ</li>
+              <li><strong>เซนเซอร์อัลตราโซนิก (Ultrasonic):</strong> วัดระยะห่างของวัตถุโดยใช้คลื่นเสียง</li>
+            </ul>
+          </div>
+        </div>
+        <img src="assets/circuit_board.png" alt="Mechanisms, Electronics, and Sensors on Circuit Boards" class="lesson-image">
+      </div>
+
+      <!-- Topic 4: STEM Project Development -->
+      <div class="topic-card">
+        <h2><i class='bx bx-folder-open'></i> การพัฒนาโครงงานด้วยแนวคิดสะเต็มศึกษา (STEM Project)</h2>
+        <p>
+          ในการสร้างชิ้นงานแก้ปัญหาในชีวิตจริง นักเรียนจะได้รับการส่งเสริมให้บูรณาการความรู้จาก 4 สหวิทยาการหลัก เพื่อสร้างนวัตกรรมที่มีประสิทธิภาพและมีความคุ้มค่าสูงสุด:
+        </p>
+        
+        <div class="highlight-box">
+          <h5><i class='bx bx-briefcase'></i> องค์ประกอบของสะเต็มศึกษา (STEM Education)</h5>
+          <ul style="margin-left: 1.5rem; line-height: 1.8; font-size: 0.95rem;">
+            <li><strong>S (Science - วิทยาศาสตร์):</strong> ความเข้าใจในหลักการธรรมชาติ เช่น แรงดันน้ำ อุณหภูมิ ทฤษฎีความร้อน</li>
+            <li><strong>T (Technology - เทคโนโลยี):</strong> การเลือกใช้เครื่องมือเขียนโปรแกรม สื่อออนไลน์ และอุปกรณ์อำนวยความสะดวก</li>
+            <li><strong>E (Engineering - วิศวกรรมศาสตร์):</strong> ขั้นตอนการออกแบบเชิงระบบ การวาดภาพร่าง วางแผนทำชิ้นงานและทดสอบ</li>
+            <li><strong>M (Mathematics - คณิตศาสตร์):</strong> การคำนวณสัดส่วน พื้นที่ ปริมาตร ความสูง มุม และงบประมาณโครงงาน</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="page-nav">
+        <a href="unit2.html" class="btn btn-outline"><i class='bx bx-left-arrow-alt'></i> หน่วยที่ 2</a>
+        <a href="index.html" class="btn btn-primary"><i class='bx bx-home'></i> กลับสู่หน้าแรก</a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+      <div class="footer-bottom">
+        <p>&copy; 2026 วิชาการออกแบบและเทคโนโลยี | PANIITTHA BOONYONG </p>
+        <p>WANGNAMYENWITTAYAKOM SCHOOL . SECONDARY EDUCATIONAL SERVICE AREA OFFICE SA KAEO</p>
+      </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="แหล่งเรียนรู้ออนไลน์ รายวิชาการออกแบบและเทคโนโลยี ม.4 โรงเรียนวังน้ำเย็นวิทยาคม รวบรวมใบงาน สื่อการเรียนรู้ E-book และแบบทดสอบเก็บคะแนน">
+  <meta name="keywords" content="การออกแบบและเทคโนโลยี, ม.4, วังน้ำเย็นวิทยาคม, ใบงาน, สื่อการสอน, ข้อสอบ อจท, แบบทดสอบ ม.4">
+  <meta property="og:title" content="วิชาการออกแบบและเทคโนโลยี ม.4">
+  <meta property="og:description" content="แหล่งเรียนรู้ออนไลน์ รายวิชาการออกแบบและเทคโนโลยี ม.4 โรงเรียนวังน้ำเย็นวิทยาคม รวบรวมใบงาน สื่อการเรียนรู้ E-book และแบบทดสอบเก็บคะแนน">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/LOGOprofile.gif">
+  <title>สรุปบทเรียน E-book - วิชาการออกแบบและเทคโนโลยี ม.4</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/gif" href="assets/LOGOprofile.gif">
+  
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .summary-container {
+      max-width: 1200px;
+      margin: 8rem auto 4rem;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 2rem;
+    }
+
+    /* Sidebar Navigation */
+    .summary-sidebar {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+      height: fit-content;
+      position: sticky;
+      top: 6rem;
+    }
+    .summary-sidebar h3 {
+      font-size: 1.1rem;
+      color: var(--text-main);
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      width: 100%;
+      padding: 1rem;
+      background: transparent;
+      border: none;
+      border-radius: var(--radius-md);
+      color: var(--text-muted);
+      font-family: 'Prompt', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-bottom: 0.5rem;
+    }
+    .nav-btn:hover {
+      background: var(--bg-color);
+      color: var(--primary-color);
+      transform: translateX(4px);
+    }
+    .nav-btn.active {
+      background: rgba(37, 99, 235, 0.08);
+      color: var(--primary-color);
+      box-shadow: inset 4px 0 0 var(--primary-color);
+    }
+
+    /* Content Area */
+    .summary-content {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 3rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+      min-height: 60vh;
+    }
+    .chapter-pane {
+      display: none;
+      animation: fadeIn 0.4s ease-in-out forwards;
+    }
+    .chapter-pane.active {
+      display: block;
+    }
+
+    /* Chapter Headings */
+    .chapter-header {
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .chapter-header h1 {
+      font-size: 2.2rem;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .chapter-header p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      margin-top: 0.5rem;
+    }
+
+    /* Interactive Unit 1: System Diagram */
+    .system-interactive {
+      background: var(--bg-color);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      border: 1px solid var(--border-color);
+      margin: 2rem 0;
+    }
+    .system-diagram-interactive {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+      position: relative;
+      margin-bottom: 2rem;
+    }
+    .diagram-node {
+      background: white;
+      border: 2px solid var(--border-color);
+      padding: 1.25rem;
+      border-radius: var(--radius-md);
+      text-align: center;
+      cursor: pointer;
+      flex: 1;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      z-index: 2;
+    }
+    .diagram-node:hover, .diagram-node.selected {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+      transform: translateY(-2px);
+    }
+    .diagram-node h4 {
+      color: var(--text-main);
+      font-size: 1.05rem;
+      margin-bottom: 0.25rem;
+    }
+    .diagram-node p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .diagram-connector {
+      flex: 0.2;
+      height: 2px;
+      background: var(--border-color);
+      position: relative;
+    }
+    .diagram-connector::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: -4px;
+      width: 0;
+      height: 0;
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-left: 6px solid var(--border-color);
+    }
+    .feedback-connector {
+      position: absolute;
+      bottom: -1rem;
+      left: 12.5%;
+      width: 75%;
+      height: 12px;
+      border: 2px dashed var(--border-color);
+      border-top: none;
+      border-radius: 0 0 10px 10px;
+    }
+    .feedback-connector::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: -6px;
+      width: 0;
+      height: 0;
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-right: 6px solid var(--border-color);
+    }
+    .node-details {
+      background: white;
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+      min-height: 130px;
+    }
+    .node-details h4 {
+      font-size: 1.2rem;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .node-details p {
+      color: var(--text-main);
+      line-height: 1.7;
+    }
+
+    /* Interactive Unit 2: Roadmap */
+    .roadmap-list {
+      position: relative;
+      padding-left: 2.5rem;
+      margin: 2rem 0;
+    }
+    .roadmap-list::before {
+      content: '';
+      position: absolute;
+      left: 11px;
+      top: 10px;
+      bottom: 10px;
+      width: 2px;
+      background: var(--border-color);
+    }
+    .roadmap-step {
+      position: relative;
+      margin-bottom: 1.5rem;
+      cursor: pointer;
+    }
+    .roadmap-bullet {
+      position: absolute;
+      left: -2.5rem;
+      top: 2px;
+      width: 24px;
+      height: 24px;
+      background: white;
+      border: 2px solid var(--border-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: bold;
+      color: var(--text-muted);
+      transition: all 0.3s ease;
+      z-index: 2;
+    }
+    .roadmap-step.active .roadmap-bullet {
+      border-color: var(--primary-color);
+      background: var(--primary-color);
+      color: white;
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2);
+    }
+    .roadmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      background: var(--bg-color);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+    .roadmap-header h4 {
+      font-size: 1.05rem;
+      color: var(--text-main);
+    }
+    .roadmap-step.active .roadmap-header {
+      background: white;
+      border-color: var(--primary-color);
+    }
+    .roadmap-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+      padding: 0 1.5rem;
+      background: white;
+      border: 1px solid transparent;
+      border-top: none;
+      border-radius: 0 0 var(--radius-md) var(--radius-md);
+    }
+    .roadmap-step.active .roadmap-body {
+      max-height: 400px;
+      padding: 1.25rem 1.5rem;
+      border-color: var(--primary-color);
+      border-top: none;
+    }
+    .roadmap-body p {
+      margin-bottom: 0.75rem;
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+    .roadmap-body ul {
+      padding-left: 1.25rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+    .roadmap-body ul li {
+      margin-bottom: 0.25rem;
+    }
+
+    /* Unit 3: Case Studies */
+    .case-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .case-card {
+      background: var(--bg-color);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+    .case-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary-color);
+      box-shadow: var(--shadow-md);
+    }
+    .case-card i {
+      font-size: 2rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    .case-card h4 {
+      font-size: 1.1rem;
+      color: var(--text-main);
+      margin-bottom: 0.5rem;
+    }
+    .case-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Print/PDF Export Button */
+    .print-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 2rem;
+    }
+
+    /* Responsive Grid Styles */
+    @media (max-width: 992px) {
+      .summary-container {
+        grid-template-columns: 1fr;
+        margin-top: 6rem;
+      }
+      .summary-sidebar {
+        position: static;
+        width: 100%;
+      }
+      .sidebar-nav-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .nav-btn {
+        flex: 1 1 calc(50% - 0.5rem);
+        margin-bottom: 0;
+      }
+    }
+    @media (max-width: 600px) {
+      .sidebar-nav-list {
+        flex-direction: column;
+      }
+      .nav-btn {
+        flex: 1 1 100%;
+      }
+      .system-diagram-interactive {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .diagram-connector {
+        display: none;
+      }
+      .feedback-connector {
+        display: none;
+      }
+      .summary-content {
+        padding: 1.5rem;
+      }
+    }
+
+    /* CSS Keyframes */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Print Styles */
+    @media print {
+      body {
+        background: white !important;
+        color: black !important;
+      }
+      .navbar, .summary-sidebar, .footer, .print-actions, .nav-btn, .diagram-connector, .feedback-connector, .roadmap-bullet {
+        display: none !important;
+      }
+      .summary-container {
+        grid-template-columns: 1fr !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .summary-content {
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+      }
+      .chapter-pane {
+        display: block !important;
+        page-break-after: always;
+      }
+      .node-details, .roadmap-body {
+        max-height: none !important;
+        display: block !important;
+        border: 1px solid #ccc !important;
+        padding: 1rem !important;
+        margin-top: 1rem !important;
+      }
+      .roadmap-header {
+        background: #f0f0f0 !important;
+        border: 1px solid #ccc !important;
+      }
+      .case-card {
+        border: 1px solid #ccc !important;
+        background: white !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <i class='bx bx-laptop'></i> Design<span>Tech</span>
+      </a>
+      <div class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link">หน้าแรก</a>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link">บทเรียน <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="unit1.html">หน่วยที่ 1</a>
+            <a href="unit2.html">หน่วยที่ 2</a>
+            <a href="unit3.html">หน่วยที่ 3</a>
+          </div>
+        </div>
+        <a href="media.html" class="nav-link active">สื่อการเรียนรู้</a>
+        <a href="worksheets.html" class="nav-link">ใบงาน</a>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link">ส่งงาน <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="submit.html">ส่งใบงาน</a>
+            <a href="check_submissions.html">ตรวจสอบการส่งงาน (นักเรียน)</a>
+            <a href="teacher_dashboard.html">แดชบอร์ดครูผู้สอน</a>
+          </div>
+        </div>
+        <a href="quizzes.html" class="nav-link">แบบทดสอบ</a>
+        <a href="contact.html" class="nav-link">ติดต่อครูผู้สอน</a>
+      </div>
+      <div class="nav-toggle" id="navToggle">
+        <i class='bx bx-menu'></i>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Summary Reader Container -->
+  <main class="summary-container">
+    
+    <!-- Sidebar -->
+    <aside class="summary-sidebar">
+      <h3><i class='bx bx-book-bookmark'></i> บทสรุปเนื้อหา</h3>
+      <div class="sidebar-nav-list">
+        <button class="nav-btn active" onclick="switchTab('intro')">
+          <i class='bx bx-info-circle'></i> บทนำรายวิชา
+        </button>
+        <button class="nav-btn" onclick="switchTab('unit1')">
+          <i class='bx bx-cog'></i> หน่วยที่ 1 ระบบเทคโนโลยี
+        </button>
+        <button class="nav-btn" onclick="switchTab('unit2')">
+          <i class='bx bx-git-commit'></i> หน่วยที่ 2 การออกแบบเชิงวิศวกรรม
+        </button>
+        <button class="nav-btn" onclick="switchTab('unit3')">
+          <i class='bx bx-trophy'></i> หน่วยที่ 3 ผลงานและการออกแบบ
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Reader Pane -->
+    <section class="summary-content">
+      
+      <!-- Print Actions -->
+      <div class="print-actions">
+        <button class="btn btn-primary btn-sm" onclick="window.print()">
+          <i class='bx bx-printer'></i> พิมพ์ / ดาวน์โหลดสรุป PDF
+        </button>
+      </div>
+
+      <!-- Introduction Panel -->
+      <div id="pane-intro" class="chapter-pane active">
+        <div class="chapter-header">
+          <h1>บทนำรายวิชา</h1>
+          <p>วิชาการออกแบบและเทคโนโลยี ชั้นมัธยมศึกษาปีที่ 4</p>
+        </div>
+        <p style="text-indent: 2rem; margin-bottom: 1.5rem; line-height: 1.8;">
+          ยินดีต้อนรับสู่หน้ารวบรวมบทเรียนฉบับย่อวิชาการออกแบบและเทคโนโลยี ม.4 หน้าสรุปนี้ถูกออกแบบมาเพื่อเป็นเครื่องมือศึกษาค้นคว้าด้วยตนเองก่อนสอบหรือทบทวนความรู้ประกอบการทำใบงาน โดยครอบคลุมเนื้อหาสำคัญทั้งหมด 3 หน่วยการเรียนรู้
+        </p>
+        <p style="text-indent: 2rem; margin-bottom: 2rem; line-height: 1.8;">
+          เป้าหมายหลักของรายวิชานี้คือการส่งเสริมให้ผู้เรียนเข้าใจความสัมพันธ์ระหว่างเทคโนโลยีกับศาสตร์อื่น ๆ โดยเฉพาะวิทยาศาสตร์และคณิตศาสตร์ พร้อมทักษะการแก้ปัญหาอย่างเป็นระบบโดยอาศัยกระบวนการออกแบบเชิงวิศวกรรมเพื่อสร้างสรรค์ผลงานที่เป็นประโยชน์ต่อสังคม
+        </p>
+        <div style="background: rgba(37, 99, 235, 0.05); padding: 1.5rem; border-radius: var(--radius-md); border-left: 4px solid var(--primary-color);">
+          <h4 style="color: var(--primary-color); margin-bottom: 0.5rem; font-size: 1.1rem;"><i class='bx bx-bulb'></i> แนะนำการใช้งาน</h4>
+          <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+            เลือกหัวข้อบทเรียนจากแถบเมนูด้านซ้ายเพื่ออ่านบทสรุป คุณสามารถกดปุ่มองค์ประกอบในแผนผังของหน่วยที่ 1 หรือหัวข้อขั้นตอนของหน่วยที่ 2 เพื่อดูรายละเอียดแบบโต้ตอบ (Interactive) ได้ทันที นอกจากนี้ยังสามารถดาวน์โหลดเป็นชีทสรุปเนื้อหาสำหรับเก็บไว้อ่านเพิ่มเติมได้ด้วย
+          </p>
+        </div>
+      </div>
+
+      <!-- Unit 1 Panel -->
+      <div id="pane-unit1" class="chapter-pane">
+        <div class="chapter-header">
+          <h1>หน่วยที่ 1: ระบบทางเทคโนโลยี</h1>
+          <p>องค์ประกอบและการทำงานร่วมกันของเทคโนโลยีรอบตัว</p>
+        </div>
+        
+        <h3>1. ระบบคืออะไร?</h3>
+        <p style="margin-bottom: 1.5rem; line-height: 1.7;">
+          ระบบ (System) คือ กลุ่มของส่วนประกอบต่างๆ ตั้งแต่สองส่วนขึ้นไปที่ทำงานร่วมกันหรือทำงานประสานสัมพันธ์กัน เพื่อให้บรรลุวัตถุประสงค์เดียวกัน โดยแบ่งออกเป็นระบบตามธรรมชาติ (เช่น ระบบหมุนเวียนเลือด) และระบบที่มนุษย์สร้างขึ้น (ระบบทางเทคโนโลยี)
+        </p>
+
+        <h3>2. องค์ประกอบของระบบทางเทคโนโลยี (Interactive Diagram)</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+          * คลิกที่ปุ่มองค์ประกอบด้านล่างเพื่อดูนิยามและกรณีศึกษาตัวอย่าง
+        </p>
+
+        <!-- Interactive Diagram -->
+        <div class="system-interactive">
+          <div class="system-diagram-interactive">
+            <div class="diagram-node selected" id="node-input" onclick="selectNode('input')">
+              <h4>ตัวป้อน (Input)</h4>
+              <p>จุดเริ่มต้นของระบบ</p>
+            </div>
+            <div class="diagram-connector"></div>
+            <div class="diagram-node" id="node-process" onclick="selectNode('process')">
+              <h4>กระบวนการ (Process)</h4>
+              <p>การดำเนินการทำงาน</p>
+            </div>
+            <div class="diagram-connector"></div>
+            <div class="diagram-node" id="node-output" onclick="selectNode('output')">
+              <h4>ผลผลิต (Output)</h4>
+              <p>ผลลัพธ์ของเป้าหมาย</p>
+            </div>
+            <div class="feedback-connector"></div>
+          </div>
+
+          <!-- Feedback Node below -->
+          <div style="display: flex; justify-content: center; margin-top: 1.5rem;">
+            <div class="diagram-node" id="node-feedback" style="max-width: 280px;" onclick="selectNode('feedback')">
+              <h4>ข้อมูลย้อนกลับ (Feedback)</h4>
+              <p>การปรับปรุงเพื่อควบคุมระบบ</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Node Details -->
+        <div class="node-details" id="node-details-area">
+          <h4 id="detail-title"><i class='bx bx-right-arrow-circle'></i> ตัวป้อน (Input)</h4>
+          <p id="detail-desc">
+            สิ่งที่ป้อนเข้าสู่ระบบเพื่อทำให้ระบบทำงานได้ตามความต้องการ เช่น ไฟฟ้า พลังงานความร้อน หรือวัตถุดิบต่างๆ<br>
+            <strong>ตัวอย่าง (หม้อหุงข้าวไฟฟ้า):</strong> ไฟฟ้า ข้าวสาร น้ำ
+          </p>
+        </div>
+
+        <h3 style="margin-top: 2rem;">3. การทำงานผิดพลาดของระบบ (System Failure)</h3>
+        <p style="line-height: 1.7; margin-bottom: 1.5rem;">
+          เทคโนโลยีมีลักษณะเป็นระบบที่ทำงานร่วมกันของระบบย่อย (Subsystems) หากส่วนประกอบหรือระบบย่อยใดเสียหายหรือทำงานผิดพลาด จะส่งผลลัพธ์ทำให้ทั้งระบบไม่สามารถทำงานตามเป้าหมายได้ (เช่น ตัววัดอุณหภูมิของหม้อหุงข้าวเสีย ข้าวจะไม่สุกหรือไหม้)
+        </p>
+      </div>
+
+      <!-- Unit 2 Panel -->
+      <div id="pane-unit2" class="chapter-pane">
+        <div class="chapter-header">
+          <h1>หน่วยที่ 2: กระบวนการออกแบบเชิงวิศวกรรม</h1>
+          <p>เครื่องมือและกระบวนการแก้ไขปัญหาอย่างเป็นระบบ</p>
+        </div>
+
+        <h3>กระบวนการแก้ปัญหา 6 ขั้นตอน (คลิกเพื่อขยายรายละเอียด)</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+          เรียนรู้วิธีการดำเนินการคิดแก้ปัญหาแบบวิศวกรทีละขั้นตอน
+        </p>
+
+        <!-- Vertical Timeline Roadmap -->
+        <div class="roadmap-list">
+          
+          <!-- Step 1 -->
+          <div class="roadmap-step active" onclick="toggleStep(this)">
+            <div class="roadmap-bullet">1</div>
+            <div class="roadmap-header">
+              <h4>ขั้นที่ 1: ระบุปัญหา (Problem Identification)</h4>
+              <i class='bx bx-chevron-down'></i>
+            </div>
+            <div class="roadmap-body">
+              <p>ทำความเข้าใจเกี่ยวกับปัญหา วิเคราะห์เงื่อนไข และขอบเขตของความต้องการเพื่อให้ทราบแน่ชัดว่าอะไรคือสิ่งที่ต้องแก้ไข</p>
+              <ul>
+                <li>กำหนดประเด็นคำถาม 5W1H (ใคร, อะไร, ที่ไหน, เมื่อไร, ทำไม, อย่างไร)</li>
+                <li>สรุปกรอบเป้าหมายในการพัฒนาหรือหาหนทางแก้ไข</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="roadmap-step" onclick="toggleStep(this)">
+            <div class="roadmap-bullet">2</div>
+            <div class="roadmap-header">
+              <h4>ขั้นที่ 2: รวบรวมข้อมูลและแนวคิด (Related Information Search)</h4>
+              <i class='bx bx-chevron-down'></i>
+            </div>
+            <div class="roadmap-body">
+              <p>แสวงหาความรู้ เทคโนโลยี ข้อมูลทางวิทยาศาสตร์ และแนวคิดเดิมที่มีผู้อื่นสร้างไว้แล้วมาวิเคราะห์ข้อดีข้อเสีย</p>
+              <ul>
+                <li>สืบค้นจากอินเทอร์เน็ต ตำรา หนังสือเรียน หรือการสอบถามผู้รู้</li>
+                <li>สรุปเป็นตารางเปรียบเทียบแนวคิดทางเลือกและเลือกวิธีที่ดีที่สุด</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="roadmap-step" onclick="toggleStep(this)">
+            <div class="roadmap-bullet">3</div>
+            <div class="roadmap-header">
+              <h4>ขั้นที่ 3: ออกแบบวิธีการแก้ปัญหา (Solution Design)</h4>
+              <i class='bx bx-chevron-down'></i>
+            </div>
+            <div class="roadmap-body">
+              <p>แปลงแนวคิดการแก้ปัญหาให้ออกมาเป็นรูปแบบรูปธรรมที่สามารถนำไปสร้างหรือลงมือทำจริงได้</p>
+              <ul>
+                <li>เขียนภาพร่าง 2 มิติ หรือ 3 มิติ หรือแผนภาพระบุสัดส่วนที่ถูกต้อง</li>
+                <li>กำหนดรายการวัสดุอุปกรณ์ และรายละเอียดของขั้นตอนแต่ละส่วน</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="roadmap-step" onclick="toggleStep(this)">
+            <div class="roadmap-bullet">4</div>
+            <div class="roadmap-header">
+              <h4>ขั้นที่ 4: วางแผนและดำเนินการแก้ปัญหา (Planning & Development)</h4>
+              <i class='bx bx-chevron-down'></i>
+            </div>
+            <div class="roadmap-body">
+              <p>กำหนดรายละเอียดปฏิทินงาน จัดเตรียมวัสดุเครื่องมือ และสร้างชิ้นงานจำลอง (Prototype) ขึ้นมาทดสอบ</p>
+              <ul>
+                <li>สร้างตารางกำหนดเวลา Gantt Chart เพื่อแบ่งหน้าที่และจำกัดเวลาการผลิต</li>
+                <li>ลงมือปฏิบัติสร้างแบบจำลองโดยคำนึงถึงความปลอดภัย</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="roadmap-step" onclick="toggleStep(this)">
+            <div class="roadmap-bullet">5</div>
+            <div class="roadmap-header">
+              <h4>ขั้นที่ 5: ทดสอบ ประเมินผล และปรับปรุง (Testing & Improvement)</h4>
+              <i class='bx bx-chevron-down'></i>
+            </div>
+            <div class="roadmap-body">
+              <p>นำผลงานแบบจำลองไปตรวจสอบภายใต้ข้อกำหนดการทดสอบที่สร้างไว้ และนำผลลัพธ์มาปรับปรุงจุดที่บกพร่อง</p>
+              <ul>
+                <li>กำหนดเกณฑ์การประยุกต์และแบบประเมินผลสัมฤทธิ์อย่างชัดเจน</li>
+                <li>แก้ไข ปรับเปลี่ยนโครงสร้างหรือกลไกให้เกิดความเสถียรสูงสุด</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Step 6 -->
+          <div class="roadmap-step" onclick="toggleStep(this)">
+            <div class="roadmap-bullet">6</div>
+            <div class="roadmap-header">
+              <h4>ขั้นที่ 6: นำเสนอวิธีการและผลการแก้ปัญหา (Presentation)</h4>
+              <i class='bx bx-chevron-down'></i>
+            </div>
+            <div class="roadmap-body">
+              <p>จัดทำรายงาน นำเสนอโครงงาน หรือจัดบอร์ดนิทรรศการเพื่อให้ผู้อื่นทราบถึงรายละเอียดของงานอย่างชัดเจน</p>
+              <ul>
+                <li>นำเสนอด้วยวาจาโดยใช้สื่อ PowerPoint หรือแผ่นพับสรุปเนื้อหา</li>
+                <li>ตอบประเด็นข้อซักถามและรับคำแนะนำเพื่อนำไปต่อยอด</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Unit 3 Panel -->
+      <div id="pane-unit3" class="chapter-pane">
+        <div class="chapter-header">
+          <h1>หน่วยที่ 3: ผลงานการออกแบบและเทคโนโลยี</h1>
+          <p>กรณีศึกษาการประยุกต์ใช้องค์ความรู้จริงในสังคม</p>
+        </div>
+        
+        <h3>กรณีศึกษาการวิเคราะห์ผลงานทางเทคโนโลยี</h3>
+        <p style="line-height: 1.7;">
+          การศึกษาตัวอย่างผลงานเทคโนโลยีในแง่มุมของการออกแบบและการวิเคราะห์ความคุ้มค่า ช่วยให้เข้าใจกระบวนการทำงานและเกิดแนวคิดการนำไปพัฒนานวัตกรรมของตนเอง
+        </p>
+
+        <!-- Case Studies Grid -->
+        <div class="case-grid">
+          
+          <!-- Case 1 -->
+          <div class="case-card">
+            <i class='bx bx-leaf'></i>
+            <h4>ระบบเกษตรอัจฉริยะ</h4>
+            <p><strong>ปัญหา:</strong> เกษตรกรรดน้ำพืชไม่ทั่วถึงหรือใช้น้ำสิ้นเปลืองในหน้าแล้ง</p>
+            <p style="margin-top: 0.5rem; color: var(--text-main);"><strong>เทคโนโลยีที่ใช้:</strong> เซนเซอร์วัดความชื้นในดิน วาล์วไฟฟ้า และชุดควบคุมไมโครคอนโทรลเลอร์ (Arduino/ESP32) ในการควบคุมการจ่ายน้ำอัจฉริยะ</p>
+          </div>
+
+          <!-- Case 2 -->
+          <div class="case-card">
+            <i class='bx bx-package'></i>
+            <h4>บรรจุภัณฑ์รักษ์โลก</h4>
+            <p><strong>ปัญหา:</strong> ขยะพลาสติกจากบรรจุภัณฑ์อาหารแบบใช้ครั้งเดียวทิ้งมีปริมาณมหาศาล</p>
+            <p style="margin-top: 0.5rem; color: var(--text-main);"><strong>เทคโนโลยีที่ใช้:</strong> การนำเยื่อชานอ้อย เส้นใยมันสำปะหลัง หรือไบโอพลาสติกมาผ่านกระบวนการขึ้นรูปทางความร้อนเพื่อทดแทนกล่องโฟม</p>
+          </div>
+
+          <!-- Case 3 -->
+          <div class="case-card">
+            <i class='bx bx-pulse'></i>
+            <h4>เครื่องช่วยพยุงเดิน</h4>
+            <p><strong>ปัญหา:</strong> อัตราการหกล้มและความยากลำบากในการเดินของกลุ่มผู้สูงอายุ</p>
+            <p style="margin-top: 0.5rem; color: var(--text-main);"><strong>เทคโนโลยีที่ใช้:</strong> การวิเคราะห์จุดรองรับน้ำหนักและโครงสร้างทางสรีรวิทยาเพื่อสร้างโครงเหล็กน้ำหนักเบา (Exoskeleton) พร้อมระบบสปริงควบคุมการรับแรงกระแทก</p>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+      <div class="footer-bottom">
+        <p>&copy; 2026 วิชาการออกแบบและเทคโนโลยี | PANIITTHA BOONYONG </p>
+        <p>WANGNAMYENWITTAYAKOM SCHOOL . SECONDARY EDUCATIONAL SERVICE AREA OFFICE SA KAEO</p>
+      </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Tab switching logic
+    function switchTab(tabId) {
+      // Update sidebar active buttons
+      const buttons = document.querySelectorAll('.nav-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      
+      const clickedBtn = Array.from(buttons).find(btn => btn.getAttribute('onclick').includes(tabId));
+      if (clickedBtn) clickedBtn.classList.add('active');
+
+      // Update active content panes
+      const panes = document.querySelectorAll('.chapter-pane');
+      panes.forEach(pane => pane.classList.remove('active'));
+      
+      const activePane = document.getElementById('pane-' + tabId);
+      if (activePane) activePane.classList.add('active');
+    }
+
+    // Interactive Node Selection for Unit 1
+    const nodeDetails = {
+      'input': {
+        title: "<i class='bx bx-right-arrow-circle'></i> ตัวป้อน (Input)",
+        desc: "สิ่งที่ป้อนเข้าสู่ระบบเพื่อทำให้ระบบทำงานได้ตามความต้องการ เช่น ไฟฟ้า พลังงานความร้อน หรือวัตถุดิบต่างๆ<br><strong>กรณีศึกษา (หม้อหุงข้าวไฟฟ้า):</strong> พลังงานไฟฟ้า, เมล็ดข้าวสาร, น้ำสะอาด"
+      },
+      'process': {
+        title: "<i class='bx bx-recycle'></i> กระบวนการ (Process)",
+        desc: "การดำเนินงานของระบบที่ทำงานต่อเนื่องเพื่อเปลี่ยนสภาพของตัวป้อนให้เกิดเป็นผลผลิตตามเป้าหมายของระบบ<br><strong>กรณีศึกษา (หม้อหุงข้าวไฟฟ้า):</strong> กระแสไฟฟ้าไหลผ่านขดลวดความร้อน เกิดความร้อนสะสมทำให้น้ำเดือดและข้าวสุก"
+      },
+      'output': {
+        title: "<i class='bx bx-check-circle'></i> ผลผลิต (Output)",
+        desc: "ผลลัพธ์ของการทำความเข้าใจเป้าหมายที่ตั้งไว้ในการแก้ไขปัญหาของอุปกรณ์ระบบทางเทคโนโลยีนั้นๆ<br><strong>กรณีศึกษา (หม้อหุงข้าวไฟฟ้า):</strong> เมล็ดข้าวที่หุงสุกพร้อมรับประทาน, พลังงานความร้อนหลงเหลือ (ไอน้ำ)"
+      },
+      'feedback': {
+        title: "<i class='bx bx-revision'></i> ข้อมูลย้อนกลับ (Feedback)",
+        desc: "ข้อมูลที่มีระบบคอยตรวจสอบการควบคุมระดับงานเพื่อช่วยให้ระบบสามารถปรับปรุงหรือทำงานได้ตามความต้องการ โดยบางอุปกรณ์อาจมีหรือไม่มีส่วนนี้<br><strong>กรณีศึกษา (หม้อหุงข้าวไฟฟ้า):</strong> ตัวควบคุมความร้อนแบบแม่เหล็ก (Thermostat) ตัดกระแสไฟฟ้าเมื่อน้ำในหม้อแห้ง เพื่อป้องกันข้าวไหม้"
+      }
+    };
+
+    function selectNode(nodeId) {
+      // Toggle node visual states
+      const nodes = document.querySelectorAll('.diagram-node');
+      nodes.forEach(node => node.classList.remove('selected'));
+      
+      const activeNode = document.getElementById('node-' + nodeId);
+      if (activeNode) activeNode.classList.add('selected');
+
+      // Update text details area
+      const detailsTitle = document.getElementById('detail-title');
+      const detailsDesc = document.getElementById('detail-desc');
+      
+      if (nodeDetails[nodeId]) {
+        detailsTitle.innerHTML = nodeDetails[nodeId].title;
+        detailsDesc.innerHTML = nodeDetails[nodeId].desc;
+      }
+    }
+
+    // Toggle steps for Unit 2
+    function toggleStep(element) {
+      // Check if it's already active
+      const isActive = element.classList.contains('active');
+      
+      // Close all steps
+      const steps = document.querySelectorAll('.roadmap-step');
+      steps.forEach(step => {
+        step.classList.remove('active');
+        step.querySelector('.roadmap-header i').className = 'bx bx-chevron-down';
+      });
+
+      // Open selected if it wasn't open
+      if (!isActive) {
+        element.classList.add('active');
+        element.querySelector('.roadmap-header i').className = 'bx bx-chevron-up';
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="แหล่งเรียนรู้ออนไลน์ รายวิชาการออกแบบและเทคโนโลยี ม.4 โรงเรียนวังน้ำเย็นวิทยาคม รวบรวมใบงาน สื่อการเรียนรู้ E-book และแบบทดสอบเก็บคะแนน">
+  <meta name="keywords" content="การออกแบบและเทคโนโลยี, ม.4, วังน้ำเย็นวิทยาคม, ใบงาน, สื่อการสอน, ข้อสอบ อจท, แบบทดสอบ ม.4">
+  <meta property="og:title" content="วิชาการออกแบบและเทคโนโลยี ม.4">
+  <meta property="og:description" content="แหล่งเรียนรู้ออนไลน์ รายวิชาการออกแบบและเทคโนโลยี ม.4 โรงเรียนวังน้ำเย็นวิทยาคม รวบรวมใบงาน สื่อการเรียนรู้ E-book และแบบทดสอบเก็บคะแนน">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/LOGOprofile.gif">
+  <title>หน่วยที่ 1 - ระบบทางเทคโนโลยี</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/gif" href="assets/LOGOprofile.gif">
+  
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .lesson-header {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 8rem 2rem 4rem;
+      text-align: center;
+    }
+    .lesson-header h1 {
+      color: white;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .lesson-header p {
+      font-size: 1.25rem;
+      opacity: 0.9;
+    }
+    .content-section {
+      padding: 4rem 2rem;
+      background-color: var(--surface-color);
+    }
+    .content-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .topic-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+    }
+    .topic-card h2 {
+      color: var(--primary-color);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .system-diagram {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 2rem 0;
+      justify-content: center;
+    }
+    .system-box {
+      background: var(--bg-color);
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+      text-align: center;
+      flex: 1;
+      min-width: 150px;
+      border: 2px solid var(--border-color);
+      position: relative;
+    }
+    .system-box h4 {
+      color: var(--secondary-color);
+      margin-bottom: 0.5rem;
+    }
+    .system-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .system-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .lesson-image {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+      margin: 1.5rem 0;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+    }
+    .system-img-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.5rem 0 0;
+    }
+    .system-img-grid img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+    }
+    @media (max-width: 600px) {
+      .system-img-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .system-card {
+      background: var(--bg-color);
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+    .system-card:hover {
+      border-color: var(--primary-color);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .system-card h3 {
+      color: var(--primary-color);
+      margin-bottom: 0.75rem;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .subsystem-container {
+      margin-top: 2rem;
+      background: var(--bg-color);
+      padding: 1.75rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+    }
+    .subsystem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.25rem;
+    }
+    .subsystem-box {
+      background: white;
+      padding: 1.25rem;
+      border-radius: var(--radius-md);
+      border-left: 4px solid var(--accent-color);
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s;
+    }
+    .subsystem-box:hover {
+      transform: scale(1.02);
+    }
+    .subsystem-box h5 {
+      color: var(--text-main);
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .subsystem-box p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .table-container {
+      overflow-x: auto;
+      margin: 1.5rem 0;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+    }
+    .failure-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+    }
+    .failure-table th, .failure-table td {
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border-color);
+      text-align: left;
+      font-size: 0.95rem;
+    }
+    .failure-table tr:last-child td {
+      border-bottom: none;
+    }
+    .failure-table th {
+      background-color: var(--bg-color);
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+    .highlight-badge {
+      background: rgba(37, 99, 235, 0.08);
+      color: var(--primary-color);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      display: inline-block;
+    }
+    .page-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-color);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <i class='bx bx-laptop'></i> Design<span>Tech</span>
+      </a>
+      <div class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link">หน้าแรก</a>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link active">บทเรียน <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="unit1.html">หน่วยที่ 1</a>
+            <a href="unit2.html">หน่วยที่ 2</a>
+            <a href="unit3.html">หน่วยที่ 3</a>
+          </div>
+        </div>
+        <a href="media.html" class="nav-link">สื่อการเรียนรู้</a>
+        <a href="worksheets.html" class="nav-link">ใบงาน</a>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link">ส่งงาน <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="submit.html">ส่งใบงาน</a>
+            <a href="check_submissions.html">ตรวจสอบการส่งงาน (นักเรียน)</a>
+            <a href="teacher_dashboard.html">แดชบอร์ดครูผู้สอน</a>
+          </div>
+        </div>
+        <a href="quizzes.html" class="nav-link">แบบทดสอบ</a>
+        <a href="contact.html" class="nav-link">ติดต่อครูผู้สอน</a>
+      </div>
+      <div class="nav-toggle" id="navToggle">
+        <i class='bx bx-menu'></i>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="lesson-header">
+    <div class="container">
+      <h1>หน่วยการเรียนรู้ที่ 1</h1>
+      <p>ระบบทางเทคโนโลยี (Technological System)</p>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <main class="content-section">
+    <div class="content-container">
+      
+      <!-- Topic 1: What is technology and system -->
+      <div class="topic-card">
+        <h2><i class='bx bx-bulb'></i> แนวคิดหลักและนิยามของ "ระบบ"</h2>
+        <p>
+          <strong>เทคโนโลยี (Technology)</strong> คือ สิ่งที่มนุษย์สร้างขึ้นหรือพัฒนาขึ้นเพื่อแก้ปัญหา สนองความต้องการ หรือเพิ่มความสามารถในการทำงานของมนุษย์ โดยอาจอยู่ในรูปแบบของชิ้นงาน (Product) เช่น โทรศัพท์ รถยนต์ หรือวิธีการ (Process) เช่น ขั้นตอนการคัดกรองโรค ระบบขนส่ง
+        </p>
+        <p style="margin-top: 1rem;">
+          การทำงานของเทคโนโลยีมักจะดำเนินงานในลักษณะของ <strong>"ระบบ" (System)</strong> ซึ่งหมายถึง กลุ่มของส่วนประกอบต่าง ๆ ตั้งแต่สองส่วนขึ้นไปประกอบเข้าด้วยกันและทำงานสัมพันธ์กันเพื่อให้บรรลุวัตถุประสงค์เดียวกัน โดยระบบแบ่งออกเป็น 2 ประเภทใหญ่ ๆ คือ:
+        </p>
+        
+        <div class="system-grid">
+          <div class="system-card">
+            <h3><i class='bx bx-leaf'></i> 1. ระบบทางธรรมชาติ</h3>
+            <p>ระบบที่เกิดขึ้นและดำเนินไปเองตามธรรมชาติโดยไม่ใช้ฝีมือของมนุษย์</p>
+            <ul style="margin-left: 1.25rem; margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-muted);">
+              <li><strong>ระบบลำเลียงน้ำของพืช:</strong> ราก ลำต้น ใบ ทำงานประสานกันเพื่อส่งน้ำและแร่ธาตุ</li>
+              <li><strong>ระบบย่อยอาหารของมนุษย์:</strong> ปาก กระเพาะ ลำไส้ ทำงานร่วมกันเพื่อย่อยและดูดซึมสารอาหาร</li>
+            </ul>
+          </div>
+          <div class="system-card">
+            <h3><i class='bx bx-cog'></i> 2. ระบบที่มนุษย์สร้างขึ้น</h3>
+            <p>ระบบที่มนุษย์พัฒนาขึ้นเพื่อช่วยอำนวยความสะดวกหรือแก้ปัญหาในชีวิตประจำวัน</p>
+            <ul style="margin-left: 1.25rem; margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-muted);">
+              <li><strong>ระบบรถไฟฟ้า:</strong> ราง รถ ข้อมูลควบคุม และสถานี ทำงานร่วมกันเพื่อรับส่งผู้โดยสาร</li>
+              <li><strong>ระบบบำบัดน้ำเสีย:</strong> ท่อระบาย ถังกรอง สารเคมี ทำงานร่วมกันเพื่อปรับปรุงคุณภาพน้ำ</li>
+            </ul>
+          </div>
+        </div>
+        <div class="system-img-grid">
+          <img src="assets/natural_system.png" alt="Natural System Example">
+          <img src="assets/human_made_system.png" alt="Human-made System Example">
+        </div>
+      </div>
+
+      <!-- Topic 2: Technological System Components -->
+      <div class="topic-card">
+        <h2><i class='bx bx-git-merge'></i> องค์ประกอบของระบบทางเทคโนโลยี</h2>
+        <p>
+          ในการทำงานของเทคโนโลยีเกือบทุกประเภท จะมีองค์ประกอบพื้นฐาน 4 ส่วนที่เกี่ยวข้องกันอย่างเป็นระบบ เรียกว่า <strong>ระบบทางเทคโนโลยี (Technological System)</strong>:
+        </p>
+        
+        <div class="system-diagram">
+          <div class="system-box">
+            <span class="highlight-badge">ส่วนที่ 1</span>
+            <h4 style="margin-top: 0.5rem;">ตัวป้อน (Input)</h4>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">ทรัพยากร ความต้องการ หรือปัญหาที่นำเข้าสู่ระบบเพื่อเริ่มต้นการทำงาน</p>
+          </div>
+          <div class="system-box">
+            <span class="highlight-badge">ส่วนที่ 2</span>
+            <h4 style="margin-top: 0.5rem;">กระบวนการ (Process)</h4>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">การดำเนินงานหรือปฏิบัติงานของเครื่องกล/ระบบเพื่อเปลี่ยนรูปตัวป้อน</p>
+          </div>
+          <div class="system-box">
+            <span class="highlight-badge">ส่วนที่ 3</span>
+            <h4 style="margin-top: 0.5rem;">ผลผลิต (Output)</h4>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">ผลลัพธ์หรือชิ้นงานที่ได้จากการทำงานของระบบสำเร็จตามเป้าหมาย</p>
+          </div>
+        </div>
+        
+        <div class="system-card" style="background: rgba(79, 70, 229, 0.03); border: 1px dashed var(--secondary-color);">
+          <h3><i class='bx bx-refresh'></i> ข้อมูลย้อนกลับ (Feedback)</h3>
+          <p style="font-size: 0.95rem;">
+            ข้อมูลที่ใช้วัดผลผลิตที่เกิดขึ้นเพื่อส่งกลับไปทำการปรับปรุงหรือควบคุมตัวป้อน/กระบวนการทำงานให้เป็นไปตามที่ต้องการ (เช่น ระบบเซนเซอร์ตัดไฟของหม้อหุงข้าวไฟฟ้าเมื่อข้าวสุกแล้ว) 
+          </p>
+        </div>
+      </div>
+
+      <!-- Topic 3: Complex Technological Systems -->
+      <div class="topic-card">
+        <h2><i class='bx bx-network-chart'></i> ระบบทางเทคโนโลยีที่ซับซ้อน (Complex Systems)</h2>
+        <p>
+          ในชีวิตจริง เทคโนโลยีหลายชนิดมีฟังก์ชันการทำงานที่หลากหลายและต้องการประสิทธิภาพที่สูงขึ้น จึงไม่ได้ประกอบด้วยวงจรเดี่ยว ๆ แต่ประกอบด้วย <strong>"ระบบย่อย" (Subsystems) ตั้งแต่ 2 ระบบขึ้นไป</strong> ที่ทำงานเชื่อมโยงสัมพันธ์กันอย่างซับซ้อน
+        </p>
+
+        <div class="subsystem-container">
+          <strong style="color: var(--primary-color);"><i class='bx bx-show-alt'></i> กรณีศึกษา: ระบบย่อยของเครื่องปรับอากาศ</strong>
+          <p style="font-size: 0.95rem; margin-top: 0.5rem;">เครื่องปรับอากาศเป็นระบบทางเทคโนโลยีที่ซับซ้อน ประกอบด้วยระบบย่อยที่ทำงานประสานกันดังนี้:</p>
+          
+          <div class="subsystem-grid">
+            <div class="subsystem-box">
+              <h5>ระบบทำความเย็น</h5>
+              <p>เปลี่ยนสารทำความเย็นให้มีอุณหภูมิต่ำเพื่อลดอุณหภูมิของอากาศในห้อง (ตัวป้อน: ไฟฟ้า, กระบวนการ: คอมเพรสเซอร์และคอยล์เย็น)</p>
+            </div>
+            <div class="subsystem-box">
+              <h5>ระบบหมุนเวียนอากาศ</h5>
+              <p>พัดลมคอยล์เย็นจะพัดอากาศอุ่นจากในห้องให้ผ่านคอยล์เย็น แล้วส่งลมเย็นกลับออกมา (ตัวป้อน: ไฟฟ้าและลมร้อน)</p>
+            </div>
+            <div class="subsystem-box">
+              <h5>ระบบควบคุมอุณหภูมิ</h5>
+              <p>เทอร์โมสตัททำหน้าที่ตรวจวัดอุณหภูมิ หากพบว่าได้อุณหภูมิที่กำหนด จะสั่งการให้หยุดทำความเย็นชั่วคราว (ข้อมูลย้อนกลับ)</p>
+            </div>
+          </div>
+        </div>
+        <img src="assets/hvac_system.png" alt="Complex HVAC System Subsystems" class="lesson-image">
+      </div>
+
+      <!-- Topic 4: System Failure -->
+      <div class="topic-card">
+        <h2><i class='bx bx-error-alt'></i> การทำงานผิดพลาดของระบบ (System Failure)</h2>
+        <p>
+          เนื่องจากระบบที่ซับซ้อนต้องอาศัยการเชื่อมต่อของระบบย่อย หากระบบย่อยใดระบบย่อยหนึ่ง <strong>ทำงานผิดพลาดหรือชำรุดเสียหาย</strong> จะส่งผลกระทบต่อระบบหลักทั้งหมด ทำให้ไม่สามารถใช้เทคโนโลยีนั้นได้เลยหรือใช้งานได้ไม่เต็มประสิทธิภาพ
+        </p>
+        
+        <div class="table-container">
+          <table class="failure-table">
+            <thead>
+              <tr>
+                <th style="width: 25%;">เทคโนโลยีหลัก</th>
+                <th style="width: 35%;">ระบบย่อยที่ผิดพลาด/เสียหาย</th>
+                <th style="width: 40%;">ผลกระทบต่อระบบโดยรวม</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>เครื่องปรับอากาศ</strong></td>
+                <td><span class="highlight-badge">ระบบระบายความร้อนชำรุด</span> (พัดลมคอยล์ร้อนไม่ทำงาน)</td>
+                <td>คอมเพรสเซอร์จะร้อนจัดและหยุดทำงาน แอร์พ่นลมปกติออกแต่ไม่มีความเย็น</td>
+              </tr>
+              <tr>
+                <td><strong>รถจักรยานยนต์</strong></td>
+                <td><span class="highlight-badge">ระบบเบรกชำรุด</span> (สายเบรกขาดหรือผ้าเบรกหมด)</td>
+                <td>รถเคลื่อนที่ได้ปกติแต่ไม่สามารถชะลอหรือหยุดรถได้ ก่อให้เกิดอันตรายรุนแรง</td>
+              </tr>
+              <tr>
+                <td><strong>โทรศัพท์มือถือ</strong></td>
+                <td><span class="highlight-badge">ระบบรับสัญญาณชำรุด</span> (เสาสัญญาณภายในมีปัญหา)</td>
+                <td>เครื่องเปิดติด แอปฯ ใช้งานได้ แต่ไม่สามารถโทรออกหรือเชื่อมต่ออินเทอร์เน็ตได้</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <p style="font-size: 0.95rem; background: #fffbeb; border-left: 4px solid #f59e0b; padding: 1rem; border-radius: 4px;">
+          <strong><i class='bx bx-check-shield'></i> การป้องกัน (Preventive Maintenance):</strong> เราจำเป็นต้องเรียนรู้โครงสร้างของระบบย่อยเพื่อทำการตรวจสอบและบำรุงรักษาอย่างสม่ำเสมอ เช่น ตรวจเช็กลมยางและผ้าเบรกของรถยนต์ ตรวจล้างตัวกรองอากาศของเครื่องปรับอากาศตามกำหนดเวลา
+        </p>
+      </div>
+
+      <!-- Topic 5: Technological Change & Impacts -->
+      <div class="topic-card">
+        <h2><i class='bx bx-stats'></i> การเปลี่ยนแปลงและผลกระทบของเทคโนโลยี</h2>
+        <p>
+          เทคโนโลยีมีการปรับปรุงและเปลี่ยนแปลงอยู่เสมอ โดยปัจจัยหลักที่ส่งผลต่อการเปลี่ยนแปลง ได้แก่ <strong>ความต้องการของมนุษย์ ความก้าวหน้าทางวิชาการ สภาพเศรษฐกิจ วัฒนธรรม และสิ่งแวดล้อม</strong>
+        </p>
+        <p style="margin-top: 1rem;">
+          การเปลี่ยนแปลงดังกล่าวนอกจากนำมาซึ่งความสะดวกสบายแล้ว ยังส่งผลกระทบต่อสังคมในหลากหลายมิติ ซึ่งเราต้องประเมินและวิเคราะห์เพื่อเตรียมความพร้อม:
+        </p>
+        
+        <ul style="margin-left: 2rem; margin-top: 1rem; line-height: 1.8;">
+          <li><strong>ด้านมนุษย์และสังคม:</strong> <span style="color: var(--accent-color); font-weight: bold;">(บวก)</span> ติดต่อสื่อสารสะดวกรวดเร็ว เข้าถึงองค์ความรู้ได้ง่ายขึ้น <span style="color: #ef4444; font-weight: bold;">(ลบ)</span> ลดปฏิสัมพันธ์แบบพบเจอหน้ากัน เกิดปัญหาความปลอดภัยทางไซเบอร์</li>
+          <li><strong>ด้านเศรษฐกิจ:</strong> <span style="color: var(--accent-color); font-weight: bold;">(บวก)</span> เพิ่มประสิทธิภาพและกำลังการผลิตด้วยเครื่องจักรทันสมัย <span style="color: #ef4444; font-weight: bold;">(ลบ)</span> อัตราการเลิกจ้างแรงงานคนในบางตำแหน่งเพิ่มขึ้น</li>
+          <li><strong>ด้านสิ่งแวดล้อม:</strong> <span style="color: var(--accent-color); font-weight: bold;">(บวก)</span> มีพลังงานสะอาด รถยนต์ไฟฟ้าช่วยลดคาร์บอน <span style="color: #ef4444; font-weight: bold;">(ลบ)</span> ปัญหาขยะอิเล็กทรอนิกส์ (E-Waste) เพิ่มขึ้นอย่างมหาศาล</li>
+        </ul>
+      </div>
+
+      <div class="page-nav">
+        <a href="index.html" class="btn btn-outline"><i class='bx bx-left-arrow-alt'></i> หน้าแรก</a>
+        <a href="unit2.html" class="btn btn-primary">หน่วยที่ 2: กระบวนการออกแบบฯ <i class='bx bx-right-arrow-alt'></i></a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+      <div class="footer-bottom">
+        <p>&copy; 2026 วิชาการออกแบบและเทคโนโลยี | PANIITTHA BOONYONG </p>
+        <p>WANGNAMYENWITTAYAKOM SCHOOL . SECONDARY EDUCATIONAL SERVICE AREA OFFICE SA KAEO</p>
+      </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

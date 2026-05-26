@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="แหล่งเรียนรู้ออนไลน์ รายวิชาการออกแบบและเทคโนโลยี ม.4 โรงเรียนวังน้ำเย็นวิทยาคม รวบรวมใบงาน สื่อการเรียนรู้ E-book และแบบทดสอบเก็บคะแนน">
+  <meta name="keywords" content="การออกแบบและเทคโนโลยี, ม.4, วังน้ำเย็นวิทยาคม, ใบงาน, สื่อการสอน, ข้อสอบ อจท, แบบทดสอบ ม.4">
+  <meta property="og:title" content="วิชาการออกแบบและเทคโนโลยี ม.4">
+  <meta property="og:description" content="แหล่งเรียนรู้ออนไลน์ รายวิชาการออกแบบและเทคโนโลยี ม.4 โรงเรียนวังน้ำเย็นวิทยาคม รวบรวมใบงาน สื่อการเรียนรู้ E-book และแบบทดสอบเก็บคะแนน">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/LOGOprofile.gif">
+  <title>หน่วยที่ 2 - กระบวนการออกแบบเชิงวิศวกรรม</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/gif" href="assets/LOGOprofile.gif">
+  
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .lesson-header {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 8rem 2rem 4rem;
+      text-align: center;
+    }
+    .lesson-header h1 {
+      color: white;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .lesson-header p {
+      font-size: 1.25rem;
+      opacity: 0.9;
+    }
+    .content-section {
+      padding: 4rem 2rem;
+      background-color: var(--surface-color);
+    }
+    .content-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .topic-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+    }
+    .topic-card h2 {
+      color: var(--primary-color);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .step-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .step-item {
+      display: flex;
+      gap: 1.5rem;
+      background: var(--bg-color);
+      padding: 1.50rem;
+      border-radius: var(--radius-md);
+      border-left: 5px solid var(--primary-color);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    .step-item:hover {
+      transform: translateX(5px);
+      box-shadow: var(--shadow-md);
+      border-left-color: var(--accent-color);
+    }
+    .step-number {
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: var(--primary-color);
+      opacity: 0.8;
+      font-family: 'Prompt', sans-serif;
+      min-width: 50px;
+    }
+    .step-content h4 {
+      color: var(--text-main);
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .step-content p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .highlight-box {
+      background: rgba(37, 99, 235, 0.04);
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--primary-color);
+      padding: 1.25rem;
+      border-radius: var(--radius-md);
+      margin-top: 1.25rem;
+    }
+    .highlight-box h5 {
+      font-size: 1rem;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+      font-family: 'Prompt', sans-serif;
+    }
+    .example-container {
+      background: #f8fafc;
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-top: 1.5rem;
+      border: 1px solid var(--border-color);
+    }
+    .example-step {
+      margin-bottom: 1.25rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px dashed var(--border-color);
+    }
+    .example-step:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    .example-title {
+      font-weight: 600;
+      color: var(--secondary-color);
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+    }
+    .page-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-color);
+    }
+    .lesson-image {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+      margin: 1.5rem 0;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <i class='bx bx-laptop'></i> Design<span>Tech</span>
+      </a>
+      <div class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link">หน้าแรก</a>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link active">บทเรียน <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="unit1.html">หน่วยที่ 1</a>
+            <a href="unit2.html">หน่วยที่ 2</a>
+            <a href="unit3.html">หน่วยที่ 3</a>
+          </div>
+        </div>
+        <a href="media.html" class="nav-link">สื่อการเรียนรู้</a>
+        <a href="worksheets.html" class="nav-link">ใบงาน</a>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link">ส่งงาน <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="submit.html">ส่งใบงาน</a>
+            <a href="check_submissions.html">ตรวจสอบการส่งงาน (นักเรียน)</a>
+            <a href="teacher_dashboard.html">แดชบอร์ดครูผู้สอน</a>
+          </div>
+        </div>
+        <a href="quizzes.html" class="nav-link">แบบทดสอบ</a>
+        <a href="contact.html" class="nav-link">ติดต่อครูผู้สอน</a>
+      </div>
+      <div class="nav-toggle" id="navToggle">
+        <i class='bx bx-menu'></i>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="lesson-header">
+    <div class="container">
+      <h1>หน่วยการเรียนรู้ที่ 2</h1>
+      <p>กระบวนการออกแบบเชิงวิศวกรรม (Engineering Design Process)</p>
+    </div>
+  </header>
+
+  <main class="content-section">
+    <div class="content-container">
+      
+      <!-- Topic 1: Importance and Definition -->
+      <div class="topic-card">
+        <h2><i class='bx bx-cog'></i> ความหมายและความสำคัญ</h2>
+        <p>
+          <strong>กระบวนการออกแบบเชิงวิศวกรรม (Engineering Design Process: EDP)</strong> เป็นขั้นตอนการแก้ปัญหาหรือพัฒนางานอย่างเป็นระบบ เพื่อตอบสนองความต้องการของมนุษย์ โดยอาศัยการบูรณาการความรู้ทางวิทยาศาสตร์ คณิตศาสตร์ เทคโนโลยี และศาสตร์อื่น ๆ มาหาทางเลือกที่เหมาะสมที่สุดในการสร้างชิ้นงานหรือวิธีการ
+        </p>
+        
+        <div class="highlight-box">
+          <h5><i class='bx bx-git-branch'></i> จุดเด่นของกระบวนการเชิงวิศวกรรม</h5>
+          <p style="font-size: 0.95rem; color: var(--text-muted);">
+            คือการทำงานที่เป็นระบบและสามารถย้อนกลับ (Iterative) ไปแก้ไขหรือปรับปรุงในขั้นตอนก่อนหน้าได้ตลอดเวลา เมื่อพบข้อจำกัดหรือปัญหาในการออกแบบหรือทดสอบชิ้นงาน
+          </p>
+        </div>
+        <img src="assets/engineering_design.png" alt="Engineering Design & Prototyping" class="lesson-image">
+      </div>
+
+      <!-- Topic 2: The 6 Steps -->
+      <div class="topic-card">
+        <h2><i class='bx bx-list-ol'></i> กระบวนการออกแบบเชิงวิศวกรรม 6 ขั้นตอน</h2>
+        <p>
+          ตามมาตรฐานหลักสูตรวิทยาศาสตร์และเทคโนโลยี (สสวท./อจท.) กระบวนการแก้ปัญหาอย่างเป็นระบบแบ่งออกเป็น <strong>6 ขั้นตอนหลัก</strong> ดังนี้:
+        </p>
+        
+        <div class="step-list">
+          
+          <!-- Step 1 -->
+          <div class="step-item">
+            <div class="step-number">01</div>
+            <div class="step-content">
+              <h4>ขั้นระบุปัญหา (Problem Identification)</h4>
+              <p>
+                ทำความเข้าใจสถานการณ์ ปัญหา หรือความต้องการให้ชัดเจน โดยใช้เครื่องมือตั้งคำถาม <strong>5W1H</strong> (Who, What, Why, When, Where, How) เพื่อวิเคราะห์ขอบเขตและเป้าหมายในการแก้ปัญหา
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="step-item">
+            <div class="step-number">02</div>
+            <div class="step-content">
+              <h4>ขั้นรวบรวมข้อมูลและแนวคิดที่เกี่ยวข้องกับปัญหา (Related Information Search)</h4>
+              <p>
+                สืบค้นและรวบรวมข้อมูล ทฤษฎี หรือแนวคิดที่เกี่ยวข้อง เช่น จากหนังสือ อินเทอร์เน็ต สอบถามผู้รู้ หรือระดมสมอง เพื่อหาแนวทางการแก้ปัญหาที่เป็นไปได้หลาย ๆ วิธี
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="step-item">
+            <div class="step-number">03</div>
+            <div class="step-content">
+              <h4>ขั้นออกแบบวิธีการแก้ปัญหา (Design)</h4>
+              <p>
+                นำข้อมูลที่รวบรวมได้มาวิเคราะห์ เปรียบเทียบข้อดีข้อเสีย และตัดสินใจเลือกแนวคิดที่ดีที่สุด จากนั้นถ่ายทอดความคิดออกเป็นภาพร่าง 2 มิติ/3 มิติ หรือผังงาน (Flowchart) เพื่อระบุรายละเอียดของชิ้นงานหรือวิธีการ
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="step-item">
+            <div class="step-number">04</div>
+            <div class="step-content">
+              <h4>ขั้นวางแผนและดำเนินการแก้ปัญหา (Planning and Development)</h4>
+              <p>
+                กำหนดตารางเวลาและขั้นตอนการดำเนินงานโดยละเอียด (เช่น การทำ <strong>Gantt Chart</strong>) กำหนดผู้รับผิดชอบ และลงมือจัดเตรียมวัสดุเครื่องมือเพื่อสร้างแบบจำลองหรือชิ้นงานต้นแบบ (Prototype)
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="step-item">
+            <div class="step-number">05</div>
+            <div class="step-content">
+              <h4>ขั้นทดสอบ ประเมินผล และปรับปรุงแก้ไข (Testing, Evaluation and Refinement)</h4>
+              <p>
+                กำหนดเกณฑ์ทดสอบชิ้นงานต้นแบบในสถานการณ์จำลองหรือจริง บันทึกผลการทดสอบ วิเคราะห์ข้อบกพร่องที่เกิดขึ้น แล้วดำเนินการแก้ไขปรับปรุงชิ้นงานให้มีประสิทธิภาพสูงสุดตามเกณฑ์
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 6 -->
+          <div class="step-item">
+            <div class="step-number">06</div>
+            <div class="step-content">
+              <h4>ขั้นนำเสนอวิธีการแก้ปัญหา ผลการแก้ปัญหาหรือชิ้นงาน (Presentation)</h4>
+              <p>
+                นำเสนอผลลัพธ์ตั้งแต่ขั้นวิเคราะห์ปัญหา แนวคิด การออกแบบ การทำงานของชิ้นงาน และข้อเสนอแนะในการพัฒนาต่อยอด ผ่านสื่อต่าง ๆ เช่น แผ่นพับ บอร์ดนิทรรศการ หรือไฟล์นำเสนอ ให้ผู้อื่นเข้าใจอย่างสร้างสรรค์
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Topic 3: Application Example -->
+      <div class="topic-card">
+        <h2><i class='bx bx-book-bookmark'></i> กรณีศึกษาตัวอย่าง: การประยุกต์ใช้ 6 ขั้นตอน</h2>
+        <p>
+          เพื่อความเข้าใจที่ชัดเจน ให้นักเรียนร่วมศึกษากระบวนการผ่านตัวอย่างโครงการ <strong>"การออกแบบถังขยะอัจฉริยะลดสัมผัสเพื่อสุขอนามัยในโรงเรียน"</strong>:
+        </p>
+        
+        <div class="example-container">
+          <div class="example-step">
+            <div class="example-title">ขั้นที่ 1: ระบุปัญหา</div>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+              นักเรียนในโรงเรียนต้องใช้มือสัมผัสฝาถังขยะในการทิ้งเศษอาหาร ทำให้เสี่ยงต่อการแพร่เชื้อโรค (แก้ปัญหาที่ "โรงเรียน", เพื่อ "สุขอนามัย")
+            </p>
+          </div>
+          <div class="example-step">
+            <div class="example-title">ขั้นที่ 2: รวบรวมข้อมูล</div>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+              ศึกษาเซนเซอร์ตรวจจับระยะทาง (Ultrasonic Sensor), การทำงานของบอร์ดควบคุม Micro:bit หรือ Arduino และระบบเปิดปิดฝาถังด้วยมอเตอร์เซอร์โว
+            </p>
+          </div>
+          <div class="example-step">
+            <div class="example-title">ขั้นที่ 3: ออกแบบวิธีการ</div>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+              วาดภาพร่าง 3 มิติของถังขยะ โดยวางตำแหน่งเซนเซอร์ไว้ด้านหน้าฝา และมอเตอร์เชื่อมกับข้อต่อฝาเพื่อเปิดปิดเมื่อมีวัตถุเข้ามาใกล้ระยะ 15 ซม.
+            </p>
+          </div>
+          <div class="example-step">
+            <div class="example-title">ขั้นที่ 4: วางแผนและดำเนินการ</div>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+              ทำตารางจัดซื้อของ 3 วัน เขียนโปรแกรมควบคุมและประกอบตัวถังขยะจำลองจากแผ่นพลาสติกลูกฟูก (ฟิวเจอร์บอร์ด) และบอร์ดไมโครคอนโทรลเลอร์
+            </p>
+          </div>
+          <div class="example-step">
+            <div class="example-title">ขั้นที่ 5: ทดสอบและประเมินผล</div>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+              ทดลองนำขยะไปทิ้ง 20 ครั้ง พบว่าฝาเปิดอัตโนมัติได้ดี แต่มีบางครั้งฝาปิดเร็วเกินไป จึงปรับปรุงเวลาหน่วงในโปรแกรมเพิ่มจาก 3 วินาที เป็น 5 วินาที
+            </p>
+          </div>
+          <div class="example-step">
+            <div class="example-title">ขั้นที่ 6: นำเสนอผลงาน</div>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+              จัดทำบอร์ดสรุปและวิดีโอสาธิตการใช้งานจริง เผยแพร่ในกลุ่มเฟซบุ๊กวิชาเรียน และสาธิตให้ครูอนามัยทดลองใช้
+            </p>
+          </div>
+        </div>
+        <img src="assets/arduino_project.png" alt="Arduino Microcontroller & Smart Trash Can Electronics" class="lesson-image">
+      </div>
+
+      <div class="page-nav">
+        <a href="unit1.html" class="btn btn-outline"><i class='bx bx-left-arrow-alt'></i> หน่วยที่ 1</a>
+        <a href="unit3.html" class="btn btn-primary">หน่วยที่ 3: ผลงานการออกแบบฯ <i class='bx bx-right-arrow-alt'></i></a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+      <div class="footer-bottom">
+        <p>&copy; 2026 วิชาการออกแบบและเทคโนโลยี | PANIITTHA BOONYONG </p>
+        <p>WANGNAMYENWITTAYAKOM SCHOOL . SECONDARY EDUCATIONAL SERVICE AREA OFFICE SA KAEO</p>
+      </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

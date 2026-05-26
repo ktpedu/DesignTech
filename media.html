@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="แหล่งเรียนรู้ออนไลน์ รายวิชาการออกแบบและเทคโนโลยี ม.4 โรงเรียนวังน้ำเย็นวิทยาคม รวบรวมใบงาน สื่อการเรียนรู้ E-book และแบบทดสอบเก็บคะแนน">
+  <meta name="keywords" content="การออกแบบและเทคโนโลยี, ม.4, วังน้ำเย็นวิทยาคม, ใบงาน, สื่อการสอน, ข้อสอบ อจท, แบบทดสอบ ม.4">
+  <meta property="og:title" content="วิชาการออกแบบและเทคโนโลยี ม.4">
+  <meta property="og:description" content="แหล่งเรียนรู้ออนไลน์ รายวิชาการออกแบบและเทคโนโลยี ม.4 โรงเรียนวังน้ำเย็นวิทยาคม รวบรวมใบงาน สื่อการเรียนรู้ E-book และแบบทดสอบเก็บคะแนน">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/LOGOprofile.gif">
+  <title>สื่อการเรียนรู้ - วิชาการออกแบบและเทคโนโลยี ม.4</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/gif" href="assets/LOGOprofile.gif">
+  
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .lesson-header {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 8rem 2rem 4rem;
+      text-align: center;
+    }
+    .lesson-header h1 {
+      color: white;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .lesson-header p {
+      font-size: 1.25rem;
+      opacity: 0.9;
+    }
+    .content-section {
+      padding: 4rem 2rem;
+      background-color: var(--surface-color);
+      min-height: 50vh;
+    }
+    .content-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .topic-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+    }
+    .topic-card h2 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .media-card {
+      background: var(--bg-color);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      transition: transform 0.3s ease;
+    }
+    .media-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+    .media-thumbnail {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .media-content {
+      padding: 1.5rem;
+    }
+    .media-type {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      background: var(--primary-color);
+      color: white;
+    }
+    .media-type.ebook {
+      background: var(--secondary-color);
+    }
+    .media-content h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-color);
+    }
+    .media-content p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <i class='bx bx-laptop'></i> Design<span>Tech</span>
+      </a>
+      <div class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link">หน้าแรก</a>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link">บทเรียน <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="unit1.html">หน่วยที่ 1</a>
+            <a href="unit2.html">หน่วยที่ 2</a>
+            <a href="unit3.html">หน่วยที่ 3</a>
+          </div>
+        </div>
+        <a href="media.html" class="nav-link active">สื่อการเรียนรู้</a>
+        <a href="worksheets.html" class="nav-link">ใบงาน</a>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link">ส่งงาน <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="submit.html">ส่งใบงาน</a>
+            <a href="check_submissions.html">ตรวจสอบการส่งงาน (นักเรียน)</a>
+            <a href="teacher_dashboard.html">แดชบอร์ดครูผู้สอน</a>
+          </div>
+        </div>
+        <a href="quizzes.html" class="nav-link">แบบทดสอบ</a>
+        <a href="contact.html" class="nav-link">ติดต่อครูผู้สอน</a>
+      </div>
+      <div class="nav-toggle" id="navToggle">
+        <i class='bx bx-menu'></i>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="lesson-header">
+    <div class="container">
+      <h1>สื่อการเรียนรู้เพิ่มเติม</h1>
+      <p>รวบรวมวีดีโอและหนังสืออิเล็กทรอนิกส์ (E-book) สำหรับศึกษาเพิ่มเติม</p>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <main class="content-section">
+    <div class="content-container">
+      
+      <!-- Videos Section -->
+      <div class="topic-card">
+        <h2><i class='bx bx-video'></i> สื่อวีดีโอ (Video Learning)</h2>
+        
+        <div class="media-grid">
+          <!-- Video 1 -->
+          <div class="media-card">
+            <img src="https://img.youtube.com/vi/xlb05anAhZw/hqdefault.jpg" alt="Video Thumbnail" class="media-thumbnail">
+            <div class="media-content">
+              <span class="media-type" style="background: var(--secondary-color);"><i class='bx bx-play-circle'></i> Video (หน่วยที่ 1)</span>
+              <h3>ระบบทางเทคโนโลยีคืออะไร?</h3>
+              <p>ทำความเข้าใจเกี่ยวกับระบบทางเทคโนโลยีในชีวิตประจำวัน</p>
+              <a href="https://www.youtube.com/watch?v=xlb05anAhZw" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="width: 100%;">รับชมวีดีโอ</a>
+            </div>
+          </div>
+          <!-- Video 2 -->
+          <div class="media-card">
+            <img src="https://img.youtube.com/vi/IM_F6cECpYo/hqdefault.jpg" alt="Video Thumbnail" class="media-thumbnail">
+            <div class="media-content">
+              <span class="media-type"><i class='bx bx-play-circle'></i> Video (หน่วยที่ 2)</span>
+              <h3>กระบวนการออกแบบเชิงวิศวกรรม</h3>
+              <p>ขั้นตอนการแก้ปัญหาอย่างเป็นระบบ 6 ขั้นตอน</p>
+              <a href="https://www.youtube.com/watch?v=IM_F6cECpYo" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="width: 100%;">รับชมวีดีโอ</a>
+            </div>
+          </div>
+          <!-- Video 3 -->
+          <div class="media-card">
+            <img src="https://img.youtube.com/vi/ByWNdcOfnsQ/hqdefault.jpg" alt="Video Thumbnail" class="media-thumbnail">
+            <div class="media-content">
+              <span class="media-type"><i class='bx bx-play-circle'></i> Video (หน่วยที่ 3)</span>
+              <h3>ผลงานออกแบบและเทคโนโลยี</h3>
+              <p>กรณีศึกษาการพัฒนาผลงานและการประยุกต์ใช้เทคโนโลยีเพื่อแก้ปัญหา</p>
+              <a href="https://www.youtube.com/watch?v=ByWNdcOfnsQ" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="width: 100%;">รับชมวีดีโอ</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- E-books Section -->
+      <div class="topic-card">
+        <h2><i class='bx bx-book-open'></i> หนังสืออิเล็กทรอนิกส์ (E-book)</h2>
+        
+        <div class="media-grid">
+          <!-- Ebook 1 -->
+          <div class="media-card">
+            <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&q=80&w=600&h=400" alt="E-book Thumbnail" class="media-thumbnail">
+            <div class="media-content">
+              <span class="media-type ebook"><i class='bx bx-book-reader'></i> E-book (อจท.)</span>
+              <h3>สรุปเนื้อหา บทที่ 1-3</h3>
+              <p>เอกสารและแบบฝึกสรุปความรู้วิชาการออกแบบและเทคโนโลยี ม.4</p>
+              <a href="ebook_summary.html" class="btn btn-outline btn-sm" style="width: 100%;">อ่านสรุปบทเรียน</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slides Section -->
+      <div class="topic-card">
+        <h2><i class='bx bx-slideshow'></i> สื่อนำเสนอ (Slide)</h2>
+        
+        <div class="media-grid">
+          <!-- Slide 1 -->
+          <div class="media-card">
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=600&h=400" alt="Unit 1 Slide Thumbnail" class="media-thumbnail">
+            <div class="media-content">
+              <span class="media-type" style="background: var(--accent-color);"><i class='bx bx-presentation'></i> Slide</span>
+              <h3>หน่วยการเรียนรู้ที่ 1 ระบบทางเทคโนโลยี</h3>
+              <p>สื่อนำเสนอเรื่องระบบทางเทคโนโลยีและการวิเคราะห์ระบบ</p>
+              <a href="https://docs.google.com/presentation/d/1bfcxZxAbQ7o90oAZITjgEfcBoGGeNgIeUGg0b1cHOsk/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="width: 100%;">เปิดสไลด์นำเสนอ</a>
+            </div>
+          </div>
+          <!-- Slide 2 -->
+          <div class="media-card">
+            <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=600&h=400" alt="Unit 2 Slide Thumbnail" class="media-thumbnail">
+            <div class="media-content">
+              <span class="media-type" style="background: var(--accent-color);"><i class='bx bx-presentation'></i> Slide</span>
+              <h3>หน่วยการเรียนรู้ที่ 2 กระบวนการออกแบบเชิงวิศวกรรม</h3>
+              <p>สื่อนำเสนอเรื่องขั้นตอนและกระบวนการแก้ปัญหา 6 ขั้นตอน</p>
+              <a href="https://docs.google.com/presentation/d/14aUJ5Zn6j9CqKYuH1yUaLUbTGchSTh5vKp6wYO5AbQw/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="width: 100%;">เปิดสไลด์นำเสนอ</a>
+            </div>
+          </div>
+          <!-- Slide 3 -->
+          <div class="media-card">
+            <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&q=80&w=600&h=400" alt="Unit 3 Slide Thumbnail" class="media-thumbnail">
+            <div class="media-content">
+              <span class="media-type" style="background: var(--accent-color);"><i class='bx bx-presentation'></i> Slide</span>
+              <h3>หน่วยการเรียนรู้ที่ 3 ผลงานการออกแบบและเทคโนโลยี</h3>
+              <p>สื่อนำเสนอตัวอย่างผลงานกรณีศึกษาและการประยุกต์ใช้เทคโนโลยี</p>
+              <a href="https://docs.google.com/presentation/d/1-ubOPHKJLQ4DVbNUuvxd7yhGd3IvbpVPeV7d0iXs500/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="width: 100%;">เปิดสไลด์นำเสนอ</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+      <div class="footer-bottom">
+        <p>&copy; 2026 วิชาการออกแบบและเทคโนโลยี | PANIITTHA BOONYONG </p>
+        <p>WANGNAMYENWITTAYAKOM SCHOOL . SECONDARY EDUCATIONAL SERVICE AREA OFFICE SA KAEO</p>
+      </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

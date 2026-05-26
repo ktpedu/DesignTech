@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="แหล่งเรียนรู้ออนไลน์ รายวิชาการออกแบบและเทคโนโลยี ม.4 โรงเรียนวังน้ำเย็นวิทยาคม รวบรวมใบงาน สื่อการเรียนรู้ E-book และแบบทดสอบเก็บคะแนน">
+  <meta name="keywords" content="การออกแบบและเทคโนโลยี, ม.4, วังน้ำเย็นวิทยาคม, ใบงาน, สื่อการสอน, ข้อสอบ อจท, แบบทดสอบ ม.4">
+  <meta property="og:title" content="วิชาการออกแบบและเทคโนโลยี ม.4">
+  <meta property="og:description" content="แหล่งเรียนรู้ออนไลน์ รายวิชาการออกแบบและเทคโนโลยี ม.4 โรงเรียนวังน้ำเย็นวิทยาคม รวบรวมใบงาน สื่อการเรียนรู้ E-book และแบบทดสอบเก็บคะแนน">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/LOGOprofile.gif">
+  <title>ใบงาน - วิชาการออกแบบและเทคโนโลยี ม.4</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/gif" href="assets/LOGOprofile.gif">
+  
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .lesson-header {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 8rem 2rem 4rem;
+      text-align: center;
+    }
+    .lesson-header h1 {
+      color: white;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .lesson-header p {
+      font-size: 1.25rem;
+      opacity: 0.9;
+    }
+    .content-section {
+      padding: 4rem 2rem;
+      background-color: var(--surface-color);
+      min-height: 50vh;
+    }
+    .content-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .topic-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+    }
+    .topic-card h2 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .file-list {
+      list-style: none;
+      padding: 0;
+    }
+    .file-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .file-item:last-child {
+      border-bottom: none;
+    }
+    .file-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .file-info i {
+      font-size: 1.5rem;
+      color: var(--secondary-color);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <i class='bx bx-laptop'></i> Design<span>Tech</span>
+      </a>
+      <div class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link">หน้าแรก</a>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link">บทเรียน <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="unit1.html">หน่วยที่ 1</a>
+            <a href="unit2.html">หน่วยที่ 2</a>
+            <a href="unit3.html">หน่วยที่ 3</a>
+          </div>
+        </div>
+        <a href="media.html" class="nav-link">สื่อการเรียนรู้</a>
+        <a href="worksheets.html" class="nav-link active">ใบงาน</a>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link">ส่งงาน <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="submit.html">ส่งใบงาน</a>
+            <a href="check_submissions.html">ตรวจสอบการส่งงาน (นักเรียน)</a>
+            <a href="teacher_dashboard.html">แดชบอร์ดครูผู้สอน</a>
+          </div>
+        </div>
+        <a href="quizzes.html" class="nav-link">แบบทดสอบ</a>
+        <a href="contact.html" class="nav-link">ติดต่อครูผู้สอน</a>
+      </div>
+      <div class="nav-toggle" id="navToggle">
+        <i class='bx bx-menu'></i>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="lesson-header">
+    <div class="container">
+      <h1>ใบงานและเอกสารประกอบการเรียน</h1>
+      <p>ดาวน์โหลดใบงานสำหรับแต่ละหน่วยการเรียนรู้</p>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <main class="content-section">
+    <div class="content-container">
+      
+      <!-- Unit 1 Worksheets -->
+      <div class="topic-card">
+        <h2><i class='bx bx-folder'></i> หน่วยที่ 1: ระบบทางเทคโนโลยี</h2>
+        <ul class="file-list">
+          <li class="file-item">
+            <div class="file-info">
+              <i class='bx bxs-file-pdf'></i>
+              <span>ใบงานที่ 1.1: องค์ประกอบของระบบทางเทคโนโลยี</span>
+            </div>
+            <a href="assets/worksheet_1_1.html" target="_blank" class="btn btn-outline btn-sm"><i class='bx bx-printer'></i> พิมพ์ / ดาวน์โหลด PDF</a>
+          </li>
+          <li class="file-item">
+            <div class="file-info">
+              <i class='bx bxs-file-pdf'></i>
+              <span>ใบงานที่ 1.2: การวิเคราะห์การเปลี่ยนแปลงของเทคโนโลยี</span>
+            </div>
+            <a href="assets/worksheet_1_2.html" target="_blank" class="btn btn-outline btn-sm"><i class='bx bx-printer'></i> พิมพ์ / ดาวน์โหลด PDF</a>
+          </li>
+          <li class="file-item">
+            <div class="file-info">
+              <i class='bx bxs-file-pdf'></i>
+              <span>ใบงานที่ 1.3: การวิเคราะห์ผลกระทบของเทคโนโลยีรอบตัว</span>
+            </div>
+            <a href="assets/worksheet_1_3.html" target="_blank" class="btn btn-outline btn-sm"><i class='bx bx-printer'></i> พิมพ์ / ดาวน์โหลด PDF</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Unit 2 Worksheets -->
+      <div class="topic-card">
+        <h2><i class='bx bx-folder'></i> หน่วยที่ 2: กระบวนการออกแบบเชิงวิศวกรรม</h2>
+        <ul class="file-list">
+          <li class="file-item">
+            <div class="file-info">
+              <i class='bx bxs-file-pdf'></i>
+              <span>ใบงานที่ 2.1: การวิเคราะห์และออกแบบวิธีการแก้ปัญหา</span>
+            </div>
+            <a href="assets/worksheet_2_1.html" target="_blank" class="btn btn-outline btn-sm"><i class='bx bx-printer'></i> พิมพ์ / ดาวน์โหลด PDF</a>
+          </li>
+          <li class="file-item">
+            <div class="file-info">
+              <i class='bx bxs-file-pdf'></i>
+              <span>ใบงานที่ 2.2: การวางแผนและดำเนินการแก้ปัญหา</span>
+            </div>
+            <a href="assets/worksheet_2_2.html" target="_blank" class="btn btn-outline btn-sm"><i class='bx bx-printer'></i> พิมพ์ / ดาวน์โหลด PDF</a>
+          </li>
+          <li class="file-item">
+            <div class="file-info">
+              <i class='bx bxs-file-pdf'></i>
+              <span>ใบงานที่ 2.3: การทดสอบ ประเมินผล และการปรับปรุงแก้ไข</span>
+            </div>
+            <a href="assets/worksheet_2_3.html" target="_blank" class="btn btn-outline btn-sm"><i class='bx bx-printer'></i> พิมพ์ / ดาวน์โหลด PDF</a>
+          </li>
+          <li class="file-item">
+            <div class="file-info">
+              <i class='bx bxs-file-pdf'></i>
+              <span>ใบงานที่ 2.4: การนำเสนอผลการแก้ปัญหาและถอดบทเรียน</span>
+            </div>
+            <a href="assets/worksheet_2_4.html" target="_blank" class="btn btn-outline btn-sm"><i class='bx bx-printer'></i> พิมพ์ / ดาวน์โหลด PDF</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Unit 3 Worksheets -->
+      <div class="topic-card">
+        <h2><i class='bx bx-folder'></i> หน่วยที่ 3: ผลงานการออกแบบและเทคโนโลยี</h2>
+        <ul class="file-list">
+          <li class="file-item">
+            <div class="file-info">
+              <i class='bx bxs-file-pdf'></i>
+              <span>ใบงานที่ 3.1: การเลือกใช้วัสดุและกลไก</span>
+            </div>
+            <a href="assets/worksheet_3_1.html" target="_blank" class="btn btn-outline btn-sm"><i class='bx bx-printer'></i> พิมพ์ / ดาวน์โหลด PDF</a>
+          </li>
+          <li class="file-item">
+            <div class="file-info">
+              <i class='bx bxs-file-pdf'></i>
+              <span>ใบงานที่ 3.2: การเลือกใช้อุปกรณ์และเครื่องมือช่างพื้นฐานอย่างปลอดภัย</span>
+            </div>
+            <a href="assets/worksheet_3_2.html" target="_blank" class="btn btn-outline btn-sm"><i class='bx bx-printer'></i> พิมพ์ / ดาวน์โหลด PDF</a>
+          </li>
+          <li class="file-item">
+            <div class="file-info">
+              <i class='bx bxs-file-pdf'></i>
+              <span>ใบงานที่ 3.3: การเขียนแผนและเสนอแนวคิดโครงงานสะเต็ม</span>
+            </div>
+            <a href="assets/worksheet_3_3.html" target="_blank" class="btn btn-outline btn-sm"><i class='bx bx-printer'></i> พิมพ์ / ดาวน์โหลด PDF</a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+      <div class="footer-bottom">
+        <p>&copy; 2026 วิชาการออกแบบและเทคโนโลยี | PANIITTHA BOONYONG </p>
+        <p>WANGNAMYENWITTAYAKOM SCHOOL . SECONDARY EDUCATIONAL SERVICE AREA OFFICE SA KAEO</p>
+      </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

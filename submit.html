@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="แหล่งเรียนรู้ออนไลน์ รายวิชาการออกแบบและเทคโนโลยี ม.4 โรงเรียนวังน้ำเย็นวิทยาคม รวบรวมใบงาน สื่อการเรียนรู้ E-book และแบบทดสอบเก็บคะแนน">
+  <meta name="keywords" content="การออกแบบและเทคโนโลยี, ม.4, วังน้ำเย็นวิทยาคม, ใบงาน, สื่อการสอน, ข้อสอบ อจท, แบบทดสอบ ม.4">
+  <meta property="og:title" content="วิชาการออกแบบและเทคโนโลยี ม.4">
+  <meta property="og:description" content="แหล่งเรียนรู้ออนไลน์ รายวิชาการออกแบบและเทคโนโลยี ม.4 โรงเรียนวังน้ำเย็นวิทยาคม รวบรวมใบงาน สื่อการเรียนรู้ E-book และแบบทดสอบเก็บคะแนน">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/LOGOprofile.gif">
+  <title>ส่งงาน - วิชาการออกแบบและเทคโนโลยี ม.4</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/gif" href="assets/LOGOprofile.gif">
+  
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .lesson-header {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 8rem 2rem 4rem;
+      text-align: center;
+    }
+    .lesson-header h1 {
+      color: white;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .lesson-header p {
+      font-size: 1.25rem;
+      opacity: 0.9;
+    }
+    .content-section {
+      padding: 4rem 2rem;
+      background-color: var(--surface-color);
+      min-height: 50vh;
+    }
+    .content-container {
+      max-width: 850px;
+      margin: 0 auto;
+    }
+    .topic-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+    }
+    .topic-card h2 {
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+      color: var(--text-color);
+    }
+    .form-control {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      font-family: inherit;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+    textarea.form-control {
+      resize: vertical;
+      min-height: 100px;
+    }
+    .file-upload-wrapper {
+      position: relative;
+      border: 2px dashed var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      background: var(--bg-color);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .file-upload-wrapper:hover {
+      border-color: var(--primary-color);
+      background: rgba(79, 70, 229, 0.02);
+    }
+    .file-upload-wrapper i {
+      font-size: 3.5rem;
+      color: var(--secondary-color);
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .file-upload-input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+    .btn-submit {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1.1rem;
+      margin-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    /* File preview styles */
+    .file-preview-box {
+      margin-top: 1rem;
+      padding: 1rem 1.25rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      background: white;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--shadow-sm);
+    }
+    .file-preview-info {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-align: left;
+    }
+    .file-preview-info i {
+      font-size: 2.2rem;
+      color: var(--primary-color);
+    }
+    .file-preview-details h5 {
+      color: var(--text-main);
+      font-size: 0.95rem;
+      margin: 0;
+      word-break: break-all;
+    }
+    .file-preview-details p {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      margin: 0.15rem 0 0;
+    }
+    .btn-remove-file {
+      background: none;
+      border: none;
+      color: #ef4444;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.25rem;
+      border-radius: 50%;
+      transition: background-color 0.2s;
+    }
+    .btn-remove-file:hover {
+      background-color: #fef2f2;
+      color: #b91c1c;
+    }
+
+    /* History section */
+    .history-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      margin-top: 3rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+    }
+    .history-card h2 {
+      color: var(--secondary-color);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .history-table-container {
+      overflow-x: auto;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+    }
+    .history-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+    .history-table th, .history-table td {
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .history-table tr:last-child td {
+      border-bottom: none;
+    }
+    .history-table th {
+      background-color: var(--bg-color);
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+    .status-pending {
+      background-color: #fffbeb;
+      color: #d97706;
+    }
+    .status-success {
+      background-color: #ecfdf5;
+      color: #059669;
+    }
+    .empty-history {
+      padding: 3rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+    .empty-history i {
+      font-size: 3rem;
+      display: block;
+      margin-bottom: 0.75rem;
+      color: var(--border-color);
+    }
+
+    /* Modal dialog */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 9999;
+      display: none;
+      align-items: flex-start; /* Align flex start to prevent vertical clipping */
+      justify-content: center;
+      padding: 2rem 1rem; /* Padding for spacing when scrolling */
+      overflow-y: auto; /* Enable scroll if modal content is taller than viewport */
+    }
+    .modal-content {
+      background: white;
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 500px;
+      padding: 2rem; /* Reduced padding from 2.5rem to save vertical space */
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      margin: auto; /* Centers modal vertically when it fits, starts at top when taller */
+      animation: modalSlide 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes modalSlide {
+      from { transform: translateY(15px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Modal Responsive Mobile Styles */
+    @media (max-width: 480px) {
+      .modal-overlay {
+        padding: 1rem 0.5rem;
+      }
+      .modal-content {
+        padding: 1.5rem 1rem;
+      }
+      .receipt-header {
+        margin-bottom: 1.25rem;
+        padding-bottom: 1rem;
+      }
+      .receipt-header i {
+        font-size: 3rem;
+      }
+      .receipt-header h3 {
+        font-size: 1.2rem;
+      }
+      .receipt-details {
+        gap: 0.65rem;
+        margin-bottom: 1.5rem;
+      }
+      .receipt-row {
+        font-size: 0.85rem;
+        gap: 0.5rem;
+      }
+      .receipt-value {
+        max-width: 70%;
+      }
+      .btn-print-receipt, .btn-refresh-status {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+      }
+    }
+    .modal-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.25rem;
+      border-radius: 50%;
+      transition: background-color 0.2s;
+    }
+    .modal-close:hover {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+    }
+    .receipt-header {
+      text-align: center;
+      margin-bottom: 2rem;
+      border-bottom: 2px dashed var(--border-color);
+      padding-bottom: 1.5rem;
+    }
+    .receipt-header i {
+      font-size: 4rem;
+      color: var(--accent-color);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .receipt-header h3 {
+      font-size: 1.4rem;
+      color: var(--text-main);
+      margin: 0;
+    }
+    .receipt-details {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      margin-bottom: 2rem;
+    }
+    .receipt-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.95rem;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 0.5rem;
+    }
+    .receipt-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .receipt-label {
+      color: var(--text-muted);
+    }
+    .receipt-value {
+      font-weight: 600;
+      color: var(--text-main);
+      text-align: right;
+      max-width: 60%;
+      word-break: break-all;
+    }
+    .btn-print-receipt {
+      width: 100%;
+      padding: 0.85rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+  
+    /* Print Styles: Hide page elements and print only the receipt content */
+    @media print {
+      body {
+        background-color: white !important;
+        color: black !important;
+      }
+      body * {
+        visibility: hidden;
+      }
+      #receiptModal, #receiptModal * {
+        visibility: visible;
+      }
+      #receiptModal {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: none !important;
+        backdrop-filter: none !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .modal-content {
+        box-shadow: none !important;
+        border: 2px dashed #cbd5e1 !important;
+        border-radius: 8px !important;
+        margin: 0 auto;
+        padding: 2rem !important;
+        width: 100% !important;
+        max-width: 550px !important;
+      }
+      .modal-close, .btn-print-receipt, .btn-refresh-status {
+        display: none !important;
+      }
+    }
+
+    /* Upload Loading Overlay */
+    .upload-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(8px);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+    .upload-box {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: var(--radius-lg);
+      padding: 3rem 2rem;
+      text-align: center;
+      max-width: 420px;
+      width: 90%;
+      box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.3);
+    }
+    .upload-spinner {
+      border: 4px solid rgba(255, 255, 255, 0.1);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border-left-color: var(--secondary-color);
+      animation: spin 1s linear infinite;
+      margin: 0 auto 1.5rem;
+    }
+    .upload-box h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: white;
+    }
+    .upload-box p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Database connection status banner */
+    .db-status-banner {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-md);
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    .db-status-banner.offline {
+      background: #fef3c7;
+      color: #92400e;
+      border: 1px solid #fde68a;
+    }
+    .db-status-banner.online {
+      background: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+    }
+    .db-status-banner i {
+      font-size: 1.25rem;
+    }
+</style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <i class='bx bx-laptop'></i> Design<span>Tech</span>
+      </a>
+      <div class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link">หน้าแรก</a>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link">บทเรียน <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="unit1.html">หน่วยที่ 1</a>
+            <a href="unit2.html">หน่วยที่ 2</a>
+            <a href="unit3.html">หน่วยที่ 3</a>
+          </div>
+        </div>
+        <a href="media.html" class="nav-link">สื่อการเรียนรู้</a>
+        <a href="worksheets.html" class="nav-link">ใบงาน</a>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link active">ส่งงาน <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="submit.html" class="active">ส่งใบงาน</a>
+            <a href="check_submissions.html">ตรวจสอบการส่งงาน (นักเรียน)</a>
+            <a href="teacher_dashboard.html">แดชบอร์ดครูผู้สอน</a>
+          </div>
+        </div>
+        <a href="quizzes.html" class="nav-link">แบบทดสอบ</a>
+        <a href="contact.html" class="nav-link">ติดต่อครูผู้สอน</a>
+      </div>
+      <div class="nav-toggle" id="navToggle">
+        <i class='bx bx-menu'></i>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="lesson-header">
+    <div class="container">
+      <h1>ส่งงานในรายวิชา</h1>
+      <p>ส่งใบงาน ชิ้นงาน หรือโครงงานวิชาการออกแบบและเทคโนโลยี ม.4</p>
+    </div>
+  </header>
+
+  <main class="content-section">
+    <div class="content-container">
+      <!-- Submission Form Card -->
+      <div class="topic-card">
+        <h2><i class='bx bx-upload'></i> ฟอร์มส่งงาน</h2>
+        
+        <!-- Database Connection Status Banner -->
+        <div id="dbStatusBanner" class="db-status-banner">
+          <i class='bx'></i>
+          <span id="dbStatusText">กำลังตรวจสอบสถานะการเชื่อมต่อ...</span>
+        </div>
+        
+        <form id="submitForm" onsubmit="handleFormSubmit(event)">
+          
+          <div class="form-group">
+            <label class="form-label" for="student-id">รหัสนักเรียน <span style="color: red;">*</span></label>
+            <input type="text" id="student-id" class="form-control" placeholder="ระบุรหัสนักเรียน 5 หลัก (เช่น 12345)" pattern="\d{5}" title="รหัสนักเรียนต้องเป็นตัวเลข 5 หลัก" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="student-name">ชื่อ - นามสกุล <span style="color: red;">*</span></label>
+            <input type="text" id="student-name" class="form-control" placeholder="เด็กชาย / เด็กหญิง / นาย / นางสาว" required>
+          </div>
+ 
+          <div class="form-group">
+            <label class="form-label" for="class-room">ชั้น / ห้อง <span style="color: red;">*</span></label>
+            <select id="class-room" class="form-control" required>
+              <option value="" disabled selected>-- เลือกห้องเรียน --</option>
+              <option value="ม.4/7">ม.4/7</option>
+              <option value="ม.4/8">ม.4/8</option>
+              <option value="ม.4/9">ม.4/9</option>
+              <option value="ม.4/10">ม.4/10</option>
+              <option value="ม.4/11">ม.4/11</option>
+              <option value="ม.4/12">ม.4/12</option>
+            </select>
+          </div>
+ 
+          <div class="form-group">
+            <label class="form-label" for="assignment">เลือกงานที่ต้องการส่ง <span style="color: red;">*</span></label>
+            <select id="assignment" class="form-control" required>
+              <option value="" disabled selected>-- เลือกใบงาน / ชิ้นงาน --</option>
+              <optgroup label="หน่วยที่ 1">
+                <option value="ใบงานที่ 1.1: ระบบทางเทคโนโลยี">ใบงานที่ 1.1: ระบบทางเทคโนโลยี</option>
+                <option value="ใบงานที่ 1.2: ระบบทางเทคโนโลยีที่ซับซ้อน">ใบงานที่ 1.2: ระบบทางเทคโนโลยีที่ซับซ้อน</option>
+                <option value="ใบงานที่ 1.3: การวิเคราะห์ความล้มเหลวของระบบ">ใบงานที่ 1.3: การวิเคราะห์ความล้มเหลวของระบบ</option>
+              </optgroup>
+              <optgroup label="หน่วยที่ 2">
+                <option value="ใบงานที่ 2.1: การระบุปัญหาด้วย 5W1H">ใบงานที่ 2.1: การระบุปัญหาด้วย 5W1H</option>
+                <option value="ใบงานที่ 2.2: การรวบรวมข้อมูลแก้ปัญหา">ใบงานที่ 2.2: การรวบรวมข้อมูลแก้ปัญหา</option>
+                <option value="ใบงานที่ 2.3: การออกแบบชิ้นงาน/ภาพร่าง">ใบงานที่ 2.3: การออกแบบชิ้นงาน/ภาพร่าง</option>
+                <option value="ใบงานที่ 2.4: การทดสอบและปรับปรุงชิ้นงาน">ใบงานที่ 2.4: การทดสอบและปรับปรุงชิ้นงาน</option>
+              </optgroup>
+              <optgroup label="หน่วยที่ 3">
+                <option value="ใบงานที่ 3.1: สมบัติของวัสดุช่าง">ใบงานที่ 3.1: สมบัติของวัสดุช่าง</option>
+                <option value="ใบงานที่ 3.2: การเลือกใช้เครื่องมือช่าง">ใบงานที่ 3.2: การเลือกใช้เครื่องมือช่าง</option>
+                <option value="ใบงานที่ 3.3: ระบบกลไกและอิเล็กทรอนิกส์">ใบงานที่ 3.3: ระบบกลไกและอิเล็กทรอนิกส์</option>
+              </optgroup>
+              <optgroup label="โครงงานปลายภาค">
+                <option value="รายงานโครงงานออกแบบและเทคโนโลยี ม.4">รายงานโครงงานออกแบบและเทคโนโลยี ม.4</option>
+              </optgroup>
+            </select>
+            <div id="resubmissionWarning" style="display: none; padding: 0.75rem 1rem; background-color: #fffbeb; border: 1px solid #fde68a; border-radius: var(--radius-md); color: #b45309; font-size: 0.9rem; margin-top: 0.75rem; align-items: center; gap: 0.5rem;">
+              <i class='bx bx-warning' style="font-size: 1.25rem; flex-shrink: 0;"></i>
+              <span>คุณเคยส่งงานชิ้นนี้แล้ว การส่งอีกครั้งจะบันทึกทับไฟล์เดิม รีเซ็ตคะแนน และใช้รหัสใบรับรองเดิม</span>
+            </div>
+          </div>
+ 
+          <div class="form-group">
+            <label class="form-label">อัปโหลดไฟล์งาน <span style="color: red;">*</span></label>
+            <div class="file-upload-wrapper">
+              <input type="file" id="file-upload" class="file-upload-input" accept=".pdf,.doc,.docx,.jpg,.png,.zip" onchange="handleFileSelect(event)" required>
+              <i class='bx bx-cloud-upload'></i>
+              <h4>คลิกที่นี่เพื่อเลือกไฟล์ หรือ ลากไฟล์มาวาง</h4>
+              <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">รองรับไฟล์ PDF, Word, รูปภาพ หรือ ZIP (ขนาดไม่เกิน 10MB)</p>
+            </div>
+            
+            <!-- File preview container -->
+            <div id="filePreviewBox" class="file-preview-box">
+              <div class="file-preview-info">
+                <i class='bx bxs-file-doc' id="fileTypeIcon"></i>
+                <div class="file-preview-details">
+                  <h5 id="previewFileName">filename.pdf</h5>
+                  <p id="previewFileSize">0 KB</p>
+                </div>
+              </div>
+              <button type="button" class="btn-remove-file" onclick="removeSelectedFile(event)">
+                <i class='bx bx-x'></i>
+              </button>
+            </div>
+          </div>
+ 
+          <div class="form-group">
+            <label class="form-label" for="comments">หมายเหตุเพิ่มเติม (ถ้ามี)</label>
+            <textarea id="comments" class="form-control" placeholder="ข้อความเพิ่มเติมถึงครูผู้สอน..."></textarea>
+          </div>
+ 
+          <button type="submit" class="btn btn-primary btn-submit" id="btnSubmit">
+            <i class='bx bx-send'></i> ส่งงานในระบบ
+          </button>
+        </form>
+ 
+      </div>
+
+      <!-- History Submission List -->
+      <div class="history-card">
+        <h2><i class='bx bx-history'></i> ประวัติการส่งงานล่าสุดของคุณ (บันทึกในบราวเซอร์)</h2>
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+          ประวัติการส่งงานจำลองนี้จัดเก็บภายในเครื่องคอมพิวเตอร์ของคุณ (Local Storage) เพื่อแสดงสถานะการส่งงาน
+        </p>
+        <div class="history-table-container">
+          <table class="history-table" id="historyTable" style="display: none;">
+            <thead>
+              <tr>
+                <th>วัน-เวลาที่ส่ง</th>
+                <th>รหัส/ชื่อ</th>
+                <th>งานที่ส่ง</th>
+                <th>ไฟล์ที่แนบ</th>
+                <th style="white-space: nowrap;">สถานะการตรวจ</th>
+                <th>ใบรับรอง</th>
+              </tr>
+            </thead>
+            <tbody id="historyList">
+              <!-- Insert dynamic rows here -->
+            </tbody>
+          </table>
+          <div id="emptyHistory" class="empty-history">
+            <i class='bx bx-receipt'></i>
+            <span>ยังไม่มีประวัติการส่งงานของคุณในเครื่องนี้</span>
+          </div>
+        </div>
+      </div>
+ 
+    </div>
+  </main>
+
+  <!-- Receipt Popup Modal Overlay -->
+  <div class="modal-overlay" id="receiptModal" onclick="if(event.target === this) closeReceiptModal()">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeReceiptModal()"><i class='bx bx-x'></i></button>
+      <div class="receipt-header">
+        <i class='bx bx-check-circle'></i>
+        <h3>ใบรับรองการส่งงานสำเร็จ</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;" id="receiptId">ID: DT-987654</p>
+      </div>
+      <div class="receipt-details">
+        <div class="receipt-row">
+          <span class="receipt-label">รหัสนักเรียน</span>
+          <span class="receipt-value" id="rStudentId">12345</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">ชื่อ-นามสกุล</span>
+          <span class="receipt-value" id="rStudentName">นายรักเรียน ดีเด่น</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">ห้องเรียน</span>
+          <span class="receipt-value" id="rClassRoom">ม.4/7</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">ใบงาน/ชิ้นงาน</span>
+          <span class="receipt-value" id="rAssignment">ใบงานที่ 1.1</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">ชื่อไฟล์งาน</span>
+          <span class="receipt-value" id="rFileName">homework1.pdf</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">วัน-เวลาที่ส่ง</span>
+          <span class="receipt-value" id="rTimestamp">20/05/2026 15:30</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">หมายเหตุ</span>
+          <span class="receipt-value" id="rComments">-</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">สถานะของระบบ</span>
+          <span class="receipt-value" id="rStatus"><span class="status-badge status-pending"><i class='bx bx-time-five'></i> กำลังรอตรวจ</span></span>
+        </div>
+        <!-- Teacher feedback row (hidden by default) -->
+        <div class="receipt-row" id="rFeedbackRow" style="display: none; flex-direction: column; align-items: flex-start; text-align: left; background: #ecfdf5; padding: 0.75rem; border-radius: var(--radius-md); margin-top: 0.5rem; border-left: 3px solid #10b981; width: 100%;">
+          <span class="receipt-label" style="font-weight: 600; color: #065f46; display: flex; align-items: center; gap: 0.25rem;"><i class='bx bx-comment-detail'></i> ผลการตรวจจากครู:</span>
+          <span class="receipt-value" id="rFeedbackText" style="max-width: 100%; text-align: left; margin-top: 0.25rem; font-weight: normal; font-size: 0.9rem; color: #047857; width: 100%;"></span>
+        </div>
+      </div>
+      <button class="btn btn-outline btn-refresh-status" id="btnRefreshStatus" onclick="refreshCurrentReceipt()" style="width: 100%; margin-bottom: 0.5rem; background: #ecfdf5; color: #065f46; border-color: #a7f3d0;"><i class='bx bx-refresh'></i> อัปเดตสถานะการตรวจล่าสุดจากชีต</button>
+      <button class="btn btn-outline btn-print-receipt" onclick="window.print()"><i class='bx bx-printer'></i> พิมพ์ใบรับรอง (PDF)</button>
+    </div>
+  </div>
+
+  <!-- Upload Progress Overlay -->
+  <div id="uploadOverlay" class="upload-overlay">
+    <div class="upload-box">
+      <div class="upload-spinner"></div>
+      <h3 id="uploadTitle">กำลังอัปโหลดไฟล์...</h3>
+      <p id="uploadDesc">ระบบกำลังส่งข้อมูลไปยังฐานข้อมูล Google Sheets และอัปโหลดไฟล์แนบไปยัง Google Drive กรุณาห้ามปิดหน้าต่างนี้</p>
+    </div>
+  </div>
+
+  <footer class="footer">
+      <div class="footer-bottom">
+        <p>&copy; 2026 วิชาการออกแบบและเทคโนโลยี | PANIITTHA BOONYONG </p>
+        <p>WANGNAMYENWITTAYAKOM SCHOOL . SECONDARY EDUCATIONAL SERVICE AREA OFFICE SA KAEO</p>
+      </div>
+  </footer>
+
+  <script src="script.js"></script>
+  
+  <!-- Form Submission & History System Script -->
+  <script>
+    // Google Apps Script Web App URL (จากคู่มือการติดตั้งฐานข้อมูล)
+    // หากปล่อยเป็นค่าว่าง หรือ 'YOUR_GOOGLE_APPS_SCRIPT_URL' ระบบจะใช้โหมดจำลองบันทึกในบราวเซอร์ (Offline Fallback)
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxJ32VgAbMIwRJ2SDwr8QU-uZW63nI3iCI2_dORWJTBYtEObSQqayc0AE79eutX2UeA/exec';
+
+    // Selected file state
+    let selectedFile = null;
+
+    // Helper: format file size
+    function formatBytes(bytes, decimals = 2) {
+      if (bytes === 0) return '0 Bytes';
+      const k = 1024;
+      const dm = decimals < 0 ? 0 : decimals;
+      const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
+      return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+    }
+
+    // Check Database Mode on Load
+    function initDatabaseStatus() {
+      const banner = document.getElementById('dbStatusBanner');
+      const text = document.getElementById('dbStatusText');
+      const icon = banner.querySelector('i');
+
+      if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL') {
+        banner.className = 'db-status-banner offline';
+        text.textContent = 'ระบบอยู่ในโหมดจำลองแบบออฟไลน์ (ข้อมูลบันทึกในบราวเซอร์)';
+        icon.className = 'bx bx-info-circle';
+      } else {
+        banner.className = 'db-status-banner online';
+        text.textContent = 'ระบบเชื่อมต่อฐานข้อมูล Google Sheets และ Google Drive เรียบร้อย';
+        icon.className = 'bx bx-cloud-lightning';
+      }
+    }
+
+    // Handle file selection
+    function handleFileSelect(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const maxSize = 10 * 1024 * 1024; // 10MB
+      if (file.size > maxSize) {
+        alert('ขนาดไฟล์ต้องไม่เกิน 10MB! ไฟล์ที่คุณเลือกมีขนาด ' + formatBytes(file.size));
+        event.target.value = '';
+        return;
+      }
+
+      selectedFile = file;
+
+      // Update Preview UI
+      const previewBox = document.getElementById('filePreviewBox');
+      const fileNameEl = document.getElementById('previewFileName');
+      const fileSizeEl = document.getElementById('previewFileSize');
+      const iconEl = document.getElementById('fileTypeIcon');
+
+      fileNameEl.textContent = file.name;
+      fileSizeEl.textContent = formatBytes(file.size);
+
+      // Change icon based on file type
+      const ext = file.name.split('.').pop().toLowerCase();
+      iconEl.className = 'file-preview-info i'; // Reset class
+      if (ext === 'pdf') {
+        iconEl.className = 'bx bxs-file-pdf';
+        iconEl.style.color = '#ef4444';
+      } else if (ext === 'doc' || ext === 'docx') {
+        iconEl.className = 'bx bxs-file-doc';
+        iconEl.style.color = '#3b82f6';
+      } else if (ext === 'zip' || ext === 'rar') {
+        iconEl.className = 'bx bxs-file-archive';
+        iconEl.style.color = '#f59e0b';
+      } else if (ext === 'jpg' || ext === 'jpeg' || ext === 'png') {
+        iconEl.className = 'bx bxs-file-image';
+        iconEl.style.color = '#10b981';
+      } else {
+        iconEl.className = 'bx bxs-file';
+        iconEl.style.color = '#6b7280';
+      }
+
+      previewBox.style.display = 'flex';
+    }
+
+    // Remove selected file
+    function removeSelectedFile(event) {
+      if (event) event.preventDefault();
+      document.getElementById('file-upload').value = '';
+      selectedFile = null;
+      document.getElementById('filePreviewBox').style.display = 'none';
+    }
+
+    // Generate current Thai timestamp format
+    function getThaiTimestamp() {
+      const now = new Date();
+      const d = String(now.getDate()).padStart(2, '0');
+      const m = String(now.getMonth() + 1).padStart(2, '0');
+      const y = now.getFullYear() + 543; // Thai Buddhist Era
+      const hr = String(now.getHours()).padStart(2, '0');
+      const min = String(now.getMinutes()).padStart(2, '0');
+      return `${d}/${m}/${y} ${hr}:${min} น.`;
+    }
+
+    // Submit form handler
+    async function handleFormSubmit(event) {
+      event.preventDefault();
+
+      if (!selectedFile) {
+        alert('กรุณาอัปโหลดไฟล์งานก่อนทำการส่ง');
+        return;
+      }
+
+      const studentId = document.getElementById('student-id').value.trim();
+      const studentName = document.getElementById('student-name').value.trim();
+      const classRoom = document.getElementById('class-room').value;
+      const assignment = document.getElementById('assignment').value;
+      const comments = document.getElementById('comments').value.trim() || '-';
+
+      // Validation
+      if (!/^\d{5}$/.test(studentId)) {
+        alert('รหัสนักเรียนต้องเป็นตัวเลข 5 หลัก');
+        return;
+      }
+
+      // Generate Receipt ID: DT- followed by 6 random digits
+      const receiptId = 'DT-' + Math.floor(100000 + Math.random() * 900000);
+      const timestamp = getThaiTimestamp();
+
+      // Submission Object
+      const submission = {
+        id: receiptId,
+        studentId: studentId,
+        studentName: studentName,
+        classRoom: classRoom,
+        assignment: assignment,
+        fileName: selectedFile.name,
+        fileSize: selectedFile.size,
+        timestamp: timestamp,
+        comments: comments,
+        status: 'pending',
+        grade: '-',
+        teacherFeedback: '-'
+      };
+
+      // Check system mode: Offline vs Online
+      if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL') {
+        // --- OFFLINE SIMULATION MODE ---
+        // Save to Local Storage (Check for existing studentId & assignment to overwrite)
+        let submissions = JSON.parse(localStorage.getItem('dt_submissions') || '[]');
+        const existingIdx = submissions.findIndex(s => normalizeStr(s.studentId) === normalizeStr(studentId) && normalizeStr(s.assignment) === normalizeStr(assignment));
+
+        if (existingIdx !== -1) {
+          const existing = submissions[existingIdx];
+          existing.timestamp = timestamp;
+          existing.fileName = selectedFile.name;
+          existing.fileSize = selectedFile.size;
+          existing.comments = comments;
+          existing.status = 'pending';
+          existing.grade = '-';
+          existing.teacherFeedback = '-';
+
+          // Move to the top of the history list
+          submissions.splice(existingIdx, 1);
+          submissions.unshift(existing);
+          localStorage.setItem('dt_submissions', JSON.stringify(submissions));
+
+          // Reset form & preview
+          document.getElementById('submitForm').reset();
+          removeSelectedFile();
+          document.getElementById('resubmissionWarning').style.display = 'none';
+
+          loadSubmissionHistory();
+          openReceiptModal(existing);
+        } else {
+          submissions.unshift(submission);
+          localStorage.setItem('dt_submissions', JSON.stringify(submissions));
+
+          // Reset form & preview
+          document.getElementById('submitForm').reset();
+          removeSelectedFile();
+          document.getElementById('resubmissionWarning').style.display = 'none';
+
+          loadSubmissionHistory();
+          openReceiptModal(submission);
+        }
+      } else {
+        // --- REAL DATABASE MODE (Google Sheets & Drive) ---
+        const overlay = document.getElementById('uploadOverlay');
+        const overlayTitle = document.getElementById('uploadTitle');
+        const overlayDesc = document.getElementById('uploadDesc');
+
+        // Show loading spinner
+        overlay.style.display = 'flex';
+        overlayTitle.textContent = 'กำลังอัปโหลดไฟล์...';
+        overlayDesc.textContent = 'ระบบกำลังส่งข้อมูลไปยังฐานข้อมูล Google Sheets และอัปโหลดไฟล์แนบไปยัง Google Drive กรุณาห้ามปิดหน้าต่างนี้';
+
+        try {
+          // Read selected file as base64 string
+          const reader = new FileReader();
+          
+          reader.onload = async function(e) {
+            const base64Data = e.target.result.split(',')[1];
+            
+            // Build payload for Google Apps Script Web App
+            const payload = {
+              id: receiptId,
+              studentId: studentId,
+              studentName: studentName,
+              classRoom: classRoom,
+              assignment: assignment,
+              fileName: selectedFile.name,
+              mimeType: selectedFile.type,
+              fileData: base64Data,
+              timestamp: timestamp,
+              comments: comments
+            };
+
+            try {
+              // Send payload to Google Apps Script
+              const response = await fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                  'Content-Type': 'text/plain;charset=utf-8'
+                },
+                body: JSON.stringify(payload)
+              });
+
+              if (!response.ok) {
+                throw new Error('ระบบส่งสัญญาณผิดพลาดจากเซิร์ฟเวอร์: ' + response.statusText);
+              }
+
+              const result = await response.json();
+              
+              if (result.status === 'success') {
+                // Save database record link in client metadata
+                submission.fileLink = result.fileUrl;
+                
+                // If it is an update, use the original receipt ID returned by Apps Script
+                if (result.isUpdate) {
+                  submission.id = result.receiptId;
+                }
+
+                // Add to Local Storage
+                let submissions = JSON.parse(localStorage.getItem('dt_submissions') || '[]');
+                const existingIdx = submissions.findIndex(s => normalizeStr(s.studentId) === normalizeStr(studentId) && normalizeStr(s.assignment) === normalizeStr(assignment));
+
+                if (existingIdx !== -1) {
+                  const existing = submissions[existingIdx];
+                  existing.id = submission.id; // use the updated/reused ID
+                  existing.timestamp = timestamp;
+                  existing.fileName = selectedFile.name;
+                  existing.fileSize = selectedFile.size;
+                  existing.fileLink = result.fileUrl;
+                  existing.comments = comments;
+                  existing.status = 'pending';
+                  existing.grade = '-';
+                  existing.teacherFeedback = '-';
+
+                  // Move to top of history
+                  submissions.splice(existingIdx, 1);
+                  submissions.unshift(existing);
+                  
+                  submission.status = 'pending';
+                  submission.grade = '-';
+                  submission.teacherFeedback = '-';
+                } else {
+                  submissions.unshift(submission);
+                }
+                localStorage.setItem('dt_submissions', JSON.stringify(submissions));
+
+                // Reset form & preview
+                document.getElementById('submitForm').reset();
+                removeSelectedFile();
+                document.getElementById('resubmissionWarning').style.display = 'none';
+
+                // Refresh history list
+                loadSubmissionHistory();
+
+                // Close loading spinner
+                overlay.style.display = 'none';
+
+                // Open receipt modal
+                openReceiptModal(submission);
+                 
+                // Fetch live status in the background
+                fetchLiveStatus(submission.id, true);
+
+              } else {
+                throw new Error(result.message || 'เกิดข้อผิดพลาดในการบันทึกข้อมูล');
+              }
+            } catch (err) {
+              console.error(err);
+              alert('เกิดข้อผิดพลาดในการเชื่อมต่อเซิร์ฟเวอร์: ' + err.message);
+              overlay.style.display = 'none';
+            }
+          };
+
+          reader.onerror = function() {
+            alert('เกิดข้อผิดพลาดในการอ่านไฟล์');
+            overlay.style.display = 'none';
+          };
+
+          // Start reading file
+          reader.readAsDataURL(selectedFile);
+
+        } catch (err) {
+          console.error(err);
+          alert('เกิดข้อผิดพลาดในการส่งข้อมูล: ' + err.message);
+          overlay.style.display = 'none';
+        }
+      }
+    }
+
+    // Open receipt modal
+    function openReceiptModal(submission) {
+      document.getElementById('receiptId').textContent = 'ID: ' + submission.id;
+      document.getElementById('rStudentId').textContent = submission.studentId;
+      document.getElementById('rStudentName').textContent = submission.studentName;
+      document.getElementById('rClassRoom').textContent = submission.classRoom;
+      document.getElementById('rAssignment').textContent = submission.assignment;
+      
+      // Update file field with link if available
+      const rFileName = document.getElementById('rFileName');
+      if (submission.fileLink) {
+        rFileName.innerHTML = `<a href="${submission.fileLink}" target="_blank" style="color:var(--secondary-color); text-decoration:underline; font-weight:600;"><i class='bx bx-link-external'></i> ${submission.fileName}</a>`;
+      } else {
+        rFileName.textContent = submission.fileName;
+      }
+      
+      document.getElementById('rTimestamp').textContent = submission.timestamp;
+      document.getElementById('rComments').textContent = submission.comments;
+
+      // Status Badge
+      const statusEl = document.getElementById('rStatus');
+      const feedbackRow = document.getElementById('rFeedbackRow');
+      const feedbackText = document.getElementById('rFeedbackText');
+
+      if (submission.status === 'checked') {
+        statusEl.innerHTML = `<span class="status-badge status-success"><i class='bx bx-check-circle'></i> ตรวจแล้ว (${submission.grade})</span>`;
+        feedbackText.innerHTML = `<strong>คะแนน:</strong> ${submission.grade}<br><strong>ข้อเสนอแนะ:</strong> ${submission.teacherFeedback}`;
+        feedbackRow.style.display = 'flex';
+      } else {
+        statusEl.innerHTML = `<span class="status-badge status-pending"><i class='bx bx-time-five'></i> กำลังรอตรวจ</span>`;
+        feedbackRow.style.display = 'none';
+      }
+
+      document.getElementById('receiptModal').style.display = 'flex';
+    }
+
+    // Close receipt modal
+    function closeReceiptModal() {
+      document.getElementById('receiptModal').style.display = 'none';
+    }
+
+    // Open receipt by ID
+    function showReceipt(receiptId) {
+      const submissions = JSON.parse(localStorage.getItem('dt_submissions') || '[]');
+      const submission = submissions.find(s => s.id === receiptId);
+      if (submission) {
+        openReceiptModal(submission);
+        // ดึงสถานะการตรวจล่าสุดจาก Google Sheets
+        fetchLiveStatus(receiptId, true);
+      } else {
+        alert('ไม่พบข้อมูลใบรับรองนี้');
+      }
+    }
+
+    // Load and render history table
+    function loadSubmissionHistory() {
+      const submissions = JSON.parse(localStorage.getItem('dt_submissions') || '[]');
+      const table = document.getElementById('historyTable');
+      const emptyHistory = document.getElementById('emptyHistory');
+      const list = document.getElementById('historyList');
+
+      if (submissions.length === 0) {
+        table.style.display = 'none';
+        emptyHistory.style.display = 'block';
+      } else {
+        emptyHistory.style.display = 'none';
+        table.style.display = 'table';
+        list.innerHTML = '';
+
+        submissions.forEach(sub => {
+          const tr = document.createElement('tr');
+          
+          let statusHtml = '';
+          if (sub.status === 'checked') {
+            statusHtml = `
+              <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 4px;">
+                <span class="status-badge status-success" style="cursor:help" title="ความเห็นครู: ${sub.teacherFeedback}">
+                  <i class='bx bx-check-circle'></i> ตรวจแล้ว
+                </span>
+                <span style="font-size: 0.8rem; font-weight: 600; color: var(--text-main); padding-left: 4px;">
+                  คะแนน: <strong style="color: var(--secondary-color); font-size: 0.9rem;">${sub.grade}</strong>
+                </span>
+              </div>
+            `;
+          } else {
+            statusHtml = `
+              <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 4px;">
+                <span class="status-badge status-pending">
+                  <i class='bx bx-time-five'></i> รอตรวจ...
+                </span>
+                <span style="font-size: 0.8rem; color: var(--text-muted); padding-left: 4px;">
+                  คะแนน: -
+                </span>
+              </div>
+            `;
+          }
+
+          let fileHtml = `<i class='bx bx-file' style="font-size:1.1rem; vertical-align:middle; margin-right:4px;"></i>${sub.fileName}`;
+          if (sub.fileLink) {
+            fileHtml = `<a href="${sub.fileLink}" target="_blank" style="color:var(--secondary-color); font-weight:500;" title="ดูไฟล์ใน Google Drive"><i class='bx bx-link-external' style="font-size:1.1rem; vertical-align:middle; margin-right:4px;"></i>${sub.fileName}</a>`;
+          }
+
+          tr.innerHTML = `
+            <td>${sub.timestamp}</td>
+            <td><strong>${sub.studentId}</strong><br><span style="font-size:0.8rem; color:var(--text-muted);">${sub.studentName} (${sub.classRoom})</span></td>
+            <td>${sub.assignment}</td>
+            <td style="max-width:180px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" title="${sub.fileName}">
+              ${fileHtml}
+            </td>
+            <td style="white-space: nowrap;">${statusHtml}</td>
+            <td style="white-space: nowrap;">
+              <button class="btn btn-outline" style="padding: 0.35rem 0.6rem; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 6px; border-radius: var(--radius-md); border: 1px solid var(--border-color); background: white; cursor: pointer; transition: all 0.2s; text-align: left;" onclick="showReceipt('${sub.id}')">
+                <i class='bx bx-receipt' style="font-size: 1.1rem; color: var(--primary-color);"></i>
+                <span style="line-height: 1.2; display: inline-block;">ใบรับรอง<br>การส่งงาน</span>
+              </button>
+            </td>
+          `;
+          list.appendChild(tr);
+        });
+      }
+    }
+
+    // Fetch live status from Google Sheets database
+    async function fetchLiveStatus(receiptId, quiet = true) {
+      if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL') {
+        if (!quiet) alert('ระบบยังไม่ได้เชื่อมต่อฐานข้อมูล Google Sheets');
+        return;
+      }
+
+      try {
+        const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=checkStatus&id=${receiptId}`);
+        if (!response.ok) {
+          throw new Error('ไม่สามารถเข้าถึงฐานข้อมูลได้ (' + response.status + ')');
+        }
+        const result = await response.json();
+
+        if (result.status === 'success') {
+          let submissions = JSON.parse(localStorage.getItem('dt_submissions') || '[]');
+          const idx = submissions.findIndex(s => s.id === receiptId);
+          if (idx !== -1) {
+            const sub = submissions[idx];
+            // Only update and re-render if something changed
+            if (sub.status !== result.submissionStatus || sub.grade !== result.grade || sub.teacherFeedback !== result.teacherFeedback) {
+              sub.status = result.submissionStatus;
+              sub.grade = result.grade;
+              sub.teacherFeedback = result.teacherFeedback;
+
+              localStorage.setItem('dt_submissions', JSON.stringify(submissions));
+
+              // Reload history table
+              loadSubmissionHistory();
+
+              // If receipt modal is currently showing this ID, update it live
+              const modal = document.getElementById('receiptModal');
+              const receiptIdEl = document.getElementById('receiptId');
+              if (modal.style.display === 'flex' && receiptIdEl.textContent.includes(receiptId)) {
+                openReceiptModal(sub);
+              }
+            }
+            if (!quiet) {
+              alert('อัปเดตสถานะการตรวจจาก Google Sheets เรียบร้อยแล้ว!');
+            }
+          }
+        } else if (result.status === 'notFound') {
+          console.warn('Receipt not found in Google Sheets:', receiptId);
+        } else {
+          throw new Error(result.message || 'ไม่พบข้อมูล');
+        }
+      } catch (err) {
+        console.error('Error fetching live status:', err);
+        if (!quiet) {
+          alert('เกิดข้อผิดพลาดในการดึงสถานะ: ' + err.message);
+        }
+      }
+    }
+
+    // Refresh current receipt status manually
+    function refreshCurrentReceipt() {
+      const receiptIdText = document.getElementById('receiptId').textContent;
+      const receiptId = receiptIdText.replace('ID: ', '').trim();
+      if (receiptId) {
+        const btn = document.getElementById('btnRefreshStatus');
+        const originalHtml = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerHTML = "<i class='bx bx-loader-alt bx-spin'></i> กำลังดึงข้อมูล...";
+
+        fetchLiveStatus(receiptId, false).finally(() => {
+          btn.disabled = false;
+          btn.innerHTML = originalHtml;
+        });
+      }
+    }
+
+    // Helper: Normalize string for robust comparison (removes spaces, colons, dots, dashes, underscores, slashes)
+    function normalizeStr(str) {
+      if (!str) return '';
+      return str.toString()
+        .toLowerCase()
+        .replace(/[\s\:\.\-\_\/\\]/g, '')
+        .trim();
+    }
+
+    // Check if the student has already submitted this assignment
+    function checkResubmission() {
+      const studentId = document.getElementById('student-id').value.trim();
+      const assignment = document.getElementById('assignment').value;
+      const warningEl = document.getElementById('resubmissionWarning');
+      
+      if (!warningEl) return;
+      
+      if (studentId.length === 5 && assignment) {
+        const submissions = JSON.parse(localStorage.getItem('dt_submissions') || '[]');
+        const existing = submissions.find(s => normalizeStr(s.studentId) === normalizeStr(studentId) && normalizeStr(s.assignment) === normalizeStr(assignment));
+        if (existing) {
+          warningEl.style.display = 'flex';
+          return;
+        }
+      }
+      warningEl.style.display = 'none';
+    }
+
+    // Run on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      loadSubmissionHistory();
+      initDatabaseStatus();
+      
+      // Event listeners for detecting duplicate submissions
+      document.getElementById('student-id').addEventListener('input', checkResubmission);
+      document.getElementById('assignment').addEventListener('change', checkResubmission);
+      
+      // Auto-refresh pending submissions in history on page load
+      const submissions = JSON.parse(localStorage.getItem('dt_submissions') || '[]');
+      submissions.forEach(sub => {
+        if (sub.status === 'pending') {
+          fetchLiveStatus(sub.id, true);
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

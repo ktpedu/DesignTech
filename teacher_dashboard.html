@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="แหล่งเรียนรู้ออนไลน์ รายวิชาการออกแบบและเทคโนโลยี ม.4 โรงเรียนวังน้ำเย็นวิทยาคม รวบรวมใบงาน สื่อการเรียนรู้ E-book และแบบทดสอบเก็บคะแนน">
+  <meta name="keywords" content="การออกแบบและเทคโนโลยี, ม.4, วังน้ำเย็นวิทยาคม, ใบงาน, สื่อการสอน, ข้อสอบ อจท, แบบทดสอบ ม.4">
+  <meta property="og:title" content="วิชาการออกแบบและเทคโนโลยี ม.4">
+  <meta property="og:description" content="แหล่งเรียนรู้ออนไลน์ รายวิชาการออกแบบและเทคโนโลยี ม.4 โรงเรียนวังน้ำเย็นวิทยาคม รวบรวมใบงาน สื่อการเรียนรู้ E-book และแบบทดสอบเก็บคะแนน">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/LOGOprofile.gif">
+  <title>ระบบแดชบอร์ดครูผู้สอน - วิชาการออกแบบและเทคโนโลยี ม.4</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/gif" href="assets/LOGOprofile.gif">
+  <!-- Boxicons -->
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+  
+  <style>
+    :root {
+      --accent-color: #f59e0b;
+      --success-color: #10b981;
+      --danger-color: #ef4444;
+      --pending-color: #f59e0b;
+    }
+    
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    .dashboard-wrapper {
+      max-width: 1200px;
+      margin: 8rem auto 4rem;
+      padding: 0 1.5rem;
+    }
+
+    /* Lock Screen Style */
+    .lock-screen {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 3rem 2rem;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border-color);
+      max-width: 450px;
+      margin: 10rem auto;
+      text-align: center;
+    }
+
+    .lock-screen i.lock-icon {
+      font-size: 4.5rem;
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .lock-screen h2 {
+      margin-bottom: 0.5rem;
+      color: var(--text-main);
+    }
+
+    .lock-screen p {
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+
+    .lock-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .lock-input {
+      padding: 0.85rem 1.25rem;
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-md);
+      font-size: 1.1rem;
+      text-align: center;
+      letter-spacing: 3px;
+      outline: none;
+      transition: all 0.3s;
+    }
+
+    .lock-input:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 4px rgba(30, 41, 59, 0.1);
+    }
+
+    /* Main Dashboard Layout */
+    .dashboard-content {
+      display: none;
+    }
+
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .dashboard-header h2 {
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 0;
+    }
+
+    .btn-logout {
+      background: #f1f5f9;
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-md);
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.2s;
+    }
+
+    .btn-logout:hover {
+      background: #e2e8f0;
+      color: #ef4444;
+    }
+
+    /* KPI Stats */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .kpi-card {
+      background: white;
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .kpi-details h3 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0 0 0.25rem 0;
+      color: var(--text-main);
+    }
+
+    .kpi-details p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin: 0;
+      font-weight: 500;
+    }
+
+    .kpi-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--bg-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+    }
+
+    /* Tabs Control */
+    .dashboard-tabs {
+      display: flex;
+      border-bottom: 2px solid var(--border-color);
+      margin-bottom: 2rem;
+      gap: 1.5rem;
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      padding: 0.75rem 0.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      position: relative;
+      transition: color 0.2s;
+    }
+
+    .tab-btn:hover {
+      color: var(--primary-color);
+    }
+
+    .tab-btn.active {
+      color: var(--primary-color);
+    }
+
+    .tab-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: var(--primary-color);
+      border-radius: 3px;
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    /* Filters section */
+    .filter-bar {
+      background: white;
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .filter-select {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      font-size: 0.95rem;
+      font-family: inherit;
+      outline: none;
+    }
+
+    .btn-export {
+      background: var(--success-color);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: opacity 0.2s;
+    }
+
+    .btn-export:hover {
+      opacity: 0.9;
+    }
+
+    /* Grid Table styling */
+    .grid-table-container {
+      overflow-x: auto;
+      background: white;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .grid-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    .grid-table th, .grid-table td {
+      padding: 0.75rem 0.5rem;
+      border: 1px solid var(--border-color);
+    }
+
+    .grid-table th {
+      background-color: var(--bg-color);
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+
+    .grid-table td.student-name-cell {
+      text-align: left;
+      font-weight: 500;
+      white-space: nowrap;
+      padding-left: 1rem;
+    }
+
+    /* Badges */
+    .grid-badge {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      font-weight: 600;
+    }
+    
+    .grid-badge.checked {
+      background-color: #ecfdf5;
+      color: #059669;
+    }
+
+    .grid-badge.pending {
+      background-color: #fffbeb;
+      color: #d97706;
+    }
+
+    .grid-badge.missing {
+      background-color: #fef2f2;
+      color: #ef4444;
+    }
+
+    /* Search bar style */
+    .search-bar-container {
+      margin-bottom: 1.5rem;
+      max-width: 500px;
+    }
+
+    .search-input-group {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .search-bar-input {
+      flex: 1;
+      padding: 0.6rem 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      font-size: 0.95rem;
+    }
+
+    /* Spinner */
+    .spinner {
+      display: none;
+      margin: 3rem auto;
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(0,0,0,0.1);
+      border-top-color: var(--primary-color);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <i class='bx bx-laptop'></i> Design<span>Tech</span>
+      </a>
+      <div class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link">หน้าแรก</a>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link">บทเรียน <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="unit1.html">หน่วยที่ 1</a>
+            <a href="unit2.html">หน่วยที่ 2</a>
+            <a href="unit3.html">หน่วยที่ 3</a>
+          </div>
+        </div>
+        <a href="media.html" class="nav-link">สื่อการเรียนรู้</a>
+        <a href="worksheets.html" class="nav-link">ใบงาน</a>
+        
+        <!-- Dropdown for ส่งงาน -->
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link active">ส่งงาน <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="submit.html">ส่งใบงาน</a>
+            <a href="check_submissions.html">ตรวจสอบการส่งงาน (นักเรียน)</a>
+            <a href="teacher_dashboard.html" class="active">แดชบอร์ดครูผู้สอน</a>
+          </div>
+        </div>
+        
+        <a href="quizzes.html" class="nav-link">แบบทดสอบ</a>
+        <a href="contact.html" class="nav-link">ติดต่อครูผู้สอน</a>
+      </div>
+      <div class="nav-toggle" id="navToggle">
+        <i class='bx bx-menu'></i>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <div class="dashboard-wrapper">
+    
+    <!-- Lock Screen Panel -->
+    <div id="lockScreen" class="lock-screen">
+      <i class='bx bx-lock-open-alt lock-icon'></i>
+      <h2>ระบบจัดการครูผู้สอน</h2>
+      <p>กรุณากรอกรหัสผ่านเพื่อเข้าใช้งานระบแดชบอร์ดตารางคะแนน</p>
+      <form class="lock-form" onsubmit="event.preventDefault(); attemptUnlock();">
+        <input type="password" id="passcodeInput" class="lock-input" placeholder="••••••" required>
+        <button type="submit" class="btn btn-primary"><i class='bx bx-key'></i> ยืนยันรหัสผ่าน</button>
+      </form>
+    </div>
+
+    <!-- Dashboard Content Area -->
+    <div id="dashboardContent" class="dashboard-content">
+      <div class="dashboard-header">
+        <h2><i class='bx bx-dashboard'></i> แดชบอร์ดคะแนนและการส่งงาน</h2>
+        <button class="btn-logout" onclick="lockDashboard()"><i class='bx bx-log-out'></i> ออกจากระบบ</button>
+      </div>
+
+      <!-- KPI Summary -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-details">
+            <h3 id="kpiTotal">0</h3>
+            <p>งานส่งสะสมทั้งหมด</p>
+          </div>
+          <div class="kpi-icon" style="color: var(--primary-color);"><i class='bx bx-send'></i></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-details">
+            <h3 id="kpiChecked" style="color: var(--success-color);">0</h3>
+            <p>ตรวจแล้วเสร็จ</p>
+          </div>
+          <div class="kpi-icon" style="color: var(--success-color);"><i class='bx bx-check-double'></i></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-details">
+            <h3 id="kpiPending" style="color: var(--pending-color);">0</h3>
+            <p>ค้างตรวจทาน</p>
+          </div>
+          <div class="kpi-icon" style="color: var(--pending-color);"><i class='bx bx-time'></i></div>
+        </div>
+      </div>
+
+      <!-- Tabs Menu -->
+      <div class="dashboard-tabs">
+        <button class="tab-btn active" onclick="switchTab('roomTab')"><i class='bx bx-grid-alt'></i> ดูตารางสรุปรายห้อง</button>
+        <button class="tab-btn" onclick="switchTab('individualTab')"><i class='bx bx-user'></i> ตรวจสอบรายบุคคล</button>
+      </div>
+
+      <!-- Spinner -->
+      <div id="dashboardSpinner" class="spinner"></div>
+
+      <!-- Tab 1: Room Summary -->
+      <div id="roomTab" class="tab-panel active">
+        <div class="filter-bar">
+          <div class="filter-group">
+            <label style="font-weight: 600;"><i class='bx bx-filter-alt'></i> เลือกห้องเรียน:</label>
+            <select id="roomFilter" class="filter-select" onchange="renderRoomGrid()">
+              <!-- Dynamic options -->
+            </select>
+          </div>
+          <button class="btn-export" onclick="exportToCSV()"><i class='bx bx-download'></i> ดาวน์โหลดตารางคะแนน (CSV)</button>
+        </div>
+
+        <div class="grid-table-container">
+          <table class="grid-table" id="roomGridTable">
+            <thead>
+              <tr>
+                <th rowspan="2" style="width: 100px;">รหัสนักเรียน</th>
+                <th rowspan="2" class="student-name-cell">ชื่อ-นามสกุล</th>
+                <th colspan="3">หน่วยที่ 1</th>
+                <th colspan="4">หน่วยที่ 2</th>
+                <th colspan="3">หน่วยที่ 3</th>
+                <th rowspan="2">โครงงาน</th>
+              </tr>
+              <tr>
+                <th title="ใบงานที่ 1.1">1.1</th>
+                <th title="ใบงานที่ 1.2">1.2</th>
+                <th title="ใบงานที่ 1.3">1.3</th>
+                <th title="ใบงานที่ 2.1">2.1</th>
+                <th title="ใบงานที่ 2.2">2.2</th>
+                <th title="ใบงานที่ 2.3">2.3</th>
+                <th title="ใบงานที่ 2.4">2.4</th>
+                <th title="ใบงานที่ 3.1">3.1</th>
+                <th title="ใบงานที่ 3.2">3.2</th>
+                <th title="ใบงานที่ 3.3">3.3</th>
+              </tr>
+            </thead>
+            <tbody id="roomGridBody">
+              <!-- Grid rows filled by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tab 2: Individual Search -->
+      <div id="individualTab" class="tab-panel">
+        <div class="search-bar-container">
+          <label style="display: block; font-weight:600; margin-bottom: 0.5rem;"><i class='bx bx-search-alt'></i> ค้นหารายบุคคล:</label>
+          <div class="search-input-group">
+            <input type="text" id="studentSearchInput" class="search-bar-input" placeholder="พิมพ์รหัสประจำตัว หรือชื่อนักเรียนเพื่อค้นหา..." oninput="handleIndividualSearch()">
+          </div>
+        </div>
+
+        <div class="history-table-container">
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th>รหัสนักเรียน</th>
+                <th>ชื่อ-นามสกุล</th>
+                <th>ห้อง</th>
+                <th>ใบงาน</th>
+                <th>ไฟล์ส่งงาน</th>
+                <th style="white-space: nowrap;">สถานะการตรวจ</th>
+                <th>ข้อเสนอแนะครู</th>
+              </tr>
+            </thead>
+            <tbody id="individualTableBody">
+              <!-- Filled dynamically by search -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <i class='bx bx-laptop'></i> Design<span>Tech</span>
+        </div>
+        <p>แหล่งเรียนรู้ออนไลน์ รายวิชาการออกแบบและเทคโนโลยี ชั้นมัธยมศึกษาปีที่ 4</p>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 วิชาการออกแบบและเทคโนโลยี | PANIITTHA BOONYONG </p>
+        <p>WANGNAMYENWITTAYAKOM SCHOOL . SECONDARY EDUCATIONAL SERVICE AREA OFFICE SA KAEO</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+
+  <script>
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxJ32VgAbMIwRJ2SDwr8QU-uZW63nI3iCI2_dORWJTBYtEObSQqayc0AE79eutX2UeA/exec';
+    
+    // Assignment lookup mapper
+    const ASSIGNMENT_COLS = [
+      "ใบงานที่ 1.1: ระบบทางเทคโนโลยี",
+      "ใบงานที่ 1.2: ระบบทางเทคโนโลยีที่ซับซ้อน",
+      "ใบงานที่ 1.3: การวิเคราะห์ความล้มเหลวของระบบ",
+      "ใบงานที่ 2.1: การระบุปัญหาด้วย 5W1H",
+      "ใบงานที่ 2.2: การรวบรวมข้อมูลแก้ปัญหา",
+      "ใบงานที่ 2.3: การออกแบบชิ้นงาน/ภาพร่าง",
+      "ใบงานที่ 2.4: การทดสอบและปรับปรุงชิ้นงาน",
+      "ใบงานที่ 3.1: สมบัติของวัสดุช่าง",
+      "ใบงานที่ 3.2: การเลือกใช้เครื่องมือช่าง",
+      "ใบงานที่ 3.3: ระบบกลไกและอิเล็กทรอนิกส์",
+      "รายงานโครงงานออกแบบและเทคโนโลยี ม.4"
+    ];
+
+    let allSubmissions = [];
+
+    // Check auth status on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedPass = sessionStorage.getItem('teacherPasscode');
+      if (savedPass) {
+        document.getElementById('passcodeInput').value = savedPass;
+        attemptUnlock(true);
+      }
+    });
+
+    async function attemptUnlock(quiet = false) {
+      const passcode = document.getElementById('passcodeInput').value.trim();
+      const lockScreen = document.getElementById('lockScreen');
+      const content = document.getElementById('dashboardContent');
+      const spinner = document.getElementById('dashboardSpinner');
+
+      if (!passcode) {
+        alert('กรุณากรอกรหัสผ่าน');
+        return;
+      }
+
+      spinner.style.display = 'block';
+
+      try {
+        const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getAllSubmissions&passcode=${passcode}`);
+        if (!response.ok) throw new Error('การเชื่อมต่อล้มเหลว');
+        
+        const result = await response.json();
+        spinner.style.display = 'none';
+
+        if (result.status === 'success') {
+          // Save pass key
+          sessionStorage.setItem('teacherPasscode', passcode);
+          allSubmissions = result.submissions;
+          
+          lockScreen.style.display = 'none';
+          content.style.display = 'block';
+          
+          calculateKPIs();
+          setupRoomDropdown();
+          renderRoomGrid();
+          handleIndividualSearch(); // Init tab 2 list
+        } else {
+          sessionStorage.removeItem('teacherPasscode');
+          if (!quiet) alert('รหัสผ่านผู้ตรวจผิดพลาด หรือไม่ได้รับอนุญาต!');
+        }
+      } catch (error) {
+        spinner.style.display = 'none';
+        console.error(error);
+        alert('ระบบขัดข้องในการทดสอบสิทธิ์ผู้สอน กรุณาตรวจสอบการตั้งค่า Apps Script');
+      }
+    }
+
+    function lockDashboard() {
+      sessionStorage.removeItem('teacherPasscode');
+      document.getElementById('passcodeInput').value = '';
+      document.getElementById('lockScreen').style.display = 'block';
+      document.getElementById('dashboardContent').style.display = 'none';
+      allSubmissions = [];
+    }
+
+    function calculateKPIs() {
+      const total = allSubmissions.length;
+      const checked = allSubmissions.filter(s => s.status === 'checked').length;
+      const pending = total - checked;
+
+      document.getElementById('kpiTotal').textContent = total;
+      document.getElementById('kpiChecked').textContent = checked;
+      document.getElementById('kpiPending').textContent = pending;
+    }
+
+    function setupRoomDropdown() {
+      const roomSelector = document.getElementById('roomFilter');
+      
+      // Extract unique classrooms
+      const rooms = [...new Set(allSubmissions.map(s => s.classRoom).filter(Boolean))];
+      rooms.sort();
+
+      roomSelector.innerHTML = '';
+      if (rooms.length === 0) {
+        roomSelector.innerHTML = '<option value="">-- ไม่พบข้อมูลห้องเรียน --</option>';
+        return;
+      }
+
+      rooms.forEach(room => {
+        const opt = document.createElement('option');
+        opt.value = room;
+        opt.textContent = `ชั้นเรียน ${room}`;
+        roomSelector.appendChild(opt);
+      });
+    }
+
+    function switchTab(tabId) {
+      // Toggle tabs
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
+
+      event.currentTarget.classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+    }
+
+    // Room Summary Grid Renderer
+    function renderRoomGrid() {
+      const selectedRoom = document.getElementById('roomFilter').value;
+      const gridBody = document.getElementById('roomGridBody');
+      gridBody.innerHTML = '';
+
+      if (!selectedRoom) return;
+
+      // Filter submissions in selected room
+      const roomSubs = allSubmissions.filter(s => s.classRoom === selectedRoom);
+
+      // Group submissions by student (ID -> Name)
+      const studentsMap = {};
+      roomSubs.forEach(s => {
+        if (!studentsMap[s.studentId]) {
+          studentsMap[s.studentId] = {
+            name: s.studentName,
+            submissions: {}
+          };
+        }
+        studentsMap[s.studentId].submissions[s.assignment] = s;
+      });
+
+      // Sort student IDs
+      const studentIds = Object.keys(studentsMap).sort();
+
+      if (studentIds.length === 0) {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td colspan="13" style="padding: 2rem; color:var(--text-muted);">ไม่มีข้อมูลการส่งงานของห้องนี้</td>`;
+        gridBody.appendChild(tr);
+        return;
+      }
+
+      studentIds.forEach(id => {
+        const student = studentsMap[id];
+        const tr = document.createElement('tr');
+
+        let rowHtml = `
+          <td><strong>${id}</strong></td>
+          <td class="student-name-cell">${student.name}</td>
+        `;
+
+        // Render each assignment cell status
+        ASSIGNMENT_COLS.forEach(taskName => {
+          const sub = student.submissions[taskName];
+          if (sub) {
+            if (sub.status === 'checked') {
+              rowHtml += `<td><span class="grid-badge checked" title="ตรวจแล้ว คะแนน: ${sub.grade}"><i class='bx bx-check'></i> ${sub.grade}</span></td>`;
+            } else {
+              rowHtml += `<td><span class="grid-badge pending" title="ส่งแล้ว รอตรวจ"><i class='bx bx-time'></i> รอตรวจ</span></td>`;
+            }
+          } else {
+            rowHtml += `<td><span class="grid-badge missing" title="ยังไม่ส่งงาน"><i class='bx bx-minus'></i></span></td>`;
+          }
+        });
+
+        tr.innerHTML = rowHtml;
+        gridBody.appendChild(tr);
+      });
+    }
+
+    // Individual Search Handler
+    function handleIndividualSearch() {
+      const query = document.getElementById('studentSearchInput').value.trim().toLowerCase();
+      const body = document.getElementById('individualTableBody');
+      body.innerHTML = '';
+
+      // Filters matching rows
+      const filtered = allSubmissions.filter(s => {
+        const sId = s.studentId ? String(s.studentId) : '';
+        const sName = s.studentName ? String(s.studentName) : '';
+        return sId.includes(query) || sName.toLowerCase().includes(query);
+      });
+
+      if (filtered.length === 0) {
+        body.innerHTML = `<tr><td colspan="7" style="padding: 2rem; color:var(--text-muted);">ไม่พบผลลัพธ์ข้อมูลการส่งงานที่ตรงเงื่อนไข</td></tr>`;
+        return;
+      }
+
+      filtered.forEach(sub => {
+        const tr = document.createElement('tr');
+        
+        let statusBadgeHtml = '';
+        if (sub.status === 'checked') {
+          statusBadgeHtml = `<span class="status-badge status-success" style="font-size:0.75rem;"><i class='bx bx-check-circle'></i> ตรวจแล้ว (${sub.grade})</span>`;
+        } else {
+          statusBadgeHtml = `<span class="status-badge status-pending" style="font-size:0.75rem;"><i class='bx bx-time-five'></i> รอตรวจทาน</span>`;
+        }
+
+        const fileLinkHtml = `<a href="${sub.fileLink}" target="_blank" style="color:var(--secondary-color); font-weight:500;" title="ดูไฟล์ใน Google Drive"><i class='bx bx-link-external' style="font-size:1.1rem; vertical-align:middle; margin-right:4px;"></i>ดูไฟล์งาน</a>`;
+
+        tr.innerHTML = `
+          <td><strong>${sub.studentId}</strong></td>
+          <td style="text-align:left; font-weight:500; padding-left:1rem;">${sub.studentName}</td>
+          <td>${sub.classRoom}</td>
+          <td style="text-align:left;">${sub.assignment}</td>
+          <td>${fileLinkHtml}</td>
+          <td style="white-space: nowrap;">${statusBadgeHtml}</td>
+          <td style="text-align:left; font-size:0.8rem; max-width:200px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" title="${sub.teacherFeedback}">${sub.teacherFeedback || '-'}</td>
+        `;
+        body.appendChild(tr);
+      });
+    }
+
+    // Export Room Grid to CSV
+    function exportToCSV() {
+      const selectedRoom = document.getElementById('roomFilter').value;
+      if (!selectedRoom) return;
+
+      const roomSubs = allSubmissions.filter(s => s.classRoom === selectedRoom);
+
+      // Group submissions by student
+      const studentsMap = {};
+      roomSubs.forEach(s => {
+        if (!studentsMap[s.studentId]) {
+          studentsMap[s.studentId] = { name: s.studentName, submissions: {} };
+        }
+        studentsMap[s.studentId].submissions[s.assignment] = s;
+      });
+
+      const studentIds = Object.keys(studentsMap).sort();
+
+      // CSV Header
+      let csvContent = "\ufeff"; // BOM for excel utf-8
+      csvContent += "รหัสนักเรียน,ชื่อ-นามสกุล,";
+      csvContent += ASSIGNMENT_COLS.map(name => {
+        // Short name
+        if (name.includes("รายงาน")) return "โครงงาน";
+        return name.split(":")[0].replace("ใบงานที่ ", "ใบงาน ");
+      }).join(",") + "\n";
+
+      // CSV Rows
+      studentIds.forEach(id => {
+        const student = studentsMap[id];
+        let row = `"${id}","${student.name}",`;
+        
+        const grades = ASSIGNMENT_COLS.map(taskName => {
+          const sub = student.submissions[taskName];
+          if (sub) {
+            return sub.status === 'checked' ? sub.grade : "รอตรวจ";
+          }
+          return "-";
+        });
+
+        row += grades.join(",") + "\n";
+        csvContent += row;
+      });
+
+      // Download trigger
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement("a");
+      const url = URL.createObjectURL(blob);
+      link.setAttribute("href", url);
+      link.setAttribute("download", `คะแนนเก็บ_ห้อง_${selectedRoom.replace('/', '_')}.csv`);
+      link.style.visibility = 'hidden';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  </script>
+</body>
+</html>

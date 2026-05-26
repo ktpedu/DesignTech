@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="แหล่งเรียนรู้ออนไลน์ รายวิชาการออกแบบและเทคโนโลยี ม.4 โรงเรียนวังน้ำเย็นวิทยาคม รวบรวมใบงาน สื่อการเรียนรู้ E-book และแบบทดสอบเก็บคะแนน">
+  <meta name="keywords" content="การออกแบบและเทคโนโลยี, ม.4, วังน้ำเย็นวิทยาคม, ใบงาน, สื่อการสอน, ข้อสอบ อจท, แบบทดสอบ ม.4">
+  <meta property="og:title" content="วิชาการออกแบบและเทคโนโลยี ม.4">
+  <meta property="og:description" content="แหล่งเรียนรู้ออนไลน์ รายวิชาการออกแบบและเทคโนโลยี ม.4 โรงเรียนวังน้ำเย็นวิทยาคม รวบรวมใบงาน สื่อการเรียนรู้ E-book และแบบทดสอบเก็บคะแนน">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/LOGOprofile.gif">
+  <title>ตรวจสอบการส่งงาน - วิชาการออกแบบและเทคโนโลยี ม.4</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/gif" href="assets/LOGOprofile.gif">
+  <!-- Boxicons -->
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+  
+  <style>
+    :root {
+      --accent-color: #3b82f6;
+    }
+    
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    .checker-container {
+      max-width: 1000px;
+      margin: 8rem auto 4rem;
+      padding: 0 1.5rem;
+    }
+
+    .checker-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-color);
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .checker-card h2 {
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .checker-card p {
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .search-form {
+      display: flex;
+      max-width: 500px;
+      margin: 0 auto;
+      gap: 0.5rem;
+    }
+
+    .search-input {
+      flex: 1;
+      padding: 0.85rem 1.25rem;
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-md);
+      font-size: 1rem;
+      font-family: inherit;
+      outline: none;
+      transition: all 0.3s;
+      text-align: center;
+      font-weight: 600;
+      letter-spacing: 2px;
+    }
+
+    .search-input:focus {
+      border-color: var(--secondary-color);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+    }
+
+    .btn-search {
+      padding: 0.85rem 1.75rem;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+    }
+
+    .results-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-color);
+      display: none;
+    }
+
+    .results-header {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 1.25rem 1.75rem;
+      border-radius: var(--radius-md);
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .results-header h3 {
+      margin: 0;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .results-header span {
+      font-weight: 500;
+      font-size: 0.95rem;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.35rem 0.75rem;
+      border-radius: var(--radius-sm);
+    }
+
+    .stats-summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-box {
+      background: var(--bg-color);
+      padding: 1rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      text-align: center;
+    }
+
+    .stat-val {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-lbl {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .spinner {
+      display: none;
+      margin: 2rem auto;
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(0,0,0,0.1);
+      border-top-color: var(--secondary-color);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Reuse history table styles */
+    .history-table-container {
+      overflow-x: auto;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+    }
+    .history-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+    .history-table th, .history-table td {
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .history-table tr:last-child td {
+      border-bottom: none;
+    }
+    .history-table th {
+      background-color: var(--bg-color);
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+    .status-pending {
+      background-color: #fffbeb;
+      color: #d97706;
+    }
+    .status-success {
+      background-color: #ecfdf5;
+      color: #059669;
+    }
+
+    /* Modal styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 9999;
+      display: none;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 2rem 1rem;
+      overflow-y: auto;
+    }
+    .modal-content {
+      background: white;
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 500px;
+      padding: 2rem;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      margin: auto;
+      animation: modalSlide 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes modalSlide {
+      from { transform: translateY(15px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .modal-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.25rem;
+      border-radius: 50%;
+      transition: background-color 0.2s;
+    }
+    .modal-close:hover {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+    }
+    .receipt-header {
+      text-align: center;
+      margin-bottom: 2rem;
+      border-bottom: 2px dashed var(--border-color);
+      padding-bottom: 1.5rem;
+    }
+    .receipt-header i {
+      font-size: 4rem;
+      color: var(--accent-color);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .receipt-header h3 {
+      font-size: 1.4rem;
+      color: var(--text-main);
+      margin: 0;
+    }
+    .receipt-details {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      margin-bottom: 2rem;
+    }
+    .receipt-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.95rem;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 0.5rem;
+    }
+    .receipt-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .receipt-label {
+      color: var(--text-muted);
+    }
+    .receipt-value {
+      font-weight: 600;
+      color: var(--text-main);
+      text-align: right;
+      max-width: 60%;
+      word-break: break-all;
+    }
+    .btn-print-receipt {
+      width: 100%;
+      padding: 0.85rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    @media (max-width: 480px) {
+      .search-form {
+        flex-direction: column;
+      }
+      .checker-card {
+        padding: 1.5rem;
+      }
+      .results-card {
+        padding: 1rem;
+      }
+      .results-header {
+        padding: 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .modal-overlay {
+        padding: 1rem 0.5rem;
+      }
+      .modal-content {
+        padding: 1.5rem 1rem;
+      }
+      .receipt-header i { font-size: 3rem; }
+      .receipt-header h3 { font-size: 1.2rem; }
+      .receipt-details { gap: 0.65rem; }
+      .receipt-row { font-size: 0.85rem; }
+      .btn-print-receipt { padding: 0.75rem; font-size: 0.9rem; }
+    }
+
+    @media print {
+      body {
+        background-color: white !important;
+        color: black !important;
+      }
+      body * {
+        visibility: hidden;
+      }
+      #receiptModal, #receiptModal * {
+        visibility: visible;
+      }
+      #receiptModal {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        background: white;
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+      }
+      .modal-close, .btn-print-receipt {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <i class='bx bx-laptop'></i> Design<span>Tech</span>
+      </a>
+      <div class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link">หน้าแรก</a>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link">บทเรียน <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="unit1.html">หน่วยที่ 1</a>
+            <a href="unit2.html">หน่วยที่ 2</a>
+            <a href="unit3.html">หน่วยที่ 3</a>
+          </div>
+        </div>
+        <a href="media.html" class="nav-link">สื่อการเรียนรู้</a>
+        <a href="worksheets.html" class="nav-link">ใบงาน</a>
+        
+        <!-- Main menu Dropdown for ส่งงาน -->
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link active">ส่งงาน <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="submit.html">ส่งใบงาน</a>
+            <a href="check_submissions.html" class="active">ตรวจสอบการส่งงาน (นักเรียน)</a>
+            <a href="teacher_dashboard.html">แดชบอร์ดครูผู้สอน</a>
+          </div>
+        </div>
+        
+        <a href="quizzes.html" class="nav-link">แบบทดสอบ</a>
+        <a href="contact.html" class="nav-link">ติดต่อครูผู้สอน</a>
+      </div>
+      <div class="nav-toggle" id="navToggle">
+        <i class='bx bx-menu'></i>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Checker Area -->
+  <div class="checker-container">
+    <div class="checker-card">
+      <h2><i class='bx bx-search-alt'></i> ตรวจสอบการส่งงานทั้งหมด</h2>
+      <p>ค้นหาและตรวจสอบประวัติการส่งใบงาน พร้อมคะแนนสะสมและข้อเสนอแนะจากครูผู้สอน</p>
+      
+      <form id="searchForm" class="search-form" onsubmit="event.preventDefault(); handleSearch();">
+        <input type="text" id="studentIdInput" class="search-input" maxlength="5" placeholder="รหัสประจำตัว 5 หลัก" required pattern="[0-9]{5}" title="กรุณากรอกรหัสนักเรียน 5 หลัก">
+        <button type="submit" class="btn btn-primary btn-search"><i class='bx bx-search'></i> ค้นหา</button>
+      </form>
+    </div>
+
+    <!-- Spinner -->
+    <div id="loadingSpinner" class="spinner"></div>
+
+    <!-- Results Display -->
+    <div id="resultsCard" class="results-card">
+      <div class="results-header">
+        <h3 id="studentHeader"><i class='bx bx-user-circle'></i> นักเรียน: -</h3>
+        <span id="classroomHeader">ห้อง: -</span>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="stats-summary">
+        <div class="stat-box">
+          <div id="statTotal" class="stat-val">0</div>
+          <div class="stat-lbl">ส่งงานทั้งหมด (ครั้ง)</div>
+        </div>
+        <div class="stat-box">
+          <div id="statPending" class="stat-val" style="color: #d97706;">0</div>
+          <div class="stat-lbl">รอตรวจทาน</div>
+        </div>
+        <div class="stat-box">
+          <div id="statChecked" class="stat-val" style="color: #059669;">0</div>
+          <div class="stat-lbl">ตรวจแล้ว</div>
+        </div>
+      </div>
+
+      <!-- Submissions Table -->
+      <div class="history-table-container">
+        <table class="history-table">
+          <thead>
+            <tr>
+              <th>วัน-เวลาที่ส่ง</th>
+              <th>ใบงาน</th>
+              <th>ไฟล์ที่แนบ</th>
+              <th style="white-space: nowrap;">สถานะการตรวจ</th>
+              <th style="white-space: nowrap;">ใบเสร็จ</th>
+            </tr>
+          </thead>
+          <tbody id="submissionsList">
+            <!-- Dynamic Submissions Rows -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <i class='bx bx-laptop'></i> Design<span>Tech</span>
+        </div>
+        <p>แหล่งเรียนรู้ออนไลน์ รายวิชาการออกแบบและเทคโนโลยี ชั้นมัธยมศึกษาปีที่ 4</p>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 วิชาการออกแบบและเทคโนโลยี | PANIITTHA BOONYONG </p>
+        <p>WANGNAMYENWITTAYAKOM SCHOOL . SECONDARY EDUCATIONAL SERVICE AREA OFFICE SA KAEO</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Receipt Popup Modal -->
+  <div class="modal-overlay" id="receiptModal">
+    <div class="modal-content" id="receiptModalContent">
+      <button class="modal-close" onclick="closeReceipt()"><i class='bx bx-x'></i></button>
+      <div class="receipt-header">
+        <i class='bx bx-check-circle'></i>
+        <h3>ใบรับรองการส่งงานสำเร็จ</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;" id="modalReceiptId">ID: -</p>
+      </div>
+      <div class="receipt-details">
+        <div class="receipt-row">
+          <span class="receipt-label">รหัสนักเรียน:</span>
+          <span class="receipt-value" id="modalStudentId">-</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">ชื่อ-นามสกุล:</span>
+          <span class="receipt-value" id="modalStudentName">-</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">ชั้นเรียน:</span>
+          <span class="receipt-value" id="modalClassroom">-</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">ใบงานที่ส่ง:</span>
+          <span class="receipt-value" id="modalAssignment">-</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">วัน-เวลาที่ส่ง:</span>
+          <span class="receipt-value" id="modalTimestamp">-</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">ไฟล์งาน:</span>
+          <span class="receipt-value" id="modalFileName">-</span>
+        </div>
+        <div class="receipt-row" style="background: #f8fafc; padding: 0.5rem; border-radius: var(--radius-sm);">
+          <span class="receipt-label" style="font-weight: 600;">ผลการตรวจ/คะแนน:</span>
+          <span class="receipt-value" id="modalGrade" style="color: var(--secondary-color);">-</span>
+        </div>
+      </div>
+      <button class="btn btn-outline btn-print-receipt" onclick="window.print()"><i class='bx bx-printer'></i> พิมพ์ใบรับรอง (PDF)</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  
+  <script>
+    // Configuration
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxJ32VgAbMIwRJ2SDwr8QU-uZW63nI3iCI2_dORWJTBYtEObSQqayc0AE79eutX2UeA/exec';
+    
+    let loadedSubmissions = []; // Store fetched data locally
+
+    async function handleSearch() {
+      const studentId = document.getElementById('studentIdInput').value.trim();
+      if (!/^[0-9]{5}$/.test(studentId)) {
+        alert('กรุณากรอกรหัสประจำตัวนักเรียนเป็นตัวเลข 5 หลัก');
+        return;
+      }
+
+      const spinner = document.getElementById('loadingSpinner');
+      const resultsCard = document.getElementById('resultsCard');
+      
+      // Reset & UI Feedback
+      spinner.style.display = 'block';
+      resultsCard.style.display = 'none';
+
+      try {
+        const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getStudentSubmissions&studentId=${studentId}`);
+        if (!response.ok) throw new Error('ไม่สามารถเชื่อมต่อฐานข้อมูลได้');
+        
+        const result = await response.json();
+        spinner.style.display = 'none';
+
+        if (result.status === 'success') {
+          loadedSubmissions = result.submissions;
+          
+          if (loadedSubmissions.length === 0) {
+            alert('ไม่พบข้อมูลประวัติการส่งงานของรหัสนี้ในระบบ');
+            return;
+          }
+
+          renderResults();
+        } else {
+          alert('เกิดข้อผิดพลาด: ' + result.message);
+        }
+      } catch (error) {
+        spinner.style.display = 'none';
+        console.error(error);
+        alert('ไม่สามารถดึงข้อมูลได้สำเร็จ กรุณาลองใหม่อีกครั้ง');
+      }
+    }
+
+    function renderResults() {
+      const resultsCard = document.getElementById('resultsCard');
+      const list = document.getElementById('submissionsList');
+      
+      // Get student details from the first submission
+      const firstSub = loadedSubmissions[0];
+      document.getElementById('studentHeader').innerHTML = `<i class='bx bx-user-circle'></i> นักเรียน: ${firstSub.studentName} (รหัส: ${firstSub.studentId})`;
+      document.getElementById('classroomHeader').textContent = `ห้อง: ${firstSub.classRoom}`;
+
+      // Calculate Stats
+      const total = loadedSubmissions.length;
+      const checkedCount = loadedSubmissions.filter(s => s.status === 'checked').length;
+      const pendingCount = total - checkedCount;
+
+      document.getElementById('statTotal').textContent = total;
+      document.getElementById('statPending').textContent = pendingCount;
+      document.getElementById('statChecked').textContent = checkedCount;
+
+      // Populate Table Rows
+      list.innerHTML = '';
+      loadedSubmissions.forEach(sub => {
+        const tr = document.createElement('tr');
+        
+        let statusHtml = '';
+        if (sub.status === 'checked') {
+          statusHtml = `
+            <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 4px;">
+              <span class="status-badge status-success" style="cursor:help" title="ความเห็นครู: ${sub.teacherFeedback}">
+                <i class='bx bx-check-circle'></i> ตรวจแล้ว
+              </span>
+              <span style="font-size: 0.8rem; font-weight: 600; color: var(--text-main); padding-left: 4px;">
+                คะแนน: <strong style="color: var(--secondary-color); font-size: 0.9rem;">${sub.grade}</strong>
+              </span>
+            </div>
+          `;
+        } else {
+          statusHtml = `
+            <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 4px;">
+              <span class="status-badge status-pending">
+                <i class='bx bx-time-five'></i> รอตรวจ...
+              </span>
+              <span style="font-size: 0.8rem; color: var(--text-muted); padding-left: 4px;">
+                คะแนน: -
+              </span>
+            </div>
+          `;
+        }
+
+        const fileLinkHtml = `<a href="${sub.fileLink}" target="_blank" style="color:var(--secondary-color); font-weight:500;" title="ดูไฟล์ใน Google Drive"><i class='bx bx-link-external' style="font-size:1.1rem; vertical-align:middle; margin-right:4px;"></i>ดูไฟล์งาน</a>`;
+
+        tr.innerHTML = `
+          <td>${sub.timestamp}</td>
+          <td><strong>${sub.assignment}</strong></td>
+          <td>${fileLinkHtml}</td>
+          <td style="white-space: nowrap;">${statusHtml}</td>
+          <td style="white-space: nowrap;">
+            <button class="btn btn-outline" style="padding: 0.35rem 0.6rem; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 6px; border-radius: var(--radius-md); border: 1px solid var(--border-color); background: white; cursor: pointer; transition: all 0.2s; text-align: left;" onclick="showReceiptDetail('${sub.receiptId}')">
+              <i class='bx bx-receipt' style="font-size: 1.1rem; color: var(--primary-color);"></i>
+              <span style="line-height: 1.2; display: inline-block;">ใบรับรอง<br>การส่งงาน</span>
+            </button>
+          </td>
+        `;
+        list.appendChild(tr);
+      });
+
+      resultsCard.style.display = 'block';
+    }
+
+    function showReceiptDetail(receiptId) {
+      const sub = loadedSubmissions.find(s => s.receiptId === receiptId);
+      if (!sub) return;
+
+      document.getElementById('modalReceiptId').textContent = 'ID: ' + sub.receiptId;
+      document.getElementById('modalStudentId').textContent = sub.studentId;
+      document.getElementById('modalStudentName').textContent = sub.studentName;
+      document.getElementById('modalClassroom').textContent = sub.classRoom;
+      document.getElementById('modalAssignment').textContent = sub.assignment;
+      document.getElementById('modalTimestamp').textContent = sub.timestamp;
+      
+      // Extract file name from URL or show dummy
+      let filename = 'ไฟล์อัปโหลด';
+      try {
+        const urlParams = new URL(sub.fileLink).searchParams;
+        if (urlParams.has('id')) {
+          filename = 'file_id_' + urlParams.get('id').substring(0, 8) + '...';
+        }
+      } catch(e) {}
+      document.getElementById('modalFileName').textContent = filename;
+
+      // Score
+      if (sub.status === 'checked') {
+        document.getElementById('modalGrade').textContent = `${sub.grade} คะแนน (${sub.teacherFeedback || 'ไม่มีความเห็น'})`;
+      } else {
+        document.getElementById('modalGrade').textContent = 'รอตรวจทานคะแนน';
+      }
+
+      document.getElementById('receiptModal').style.display = 'flex';
+    }
+
+    function closeReceipt() {
+      document.getElementById('receiptModal').style.display = 'none';
+    }
+
+    // Close modal when clicking outside content area
+    window.onclick = function(event) {
+      const modal = document.getElementById('receiptModal');
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>
