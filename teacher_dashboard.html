@@ -364,6 +364,338 @@
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
+
+    /* Interactive Badges & Hover Effects */
+    .grid-badge.checked, .grid-badge.pending {
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .grid-badge.checked:hover, .grid-badge.pending:hover {
+      transform: scale(1.08);
+      filter: brightness(0.95);
+      box-shadow: var(--shadow-sm);
+    }
+    .grid-table tbody tr:hover {
+      background-color: rgba(37, 99, 235, 0.02);
+    }
+
+    /* History Table Styling */
+    .history-table-container {
+      overflow-x: auto;
+      background: white;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      margin-top: 1rem;
+    }
+    .history-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+    .history-table th, .history-table td {
+      padding: 0.9rem 1.25rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .history-table tr:last-child td {
+      border-bottom: none;
+    }
+    .history-table th {
+      background-color: var(--bg-color);
+      color: var(--primary-color);
+      font-weight: 600;
+      text-align: center;
+    }
+    .history-table td {
+      text-align: center;
+    }
+    .history-table tbody tr:hover {
+      background-color: rgba(37, 99, 235, 0.02);
+    }
+    
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+    .status-pending {
+      background-color: #fffbeb;
+      color: #d97706;
+    }
+    .status-success {
+      background-color: #ecfdf5;
+      color: #059669;
+    }
+    
+    .btn-grade {
+      background: #e0e7ff;
+      color: #4f46e5;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.8rem;
+      transition: all 0.2s;
+    }
+    .btn-grade:hover {
+      background: #c7d2fe;
+      transform: translateY(-1px);
+    }
+
+    /* Modal Overlay & Content Styling (Teacher Grading UI) */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .modal-content {
+      background: white;
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 550px;
+      padding: 2rem;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      animation: modalSlide 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes modalSlide {
+      from { transform: translateY(15px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .modal-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.25rem;
+      border-radius: 50%;
+      transition: background-color 0.2s;
+    }
+    .modal-close:hover {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+    }
+    
+    .modal-header {
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .modal-header h3 {
+      font-size: 1.3rem;
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 0;
+    }
+    
+    .student-info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      background: #f8fafc;
+      padding: 1rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+    }
+    .info-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .info-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .info-value {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+    
+    .submission-detail {
+      margin-bottom: 1.5rem;
+    }
+    .submission-detail label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+    .student-comment-box {
+      background: #fffbeb;
+      border: 1px solid #fef3c7;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-md);
+      font-size: 0.9rem;
+      color: #b45309;
+      min-height: 50px;
+    }
+    
+    .grading-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .form-group label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+    .grade-input-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .grade-input {
+      width: 100px;
+      padding: 0.6rem 0.75rem;
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-md);
+      font-size: 1rem;
+      font-weight: 700;
+      text-align: center;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .grade-input:focus {
+      border-color: var(--primary-color);
+    }
+    .feedback-textarea {
+      padding: 0.75rem 1rem;
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-md);
+      font-family: inherit;
+      font-size: 0.95rem;
+      min-height: 80px;
+      outline: none;
+      resize: vertical;
+      transition: border-color 0.2s;
+    }
+    .feedback-textarea:focus {
+      border-color: var(--primary-color);
+    }
+    
+    .btn-submit-grade {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      font-weight: 600;
+      width: 100%;
+      padding: 0.85rem;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      border: none;
+      box-shadow: var(--shadow-md);
+      transition: all 0.2s;
+    }
+    .btn-submit-grade:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    .btn-submit-grade:disabled {
+      background: #cbd5e1;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+    
+    .file-preview-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: #ecfdf5;
+      color: #059669;
+      border: 1px solid #a7f3d0;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .file-preview-btn:hover {
+      background: #d1fae5;
+    }
+    
+    /* Toast styles */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: #1e293b;
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      display: none;
+      align-items: center;
+      gap: 0.5rem;
+      z-index: 10000;
+      animation: toastSlide 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes toastSlide {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .toast.success {
+      border-left: 4px solid var(--success-color);
+    }
+    .toast.error {
+      border-left: 4px solid var(--danger-color);
+    }
+
+    /* Modal Responsive */
+    @media (max-width: 480px) {
+      .modal-overlay {
+        padding: 1rem 0.5rem;
+      }
+      .modal-content {
+        padding: 1.5rem 1rem;
+      }
+      .student-info-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -524,6 +856,7 @@
                 <th>ไฟล์ส่งงาน</th>
                 <th style="white-space: nowrap;">สถานะการตรวจ</th>
                 <th>ข้อเสนอแนะครู</th>
+                <th>จัดการ</th>
               </tr>
             </thead>
             <tbody id="individualTableBody">
@@ -534,6 +867,70 @@
       </div>
 
     </div>
+  </div>
+
+  <!-- Grading Modal -->
+  <div class="modal-overlay" id="gradingModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeGradingModal()"><i class='bx bx-x'></i></button>
+      <div class="modal-header">
+        <h3><i class='bx bx-edit-alt'></i> ตรวจและให้คะแนนใบงาน</h3>
+      </div>
+      <div class="student-info-grid">
+        <div class="info-item">
+          <span class="info-label">รหัสนักเรียน:</span>
+          <span class="info-value" id="modalStudentId">-</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">ชื่อ-นามสกุล:</span>
+          <span class="info-value" id="modalStudentName">-</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">ชั้นเรียน:</span>
+          <span class="info-value" id="modalClassroom">-</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">วัน-เวลาที่ส่ง:</span>
+          <span class="info-value" id="modalTimestamp">-</span>
+        </div>
+      </div>
+      
+      <div class="submission-detail">
+        <label>ใบงานที่ส่ง:</label>
+        <div class="info-value" id="modalAssignment" style="margin-bottom: 1rem; color: var(--primary-color);"></div>
+        
+        <label>ไฟล์งานของนักเรียน:</label>
+        <button class="file-preview-btn" id="modalFileLinkBtn"><i class='bx bx-show'></i> เปิดดูไฟล์งานนักเรียน (Google Drive)</button>
+      </div>
+
+      <div class="submission-detail">
+        <label>หมายเหตุ/ข้อความจากนักเรียน:</label>
+        <div class="student-comment-box" id="modalStudentComment">-</div>
+      </div>
+
+      <form class="grading-form" onsubmit="submitGrade(event)">
+        <div class="form-group">
+          <label for="modalGradeInput">คะแนนที่ได้ (คะแนนเต็ม 10 หรือตามเกณฑ์):</label>
+          <div class="grade-input-wrapper">
+            <input type="number" id="modalGradeInput" class="grade-input" min="0" max="100" step="0.5" placeholder="-" required>
+            <span style="font-weight: 600; color: var(--text-muted);">คะแนน</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="modalFeedbackInput">ข้อเสนอแนะครูผู้สอน:</label>
+          <textarea id="modalFeedbackInput" class="feedback-textarea" placeholder="เขียนคำแนะนำ คำชม หรือสิ่งที่ต้องแก้ไขส่งกลับไปให้นักเรียน..."></textarea>
+        </div>
+        <button type="submit" class="btn-submit-grade" id="btnSubmitGrade">
+          <i class='bx bx-save'></i> บันทึกผลการตรวจและคะแนน
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toastNotification" class="toast">
+    <i class='bx' id="toastIcon"></i>
+    <span id="toastMessage"></span>
   </div>
 
   <!-- Footer -->
@@ -720,10 +1117,11 @@
         ASSIGNMENT_COLS.forEach(taskName => {
           const sub = student.submissions[taskName];
           if (sub) {
+            const escapedTask = taskName.replace(/'/g, "\\'");
             if (sub.status === 'checked') {
-              rowHtml += `<td><span class="grid-badge checked" title="ตรวจแล้ว คะแนน: ${sub.grade}"><i class='bx bx-check'></i> ${sub.grade}</span></td>`;
+              rowHtml += `<td><span class="grid-badge checked" onclick="openGradingModal('${id}', '${escapedTask}', '${sub.receiptId}')" title="ตรวจแล้ว คะแนน: ${sub.grade} | คลิกเพื่อแก้ไข"><i class='bx bx-check'></i> ${sub.grade}</span></td>`;
             } else {
-              rowHtml += `<td><span class="grid-badge pending" title="ส่งแล้ว รอตรวจ"><i class='bx bx-time'></i> รอตรวจ</span></td>`;
+              rowHtml += `<td><span class="grid-badge pending" onclick="openGradingModal('${id}', '${escapedTask}', '${sub.receiptId}')" title="ส่งแล้ว รอตรวจ | คลิกเพื่อตรวจงาน"><i class='bx bx-time'></i> รอตรวจ</span></td>`;
             }
           } else {
             rowHtml += `<td><span class="grid-badge missing" title="ยังไม่ส่งงาน"><i class='bx bx-minus'></i></span></td>`;
@@ -749,7 +1147,7 @@
       });
 
       if (filtered.length === 0) {
-        body.innerHTML = `<tr><td colspan="7" style="padding: 2rem; color:var(--text-muted);">ไม่พบผลลัพธ์ข้อมูลการส่งงานที่ตรงเงื่อนไข</td></tr>`;
+        body.innerHTML = `<tr><td colspan="8" style="padding: 2rem; color:var(--text-muted);">ไม่พบผลลัพธ์ข้อมูลการส่งงานที่ตรงเงื่อนไข</td></tr>`;
         return;
       }
 
@@ -764,6 +1162,7 @@
         }
 
         const fileLinkHtml = `<a href="${sub.fileLink}" target="_blank" style="color:var(--secondary-color); font-weight:500;" title="ดูไฟล์ใน Google Drive"><i class='bx bx-link-external' style="font-size:1.1rem; vertical-align:middle; margin-right:4px;"></i>ดูไฟล์งาน</a>`;
+        const escapedTask = sub.assignment.replace(/'/g, "\\'");
 
         tr.innerHTML = `
           <td><strong>${sub.studentId}</strong></td>
@@ -773,9 +1172,171 @@
           <td>${fileLinkHtml}</td>
           <td style="white-space: nowrap;">${statusBadgeHtml}</td>
           <td style="text-align:left; font-size:0.8rem; max-width:200px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" title="${sub.teacherFeedback}">${sub.teacherFeedback || '-'}</td>
+          <td>
+            <button class="btn-grade" onclick="openGradingModal('${sub.studentId}', '${escapedTask}', '${sub.receiptId}')">
+              <i class='bx bx-edit-alt'></i> ตรวจงาน
+            </button>
+          </td>
         `;
         body.appendChild(tr);
       });
+    }
+
+    // Toast Notification helper
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toastNotification');
+      const toastMsg = document.getElementById('toastMessage');
+      const toastIcon = document.getElementById('toastIcon');
+      
+      toastMsg.textContent = message;
+      toast.className = `toast ${type}`;
+      
+      if (type === 'success') {
+        toastIcon.className = 'bx bx-check-circle';
+        toastIcon.style.color = '#10b981';
+      } else {
+        toastIcon.className = 'bx bx-error-circle';
+        toastIcon.style.color = '#ef4444';
+      }
+      
+      toast.style.display = 'flex';
+      
+      // Auto-hide after 3 seconds
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 3000);
+    }
+
+    let selectedSub = null;
+
+    function openGradingModal(studentId, assignmentName, receiptId) {
+      // Find submission in our memory cache
+      selectedSub = allSubmissions.find(s => 
+        (receiptId && s.receiptId === receiptId) || 
+        (s.studentId === studentId && s.assignment === assignmentName)
+      );
+
+      if (!selectedSub) {
+        showToast('ไม่พบข้อมูลการส่งงานชิ้นนี้ในระบบ', 'error');
+        return;
+      }
+
+      // Populate Modal Fields
+      document.getElementById('modalStudentId').textContent = selectedSub.studentId;
+      document.getElementById('modalStudentName').textContent = selectedSub.studentName;
+      document.getElementById('modalClassroom').textContent = selectedSub.classRoom;
+      document.getElementById('modalTimestamp').textContent = selectedSub.timestamp;
+      document.getElementById('modalAssignment').textContent = selectedSub.assignment;
+
+      // File Link Button
+      const fileBtn = document.getElementById('modalFileLinkBtn');
+      fileBtn.onclick = () => {
+        window.open(selectedSub.fileLink, '_blank');
+      };
+
+      // Student comments
+      const commentBox = document.getElementById('modalStudentComment');
+      if (selectedSub.comments && selectedSub.comments.trim() !== '-') {
+        commentBox.textContent = selectedSub.comments;
+        commentBox.parentElement.style.display = 'block';
+      } else {
+        commentBox.textContent = '-';
+        commentBox.parentElement.style.display = 'none';
+      }
+
+      // Pre-fill Score Inputs
+      const gradeInput = document.getElementById('modalGradeInput');
+      const feedbackTextarea = document.getElementById('modalFeedbackInput');
+
+      gradeInput.value = (selectedSub.grade && selectedSub.grade !== '-') ? selectedSub.grade : '';
+      feedbackTextarea.value = (selectedSub.teacherFeedback && selectedSub.teacherFeedback !== '-') ? selectedSub.teacherFeedback : '';
+
+      // Reset Submit Button State
+      const submitBtn = document.getElementById('btnSubmitGrade');
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = `<i class='bx bx-save'></i> บันทึกผลการตรวจและคะแนน`;
+
+      // Show Modal
+      document.getElementById('gradingModal').style.display = 'flex';
+    }
+
+    function closeGradingModal() {
+      document.getElementById('gradingModal').style.display = 'none';
+      selectedSub = null;
+    }
+
+    async function submitGrade(event) {
+      event.preventDefault();
+      if (!selectedSub) return;
+
+      const gradeInput = document.getElementById('modalGradeInput');
+      const feedbackTextarea = document.getElementById('modalFeedbackInput');
+      const submitBtn = document.getElementById('btnSubmitGrade');
+
+      const grade = gradeInput.value.trim();
+      const feedback = feedbackTextarea.value.trim() || "-";
+
+      const passcode = sessionStorage.getItem('teacherPasscode');
+      if (!passcode) {
+        showToast('ไม่พบรหัสผ่านในเซสชัน กรุณาลงชื่อเข้าใช้ใหม่', 'error');
+        lockDashboard();
+        return;
+      }
+
+      // Show Loading State on Button
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `<i class='bx bx-loader-alt bx-spin'></i> กำลังบันทึกคะแนน...`;
+
+      const payload = {
+        type: 'updateGrade',
+        passcode: passcode,
+        receiptId: selectedSub.receiptId,
+        studentId: selectedSub.studentId,
+        assignment: selectedSub.assignment,
+        grade: grade,
+        feedback: feedback
+      };
+
+      try {
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+          throw new Error('ไม่ได้รับการตอบกลับจากเซิร์ฟเวอร์');
+        }
+
+        const result = await response.json();
+
+        if (result.status === 'success') {
+          // Update in memory cache so UI updates instantly
+          selectedSub.status = 'checked';
+          selectedSub.grade = grade;
+          selectedSub.teacherFeedback = feedback;
+
+          // Re-calculate KPIs and refresh active view components
+          calculateKPIs();
+          renderRoomGrid();
+          handleIndividualSearch();
+
+          showToast('บันทึกคะแนนและข้อเสนอแนะเรียบร้อยแล้ว!', 'success');
+          closeGradingModal();
+        } else {
+          throw new Error(result.message || 'บันทึกคะแนนไม่สำเร็จ');
+        }
+      } catch (err) {
+        console.error(err);
+        showToast('เกิดข้อผิดพลาด: ' + err.message, 'error');
+        
+        // Restore Button State
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = `<i class='bx bx-save'></i> บันทึกผลการตรวจและคะแนน`;
+      }
     }
 
     // Export Room Grid to CSV
