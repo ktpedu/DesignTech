@@ -1,0 +1,1853 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="แบบทดสอบวัดผลสัมฤทธิ์กลางภาค (Midterm Exam) รายวิชาการออกแบบและเทคโนโลยี ม.4 โรงเรียนวังน้ำเย็นวิทยาคม">
+  <meta name="keywords" content="ข้อสอบกลางภาค, การออกแบบและเทคโนโลยี, ม.4, วังน้ำเย็นวิทยาคม, เฉลยข้อสอบกลางภาค">
+  <meta property="og:title" content="ข้อสอบกลางภาค - วิชาการออกแบบและเทคโนโลยี ม.4">
+  <meta property="og:description" content="แบบทดสอบวัดผลสัมฤทธิ์กลางภาค">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/LOGOprofile.gif">
+  <title>ข้อสอบกลางภาค วิชาการออกแบบและเทคโนโลยี ม.4</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/gif" href="assets/LOGOprofile.gif">
+  
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .lesson-header {
+      background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+      color: white;
+      padding: 8rem 2rem 4rem;
+      text-align: center;
+    }
+    .lesson-header h1 {
+      color: white;
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      font-family: 'Prompt', sans-serif;
+    }
+    .lesson-header p {
+      font-size: 1.2rem;
+      opacity: 0.95;
+    }
+    .content-section {
+      padding: 3rem 1.5rem;
+      background-color: var(--bg-color);
+      min-height: 75vh;
+    }
+    .content-container {
+      max-width: 950px;
+      margin: 0 auto;
+    }
+    .topic-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+    .topic-card h2 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    /* Mode Toggle Bar */
+    .view-mode-bar {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      padding: 0.85rem 1.75rem;
+      border-radius: 50px;
+      border: 2px solid var(--primary-color);
+      background: white;
+      color: var(--primary-color);
+      font-family: 'Prompt', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow-sm);
+    }
+    .tab-btn:hover {
+      background: rgba(37, 99, 235, 0.08);
+      transform: translateY(-2px);
+    }
+    .tab-btn.active {
+      background: var(--primary-color);
+      color: white;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+    }
+
+    /* Form styling */
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--text-main);
+      font-family: 'Prompt', sans-serif;
+    }
+    .form-control {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      font-family: inherit;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+
+    /* Exam Question Navigator Grid */
+    .q-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(42px, 1fr));
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      background: var(--bg-color);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+    }
+    .q-grid-item {
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: white;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: 'Prompt', sans-serif;
+    }
+    .q-grid-item:hover {
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+    }
+    .q-grid-item.active {
+      background: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+    }
+    .q-grid-item.answered {
+      background: rgba(16, 185, 129, 0.15);
+      border-color: var(--accent-color);
+      color: var(--accent-color);
+    }
+    .q-grid-item.active.answered {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    /* Active Quiz View */
+    #quiz-play-container {
+      display: none;
+    }
+    .quiz-progress-bar-container {
+      width: 100%;
+      height: 10px;
+      background-color: var(--border-color);
+      border-radius: 6px;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+    .quiz-progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #2563eb, #059669);
+      border-radius: 6px;
+      transition: width 0.3s ease;
+    }
+    .quiz-question-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      font-family: 'Prompt', sans-serif;
+      font-weight: 500;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+    .quiz-question-text {
+      font-size: 1.25rem;
+      color: var(--text-main);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+      font-weight: 500;
+    }
+    .choices-container {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      margin-bottom: 2rem;
+    }
+    .choice-option {
+      display: flex;
+      align-items: center;
+      padding: 1.1rem 1.4rem;
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background-color: var(--surface-color);
+    }
+    .choice-option:hover {
+      border-color: var(--primary-color);
+      background-color: rgba(37, 99, 235, 0.03);
+    }
+    .choice-option.selected {
+      border-color: var(--primary-color);
+      background-color: rgba(37, 99, 235, 0.08);
+    }
+    .choice-letter {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background-color: var(--bg-color);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1rem;
+      font-weight: bold;
+      font-family: 'Prompt', sans-serif;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+    .choice-option.selected .choice-letter {
+      background-color: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+    }
+    .choice-text {
+      color: var(--text-main);
+      font-size: 1.05rem;
+      line-height: 1.5;
+    }
+    .quiz-actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .quiz-actions .btn {
+      min-width: 130px;
+    }
+
+    /* Result View */
+    #quiz-result-container {
+      display: none;
+      text-align: center;
+    }
+    .result-score-ring {
+      position: relative;
+      width: 170px;
+      height: 170px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .result-circle-svg {
+      transform: rotate(-90deg);
+      width: 100%;
+      height: 100%;
+    }
+    .result-circle-bg {
+      fill: none;
+      stroke: var(--border-color);
+      stroke-width: 12;
+    }
+    .result-circle-fill {
+      fill: none;
+      stroke: var(--primary-color);
+      stroke-width: 12;
+      stroke-linecap: round;
+      stroke-dasharray: 440;
+      stroke-dashoffset: 440;
+      transition: stroke-dashoffset 1.2s ease-in-out;
+    }
+    .result-score-text {
+      position: absolute;
+      font-family: 'Prompt', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+    .result-score-text span {
+      font-size: 1rem;
+      color: var(--text-muted);
+      font-weight: 400;
+      margin-top: 0.3rem;
+    }
+    .result-title {
+      font-size: 1.8rem;
+      color: var(--text-main);
+      margin-bottom: 0.5rem;
+      font-family: 'Prompt', sans-serif;
+    }
+    .result-feedback-text {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+    
+    /* Answer Review & Question Bank Styles */
+    .review-section {
+      text-align: left;
+      margin-top: 2.5rem;
+      border-top: 2px solid var(--border-color);
+      padding-top: 2rem;
+    }
+    .review-section h3 {
+      margin-bottom: 1.5rem;
+      font-size: 1.4rem;
+      color: var(--text-main);
+      font-family: 'Prompt', sans-serif;
+    }
+    .review-item {
+      padding: 1.5rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      margin-bottom: 1.5rem;
+      background: white;
+      box-shadow: var(--shadow-sm);
+    }
+    .review-item.correct {
+      border-left: 6px solid #10b981;
+    }
+    .review-item.incorrect {
+      border-left: 6px solid #ef4444;
+    }
+    .review-item.study-mode {
+      border-left: 6px solid var(--primary-color);
+    }
+    .review-unit-tag {
+      display: inline-block;
+      padding: 0.25rem 0.65rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--primary-color);
+      margin-bottom: 0.75rem;
+      font-family: 'Prompt', sans-serif;
+    }
+    .review-question {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+    .review-choices-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .review-choice-item {
+      padding: 0.6rem 0.9rem;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--bg-color);
+      border: 1px solid transparent;
+    }
+    .review-choice-item.correct-choice {
+      background: rgba(16, 185, 129, 0.12);
+      border-color: #10b981;
+      color: #065f46;
+      font-weight: 600;
+    }
+    .review-choice-item.user-wrong-choice {
+      background: rgba(239, 68, 68, 0.12);
+      border-color: #ef4444;
+      color: #991b1b;
+      font-weight: 600;
+    }
+    .badge-status {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: white;
+      font-family: 'Prompt', sans-serif;
+    }
+    .badge-status.success {
+      background-color: #10b981;
+    }
+    .badge-status.danger {
+      background-color: #ef4444;
+    }
+    .review-explanation {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      border-top: 1px dashed var(--border-color);
+      padding-top: 0.85rem;
+      margin-top: 0.85rem;
+      line-height: 1.6;
+      background: rgba(37, 99, 235, 0.02);
+      padding: 0.85rem;
+      border-radius: 6px;
+    }
+    .review-explanation i {
+      color: var(--primary-color);
+      margin-right: 0.3rem;
+    }
+
+    /* Question Bank Search Input */
+    .bank-search-box {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    .bank-search-box input {
+      padding-left: 2.75rem;
+    }
+    .bank-search-box i {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.25rem;
+      color: var(--text-muted);
+    }
+
+    /* Print Certificate Styles */
+    #print-certificate-area {
+      display: none;
+    }
+
+    @media print {
+      body * {
+        display: none !important;
+      }
+      #print-certificate-area, #print-certificate-area * {
+        display: block !important;
+      }
+      #print-certificate-area {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
+        background: white;
+        color: black;
+        padding: 3rem;
+        box-sizing: border-box;
+      }
+      .certificate-border {
+        border: 8px double #1e3a8a;
+        padding: 3rem 2rem;
+        height: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+      }
+      .cert-logo {
+        font-size: 4rem;
+        color: #1e3a8a;
+        margin-bottom: 1.5rem;
+        display: flex !important;
+        justify-content: center !important;
+      }
+      .cert-title {
+        font-size: 2.8rem;
+        font-family: 'Prompt', sans-serif;
+        font-weight: 700;
+        color: #1e3a8a;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+      }
+      .cert-subtitle {
+        font-size: 1.3rem;
+        font-family: 'Sarabun', sans-serif;
+        color: #4b5563;
+        margin-bottom: 2rem;
+      }
+      .cert-recipient {
+        font-size: 2.2rem;
+        font-family: 'Prompt', sans-serif;
+        font-weight: 600;
+        color: #0f172a;
+        margin-bottom: 0.5rem;
+        border-bottom: 2px solid #e2e8f0;
+        padding-bottom: 0.5rem;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .cert-body {
+        font-size: 1.3rem;
+        font-family: 'Sarabun', sans-serif;
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+        color: #374151;
+      }
+      .cert-score {
+        font-size: 2.2rem;
+        font-family: 'Prompt', sans-serif;
+        font-weight: 700;
+        color: #1e3a8a;
+        margin: 1.5rem 0;
+      }
+      .cert-signatures {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-around !important;
+        width: 100% !important;
+        margin-top: 3rem;
+      }
+      .cert-sign-col {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        font-family: 'Sarabun', sans-serif;
+      }
+      .cert-sign-line {
+        width: 220px;
+        border-bottom: 1px dashed #4b5563;
+        margin-bottom: 0.75rem;
+        height: 40px;
+      }
+      .cert-sign-col strong {
+        font-size: 1.1rem;
+        color: #1f2937;
+      }
+      .cert-sign-col span {
+        font-size: 0.9rem;
+        color: #6b7280;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <i class='bx bx-laptop'></i> Design<span>Tech</span>
+      </a>
+      <div class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link">หน้าแรก</a>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link">บทเรียน <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="unit1.html">หน่วยที่ 1</a>
+            <a href="unit2.html">หน่วยที่ 2</a>
+            <a href="unit3.html">หน่วยที่ 3</a>
+          </div>
+        </div>
+        <a href="media.html" class="nav-link">สื่อการเรียนรู้</a>
+        <a href="worksheets.html" class="nav-link">ใบงาน</a>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link">ส่งงาน <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="submit.html">ส่งใบงาน</a>
+            <a href="check_submissions.html">ตรวจสอบการส่งงาน (นักเรียน)</a>
+            <a href="teacher_dashboard.html">แดชบอร์ดครูผู้สอน</a>
+          </div>
+        </div>
+        <a href="quizzes.html" class="nav-link">แบบทดสอบ</a>
+        <a href="midterm.html" class="nav-link active">ข้อสอบกลางภาค</a>
+        <a href="contact.html" class="nav-link">ติดต่อครูผู้สอน</a>
+      </div>
+      <div class="nav-toggle" id="navToggle">
+        <i class='bx bx-menu'></i>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="lesson-header">
+    <div class="container">
+      <h1><i class='bx bx-book-open'></i> ข้อสอบวัดผลสัมฤทธิ์กลางภาค (Midterm Exam)</h1>
+      <p>วิชาการออกแบบและเทคโนโลยี ม.4 โรงเรียนวังน้ำเย็นวิทยาคม</p>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="content-section">
+    <div class="content-container">
+      
+      <!-- ========================================== -->
+      <!-- EXAM MODE -->
+      <!-- ========================================== -->
+      <div id="exam-mode-view">
+        
+        <!-- 1.1 LOGIN SCREEN CONTAINER -->
+        <div id="quiz-login-container" class="topic-card fade-in-up">
+          <h2><i class='bx bx-user-check'></i> ลงชื่อเข้าสอบกลางภาค</h2>
+          <p style="color: var(--text-muted); margin-bottom: 2rem;">
+            ข้อสอบชุดนี้ประกอบด้วยเนื้อหาหน่วยที่ 1 (ระบบทางเทคโนโลยี) 20 ข้อ และหน่วยที่ 2 (กระบวนการออกแบบเชิงวิศวกรรม) 20 ข้อ รวม 40 คะแนน กรุณากรอกข้อมูลเพื่อเข้าสู่ระบบทำข้อสอบ
+          </p>
+          
+          <form id="quizLoginForm" onsubmit="event.preventDefault(); startMidtermExam();">
+            <div class="form-group">
+              <label class="form-label" for="studentIdInput"><i class='bx bx-id-card'></i> เลขประจำตัวนักเรียน (5 หลัก):</label>
+              <input type="text" id="studentIdInput" class="form-control" placeholder="เช่น 12345" required pattern="[0-9]{5}" title="กรุณากรอกตัวเลขรหัสประจำตัวนักเรียน 5 หลัก">
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label" for="studentNameInput"><i class='bx bx-user'></i> ชื่อ-นามสกุล (ระบุ คำนำหน้าชื่อ ด้วย):</label>
+              <input type="text" id="studentNameInput" class="form-control" placeholder="เช่น นายสมชาย ใจดี" required>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label" for="classRoomSelect"><i class='bx bx-cabinet'></i> ระดับชั้นเรียน (ม.4/X):</label>
+              <select id="classRoomSelect" class="form-control" style="background: white;" required>
+                <option value="" disabled selected>-- เลือกห้องเรียน --</option>
+                <option value="ม.4/7">ม.4/7</option>
+                <option value="ม.4/8">ม.4/8</option>
+                <option value="ม.4/9">ม.4/9</option>
+                <option value="ม.4/10">ม.4/10</option>
+                <option value="ม.4/11">ม.4/11</option>
+                <option value="ม.4/12">ม.4/12</option>
+              </select>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 2rem;">
+              <label class="form-label" for="passcodeInput"><i class='bx bx-key'></i> รหัสผ่านเข้าสอบกลางภาค (ขอรหัสจากครูผู้สอน):</label>
+              <input type="password" id="passcodeInput" class="form-control" placeholder="กรอกรหัสเข้าสอบ..." required style="letter-spacing: 1px;">
+            </div>
+            
+            <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.15rem; padding: 0.95rem;">
+              <i class='bx bx-play-circle'></i> ยืนยันรหัสผ่านและเริ่มทำข้อสอบ (40 ข้อ)
+            </button>
+          </form>
+        </div>
+        
+        <!-- 1.2 ACTIVE EXAM PLAY CONTAINER -->
+        <div id="quiz-play-container" class="topic-card">
+          <div id="quiz-student-header" style="margin-bottom: 1.5rem; padding: 0.85rem 1.25rem; background-color: rgba(37, 99, 235, 0.06); border-left: 4px solid var(--primary-color); border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+            <div style="font-family: 'Prompt', sans-serif;">
+              <span style="color: var(--text-muted); font-size: 0.9rem;">ผู้เข้าสอบ:</span> 
+              <strong id="active-student-info" style="color: var(--primary-color);">กำลังโหลด...</strong>
+            </div>
+            <div id="anti-cheat-badge" style="font-family: 'Prompt', sans-serif; font-size: 0.85rem; padding: 0.3rem 0.75rem; background: #fef2f2; border: 1px solid #fca5a5; color: #dc2626; border-radius: 20px; font-weight: 600; display: flex; align-items: center; gap: 0.35rem;">
+              <i class='bx bx-shield-quarter' style="font-size: 1.1rem;"></i> ป้องกันการทุจริต: สลับหน้าจอ <span id="cheat-count-badge">0</span>/3 ครั้ง
+            </div>
+            <button class="btn btn-outline" style="padding: 0.35rem 0.85rem; font-size: 0.8rem;" onclick="resetExamState()"><i class='bx bx-log-out'></i> ออกจากการสอบ</button>
+          </div>
+
+          <div class="quiz-progress-bar-container">
+            <div id="quiz-progress" class="quiz-progress-bar"></div>
+          </div>
+          
+          <div class="quiz-question-meta">
+            <span id="quiz-question-number">ข้อที่ 1/40</span>
+            <span id="quiz-unit-title">หน่วยการเรียนรู้</span>
+          </div>
+
+          <!-- Quick Jump Grid -->
+          <details style="margin-bottom: 1.5rem; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 0.5rem 1rem; background: var(--bg-color);">
+            <summary style="font-weight: 600; font-family: 'Prompt', sans-serif; cursor: pointer; color: var(--primary-color);">
+              <i class='bx bx-grid-alt'></i> แผงเลือกข้อสอบอย่างเร็ว (ทำแล้ว <span id="answered-count">0</span>/40 ข้อ)
+            </summary>
+            <div id="q-grid-container" class="q-grid" style="margin-top: 0.75rem;">
+              <!-- Quick Jump items will be injected here -->
+            </div>
+          </details>
+          
+          <div id="quiz-question-text" class="quiz-question-text">
+            คำถามจะโหลดที่นี่...
+          </div>
+          
+          <div id="choices-container" class="choices-container">
+            <!-- Choices will be injected here dynamically -->
+          </div>
+          
+          <div class="quiz-actions">
+            <button id="prev-question-btn" class="btn btn-outline" onclick="prevQuestion()" disabled><i class='bx bx-chevron-left'></i> ข้อก่อนหน้า</button>
+            <div>
+              <button id="next-question-btn" class="btn btn-primary" onclick="nextQuestion()">ข้อถัดไป <i class='bx bx-chevron-right'></i></button>
+              <button id="submit-exam-btn" class="btn btn-primary" style="background: #10b981; border-color: #10b981; display: none;" onclick="confirmSubmitExam()"><i class='bx bx-check-circle'></i> ส่งข้อสอบกลางภาค</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1.3 EXAM RESULT CONTAINER -->
+        <div id="quiz-result-container" class="topic-card">
+          <div class="result-score-ring">
+            <svg class="result-circle-svg" viewBox="0 0 160 160">
+              <circle class="result-circle-bg" cx="80" cy="80" r="70"></circle>
+              <circle id="score-circle-fill" class="result-circle-fill" cx="80" cy="80" r="70"></circle>
+            </svg>
+            <div class="result-score-text">
+              <span id="result-score-num">0/40</span>
+              <span>คะแนน</span>
+            </div>
+          </div>
+          
+          <h2 id="result-title" class="result-title">ผลการประเมินกลางภาค</h2>
+          <p id="result-feedback-text" class="result-feedback-text">ผลการเรียนของคุณ</p>
+          
+          <div class="quiz-actions" style="justify-content: center; gap: 1rem; flex-wrap: wrap;">
+            <button class="btn btn-outline" onclick="finishExamAndLogout()"><i class='bx bx-check-circle'></i> เสร็จสิ้นการสอบ</button>
+            <button class="btn btn-outline" style="border-color: var(--primary-color); color: var(--primary-color);" onclick="printCertificate()"><i class='bx bx-printer'></i> พิมพ์ใบรับรองผลคะแนนกลางภาค</button>
+          </div>
+          
+          <!-- Answer review panel -->
+          <div id="review-section" class="review-section">
+            <h3><i class='bx bx-check-double'></i> ตรวจสอบคำตอบและเฉลยอธิบาย (ทุกข้อ 1-40)</h3>
+            <div id="review-items-container">
+              <!-- Review items will be injected here dynamically -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Printable Certificate Area -->
+  <div id="print-certificate-area">
+    <div class="certificate-border">
+      <div class="cert-logo">
+        <i class='bx bx-award'></i>
+      </div>
+      <div class="cert-title">ใบรับรองผลการสอบกลางภาค</div>
+      <div class="cert-subtitle">รายวิชาการออกแบบและเทคโนโลยี ชั้นมัธยมศึกษาปีที่ 4</div>
+      
+      <p style="font-family: 'Sarabun', sans-serif; font-size: 1.25rem; color: #4b5563; margin-top: 1.25rem; margin-bottom: 1rem;">ขอมอบใบรับรองอิเล็กทรอนิกส์ฉบับนี้เพื่อแสดงว่า</p>
+      <div id="cert-student-name" class="cert-recipient">ชื่อนักเรียน</div>
+      <div id="cert-student-meta" style="font-family: 'Prompt', sans-serif; font-size: 1.15rem; color: #1e3a8a; margin-bottom: 1.5rem;">รหัส 12345 ชั้น ม.4/7</div>
+      
+      <p class="cert-body">
+        ได้เข้ารับการประเมินผลวัดสัมฤทธิ์ทางการเรียนกลางภาคเรียน (Midterm Examination)<br>
+        ในหัวข้อการสอบ <strong id="cert-quiz-title" style="color: #0f172a; font-weight: 700; font-size: 1.35rem;">ข้อสอบกลางภาค (หน่วยการเรียนรู้ที่ 1 และ 2)</strong>
+      </p>
+      
+      <div id="cert-score-details" class="cert-score">ได้คะแนน 36 เต็ม 40 คะแนน (90%)</div>
+      
+      <p id="cert-date" style="font-family: 'Sarabun', sans-serif; font-size: 1.15rem; color: #4b5563; margin-bottom: 3rem;">เมื่อวันที่ 2 สิงหาคม 2569</p>
+      
+      <div class="cert-signatures">
+        <div class="cert-sign-col">
+          <div class="cert-sign-line"></div>
+          <strong>ครูปณิษฐา บุญยงค์</strong>
+          <span>ครูผู้สอนประจำรายวิชา</span>
+        </div>
+        <div class="cert-sign-col">
+          <div class="cert-sign-line"></div>
+          <strong>กลุ่มสาระการเรียนรู้วิทยาศาสตร์และเทคโนโลยี</strong>
+          <span>โรงเรียนวังน้ำเย็นวิทยาคม</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Anti-Cheat Violation Warning Modal -->
+  <div id="anti-cheat-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(15, 23, 42, 0.85); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); z-index:9999; align-items:center; justify-content:center;">
+    <div class="topic-card" style="width: 90%; max-width: 480px; margin-bottom: 0; padding: 2.5rem 2rem; box-shadow: var(--shadow-lg); text-align: center; border: 2px solid #ef4444;">
+      <i class='bx bx-error-alt' style="font-size: 4rem; color: #ef4444; margin-bottom: 0.5rem;"></i>
+      <h3 style="font-family: 'Prompt', sans-serif; color: #ef4444; font-size: 1.5rem; margin-bottom: 0.5rem;">แจ้งเตือนละเมิดกฎการสอบ!</h3>
+      <p id="cheat-warning-text" style="color: var(--text-main); font-size: 1.05rem; margin-bottom: 1.5rem; line-height: 1.6;">
+        ตรวจพบการสลับหน้าจอ ออกจากแท็บสอบ หรือออกจากโหมดเต็มหน้าจอ!
+      </p>
+      <button class="btn btn-primary" style="width: 100%; background: #ef4444; border-color: #ef4444; font-size: 1.05rem;" onclick="closeCheatWarning()">
+        รับทราบ และกลับสู่การทำข้อสอบ (เต็มหน้าจอ)
+      </button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-bottom">
+      <p>&copy; 2026 วิชาการออกแบบและเทคโนโลยี | PANIITTHA BOONYONG </p>
+      <p>WANGNAMYENWITTAYAKOM SCHOOL . SECONDARY EDUCATIONAL SERVICE AREA OFFICE SA KAEO</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  
+  <script>
+    // ==========================================
+    // CONFIGURATION & MIDTERM QUIZ DATABASE
+    // ==========================================
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxJ32VgAbMIwRJ2SDwr8QU-uZW63nI3iCI2_dORWJTBYtEObSQqayc0AE79eutX2UeA/exec';
+
+    // Midterm Questions (Unit 1: 20 Questions + Unit 2: 20 Questions = 40 Total Questions)
+    const midtermQuestions = [
+      // ----------------------------------------------------
+      // UNIT 1: ระบบทางเทคโนโลยีที่ซับซ้อนและการวิเคราะห์ระบบ (20 ข้อ)
+      // ----------------------------------------------------
+      {
+        unit: 1,
+        unitTitle: "หน่วยที่ 1: ระบบทางเทคโนโลยีที่ซับซ้อนและการวิเคราะห์ระบบ",
+        question: "1. องค์ประกอบหลักของ \"ระบบทางเทคโนโลยี\" ประกอบด้วยอะไรบ้างที่ทำงานประสานกัน?",
+        choices: {
+          "A": "ตัวป้อน, กระบวนการ, ผลผลิต",
+          "B": "ตัวป้อน, กระบวนการ, ผลผลิต, ทรัพยากร",
+          "C": "ตัวป้อน, กระบวนการ, ผลผลิต, ข้อมูลย้อนกลับ",
+          "D": "ตัวป้อน, กระบวนการ, ผลผลิต, ข้อมูลย้อนกลับ, ทรัพยากร"
+        },
+        correctAnswer: "C",
+        explanation: "ตัวป้อน (Input), กระบวนการ (Process), ผลผลิต (Output) และข้อมูลย้อนกลับ (Feedback) เป็นองค์ประกอบพื้นฐาน 4 ส่วนของระบบทางเทคโนโลยี"
+      },
+      {
+        unit: 1,
+        unitTitle: "หน่วยที่ 1: ระบบทางเทคโนโลยีที่ซับซ้อนและการวิเคราะห์ระบบ",
+        question: "2. ส่วนประกอบใดของระบบทางเทคโนโลยีที่ทำหน้าที่ดำเนินการหรือเปลี่ยนทรัพยากรตัวป้อนให้กลายเป็นผลผลิต?",
+        choices: {
+          "A": "ตัวป้อน (Input)",
+          "B": "กระบวนการ (Process)",
+          "C": "ผลผลิต (Output)",
+          "D": "ข้อมูลย้อนกลับ (Feedback)"
+        },
+        correctAnswer: "B",
+        explanation: "กระบวนการ (Process) คือขั้นตอนการปฏิบัติงานเพื่อเปลี่ยนทรัพยากรหรือตัวป้อนให้เป็นผลผลิตตามจุดประสงค์ของระบบ"
+      },
+      {
+        unit: 1,
+        unitTitle: "หน่วยที่ 1: ระบบทางเทคโนโลยีที่ซับซ้อนและการวิเคราะห์ระบบ",
+        question: "3. \"ข้อมูลย้อนกลับ\" (Feedback) มีความสำคัญสูงสุดอย่างไรในการควบคุมระบบทางเทคโนโลยี?",
+        choices: {
+          "A": "ช่วยเพิ่มความเร็วการทำงานของระบบ",
+          "B": "ช่วยลดทรัพยากรที่ต้องป้อนเข้าระบบ",
+          "C": "ช่วยตรวจสอบค่าผลผลิตเพื่อส่งกลับไปปรับปรุงแก้ไขการทำงานให้ได้ตามเป้าหมาย",
+          "D": "ช่วยกำหนดเงื่อนไขการส่งออกผลผลิต"
+        },
+        correctAnswer: "C",
+        explanation: "ข้อมูลย้อนกลับ (Feedback) ช่วยควบคุมดูแลระบบโดยเปรียบเทียบผลผลิตที่ได้กับค่าเป้าหมายเพื่อนำไปปรับเปลี่ยนการทำงานของตัวป้อนหรือกระบวนการให้ถูกต้อง"
+      },
+      {
+        unit: 1,
+        unitTitle: "หน่วยที่ 1: ระบบทางเทคโนโลยีที่ซับซ้อนและการวิเคราะห์ระบบ",
+        question: "4. ข้อใดจัดเป็นระบบทางเทคโนโลยีแบบปิด (Closed System) ที่ควบคุมตัวเองด้วยระบบอัตโนมัติ?",
+        choices: {
+          "A": "การใช้งานพัดลมทั่วไป",
+          "B": "การต้มน้ำด้วยกาต้มน้ำไฟฟ้าที่มีระบบควบคุมตัดไฟอัตโนมัติเมื่อน้ำเดือด",
+          "C": "การปลูกพืชไฮโดรโปนิกส์กลางแจ้ง",
+          "D": "การปั่นจักรยาน"
+        },
+        correctAnswer: "B",
+        explanation: "กาต้มน้ำไฟฟ้าตัดไฟอัตโนมัติเป็นระบบแบบปิด เนื่องจากมีข้อมูลสถานะการเดือด (อุณหภูมิ) ส่งกลับมาตัดการจ่ายไฟฟ้าโดยตรงโดยผู้ใช้ไม่ต้องสั่งงานซ้ำ"
+      },
+      {
+        unit: 1,
+        unitTitle: "หน่วยที่ 1: ระบบทางเทคโนโลยีที่ซับซ้อนและการวิเคราะห์ระบบ",
+        question: "5. หากเครื่องปรับอากาศแจ้งเตือนไฟกระพริบเนื่องจากแผ่นกรองฝุ่นสกปรก จัดเป็นองค์ประกอบส่วนใดของระบบ?",
+        choices: {
+          "A": "ตัวป้อน",
+          "B": "กระบวนการ",
+          "C": "ผลผลิต",
+          "D": "ข้อมูลย้อนกลับ"
+        },
+        correctAnswer: "D",
+        explanation: "การแจ้งเตือนสถานะความบกพร่องของเครื่องปรับอากาศแก่ผู้ใช้งาน ถือเป็นข้อมูลย้อนกลับ (Feedback) เพื่อให้นำไปแก้ไขปรับปรุงระบบ"
+      },
+      {
+        unit: 1,
+        unitTitle: "หน่วยที่ 1: ระบบทางเทคโนโลยีที่ซับซ้อนและการวิเคราะห์ระบบ",
+        question: "6. สิ่งใดคือตัวป้อน (Input) ในระบบหม้อหุงข้าวไฟฟ้า?",
+        choices: {
+          "A": "ข้าวสวยที่สุกพร้อมรับประทาน",
+          "B": "ข้าวสาร, น้ำ, พลังงานไฟฟ้า",
+          "C": "แผ่นความร้อนใต้หม้อข้าว",
+          "D": "การเปลี่ยนพลังงานไฟฟ้าเป็นความร้อน"
+        },
+        correctAnswer: "B",
+        explanation: "ตัวป้อน (Input) คือสิ่งที่จำเป็นต้องป้อนเข้าระบบเพื่อเริ่มต้นทำงาน ซึ่งในที่นี้คือ ข้าวสาร น้ำ และพลังงานไฟฟ้า"
+      },
+      {
+        unit: 1,
+        unitTitle: "หน่วยที่ 1: ระบบทางเทคโนโลยีที่ซับซ้อนและการวิเคราะห์ระบบ",
+        question: "7. ข้อใดกล่าวถูกต้องเกี่ยวกับระบบทางเทคโนโลยีที่ซับซ้อน (Complex Technological System)?",
+        choices: {
+          "A": "เป็นระบบที่มีโครงสร้างเดี่ยวไม่มีระบบย่อยทำงานร่วมด้วยเลย",
+          "B": "เป็นระบบที่มนุษย์สร้างขึ้นโดยอาศัยพลังงานจากสัตว์เท่านั้น",
+          "C": "เป็นระบบที่ประกอบด้วยระบบย่อย (Subsystem) ตั้งแต่สองระบบขึ้นไปทำงานร่วมกันอย่างสัมพันธ์กัน",
+          "D": "เป็นระบบในธรรมชาติที่มนุษย์ไม่สามารถเลียนแบบได้"
+        },
+        correctAnswer: "C",
+        explanation: "ระบบที่ซับซ้อนประกอบไปด้วยระบบย่อยต่าง ๆ ทำงานสัมพันธ์กัน เช่น รถยนต์มีระบบย่อยขับเคลื่อน ระบบเบรก ระบบไฟฟ้า ทำงานประสานกัน"
+      },
+      {
+        unit: 1,
+        unitTitle: "หน่วยที่ 1: ระบบทางเทคโนโลยีที่ซับซ้อนและการวิเคราะห์ระบบ",
+        question: "8. ในระบบย่อยของเครื่องซักผ้า หากเครื่องส่งเสียงร้องเตือนน้ำล้นออกนอกถัง ระบบย่อยใดมีหน้าที่ดำเนินการแก้ไขสถานะนี้นอกเหนือจากส่งเสียงเตือน?",
+        choices: {
+          "A": "ระบบย่อยระบายน้ำเปิดวาล์วปล่อยน้ำทิ้ง",
+          "B": "ระบบย่อยหมุนปั่นถังเร่งความเร็วถังซัก",
+          "C": "ระบบย่อยทำความร้อนจ่ายไฟให้ขดลวดทำความร้อน",
+          "D": "ระบบย่อยควบคุมปิดวาล์วจ่ายน้ำเข้าและปล่อยระบายน้ำส่วนเกินออก"
+        },
+        correctAnswer: "D",
+        explanation: "ระบบย่อยควบคุมมีหน้าที่ประมวลผลสัญญาณจากเซนเซอร์ระดับน้ำและสั่งการปิดวาล์วน้ำเข้าพร้อมควบคุมการปล่อยระบายน้ำล้นออก"
+      },
+      {
+        unit: 1,
+        unitTitle: "หน่วยที่ 1: ระบบทางเทคโนโลยีที่ซับซ้อนและการวิเคราะห์ระบบ",
+        question: "9. วัตถุประสงค์หลักของการวิเคราะห์ระบบทางเทคโนโลยี (Technological System Analysis) คือข้อใด?",
+        choices: {
+          "A": "เพื่อตรวจสอบว่าเทคโนโลยีมีความคุ้มค่าทางการตลาดและการโฆษณาอย่างไร",
+          "B": "เพื่อทำความเข้าใจความสัมพันธ์ของระบบย่อยต่าง ๆ เพื่อหาแนวทางป้องกันแก้ไขปัญหาเมื่อระบบล้มเหลว",
+          "C": "เพื่อปรับแต่งชิ้นงานให้ทันสมัยที่สุดตามแฟชั่นการออกแบบ",
+          "D": "เพื่อลดทอนส่วนควบคุมออกเพื่อประหยัดต้นทุนวัสดุอุตสาหกรรม"
+        },
+        correctAnswer: "B",
+        explanation: "การวิเคราะห์ระบบทำเพื่อให้ทราบหลักการทำงานประสานกันของระบบย่อยและสามารถแก้ไขปัญหากรณีเกิดข้อบกพร่องในส่วนใดส่วนหนึ่งได้อย่างถูกต้อง"
+      },
+      {
+        unit: 1,
+        unitTitle: "หน่วยที่ 1: ระบบทางเทคโนโลยีที่ซับซ้อนและการวิเคราะห์ระบบ",
+        question: "10. สิ่งใดจัดเป็นผลผลิต (Output) ของระบบการทำน้ำเย็นของตู้กดน้ำดื่ม?",
+        choices: {
+          "A": "น้ำประปาที่ต่อท่อเข้าตู้กดน้ำ",
+          "B": "พลังงานไฟฟ้าที่จ่ายให้กับตู้",
+          "C": "น้ำที่มีอุณหภูมิต่ำ (น้ำเย็น) พร้อมดื่ม",
+          "D": "สารทำความเย็นและการทำงานของคอมเพรสเซอร์"
+        },
+        correctAnswer: "C",
+        explanation: "ผลผลิต (Output) คือเป้าหมายสูงสุดที่ระบบส่งมอบออกมา ซึ่งก็คือน้ำเย็นอุณหภูมิต่ำพร้อมดื่ม"
+      },
+      {
+        unit: 1,
+        unitTitle: "หน่วยที่ 1: ระบบทางเทคโนโลยีที่ซับซ้อนและการวิเคราะห์ระบบ",
+        question: "11. สิ่งใดจัดเป็น \"ระบบทางธรรมชาติ\" (Natural System) ที่ไม่ได้เกิดจากมนุษย์สร้างขึ้น?",
+        choices: {
+          "A": "ระบบเขื่อนไฟฟ้าพลังน้ำ",
+          "B": "ระบบหมุนเวียนโลหิตในร่างกายมนุษย์",
+          "C": "ระบบการกรองน้ำสามชั้นในโรงงานอุตสาหกรรม",
+          "D": "ระบบระบายอากาศอัตโนมัติในโดมกระจกปลูกพืช"
+        },
+        correctAnswer: "B",
+        explanation: "ระบบหมุนเวียนโลหิตเป็นระบบที่เกิดขึ้นตามธรรมชาติในสิ่งมีชีวิต ส่วนระบบอื่นเป็นระบบทางเทคโนโลยีที่มนุษย์สร้างขึ้นเพื่อจุดประสงค์บางอย่าง"
+      },
+      {
+        unit: 1,
+        unitTitle: "หน่วยที่ 1: ระบบทางเทคโนโลยีที่ซับซ้อนและการวิเคราะห์ระบบ",
+        question: "12. ในระบบเครื่องอบผ้าแห้ง ลมร้อนและความชื้นที่ถูกระบายออกนอกเครื่อง จัดอยู่ในประเภทใดของระบบ?",
+        choices: {
+          "A": "ตัวป้อน",
+          "B": "กระบวนการ",
+          "C": "ผลผลิตหรือสิ่งที่ได้จากระบบ",
+          "D": "ข้อมูลย้อนกลับ"
+        },
+        correctAnswer: "C",
+        explanation: "ผลผลิตและผลพลอยได้จากการทำงานของระบบอบผ้าแห้งคือผ้าแห้งรวมถึงความร้อนและละอองน้ำระบายออก จัดเป็นผลลัพธ์ (Output)"
+      },
+      {
+        unit: 1,
+        unitTitle: "หน่วยที่ 1: ระบบทางเทคโนโลยีที่ซับซ้อนและการวิเคราะห์ระบบ",
+        question: "13. ส่วนประกอบใดของระบบการทำความสะอาดของหุ่นยนต์ดูดฝุ่นที่ทำหน้าที่เปรียบเสมือน \"ข้อมูลย้อนกลับ\" เมื่อหุ่นยนต์ชนสิ่งกีดขวาง?",
+        choices: {
+          "A": "แบตเตอรี่สำรองไฟ",
+          "B": "เซนเซอร์กันชน (Bumper Sensor) ที่ส่งสัญญาณกลับไปประมวลผลเพื่อเปลี่ยนเส้นทางวิ่ง",
+          "C": "แปรงปัดกวาดหมุนสลับด้าน",
+          "D": "ล้อขับเคลื่อนไฟฟ้ากระแสตรง"
+        },
+        correctAnswer: "B",
+        explanation: "เซนเซอร์ตรวจจับและรายงานการชนทำหน้าที่ส่งข้อมูลสะท้อนกลับ (Feedback) ไปยังชิปประมวลผลควบคุมมอเตอร์ล้อให้สลับเส้นทางหนีสิ่งกีดขวาง"
+      },
+      {
+        unit: 1,
+        unitTitle: "หน่วยที่ 1: ระบบทางเทคโนโลยีที่ซับซ้อนและการวิเคราะห์ระบบ",
+        question: "14. หากต้องการป้องกันไม่ให้ระบบคอมพิวเตอร์พังทลายจากความร้อนสะสม ระบบระบายความร้อนทำงานอย่างไรในฐานะระบบย่อย?",
+        choices: {
+          "A": "ลดกระแสไฟฟ้าหลักลงโดยปิดวงจรชิ้นส่วนหลักทั้งหมดทันที",
+          "B": "เร่งความเร็วพัดลมซีพียูตามอุณหภูมิเซนเซอร์ที่วัดได้สูงขึ้น",
+          "C": "นำส่งอากาศเย็นเข้าจากภายนอกด้วยตัวต้านทานคงที่",
+          "D": "ตัดระบบจ่ายพลังงานแบตเตอรี่สำรองไปชิ้นส่วนหน้าจอ"
+        },
+        correctAnswer: "B",
+        explanation: "ระบบระบายความร้อนจะรับข้อมูลอุณหภูมิและเร่งการทำงานของพัดลมเพื่อลดความร้อนสะสม ถือเป็นระบบย่อยที่รักษาสมดุลความร้อนของเครื่องคอมพิวเตอร์"
+      },
+      {
+        unit: 1,
+        unitTitle: "หน่วยที่ 1: ระบบทางเทคโนโลยีที่ซับซ้อนและการวิเคราะห์ระบบ",
+        question: "15. ข้อใดอธิบายความหมายของระบบทางเทคโนโลยีแบบเปิด (Open System) ได้ชัดเจนที่สุด?",
+        choices: {
+          "A": "เป็นระบบเปิดเผยรหัสซอร์สโค้ดให้คนทั่วไปนำไปพัฒนาต่อยอดได้ฟรี",
+          "B": "เป็นระบบทำงานต่อเนื่องโดยไม่มีขอบเขตตัวป้อนและใช้พลังงานธรรมชาติภายนอกอย่างเดียว",
+          "C": "เป็นระบบทำงานตามขั้นตอนการตั้งค่าโดยไม่มีกลไกตรวจจับและส่งข้อมูลผลผลิตย้อนกลับมาปรับแก้อัตโนมัติ",
+          "D": "เป็นระบบผลิตวัตถุดิบและส่งมอบให้ระบบภายนอกนำไปประมวลผลต่อทันที"
+        },
+        correctAnswer: "C",
+        explanation: "ระบบแบบเปิด (Open System) ทำงานโดยไม่มีการนำเอาข้อมูลย้อนกลับ (Feedback) มาเปรียบเทียบเพื่อสั่งการชดเชยการทำงาน ตัวอย่างเช่น การปิ้งขนมปังแบบจับเวลา ซึ่งเตาจะทำงานตามเวลาที่ตั้งไว้โดยไม่สนใจว่าขนมปังจะไหม้หรือไม่"
+      },
+      {
+        unit: 1,
+        unitTitle: "หน่วยที่ 1: ระบบทางเทคโนโลยีที่ซับซ้อนและการวิเคราะห์ระบบ",
+        question: "16. ในระบบเตาไมโครเวฟ กระบวนการ (Process) คือข้อใด?",
+        choices: {
+          "A": "อาหารดิบหรืออาหารแช่แข็งที่วางในเตา",
+          "B": "การเปลี่ยนพลังงานคลื่นความถี่วิทยุทำให้โมเลกุลน้ำในอาหารสั่นและเกิดความร้อน",
+          "C": "เสียงเตือนและระบบหยุดทำงานอัตโนมัติเมื่อครบเวลา",
+          "D": "อาหารที่ร้อนพร้อมรับประทาน"
+        },
+        correctAnswer: "B",
+        explanation: "กระบวนการ (Process) คือขั้นตอนปฏิบัติงานเพื่อดำเนินการเปลี่ยนรูปให้ตัวป้อนกลายเป็นผลผลิต ซึ่งในไมโครเวฟคือการส่งคลื่นไมโครเวฟไปเหนี่ยวนำโมเลกุลน้ำให้สั่นสะเทือนเกิดเป็นความร้อนสะสม"
+      },
+      {
+        unit: 1,
+        unitTitle: "หน่วยที่ 1: ระบบทางเทคโนโลยีที่ซับซ้อนและการวิเคราะห์ระบบ",
+        question: "17. ปัจจัยใดต่อไปนี้มีส่วนสำคัญทำให้มนุษย์คิดค้นและพัฒนาเทคโนโลยีใหม่ทดแทนระบบเดิมน้อยที่สุด?",
+        choices: {
+          "A": "ข้อจำกัดด้านทรัพยากรธรรมชาติและสิ่งแวดล้อมเสื่อมโทรม",
+          "B": "ความจำเป็นในการแข่งขันทางเศรษฐกิจระหว่างประเทศ",
+          "C": "ความลื่นไหลของการเลือกซื้อเสื้อผ้าตามเทศกาลประเพณีดั้งเดิม",
+          "D": "ความก้าวหน้าทางวิทยาศาสตร์และการค้นพบทฤษฎีเคมีใหม่"
+        },
+        correctAnswer: "C",
+        explanation: "แฟชั่นตามเทศกาลดั้งเดิมไม่จัดเป็นปัจจัยพื้นฐานสำคัญในการปฏิรูประบบเทคโนโลยีเมื่อเทียบกับความก้าวหน้าทางวิทย์ วิกฤตสิ่งแวดล้อม และสภาพการแข่งขันทางเศรษฐกิจ"
+      },
+      {
+        unit: 1,
+        unitTitle: "หน่วยที่ 1: ระบบทางเทคโนโลยีที่ซับซ้อนและการวิเคราะห์ระบบ",
+        question: "18. ในอดีตมีการใช้เครื่องพิมพ์ดีดในการพิมพ์เอกสาร แต่ปัจจุบันเปลี่ยนมาใช้คอมพิวเตอร์และเครื่องพิมพ์ สาเหตุการเปลี่ยนแปลงนี้จัดอยู่ในการวิเคราะห์ด้านใด?",
+        choices: {
+          "A": "การเปลี่ยนแปลงด้านการประหยัดพลังงานมอเตอร์ล้อ",
+          "B": "การเปลี่ยนแปลงตามความต้องการความเร็ว ความสะดวก และความยืดหยุ่นในการแก้ไขข้อมูลเอกสาร",
+          "C": "การรักษาข้อจำกัดด้านจริยธรรมของสิ่งพิมพ์ดั้งเดิม",
+          "D": "ความขาดแคลนวัสดุเหล็กทำโครงปุ่มพิมพ์ดีด"
+        },
+        correctAnswer: "B",
+        explanation: "การพัฒนาจากเครื่องพิมพ์ดีดมาเป็นคอมพิวเตอร์และพรินเตอร์สะท้อนความต้องการงานพิมพ์ที่มีประสิทธิภาพ แก้ไขข้อความง่าย คัดลอกเอกสารได้รวดเร็วขึ้น"
+      },
+      {
+        unit: 1,
+        unitTitle: "หน่วยที่ 1: ระบบทางเทคโนโลยีที่ซับซ้อนและการวิเคราะห์ระบบ",
+        question: "19. การระบายความร้อนของตู้เย็นโดยใช้พัดลมระบายลมร้อนจากคอมเพรสเซอร์ออกด้านล่างตู้ จัดเป็นความสัมพันธ์ระบบย่อยด้านใด?",
+        choices: {
+          "A": "ระบบย่อยระบายความร้อนเอื้อประโยชน์ให้ระบบย่อยทำความเย็นทำงานได้มีประสิทธิภาพยาวนานขึ้น",
+          "B": "ระบบย่อยระบายความร้อนช่วยทำให้อาหารภายในตู้แข็งตัวเร็วขึ้น",
+          "C": "ระบบย่อยระบายความร้อนควบคุมระดับไฟตกของบ้าน",
+          "D": "ระบบย่อยระบายความร้อนเปลี่ยนสถานะของแข็งในตู้เย็นเป็นของเหลว"
+        },
+        correctAnswer: "A",
+        explanation: "การระบายลมร้อนจากคอมเพรสเซอร์ทำให้ระบบทำความเย็นในวงจรไม่เกิดความร้อนสะสมสูงเกินเกณฑ์ ช่วยรักษาประสิทธิภาพและยืดอายุการทำความเย็น"
+      },
+      {
+        unit: 1,
+        unitTitle: "หน่วยที่ 1: ระบบทางเทคโนโลยีที่ซับซ้อนและการวิเคราะห์ระบบ",
+        question: "20. ในกรณีวิเคราะห์ความล้มเหลวของระบบหากเตารีดไฟฟ้าไม่ร้อนเลยหลังจากเสียบปลั๊กและเปิดสวิตช์แล้ว ขั้นแรกควรวิเคราะห์จุดบกพร่องที่จุดใด?",
+        choices: {
+          "A": "ตัวโครงพลาสติกป้องกันความร้อนและสายไฟภายนอก",
+          "B": "ระบบย่อยแหล่งจ่ายพลังงานและวงจรความต้านทานทำความร้อนภายใน (Heater Element)",
+          "C": "หน้าปัดบอกชนิดของผ้าที่ต้องการรีด",
+          "D": "น้ำที่ใช้เติมระบบพ่นเตารีดไอน้ำ"
+        },
+        correctAnswer: "B",
+        explanation: "การที่เตารีดไม่ร้อนเลยชี้ว่ากระแสไฟฟ้าไม่ไหลเข้าสู่ส่วนทำความร้อนหลัก จึงต้องตรวจสอบระบบจ่ายพลังงาน (สายไฟ ปลั๊ก) และตัวต้านทานความร้อนภายในเป็นจุดแรก"
+      },
+
+      // ----------------------------------------------------
+      // UNIT 2: กระบวนการออกแบบเชิงวิศวกรรม 6 ขั้นตอน (20 ข้อ)
+      // ----------------------------------------------------
+      {
+        unit: 2,
+        unitTitle: "หน่วยที่ 2: กระบวนการออกแบบเชิงวิศวกรรม 6 ขั้นตอน",
+        question: "21. กระบวนการออกแบบเชิงวิศวกรรม (Engineering Design Process) มีประโยชน์โดดเด่นอย่างไรเมื่อเทียบกับการสร้างสิ่งประดิษฐ์ตามสัญชาตญาณ?",
+        choices: {
+          "A": "ช่วยประหยัดเวลาผลิตทันทีโดยไม่ต้องร่างแบบชิ้นงาน",
+          "B": "เป็นระบบขั้นตอนที่ชัดเจนช่วยให้แก้ปัญหาได้อย่างมีหลักการ ย้อนกลับไปปรับปรุงแก้ไขข้อบกพร่องได้เป็นระบบ",
+          "C": "ช่วยลดการจัดหาอุปกรณ์เครื่องมือวัดระดับช่าง",
+          "D": "ทำให้ผลงานประดิษฐ์ได้รับสิทธิบัตรโดยไม่ต้องลงมือปฏิบัติจริง"
+        },
+        correctAnswer: "B",
+        explanation: "กระบวนการนี้เป็นระบบคิดแบบวนซ้ำ (Iterative) ที่ใช้เกณฑ์ประเมินจริงในการออกแบบ วางแผน แก้ไขจุดบกพร่องได้อย่างเป็นระบบ"
+      },
+      {
+        unit: 2,
+        unitTitle: "หน่วยที่ 2: กระบวนการออกแบบเชิงวิศวกรรม 6 ขั้นตอน",
+        question: "22. ขั้นตอน \"การระบุปัญหา\" (Problem Definition) ต้องกำหนดเงื่อนไขให้ตอบคำถามใดบ้างเป็นอันดับแรก?",
+        choices: {
+          "A": "วิธีการประหยัดงบประมาณสร้างสิบเท่า",
+          "B": "ปัญหานั้นคืออะไร (What) เกิดกับใคร (Who) ทำไมต้องแก้ (Why) เกิดขึ้นที่ไหนเมื่อใด (Where/When) และมีข้อจำกัดอะไร",
+          "C": "ชื่อโปรแกรมและบอร์ดไมโครคอนโทรลเลอร์ที่ต้องใช้โค้ดควบคุม",
+          "D": "ประเภทวัสดุที่หาซื้อได้ในพื้นที่ชนบท"
+        },
+        correctAnswer: "B",
+        explanation: "การวิเคราะห์ปัญหาด้วยหลัก 5W1H ช่วยให้เราเข้าใจตัวตนของปัญหานั้นได้อย่างครอบคลุมและตั้งเป้าหมายการแก้ปัญหาได้ชัดเจน"
+      },
+      {
+        unit: 2,
+        unitTitle: "หน่วยที่ 2: กระบวนการออกแบบเชิงวิศวกรรม 6 ขั้นตอน",
+        question: "23. หากวิศวกรต้องการสร้างเครื่องกำจัดฝุ่นละออง PM 2.5 ในระดับครัวเรือน ขั้นตอนถัดไปหลังการระบุปัญหาเสร็จสิ้นคือข้อใด?",
+        choices: {
+          "A": "การซื้อโครงวัสดุและล้อเลื่อนเตรียมเดินเครื่องยนต์",
+          "B": "การรวบรวมข้อมูล ค้นหาวิธีแผ่นกรองฝุ่น และศึกษาทฤษฎีฟิสิกส์การดักจับฝุ่นแบบต่าง ๆ",
+          "C": "การนำเสนอโครงงานฝุ่นแก่ครูที่ปรึกษา",
+          "D": "การวาดภาพสามมิติของเครื่อง"
+        },
+        correctAnswer: "B",
+        explanation: "เมื่อรู้กรอบปัญหาแล้ว ต้องทำการรวบรวมข้อมูลเชิงทฤษฎีและเทคโนโลยีที่มีอยู่เดิมเพื่อนำมาใช้เป็นฐานความรู้ในการออกแบบ"
+      },
+      {
+        unit: 2,
+        unitTitle: "หน่วยที่ 2: กระบวนการออกแบบเชิงวิศวกรรม 6 ขั้นตอน",
+        question: "24. การจัดระเบียบความคิดโดยนำข้อมูลที่ค้นคว้ามาได้เปรียบเทียบข้อดี-ข้อเสียของแต่ละรูปแบบ จัดอยู่ในขั้นตอนใด?",
+        choices: {
+          "A": "การระบุปัญหา",
+          "B": "การรวบรวมข้อมูลและแนวคิดที่เกี่ยวข้องกับปัญหา",
+          "C": "การออกแบบวิธีการแก้ปัญหา",
+          "D": "การนำเสนอผลการทำงาน"
+        },
+        correctAnswer: "C",
+        explanation: "ในขั้นการออกแบบวิธีการแก้ปัญหา เราจะนำแนวคิดต่าง ๆ ที่ได้รวบรวมไว้มาสังเคราะห์ วาดทางเลือก และวิเคราะห์ข้อดีข้อเสียเพื่อคัดเลือกวิธีที่ดีที่สุด"
+      },
+      {
+        unit: 2,
+        unitTitle: "หน่วยที่ 2: กระบวนการออกแบบเชิงวิศวกรรม 6 ขั้นตอน",
+        question: "25. เกณฑ์ข้อใดที่ไม่ควรนำมาพิจารณาในขั้นตอนการคัดเลือกแนวทางแก้ปัญหาเชิงวิศวกรรม?",
+        choices: {
+          "A": "ความเป็นไปได้ในการทำงานจริงของระบบ",
+          "B": "ความสวยงามลวดลายกราฟิกของสีตัวถังภายนอกผลิตภัณฑ์",
+          "C": "ความปลอดภัยของผู้ใช้และผลกระทบต่อสิ่งแวดล้อม",
+          "D": "ความพร้อมของงบประมาณและเวลาดำเนินงาน"
+        },
+        correctAnswer: "B",
+        explanation: "การเลือกแนวทางต้องคำนึงถึงฟังก์ชันความปลอดภัย ประสิทธิภาพ ทุน และเวลา ส่วนลวดลายกราฟิกหรือแฟชั่นเป็นเรื่องรองที่ยังไม่เกี่ยวกับประสิทธิภาพหลักในการแก้ปัญหา"
+      },
+      {
+        unit: 2,
+        unitTitle: "หน่วยที่ 2: กระบวนการออกแบบเชิงวิศวกรรม 6 ขั้นตอน",
+        question: "26. เครื่องมือใดต่อไปนี้ที่ช่วยในการติดตามความก้าวหน้าและการกำหนดผู้รับผิดชอบงานตามตารางปฏิทินเวลาปฏิบัติงาน?",
+        choices: {
+          "A": "แผนภาพบล็อกไดอะแกรม (Block Diagram)",
+          "B": "ผังงานแกนต์ (Gantt Chart)",
+          "C": "ผังความคิดไมโอนิกส์ (Mind Map)",
+          "D": "ผังแบบร่างฉาย 3 ด้าน"
+        },
+        correctAnswer: "B",
+        explanation: "ผังแกนต์ (Gantt Chart) เป็นเครื่องมือหลักในการวางแผนงานเชิงปฏิบัติและแบ่งปฏิทินภาระงานตามกำหนดช่วงเวลาอย่างชัดเจน"
+      },
+      {
+        unit: 2,
+        unitTitle: "หน่วยที่ 2: กระบวนการออกแบบเชิงวิศวกรรม 6 ขั้นตอน",
+        question: "27. การสร้างแบบจำลองเสมือนจริงหรือตัวต้นแบบ (Prototype) มีเป้าหมายสำคัญเพื่ออะไรในขั้นการดำเนินงาน?",
+        choices: {
+          "A": "เพื่อขายสินค้าล่วงหน้าให้ผู้บริโภคทั่วไป",
+          "B": "เพื่อความสวยงามประดับห้องกิจกรรมเทคโนโลยี",
+          "C": "เพื่อใช้ทดสอบการใช้งานจริง ค้นหาจุดอ่อน และวิเคราะห์ปัญหาการทำงานทางกายภาพก่อนผลิตจำนวนมาก",
+          "D": "เพื่อหลีกเลี่ยงการสืบค้นข้อมูลเชิงทฤษฎีฟิสิกส์"
+        },
+        correctAnswer: "C",
+        explanation: "การทำแบบจำลองหรือชิ้นงานต้นแบบช่วยให้นักออกแบบสามารถประเมินผลการใช้งานในสถานการณ์จริงเพื่อลดความเสี่ยงข้อผิดพลาดก่อนลงมือผลิตจำนวนมาก"
+      },
+      {
+        unit: 2,
+        unitTitle: "หน่วยที่ 2: กระบวนการออกแบบเชิงวิศวกรรม 6 ขั้นตอน",
+        question: "28. หากทำการทดสอบเครื่องดักแมลงวันทองแล้วพบว่าใบพัดหมุนเป่าลมเบาไปทำให้กักแมลงไม่อยู่ ควรดำเนินการอย่างไรตามหลักวิศวกรรม?",
+        choices: {
+          "A": "เปลี่ยนไปทำชิ้นงานประดิษฐ์เรื่องอื่นแทน",
+          "B": "นำส่งครูผู้สอนทันทีและระบุว่าใช้งานได้ดีพอควร",
+          "C": "วิเคราะห์หาข้อบกพร่องและนำผลการทดสอบไปปรับปรุงสเปคมอเตอร์หรือเปลี่ยนขนาดใบพัด",
+          "D": "ออกแบบรูปทรงกล่องสีสันของเครื่องใหม่ให้แมลงตกใจบินหนีเอง"
+        },
+        correctAnswer: "C",
+        explanation: "เมื่อประเมินการทดสอบแล้วไม่ผ่านเกณฑ์การกักแมลง จะต้องนำข้อบกพร่องนั้นมาทบทวนเพื่อการปรับปรุงพัฒนาโครงสร้างชิ้นส่วนมอเตอร์ใบพัดใหม่"
+      },
+      {
+        unit: 2,
+        unitTitle: "หน่วยที่ 2: กระบวนการออกแบบเชิงวิศวกรรม 6 ขั้นตอน",
+        question: "29. ขั้นตอนใดในกระบวนการออกแบบเชิงวิศวกรรมที่เป็นการเผยแพร่รายละเอียดชิ้นงาน ถ่ายทอดความรู้ และแนวทางพัฒนาต่อยอดให้ผู้อื่น?",
+        choices: {
+          "A": "การรวบรวมข้อมูล",
+          "B": "การวางแผนขั้นตอนงาน",
+          "C": "การนำเสนอวิธีการแก้ปัญหา ผลการแก้ปัญหา หรือชิ้นงาน",
+          "D": "การออกแบบชิ้นงานร่างภาพฉาย"
+        },
+        correctAnswer: "C",
+        explanation: "การนำเสนอ (Presentation) เป็นขั้นตอนถ่ายทอดแนวคิด กระบวนการทำงาน ผลคะแนนการทดสอบ และรับฟังคำวิจารณ์เพื่อพัฒนาปรับปรุงในอนาคต"
+      },
+      {
+        unit: 2,
+        unitTitle: "หน่วยที่ 2: กระบวนการออกแบบเชิงวิศวกรรม 6 ขั้นตอน",
+        question: "30. ในขั้นตอนระบุปัญหา การตั้งคำถาม \"Why\" มุ่งเน้นการหาข้อมูลในมิติใด?",
+        choices: {
+          "A": "บุคคลที่ได้รับผลกระทบจากปัญหานั้น",
+          "B": "เหตุผลความจำเป็นและประโยชน์ในการแก้ปัญหานี้",
+          "C": "ช่วงเวลาที่เกิดข้อผิดพลาดขึ้นในวงรอบการทำงาน",
+          "D": "สถานที่หลักในการจัดวางอุปกรณ์ระบบควบคุม"
+        },
+        correctAnswer: "B",
+        explanation: "Why (ทำไม) คือความจำเป็นหรือเหตุผลที่ต้องแก้ไขปัญหานี้ เพื่อชี้ให้เห็นประโยชน์สูงสุดหลังแก้ปัญหาสำเร็จ"
+      },
+      {
+        unit: 2,
+        unitTitle: "หน่วยที่ 2: กระบวนการออกแบบเชิงวิศวกรรม 6 ขั้นตอน",
+        question: "31. ภาพร่าง 3 มิติ (3D Sketch) มีประโยชน์แตกต่างจากการเขียนบรรยายอักษรอย่างไรในขั้นออกแบบ?",
+        choices: {
+          "A": "ช่วยเพิ่มมูลค่างบประมาณของชิ้นงานขึ้นสองเท่า",
+          "B": "ช่วยถ่ายทอดรูปร่าง สัดส่วน และรายละเอียดมิติทางกายภาพของชิ้นงานให้ผู้ปฏิบัติตามมองเห็นภาพตรงกันชัดเจน",
+          "C": "ช่วยทดแทนการวัดสเปคขนาดความยาวขณะทำงานจริง",
+          "D": "ช่วยทดสอบประสิทธิภาพต้านกระแสไฟฟ้าวาล์ว"
+        },
+        correctAnswer: "B",
+        explanation: "ภาพร่างและแบบฉายต่าง ๆ บ่งชี้มิติทางกายภาพ ขนาด ทิศทางประกอบชิ้นส่วน เพื่อให้ช่างและทีมงานเข้าใจและประดิษฐ์ขึ้นรูปได้ถูกต้องตรงสเปค"
+      },
+      {
+        unit: 2,
+        unitTitle: "หน่วยที่ 2: กระบวนการออกแบบเชิงวิศวกรรม 6 ขั้นตอน",
+        question: "32. การสืบค้นสิทธิบัตร (Patents) ในขั้นตอนรวบรวมข้อมูลมีประโยชน์สูงสุดต่อวิศวกรอย่างไร?",
+        choices: {
+          "A": "เพื่อให้เกิดลิขสิทธิ์ความคุ้มครองระบบของตนอัตโนมัติ",
+          "B": "เพื่อตรวจสอบแนวคิด เทคโนโลยีที่มีอยู่ และหลีกเลี่ยงการลอกเลียนแบบโดยหาจุดต่างพัฒนาเพิ่มประสิทธิภาพ",
+          "C": "เพื่อคัดลอกพิมพ์เขียวมาทำจำหน่ายตรงตามสเปคทันที",
+          "D": "เพื่อนำรหัสข้อมูลไปเขียนในโครงงานโดยไม่ต้องร่างชิ้นงาน"
+        },
+        correctAnswer: "B",
+        explanation: "การค้นสิทธิบัตรช่วยให้รู้ขีดความสามารถการออกแบบที่มีในปัจจุบันเพื่อนำแนวคิดมาดัดแปลงแก้ไขและสร้างนวัตกรรมใหม่โดยไม่ละเมิดลิขสิทธิ์ผู้อื่น"
+      },
+      {
+        unit: 2,
+        unitTitle: "หน่วยที่ 2: กระบวนการออกแบบเชิงวิศวกรรม 6 ขั้นตอน",
+        question: "33. วิชา \"การออกแบบและเทคโนโลยี\" รวมองค์ความรู้เรื่องใดเข้าด้วยกันในการพัฒนาแนวทางวิศวกรรม?",
+        choices: {
+          "A": "วิทยาศาสตร์, เทคโนโลยี, วิศวกรรมศาสตร์ และคณิตศาสตร์ (STEM)",
+          "B": "ศิลปะการวาดภาพทัศนียภาพ และภูมิศาสตร์สิ่งแวดล้อมป่าไม้",
+          "C": "วิชาประวัติศาสตร์การเมือง และกฎหมายสิทธิมนุษยชนอาเซียน",
+          "D": "วิชาเคมีของเสียอุตสาหกรรมหนักเพียงอย่างเดียว"
+        },
+        correctAnswer: "A",
+        explanation: "สะเต็ม (STEM) เป็นการบูรณาการหลักวิทยาศาสตร์ เทคโนโลยี วิศวกรรมศาสตร์ และคณิตศาสตร์ เพื่อนำมาประยุกต์แก้ไขปัญหาอย่างรอบด้านมีประสิทธิภาพ"
+      },
+      {
+        unit: 2,
+        unitTitle: "หน่วยที่ 2: กระบวนการออกแบบเชิงวิศวกรรม 6 ขั้นตอน",
+        question: "34. การระดมความคิดเห็นในกลุ่มควรยึดหลักข้อใดเพื่อให้ได้แนวทางการแก้ไขปัญหาที่ดีหลากหลาย?",
+        choices: {
+          "A": "จำกัดสิทธิ์ให้พูดเฉพาะหัวหน้ากลุ่มเท่านั้นเพื่อตัดความวุ่นวาย",
+          "B": "เน้นปริมาณความคิดที่แปลกใหม่และสร้างบรรยากาศเปิดกว้างไม่ด่วนตัดสินความคลาดเคลื่อนทางความคิดของผู้อื่น",
+          "C": "เน้นคัดเลือกเฉพาะความคิดที่ประหยัดงบประมาณต่ำกว่าหนึ่งร้อยบาทเสมอ",
+          "D": "ให้ใช้แนวความคิดจากหนังสือเรียน อจท. เท่านั้นห้ามดัดแปลง"
+        },
+        correctAnswer: "B",
+        explanation: "การระดมสมอง (Brainstorming) ที่มีประสิทธิภาพต้องสร้างเวทีเสรี ปลอดการตัดสิน วิจารณ์ เพื่อดึงเอาแนวคิดที่หลากหลายออกมาก่อนจะนำมาจัดกลุ่มคัดกรองในภายหลัง"
+      },
+      {
+        unit: 2,
+        unitTitle: "หน่วยที่ 2: กระบวนการออกแบบเชิงวิศวกรรม 6 ขั้นตอน",
+        question: "35. หากต้องการเก็บข้อมูลความพึงพอใจการใช้งานชิ้นงานต้นแบบ เพื่อนำมาปรับปรุง ขั้นตอนนี้จัดเป็นกระบวนการส่วนใด?",
+        choices: {
+          "A": "การระบุปัญหา",
+          "B": "การออกแบบชิ้นงาน",
+          "C": "การทดสอบ ประเมินผล และปรับปรุงแก้ไขวิธีการแก้ปัญหาหรือชิ้นงาน",
+          "D": "การรวบรวมข้อมูลเบื้องต้น"
+        },
+        correctAnswer: "C",
+        explanation: "การเก็บฟีดแบ็กความพึงพอใจจากกลุ่มผู้ใช้เป้าหมายหลังการทดลองใช้งาน เป็นข้อมูลประเมินผลประสิทธิภาพการทำงาน (Evaluation) ในส่วนการทดสอบปรับปรุง"
+      },
+      {
+        unit: 2,
+        unitTitle: "หน่วยที่ 2: กระบวนการออกแบบเชิงวิศวกรรม 6 ขั้นตอน",
+        question: "36. สิ่งใดที่วิศวกรต้องปฏิบัติในขั้นตอนการทดสอบ (Testing) เพื่อให้แน่ใจว่าอุปกรณ์พร้อมจำหน่ายในเชิงคุณภาพ?",
+        choices: {
+          "A": "การออกแบบตารางราคาขายในตลาดเสรี",
+          "B": "กำหนดวิธีบันทึกค่าตัวแปรทดสอบและวัดค่าผลงานตามสถานการณ์เงื่อนไขที่กำหนดไว้อย่างแม่นยำ",
+          "C": "การจัดหาพรีเซนเตอร์โฆษณาสินค้า",
+          "D": "การยกเลิกส่วนที่ต้องเขียนโปรแกรมควบคุม"
+        },
+        correctAnswer: "B",
+        explanation: "การทำสอบที่เป็นวิทยาศาสตร์ต้องมีเกณฑ์วัดผล ตัวแปรควบคุม และวิธีการเก็บสถิติที่มีความเที่ยงตรงเพื่อสะท้อนประสิทธิภาพจริงของชิ้นงานนั้น"
+      },
+      {
+        unit: 2,
+        unitTitle: "หน่วยที่ 2: กระบวนการออกแบบเชิงวิศวกรรม 6 ขั้นตอน",
+        question: "37. ข้อใดเปรียบเทียบความแตกต่างระหว่างวิทยาศาสตร์กับวิศวกรรมศาสตร์ได้ถูกต้อง?",
+        choices: {
+          "A": "วิทยาศาสตร์เน้นประดิษฐ์เครื่องประดับ ส่วนวิศวกรรมเน้นคำนวณการเดินป่า",
+          "B": "วิทยาศาสตร์เน้นการแสวงหาความรู้และความเข้าใจธรรมชาติ ส่วนวิศวกรรมเน้นการประยุกต์ความรู้แก้ปัญหาและสร้างเทคโนโลยีใหม่",
+          "C": "วิทยาศาสตร์เน้นสร้างสมาร์ทโฟน ส่วนวิศวกรรมเน้นค้นหาเซลล์แบคทีเรีย",
+          "D": "ไม่มีความแตกต่างกันเลย ทั้งสองศาสตร์เป็นเรื่องเดียวกันร้อยเปอร์เซ็นต์"
+        },
+        correctAnswer: "B",
+        explanation: "วิทยาศาสตร์ (Science) มุ่งอธิบายปรากฏการณ์ธรรมชาติและสร้างทฤษฎี ส่วนวิศวกรรมศาสตร์ (Engineering) เน้นนำทฤษฎีนั้นไปสร้างเทคโนโลยีและออกแบบระบบแก้ปัญหาชีวิตประจำวัน"
+      },
+      {
+        unit: 2,
+        unitTitle: "หน่วยที่ 2: กระบวนการออกแบบเชิงวิศวกรรม 6 ขั้นตอน",
+        question: "38. ในการนำเสนอผลงานเชิงวิศวกรรม โครงสร้างสไลด์ที่ขาดไม่ได้เพื่อความโปร่งใสและหลักการที่ถูกต้องคือสิ่งใด?",
+        choices: {
+          "A": "ภาพถ่ายสมาชิกทีมแต่งตัวตามสตรีทแฟชั่น",
+          "B": "กระบวนการตัดสินใจคัดเลือกข้อมูล แนวคิดทางทฤษฎี อุปกรณ์ วิธีประเมิน และผลลัพธ์การแก้ไขข้อบกพร่องตามจริง",
+          "C": "รหัสโค้ดควบคุมทั้งหมดทุกบรรทัดยาวห้าหน้ากระดาษ",
+          "D": "รายชื่อร้านค้าภายนอกที่ให้การสปอนเซอร์งบประมาณกลุ่มทั้งหมด"
+        },
+        correctAnswer: "B",
+        explanation: "การนำเสนอเชิงเทคนิคต้องเน้นขั้นตอนการคิด ข้อมูลวิทยาศาสตร์รองรับ แนวคิดทางเลือก และหลักการตัดสินใจออกแบบทางวิศวกรรมที่สมเหตุสมผล"
+      },
+      {
+        unit: 2,
+        unitTitle: "หน่วยที่ 2: กระบวนการออกแบบเชิงวิศวกรรม 6 ขั้นตอน",
+        question: "39. หากชิ้นงานชำรุดเสียหายระเบิดหลังการเปิดใช้เป็นครั้งแรก แสดงว่าขาดประสิทธิภาพที่รอบคอบในขั้นตอนใดของกระบวนการ?",
+        choices: {
+          "A": "การเลือกวิธีเผยแพร่นำเสนอผลงาน",
+          "B": "การวิเคราะห์คุณสมบัติวัสดุ การประเมินความปลอดภัย และขั้นตอนวางแผนประกอบเชิงทดสอบที่รัดกุม",
+          "C": "การระบุผู้ได้รับผลกระทบในขั้นตอน 5W1H",
+          "D": "การตั้งชื่อชุดแบบทดสอบรายสัปดาห์"
+        },
+        correctAnswer: "B",
+        explanation: "การแตกร้าว เสียหาย หรือไฟลัดวงจรชี้ถึงการคำนวณผิดพลาดด้านวัสดุ แรงดันไฟฟ้า หรือขาดการทดสอบชิ้นส่วนย่อยในสภาพปลอดภัยก่อนป้อนพลังงานจริง"
+      },
+      {
+        unit: 2,
+        unitTitle: "หน่วยที่ 2: กระบวนการออกแบบเชิงวิศวกรรม 6 ขั้นตอน",
+        question: "40. เหตุใดกระบวนการออกแบบเชิงวิศวกรรมจึงมีลักษณะเป็น \"วงจรย้อนกลับ\" (Feedback loop)?",
+        choices: {
+          "A": "เพื่อให้นักเรียนต้องใช้เวลาทำรายงานสัปดาห์ละหลายแผ่นโดยไม่มีวันเสร็จสิ้น",
+          "B": "เนื่องจากข้อผิดพลาดในขั้นตอนทดสอบหรือใช้งานจริงช่วยกระตุ้นให้ย้อนกลับไปปรับปรุงไอเดียหรือแก้ไขการประกอบได้ตลอดเวลา",
+          "C": "เนื่องจากต้องการลดราคาวัสดุผลิตเชิงพาณิชย์ให้คงที่ตลอดปี",
+          "D": "เพราะเป็นโครงสร้างข้อบังคับตามสิทธิบัตรสากลเท่านั้น"
+        },
+        correctAnswer: "B",
+        explanation: "การทดสอบและประเมินผลมักเผยให้เห็นข้อจำกัดใหม่ ๆ ทำให้นักออกแบบสามารถย้อนกลับไปยังขั้นรวบรวมข้อมูลหรือร่างภาพเพื่อปรับแก้ได้จนกว่าจะได้ผลงานสมบูรณ์"
+      }
+    ];
+
+    // Passcode Configuration (คุณครูสามารถปรับเปลี่ยนรหัสผ่านเข้าสอบตรงนี้ได้)
+    const MIDTERM_PASSCODE = "midterm2569";
+
+    // Anti-Cheat System Settings
+    const MAX_TAB_VIOLATIONS = 3;
+    let tabSwitchCount = 0;
+    let isExamActive = false;
+
+    // Full Screen Handlers
+    function enterFullScreen() {
+      const elem = document.documentElement;
+      try {
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen().catch(() => {});
+        } else if (elem.webkitRequestFullscreen) {
+          elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+          elem.msRequestFullscreen();
+        }
+      } catch (e) {}
+    }
+
+    function exitFullScreen() {
+      try {
+        if (document.exitFullscreen && document.fullscreenElement) {
+          document.exitFullscreen().catch(() => {});
+        }
+      } catch (e) {}
+    }
+
+    // Anti-Cheat Violation Event Handler
+    function handleAntiCheatViolation(reason) {
+      if (!isExamActive || examSubmitted) return;
+
+      tabSwitchCount++;
+      const badge = document.getElementById('cheat-count-badge');
+      if (badge) badge.textContent = tabSwitchCount;
+
+      if (tabSwitchCount >= MAX_TAB_VIOLATIONS) {
+        isExamActive = false;
+        alert(`❌ ยุติการสอบอัตโนมัติ!\n\nคุณได้สลับหน้าจอ/ออกจากโหมดเต็มหน้าจอครบ ${MAX_TAB_VIOLATIONS} ครั้ง ระบบทำการยึดและส่งข้อสอบทันทีเพื่อป้องกันการทุจริต`);
+        document.getElementById('anti-cheat-modal').style.display = 'none';
+        gradeMidtermExam(true);
+      } else {
+        const warningText = document.getElementById('cheat-warning-text');
+        warningText.innerHTML = `⚠️ <strong>ตรวจพบการ${reason}! (ครั้งที่ ${tabSwitchCount}/${MAX_TAB_VIOLATIONS})</strong><br><br>ห้ามสลับแท็บ เปิดโปรแกรมอื่น หรือออกจากโหมดเต็มหน้าจอขณะทำข้อสอบ<br>หากสลับหน้าจอครบ <strong>${MAX_TAB_VIOLATIONS} ครั้ง</strong> ระบบจะยึดข้อสอบและลงคะแนนตามที่ทำไว้ทันที!`;
+        document.getElementById('anti-cheat-modal').style.display = 'flex';
+      }
+    }
+
+    function closeCheatWarning() {
+      document.getElementById('anti-cheat-modal').style.display = 'none';
+      enterFullScreen();
+    }
+
+    // Anti-Cheat Event Listeners
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden && isExamActive && !examSubmitted) {
+        handleAntiCheatViolation('สลับแท็บไปหน้าอื่นหรือย่อหน้าจอ');
+      }
+    });
+
+    window.addEventListener('blur', () => {
+      if (isExamActive && !examSubmitted) {
+        handleAntiCheatViolation('สลับความสนใจออกจากหน้าต่างข้อสอบ');
+      }
+    });
+
+    document.addEventListener('fullscreenchange', () => {
+      if (!document.fullscreenElement && isExamActive && !examSubmitted) {
+        handleAntiCheatViolation('ออกจากโหมดเต็มหน้าจอ (Full Screen)');
+      }
+    });
+
+    // Disable Right-Click, Copy, Cut, Paste, Key Shortcuts
+    document.addEventListener('contextmenu', e => {
+      if (isExamActive && !examSubmitted) {
+        e.preventDefault();
+        alert('⚠️ ระบบล็อค: ไม่อนุญาตให้ใช้คลิกขวาขณะทำข้อสอบ');
+      }
+    });
+
+    document.addEventListener('copy', e => { if (isExamActive && !examSubmitted) e.preventDefault(); });
+    document.addEventListener('cut', e => { if (isExamActive && !examSubmitted) e.preventDefault(); });
+    document.addEventListener('paste', e => { if (isExamActive && !examSubmitted) e.preventDefault(); });
+
+    document.addEventListener('keydown', e => {
+      if (isExamActive && !examSubmitted) {
+        const key = e.key.toLowerCase();
+        if (e.key === 'F12' || 
+           (e.ctrlKey && ['c', 'v', 'u', 's', 'p', 'a', 'i', 'j'].includes(key)) ||
+           (e.ctrlKey && e.shiftKey && ['i', 'j', 'c'].includes(key))) {
+          e.preventDefault();
+          alert('⚠️ ระบบล็อค: ไม่อนุญาตให้ใช้ปุ่มลัดแป้นพิมพ์นี้ขณะทำข้อสอบ');
+        }
+      }
+    });
+
+    // State Variables
+    let currentStudent = null;
+    let currentQuestionIndex = 0;
+    let userAnswers = {}; // { 0: "A", 1: "B", ... }
+    let examSubmitted = false;
+    let currentScore = 0;
+
+    // Initialize Page
+    document.addEventListener('DOMContentLoaded', () => {
+      checkExistingLogin();
+    });
+
+    // Check LocalStorage Session
+    function checkExistingLogin() {
+      const saved = localStorage.getItem('designtech_student');
+      if (saved) {
+        try {
+          currentStudent = JSON.parse(saved);
+          showPlayContainer();
+        } catch (e) {
+          localStorage.removeItem('designtech_student');
+        }
+      }
+    }
+
+    // Login Handler
+    function startMidtermExam() {
+      const id = document.getElementById('studentIdInput').value.trim();
+      const name = document.getElementById('studentNameInput').value.trim();
+      const room = document.getElementById('classRoomSelect').value;
+      const passcode = document.getElementById('passcodeInput').value.trim();
+
+      if (!id || id.length !== 5 || isNaN(id)) {
+        alert('กรุณากรอกรหัสประจำตัวนักเรียน 5 หลักให้ถูกต้อง');
+        return;
+      }
+      if (!name) {
+        alert('กรุณากรอกชื่อ-นามสกุล');
+        return;
+      }
+      if (!room) {
+        alert('กรุณาเลือกห้องเรียน');
+        return;
+      }
+      if (!passcode) {
+        alert('กรุณากรอกรหัสผ่านเข้าสอบกลางภาค');
+        return;
+      }
+      if (passcode.toLowerCase() !== MIDTERM_PASSCODE.toLowerCase()) {
+        alert('รหัสผ่านเข้าสอบกลางภาคไม่ถูกต้อง! กรุณาขอรหัสผ่านจากครูผู้สอน');
+        return;
+      }
+
+      // ตรวจสอบว่ารหัสนักเรียนนี้เคยทำข้อสอบกลางภาคและส่งคะแนนไปแล้วหรือไม่
+      const completedKey = `midterm_completed_${id}`;
+      if (localStorage.getItem(completedKey) === 'true') {
+        alert(`❌ ไม่อนุญาตให้ทำข้อสอบซ้ำ!\n\nรหัสนักเรียน ${id} (${name}) ได้ทำการส่งข้อสอบกลางภาคเรียบร้อยแล้ว ไม่สามารถเข้าทำข้อสอบใหม่อีกครั้งได้`);
+        return;
+      }
+
+      currentStudent = { id, name, room };
+      localStorage.setItem('designtech_student', JSON.stringify(currentStudent));
+      showPlayContainer();
+    }
+
+    function showPlayContainer() {
+      document.getElementById('quiz-login-container').style.display = 'none';
+      document.getElementById('quiz-play-container').style.display = 'block';
+      document.getElementById('quiz-result-container').style.display = 'none';
+      
+      document.getElementById('active-student-info').textContent = `${currentStudent.name} (รหัส ${currentStudent.id} ห้อง ${currentStudent.room})`;
+      
+      // Activate Anti-Cheat State & Full Screen
+      isExamActive = true;
+      tabSwitchCount = 0;
+      document.getElementById('cheat-count-badge').textContent = '0';
+      enterFullScreen();
+
+      currentQuestionIndex = 0;
+      userAnswers = {};
+      examSubmitted = false;
+      
+      renderQuickGrid();
+      loadQuestionIndex(currentQuestionIndex);
+    }
+
+    function resetExamState() {
+      if (confirm('คุณต้องการออกจากระบบการทำข้อสอบใช่หรือไม่?')) {
+        isExamActive = false;
+        exitFullScreen();
+        currentStudent = null;
+        localStorage.removeItem('designtech_student');
+        document.getElementById('quiz-login-container').style.display = 'block';
+        document.getElementById('quiz-play-container').style.display = 'none';
+        document.getElementById('quiz-result-container').style.display = 'none';
+      }
+    }
+
+    function finishExamAndLogout() {
+      isExamActive = false;
+      exitFullScreen();
+      currentStudent = null;
+      localStorage.removeItem('designtech_student');
+      document.getElementById('quiz-login-container').style.display = 'block';
+      document.getElementById('quiz-play-container').style.display = 'none';
+      document.getElementById('quiz-result-container').style.display = 'none';
+    }
+
+    // Render Quick Jump Grid
+    function renderQuickGrid() {
+      const grid = document.getElementById('q-grid-container');
+      grid.innerHTML = '';
+      
+      midtermQuestions.forEach((q, idx) => {
+        const item = document.createElement('div');
+        item.className = 'q-grid-item';
+        item.id = `grid-item-${idx}`;
+        item.textContent = idx + 1;
+        item.onclick = () => loadQuestionIndex(idx);
+        grid.appendChild(item);
+      });
+      updateQuickGridStatus();
+    }
+
+    function updateQuickGridStatus() {
+      const totalAnswered = Object.keys(userAnswers).length;
+      document.getElementById('answered-count').textContent = totalAnswered;
+
+      midtermQuestions.forEach((_, idx) => {
+        const item = document.getElementById(`grid-item-${idx}`);
+        if (!item) return;
+
+        item.classList.remove('active', 'answered');
+        if (idx === currentQuestionIndex) {
+          item.classList.add('active');
+        }
+        if (userAnswers[idx]) {
+          item.classList.add('answered');
+        }
+      });
+    }
+
+    // Load Question View
+    function loadQuestionIndex(idx) {
+      currentQuestionIndex = idx;
+      const q = midtermQuestions[idx];
+
+      // Update progress bar
+      const progressPercent = ((idx + 1) / midtermQuestions.length) * 100;
+      document.getElementById('quiz-progress').style.width = `${progressPercent}%`;
+      
+      // Update Meta
+      document.getElementById('quiz-question-number').textContent = `ข้อที่ ${idx + 1}/${midtermQuestions.length}`;
+      document.getElementById('quiz-unit-title').textContent = q.unitTitle;
+      
+      // Update Text
+      document.getElementById('quiz-question-text').textContent = q.question;
+      
+      // Render Choices
+      const choicesContainer = document.getElementById('choices-container');
+      choicesContainer.innerHTML = '';
+      
+      const userChoice = userAnswers[idx];
+      
+      Object.keys(q.choices).forEach(key => {
+        const optionDiv = document.createElement('div');
+        optionDiv.className = `choice-option ${userChoice === key ? 'selected' : ''}`;
+        optionDiv.onclick = () => selectChoice(idx, key);
+        
+        optionDiv.innerHTML = `
+          <div class="choice-letter">${key}</div>
+          <div class="choice-text">${q.choices[key]}</div>
+        `;
+        choicesContainer.appendChild(optionDiv);
+      });
+      
+      // Buttons
+      document.getElementById('prev-question-btn').disabled = (idx === 0);
+      
+      const nextBtn = document.getElementById('next-question-btn');
+      const submitBtn = document.getElementById('submit-exam-btn');
+      
+      if (idx === midtermQuestions.length - 1) {
+        nextBtn.style.display = 'none';
+        submitBtn.style.display = 'inline-flex';
+      } else {
+        nextBtn.style.display = 'inline-flex';
+        submitBtn.style.display = 'none';
+      }
+
+      updateQuickGridStatus();
+    }
+
+    function selectChoice(qIndex, key) {
+      if (examSubmitted) return;
+      userAnswers[qIndex] = key;
+      loadQuestionIndex(qIndex);
+    }
+
+    function prevQuestion() {
+      if (currentQuestionIndex > 0) {
+        loadQuestionIndex(currentQuestionIndex - 1);
+      }
+    }
+
+    function nextQuestion() {
+      if (currentQuestionIndex < midtermQuestions.length - 1) {
+        loadQuestionIndex(currentQuestionIndex + 1);
+      }
+    }
+
+    // Submit Exam & Grade
+    function confirmSubmitExam() {
+      const answeredCount = Object.keys(userAnswers).length;
+      const unAnswered = midtermQuestions.length - answeredCount;
+
+      let msg = `คุณทำข้อสอบไปแล้ว ${answeredCount} จาก ${midtermQuestions.length} ข้อ`;
+      if (unAnswered > 0) {
+        msg += `\nยังเหลืออีก ${unAnswered} ข้อที่ไม่ได้ตอบ คุณแน่ใจหรือไม่ว่าต้องการส่งข้อสอบเลย?`;
+      } else {
+        msg += `\nต้องการยืนยันส่งข้อสอบกลางภาคหรือไม่?`;
+      }
+
+      if (confirm(msg)) {
+        gradeMidtermExam(false);
+      }
+    }
+
+    function gradeMidtermExam(isAutoSubmitted = false) {
+      examSubmitted = true;
+      isExamActive = false;
+      exitFullScreen();
+
+      // บันทึกสถานะว่านักเรียนรหัสนี้ส่งข้อสอบแล้ว เพื่อป้องกันการกลับมาทำซ้ำ
+      if (currentStudent && currentStudent.id) {
+        localStorage.setItem(`midterm_completed_${currentStudent.id}`, 'true');
+      }
+
+      let score = 0;
+      midtermQuestions.forEach((q, idx) => {
+        if (userAnswers[idx] === q.correctAnswer) {
+          score++;
+        }
+      });
+
+      currentScore = score;
+      const total = midtermQuestions.length;
+      const percent = Math.round((score / total) * 100);
+
+      // Display Results Screen
+      document.getElementById('quiz-play-container').style.display = 'none';
+      document.getElementById('quiz-result-container').style.display = 'block';
+
+      // Score Ring Circle Animation
+      document.getElementById('result-score-num').textContent = `${score}/${total}`;
+      const circleFill = document.getElementById('score-circle-fill');
+      const offset = 440 - (440 * (score / total));
+      circleFill.style.strokeDashoffset = offset;
+
+      // Evaluation Title & Feedback
+      const resultTitle = document.getElementById('result-title');
+      const resultFeedback = document.getElementById('result-feedback-text');
+      const reviewSection = document.getElementById('review-section');
+
+      if (isAutoSubmitted) {
+        resultTitle.textContent = "ยุติการสอบอัตโนมัติ (ตรวจพบการทุจริต/สลับหน้าจอ)";
+        resultTitle.style.color = "#ef4444";
+        resultFeedback.innerHTML = `<span style="color:#ef4444; font-weight:600;"><i class='bx bx-error'></i> ข้อสอบถูกยึดเนื่องจากตรวจพบการสลับหน้าจอครบ ${MAX_TAB_VIOLATIONS} ครั้ง</span><br>คุณ ${currentStudent.name} ทำคะแนนได้ ${score} จาก ${total} คะแนน (${percent}%)<br><br><small style="color:#ef4444; font-weight: 500;">* ไม่อนุญาตให้ทำข้อสอบซ้ำ และซ่อนเฉลยอธิบายคำตอบเพื่อป้องกันการทุจริต</small>`;
+        
+        // ซ่อนส่วนเฉลยอธิบายเมื่อถูกยึดข้อสอบจากการทุจริต
+        if (reviewSection) {
+          reviewSection.style.display = 'none';
+        }
+      } else {
+        if (reviewSection) {
+          reviewSection.style.display = 'block';
+        }
+        if (percent >= 80) {
+          resultTitle.textContent = "ผลการเรียนระดับ: ยอดเยี่ยม (เกรด 4)";
+          resultTitle.style.color = "#059669";
+          resultFeedback.textContent = `ยินดีด้วยคุณ ${currentStudent.name}! คุณทำคะแนนได้ ${score} จาก ${total} คะแนน (${percent}%) มีความเข้าใจเนื้อหาเป็นอย่างดีเยี่ยม`;
+        } else if (percent >= 65) {
+          resultTitle.textContent = "ผลการเรียนระดับ: ดีมาก (เกรด 3)";
+          resultTitle.style.color = "#2563eb";
+          resultFeedback.textContent = `ดีมากคุณ ${currentStudent.name}! คุณทำคะแนนได้ ${score} จาก ${total} คะแนน (${percent}%) อยู่ในเกณฑ์ดี`;
+        } else if (percent >= 50) {
+          resultTitle.textContent = "ผลการเรียนระดับ: ผ่านเกณฑ์ (เกรด 2)";
+          resultTitle.style.color = "#d97706";
+          resultFeedback.textContent = `คุณ ${currentStudent.name} ทำคะแนนได้ ${score} จาก ${total} คะแนน (${percent}%) ผ่านเกณฑ์ประเมินกลางภาค`;
+        } else {
+          resultTitle.textContent = "ผลการเรียนระดับ: ควรปรับปรุง (เกรด 1)";
+          resultTitle.style.color = "#ef4444";
+          resultFeedback.textContent = `คุณ ${currentStudent.name} ทำคะแนนได้ ${score} จาก ${total} คะแนน (${percent}%) แนะนำให้ทบทวนเนื้อหาเรียนเพื่อเตรียมตัวสอบแก้ตัว`;
+        }
+      }
+
+      // Render Answer Review Section (กรณีไม่อยู่ในโหมดทุจริต)
+      if (!isAutoSubmitted) {
+        renderAnswerReview();
+      }
+
+      // Submit Score to Google Sheet Web App
+      submitScoreToGoogleSheet(score, total, percent);
+    }
+
+    // Render Answer Review after Exam Submission
+    function renderAnswerReview() {
+      const container = document.getElementById('review-items-container');
+      container.innerHTML = '';
+
+      midtermQuestions.forEach((q, idx) => {
+        const userChoice = userAnswers[idx];
+        const isCorrect = (userChoice === q.correctAnswer);
+
+        const item = document.createElement('div');
+        item.className = `review-item ${isCorrect ? 'correct' : 'incorrect'}`;
+
+        let choicesHtml = '';
+        Object.keys(q.choices).forEach(key => {
+          let extraClass = '';
+          let choiceBadge = '';
+
+          if (key === q.correctAnswer) {
+            extraClass = 'correct-choice';
+            choiceBadge = '<i class="bx bx-check-circle" style="color:#10b981;"></i> (เฉลยถูกต้อง)';
+          }
+          if (userChoice === key && !isCorrect) {
+            extraClass = 'user-wrong-choice';
+            choiceBadge = '<i class="bx bx-x-circle" style="color:#ef4444;"></i> (คุณเลือกข้อนี้)';
+          }
+
+          choicesHtml += `
+            <div class="review-choice-item ${extraClass}">
+              <strong>${key}.</strong> ${q.choices[key]} ${choiceBadge}
+            </div>
+          `;
+        });
+
+        item.innerHTML = `
+          <div class="review-unit-tag">${q.unitTitle}</div>
+          <div class="review-question">
+            ข้อ ${idx + 1}. ${q.question.replace(/^[0-9]+\.\s*/, '')}
+            ${isCorrect 
+              ? '<span class="badge-status success"><i class="bx bx-check"></i> ถูกต้อง (+1)</span>' 
+              : '<span class="badge-status danger"><i class="bx bx-x"></i> ไม่ถูกต้อง (0)</span>'}
+          </div>
+          <div class="review-choices-list">
+            ${choicesHtml}
+          </div>
+          <div class="review-explanation">
+            <i class='bx bx-info-circle'></i> <strong>เฉลยอธิบาย:</strong> ${q.explanation}
+          </div>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    // Submit to Google Sheets Web App
+    async function submitScoreToGoogleSheet(score, total, percent) {
+      if (!GOOGLE_SCRIPT_URL) return;
+
+      const payload = {
+        type: "quizScore",
+        timestamp: new Date().toLocaleString('th-TH'),
+        studentId: currentStudent.id,
+        studentName: currentStudent.name,
+        classRoom: currentStudent.room,
+        unitId: "Midterm",
+        unitTitle: 'ข้อสอบกลางภาค (หน่วยที่ 1-2)',
+        sheetName: "Mid_Scores",
+        score: score,
+        totalQuestions: total,
+        percentage: percent
+      };
+
+      try {
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8'
+          },
+          body: JSON.stringify(payload)
+        });
+        console.log('บันทึกคะแนนสอบกลางภาคลง Google Sheets เรียบร้อย');
+      } catch (err) {
+        console.error('Score submit error:', err);
+      }
+    }
+
+    // Certificate Generator for Midterm
+    function printCertificate() {
+      if (!currentStudent) {
+        alert('ไม่พบข้อมูลผู้สอบ');
+        return;
+      }
+      
+      const total = midtermQuestions.length;
+      const percent = Math.round((currentScore / total) * 100);
+
+      document.getElementById('cert-student-name').textContent = currentStudent.name;
+      document.getElementById('cert-student-meta').textContent = `รหัสประจำตัว ${currentStudent.id} ชั้นมัธยมศึกษาปีที่ ${currentStudent.room}`;
+      document.getElementById('cert-quiz-title').textContent = "ข้อสอบวัดผลสัมฤทธิ์กลางภาค (หน่วยการเรียนรู้ที่ 1 และ 2)";
+      document.getElementById('cert-score-details').textContent = `ได้คะแนน ${currentScore} เต็ม ${total} คะแนน (${percent}%)`;
+      
+      const now = new Date();
+      const thaiMonths = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
+      const thaiDate = `เมื่อวันที่ ${now.getDate()} ${thaiMonths[now.getMonth()]} พ.ศ. ${now.getFullYear() + 543}`;
+      document.getElementById('cert-date').textContent = thaiDate;
+
+      window.print();
+    }
+  </script>
+</body>
+</html>
