@@ -10,11 +10,12 @@ function doPost(e) {
     const data = JSON.parse(e.postData.contents);
     
     // ตรวจสอบว่าเป็นข้อมูลบันทึกคะแนนสอบ
-    if (data.type === "quizScore") {
+    if (data.type === "quizScore" || data.action === "submitQuiz" || data.action === "submitMidterm") {
+      const targetSheetName = (data.unitId === "Midterm" || data.sheetName === "Mid_Scores" || data.unit === "Midterm") ? "Mid_Scores" : "Quiz_Scores";
       const ss = SpreadsheetApp.getActiveSpreadsheet();
-      let sheet = ss.getSheetByName("Quiz_Scores");
+      let sheet = ss.getSheetByName(targetSheetName);
       if (!sheet) {
-        sheet = ss.insertSheet("Quiz_Scores");
+        sheet = ss.insertSheet(targetSheetName);
         sheet.appendRow([
           "Timestamp", 
           "รหัสนักเรียน (Student ID)", 
@@ -35,15 +36,15 @@ function doPost(e) {
       }
       
       sheet.appendRow([
-        data.timestamp,
+        data.timestamp || new Date().toLocaleString('th-TH'),
         data.studentId,
         data.studentName,
-        data.classRoom,
-        data.unitId,
-        data.unitTitle,
+        data.classRoom || data.classroom,
+        data.unitId || data.unit || "Midterm",
+        data.unitTitle || data.quizTitle || "ข้อสอบกลางภาค (หน่วยที่ 1-2)",
         data.score,
-        data.totalQuestions,
-        data.percentage + "%"
+        data.totalQuestions || data.total || 40,
+        (data.percentage !== undefined ? data.percentage : Math.round((data.score / (data.totalQuestions || 40)) * 100)) + "%"
       ]);
       
       return ContentService.createTextOutput(JSON.stringify({
@@ -51,6 +52,55 @@ function doPost(e) {
         message: "บันทึกคะแนนสอบลง Google Sheets เรียบร้อยแล้ว"
       }))
       .setMimeType(ContentService.MimeType.JSON);
+    }
+    
+    // ตรวจสอบว่าเป็นข้อมูลบันทึกคะแนนและคำแนะนำจากครู
+    if (data.type === "updateGrade") {
+      const passcode = data.passcode;
+      if (passcode !== TEACHER_PASSCODE) {
+        return ContentService.createTextOutput(JSON.stringify({
+          status: "unauthorized",
+          message: "รหัสผ่านผู้สอนไม่ถูกต้อง"
+        }))
+        .setMimeType(ContentService.MimeType.JSON);
+      }
+      
+      const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+      const sheetData = sheet.getDataRange().getValues();
+      let targetRow = -1;
+      
+      const inputStudentId = normalizeStr(data.studentId);
+      const inputAssignment = normalizeStr(data.assignment);
+      
+      for (let i = 1; i < sheetData.length; i++) {
+        const sheetReceiptId = sheetData[i][1];
+        const sheetStudentId = normalizeStr(sheetData[i][2]);
+        const sheetAssignment = normalizeStr(sheetData[i][5]);
+        
+        if ((data.receiptId && sheetReceiptId === data.receiptId) || 
+            (sheetStudentId === inputStudentId && sheetAssignment === inputAssignment)) {
+          targetRow = i + 1; // ลำดับแถวจริงใน Sheet (1-based)
+          break;
+        }
+      }
+      
+      if (targetRow !== -1) {
+        sheet.getRange(targetRow, 9).setValue("checked");            // Status (Col I)
+        sheet.getRange(targetRow, 10).setValue(data.grade);          // Grade (Col J)
+        sheet.getRange(targetRow, 11).setValue(data.feedback);       // Teacher Feedback (Col K)
+        
+        return ContentService.createTextOutput(JSON.stringify({
+          status: "success",
+          message: "บันทึกคะแนนและข้อเสนอแนะเรียบร้อยแล้ว"
+        }))
+        .setMimeType(ContentService.MimeType.JSON);
+      } else {
+        return ContentService.createTextOutput(JSON.stringify({
+          status: "notFound",
+          message: "ไม่พบข้อมูลการส่งงานของนักเรียนในระบบ"
+        }))
+        .setMimeType(ContentService.MimeType.JSON);
+      }
     }
     
     // 1. จัดการอัปโหลดไฟล์ไปยัง Google Drive
