@@ -9,505 +9,16 @@
   <meta property="og:description" content="แหล่งเรียนรู้ออนไลน์ รายวิชาการออกแบบและเทคโนโลยี ม.4 โรงเรียนวังน้ำเย็นวิทยาคม รวบรวมใบงาน สื่อการเรียนรู้ E-book และแบบทดสอบเก็บคะแนน">
   <meta property="og:type" content="website">
   <meta property="og:image" content="assets/LOGOprofile.gif">
-  <title>แบบทดสอบ - วิชาการออกแบบและเทคโนโลยี ม.4</title>
+  <title>วิชาการออกแบบและเทคโนโลยี ม.4</title>
   
+  <!-- Boxicons -->
   <!-- Favicon -->
   <link rel="icon" type="image/gif" href="assets/LOGOprofile.gif">
   
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="style.css">
-  <style>
-    .lesson-header {
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-      color: white;
-      padding: 8rem 2rem 4rem;
-      text-align: center;
-    }
-    .lesson-header h1 {
-      color: white;
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
-    .lesson-header p {
-      font-size: 1.25rem;
-      opacity: 0.9;
-    }
-    .content-section {
-      padding: 4rem 2rem;
-      background-color: var(--bg-color);
-      min-height: 70vh;
-    }
-    .content-container {
-      max-width: 850px;
-      margin: 0 auto;
-    }
-    .topic-card {
-      background: white;
-      border-radius: var(--radius-lg);
-      padding: 2.5rem;
-      margin-bottom: 2.5rem;
-      box-shadow: var(--shadow-sm);
-      border: 1px solid var(--border-color);
-      transition: all 0.3s ease;
-    }
-    .topic-card h2 {
-      color: var(--primary-color);
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    
-    /* Form styling */
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-    .form-label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-      color: var(--text-main);
-      font-family: 'Prompt', sans-serif;
-    }
-    .form-control {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      font-family: inherit;
-      font-size: 1rem;
-      transition: border-color 0.3s ease;
-    }
-    .form-control:focus {
-      outline: none;
-      border-color: var(--primary-color);
-    }
-    
-    /* Quiz Menu Grid */
-    .quiz-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-    .quiz-card {
-      background: var(--surface-color);
-      padding: 2rem 1.5rem;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-color);
-      text-align: center;
-      transition: all 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      box-shadow: var(--shadow-sm);
-    }
-    .quiz-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-md);
-      border-color: var(--primary-color);
-    }
-    .quiz-icon-wrapper {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      background: rgba(37, 99, 235, 0.05);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.25rem;
-      color: var(--primary-color);
-      font-size: 2.25rem;
-      transition: all 0.3s ease;
-    }
-    .quiz-card:hover .quiz-icon-wrapper {
-      background: var(--primary-color);
-      color: white;
-      transform: scale(1.1);
-    }
-    .quiz-card h3 {
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-      color: var(--text-main);
-      font-family: 'Prompt', sans-serif;
-    }
-    .quiz-desc {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
-      flex-grow: 1;
-    }
-    .quiz-info {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-bottom: 1.25rem;
-      display: flex;
-      gap: 0.75rem;
-      align-items: center;
-    }
-    .quiz-card .btn {
-      width: 100%;
-    }
-
-    /* Active Quiz View */
-    #quiz-play-container {
-      display: none;
-    }
-    .quiz-progress-bar-container {
-      width: 100%;
-      height: 8px;
-      background-color: var(--border-color);
-      border-radius: 4px;
-      margin-bottom: 1.5rem;
-      overflow: hidden;
-    }
-    .quiz-progress-bar {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-      border-radius: 4px;
-      transition: width 0.3s ease;
-    }
-    .quiz-question-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-      font-family: 'Prompt', sans-serif;
-      font-weight: 500;
-      color: var(--text-muted);
-      font-size: 0.95rem;
-    }
-    .quiz-question-text {
-      font-size: 1.25rem;
-      color: var(--text-main);
-      margin-bottom: 1.5rem;
-      line-height: 1.6;
-    }
-    .choices-container {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-    .choice-option {
-      display: flex;
-      align-items: center;
-      padding: 1.1rem 1.5rem;
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      cursor: pointer;
-      transition: all 0.2s ease;
-      background-color: var(--surface-color);
-    }
-    .choice-option:hover {
-      border-color: var(--primary-color);
-      background-color: rgba(37, 99, 235, 0.02);
-    }
-    .choice-option.selected {
-      border-color: var(--primary-color);
-      background-color: rgba(37, 99, 235, 0.05);
-    }
-    .choice-letter {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background-color: var(--bg-color);
-      border: 1px solid var(--border-color);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 1rem;
-      font-weight: bold;
-      font-family: 'Prompt', sans-serif;
-      transition: all 0.2s ease;
-      flex-shrink: 0;
-    }
-    .choice-option.selected .choice-letter {
-      background-color: var(--primary-color);
-      color: white;
-      border-color: var(--primary-color);
-    }
-    .choice-text {
-      color: var(--text-main);
-      font-size: 1.05rem;
-    }
-    .quiz-actions {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-    .quiz-actions .btn {
-      min-width: 140px;
-    }
-
-    /* Result View */
-    #quiz-result-container {
-      display: none;
-      text-align: center;
-    }
-    .result-score-ring {
-      position: relative;
-      width: 160px;
-      height: 160px;
-      margin: 0 auto 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .result-circle-svg {
-      transform: rotate(-90deg);
-      width: 100%;
-      height: 100%;
-    }
-    .result-circle-bg {
-      fill: none;
-      stroke: var(--border-color);
-      stroke-width: 12;
-    }
-    .result-circle-fill {
-      fill: none;
-      stroke: var(--primary-color);
-      stroke-width: 12;
-      stroke-linecap: round;
-      stroke-dasharray: 440;
-      stroke-dashoffset: 440;
-      transition: stroke-dashoffset 1.2s ease-in-out;
-    }
-    .result-score-text {
-      position: absolute;
-      font-family: 'Prompt', sans-serif;
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: var(--text-main);
-      display: flex;
-      flex-direction: column;
-      line-height: 1;
-    }
-    .result-score-text span {
-      font-size: 1.1rem;
-      color: var(--text-muted);
-      font-weight: 400;
-      margin-top: 0.25rem;
-    }
-    .result-title {
-      font-size: 1.8rem;
-      color: var(--text-main);
-      margin-bottom: 0.5rem;
-      font-family: 'Prompt', sans-serif;
-    }
-    .result-feedback-text {
-      color: var(--text-muted);
-      font-size: 1.1rem;
-      margin-bottom: 2rem;
-    }
-    
-    /* Answer Review */
-    .review-section {
-      text-align: left;
-      margin-top: 3rem;
-      border-top: 1px solid var(--border-color);
-      padding-top: 2rem;
-    }
-    .review-section h3 {
-      margin-bottom: 1.5rem;
-      font-size: 1.35rem;
-      color: var(--text-main);
-      font-family: 'Prompt', sans-serif;
-    }
-    .review-item {
-      padding: 1.5rem;
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      margin-bottom: 1.25rem;
-      background: var(--bg-color);
-    }
-    .review-item.correct {
-      border-left: 6px solid var(--accent-color);
-    }
-    .review-item.incorrect {
-      border-left: 6px solid #ef4444;
-    }
-    .review-question {
-      font-weight: 600;
-      font-size: 1.05rem;
-      color: var(--text-main);
-      margin-bottom: 1rem;
-      line-height: 1.5;
-    }
-    .review-answers-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      font-size: 0.95rem;
-      margin-bottom: 0.75rem;
-    }
-    .review-ans-row {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .badge-status {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: white;
-      font-family: 'Prompt', sans-serif;
-    }
-    .badge-status.success {
-      background-color: var(--accent-color);
-    }
-    .badge-status.danger {
-      background-color: #ef4444;
-    }
-    .review-explanation {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      border-top: 1px dashed var(--border-color);
-      padding-top: 0.75rem;
-      margin-top: 0.75rem;
-      line-height: 1.6;
-    }
-    .review-explanation i {
-      color: var(--primary-color);
-      margin-right: 0.25rem;
-    }
-
-    /* Passcode Modal */
-    #quiz-passcode-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(15, 23, 42, 0.6);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      z-index: 2000;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* Print Certificate Styles */
-    #print-certificate-area {
-      display: none;
-    }
-
-    @media print {
-      body * {
-        display: none !important;
-      }
-      #print-certificate-area, #print-certificate-area * {
-        display: block !important;
-      }
-      #print-certificate-area {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: center !important;
-        align-items: center !important;
-        text-align: center !important;
-        background: white;
-        color: black;
-        padding: 3rem;
-        box-sizing: border-box;
-      }
-      .certificate-border {
-        border: 8px double #2563eb;
-        padding: 3rem 2rem;
-        height: 100%;
-        width: 100%;
-        box-sizing: border-box;
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: center !important;
-        align-items: center !important;
-      }
-      .cert-logo {
-        font-size: 4rem;
-        color: #2563eb;
-        margin-bottom: 1.5rem;
-        display: flex !important;
-        justify-content: center !important;
-      }
-      .cert-title {
-        font-size: 3rem;
-        font-family: 'Prompt', sans-serif;
-        font-weight: 700;
-        color: #1e3a8a;
-        margin-bottom: 0.5rem;
-        text-transform: uppercase;
-      }
-      .cert-subtitle {
-        font-size: 1.4rem;
-        font-family: 'Sarabun', sans-serif;
-        color: #4b5563;
-        margin-bottom: 2.5rem;
-      }
-      .cert-recipient {
-        font-size: 2.2rem;
-        font-family: 'Prompt', sans-serif;
-        font-weight: 600;
-        color: #0f172a;
-        margin-bottom: 0.75rem;
-        border-bottom: 2px solid #e2e8f0;
-        padding-bottom: 0.5rem;
-        width: 80%;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      .cert-body {
-        font-size: 1.35rem;
-        font-family: 'Sarabun', sans-serif;
-        line-height: 1.8;
-        margin-bottom: 2rem;
-        color: #374151;
-      }
-      .cert-score {
-        font-size: 2.2rem;
-        font-family: 'Prompt', sans-serif;
-        font-weight: 700;
-        color: #2563eb;
-        margin: 2rem 0;
-      }
-      .cert-signatures {
-        display: flex !important;
-        flex-direction: row !important;
-        justify-content: space-around !important;
-        width: 100% !important;
-        margin-top: 3.5rem;
-      }
-      .cert-sign-col {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        font-family: 'Sarabun', sans-serif;
-      }
-      .cert-sign-line {
-        width: 220px;
-        border-bottom: 1px dashed #4b5563;
-        margin-bottom: 0.75rem;
-        height: 50px;
-      }
-      .cert-sign-col strong {
-        font-size: 1.1rem;
-        color: #1f2937;
-      }
-      .cert-sign-col span {
-        font-size: 0.9rem;
-        color: #6b7280;
-      }
-    }
-  </style>
 </head>
 <body>
 
@@ -518,7 +29,7 @@
         <i class='bx bx-laptop'></i> Design<span>Tech</span>
       </a>
       <div class="nav-menu" id="navMenu">
-        <a href="index.html" class="nav-link">หน้าแรก</a>
+        <a href="index.html" class="nav-link active">หน้าแรก</a>
         <div class="nav-dropdown">
           <a href="#" class="nav-link">บทเรียน <i class='bx bx-chevron-down'></i></a>
           <div class="dropdown-content">
@@ -537,7 +48,8 @@
             <a href="teacher_dashboard.html">แดชบอร์ดครูผู้สอน</a>
           </div>
         </div>
-        <a href="quizzes.html" class="nav-link active">แบบทดสอบ</a>
+        <a href="quizzes.html" class="nav-link">แบบทดสอบ</a>
+        <a href="midterm.html" class="nav-link">ข้อสอบกลางภาค</a>
         <a href="contact.html" class="nav-link">ติดต่อครูผู้สอน</a>
       </div>
       <div class="nav-toggle" id="navToggle">
@@ -546,1301 +58,172 @@
     </div>
   </nav>
 
-  <!-- Header -->
-  <header class="lesson-header">
-    <div class="container">
-      <h1>แบบทดสอบเก็บคะแนน</h1>
-      <p>ประเมินความรู้และความเข้าใจวิชาการออกแบบและเทคโนโลยี ม.4 (ข้อสอบหน่วยละ 20 ข้อ)</p>
-    </div>
-  </header>
-
-  <!-- Content Area -->
-  <main class="content-section">
-    <div class="content-container">
-      
-      <!-- 1. LOGIN SCREEN CONTAINER -->
-      <div id="quiz-login-container" class="topic-card fade-in-up">
-        <h2><i class='bx bx-user-circle'></i> ลงชื่อเข้าทำแบบทดสอบ</h2>
-        <p style="color: var(--text-muted); margin-bottom: 2rem;">กรุณากรอกข้อมูลรหัสประจำตัวนักเรียน ชื่อ-นามสกุล และระดับชั้นเรียนเพื่อเข้าสู่ระบบทำข้อสอบสะสมคะแนน</p>
-        
-        <form id="quizLoginForm" onsubmit="event.preventDefault(); handleQuizLogin();">
-          <div class="form-group">
-            <label class="form-label" for="studentIdInput"><i class='bx bx-id-card'></i> เลขประจำตัวนักเรียน (5 หลัก):</label>
-            <input type="text" id="studentIdInput" class="form-control" placeholder="เช่น 12345" required pattern="[0-9]{5}" title="กรุณากรอกตัวเลขรหัสประจำตัวนักเรียน 5 หลัก">
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label" for="studentNameInput"><i class='bx bx-user'></i> ชื่อ-นามสกุล (ระบุ คำนำหน้าชื่อ ด้วย):</label>
-            <input type="text" id="studentNameInput" class="form-control" placeholder="เช่น นายสมชาย ใจดี" required>
-          </div>
-          
-          <div class="form-group" style="margin-bottom: 2rem;">
-            <label class="form-label" for="classRoomSelect"><i class='bx bx-cabinet'></i> ระดับชั้นเรียน (ม.4/X):</label>
-            <select id="classRoomSelect" class="form-control" style="background: white;" required>
-              <option value="" disabled selected>-- เลือกห้องเรียน --</option>
-              <option value="ม.4/7">ม.4/7</option>
-              <option value="ม.4/8">ม.4/8</option>
-              <option value="ม.4/9">ม.4/9</option>
-              <option value="ม.4/10">ม.4/10</option>
-              <option value="ม.4/11">ม.4/11</option>
-              <option value="ม.4/12">ม.4/12</option>
-            </select>
-          </div>
-          
-          <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.1rem; padding: 0.9rem;"><i class='bx bx-log-in-circle'></i> ลงทะเบียนเข้าทำข้อสอบ</button>
-        </form>
-      </div>
-      
-      <!-- 2. QUIZ SELECTION MENU -->
-      <div id="quiz-menu-container" class="topic-card" style="display: none;">
-        <div id="quiz-student-welcome" style="margin-bottom: 2rem; padding: 1rem 1.5rem; background-color: rgba(37, 99, 235, 0.05); border-left: 4px solid var(--primary-color); border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-          <div style="font-family: 'Prompt', sans-serif;">
-            <span style="color: var(--text-muted); font-size: 0.9rem;">ผู้เข้าสอบ:</span> 
-            <strong id="welcome-student-info" style="color: var(--primary-color);">กำลังโหลด...</strong>
-          </div>
-          <button class="btn btn-outline" style="padding: 0.4rem 1rem; font-size: 0.85rem;" onclick="handleQuizLogout()"><i class='bx bx-log-out'></i> ออกจากระบบ</button>
-        </div>
-        
-        <h2><i class='bx bx-edit-alt'></i> เลือกชุดแบบทดสอบ</h2>
-        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">คลิกเริ่มทำข้อสอบเพื่อทำแบบทดสอบแบบเลือกตอบ (20 ข้อต่อหน่วยการเรียนรู้) ระบบจะตรวจผลคะแนนและออกใบรับรองเกียรติบัตรทันทีเมื่อทำเสร็จสิ้น</p>
-        
-        <div class="quiz-list">
-          <!-- Quiz 1 -->
-          <div class="quiz-card">
-            <div class="quiz-icon-wrapper"><i class='bx bx-git-branch'></i></div>
-            <h3>หน่วยการเรียนรู้ที่ 1</h3>
-            <p class="quiz-desc">ระบบทางเทคโนโลยีที่ซับซ้อนและการวิเคราะห์ระบบ</p>
-            <div class="quiz-info">
-              <span><i class='bx bx-list-ol'></i> 20 ข้อ</span>
-              <span><i class='bx bx-lock-alt' style="color: var(--secondary-color);"></i> ต้องใช้รหัสผ่าน</span>
-            </div>
-            <button class="btn btn-primary" onclick="startQuiz(1)">เริ่มทำแบบทดสอบ</button>
-          </div>
-          
-          <!-- Quiz 2 -->
-          <div class="quiz-card">
-            <div class="quiz-icon-wrapper"><i class='bx bx-cog'></i></div>
-            <h3>หน่วยการเรียนรู้ที่ 2</h3>
-            <p class="quiz-desc">กระบวนการออกแบบเชิงวิศวกรรม 6 ขั้นตอน</p>
-            <div class="quiz-info">
-              <span><i class='bx bx-list-ol'></i> 20 ข้อ</span>
-              <span><i class='bx bx-lock-alt' style="color: var(--secondary-color);"></i> ต้องใช้รหัสผ่าน</span>
-            </div>
-            <button class="btn btn-primary" onclick="startQuiz(2)">เริ่มทำแบบทดสอบ</button>
-          </div>
-          
-          <!-- Quiz 3 -->
-          <div class="quiz-card">
-            <div class="quiz-icon-wrapper"><i class='bx bx-wrench'></i></div>
-            <h3>หน่วยการเรียนรู้ที่ 3</h3>
-            <p class="quiz-desc">วัสดุ อุปกรณ์ เครื่องมือ กลไก ไฟฟ้า และอิเล็กทรอนิกส์</p>
-            <div class="quiz-info">
-              <span><i class='bx bx-list-ol'></i> 20 ข้อ</span>
-              <span><i class='bx bx-lock-alt' style="color: var(--secondary-color);"></i> ต้องใช้รหัสผ่าน</span>
-            </div>
-            <button class="btn btn-primary" onclick="startQuiz(3)">เริ่มทำแบบทดสอบ</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- 3. ACTIVE QUIZ PLAY CONTAINER -->
-      <div id="quiz-play-container" class="topic-card">
-        <div class="quiz-progress-bar-container">
-          <div id="quiz-progress" class="quiz-progress-bar"></div>
-        </div>
-        
-        <div class="quiz-question-meta">
-          <span id="quiz-question-number">ข้อที่ 1/20</span>
-          <span id="quiz-unit-title">หน่วยการเรียนรู้</span>
-        </div>
-        
-        <div id="quiz-question-text" class="quiz-question-text">
-          คำถามจะโหลดที่นี่...
-        </div>
-        
-        <div id="choices-container" class="choices-container">
-          <!-- Choices will be injected here dynamically -->
-        </div>
-        
-        <div class="quiz-actions">
-          <button id="prev-question-btn" class="btn btn-outline" onclick="prevQuestion()" disabled>ข้อก่อนหน้า</button>
-          <button id="next-question-btn" class="btn btn-primary" onclick="nextQuestion()">ถัดไป</button>
-        </div>
-      </div>
-
-      <!-- 4. QUIZ RESULT CONTAINER -->
-      <div id="quiz-result-container" class="topic-card">
-        <div class="result-score-ring">
-          <svg class="result-circle-svg" viewBox="0 0 160 160">
-            <circle class="result-circle-bg" cx="80" cy="80" r="70"></circle>
-            <circle id="score-circle-fill" class="result-circle-fill" cx="80" cy="80" r="70"></circle>
-          </svg>
-          <div class="result-score-text">
-            <span id="result-score-num">0/20</span>
-            <span>คะแนน</span>
-          </div>
-        </div>
-        
-        <h2 id="result-title" class="result-title">ผลการประเมิน</h2>
-        <p id="result-feedback-text" class="result-feedback-text">ผลการเรียนของคุณ</p>
-        
-        <div class="quiz-actions" style="justify-content: center; gap: 1rem; flex-wrap: wrap;">
-          <button class="btn btn-outline" onclick="exitToMenu()"><i class='bx bx-home-alt'></i> กลับหน้าหลัก</button>
-          <button class="btn btn-outline" style="border-color: var(--accent-color); color: var(--accent-color);" onclick="printCertificate()"><i class='bx bx-printer'></i> พิมพ์ใบรับรองผลคะแนน</button>
-          <button id="retry-quiz-btn" class="btn btn-primary" onclick="restartCurrentQuiz()"><i class='bx bx-refresh'></i> ทำอีกครั้ง</button>
-        </div>
-        
-        <!-- Answer review panel -->
-        <div id="review-section" class="review-section">
-          <h3><i class='bx bx-check-double'></i> ตรวจสอบคำตอบและเฉลยอธิบาย</h3>
-          <div id="review-items-container">
-            <!-- Review items will be injected here dynamically -->
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </main>
-
-  <!-- 5. PASSCODE ENTRY MODAL -->
-  <div id="quiz-passcode-modal">
-    <div class="topic-card" style="width: 90%; max-width: 450px; margin-bottom: 0; padding: 2.5rem 2rem; box-shadow: var(--shadow-lg); text-align: center;">
-      <h3 style="font-family: 'Prompt', sans-serif; margin-bottom: 0.5rem; color: var(--primary-color); font-size: 1.3rem;"><i class='bx bx-key' style="font-size: 1.8rem; vertical-align: middle; margin-right: 0.25rem;"></i> รหัสผ่านเข้าทำข้อสอบ</h3>
-      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">กรุณากรอกรหัสผ่านที่กำหนดโดยคุณครูผู้สอนเพื่อเริ่มทำแบบทดสอบของหน่วยนี้</p>
-      
-      <div class="form-group" style="margin-bottom: 1.5rem;">
-        <input type="password" id="quizPasscodeInput" class="form-control" placeholder="กรอกรหัสเข้าสอบ..." style="text-align: center; font-size: 1.25rem; letter-spacing: 2px;">
-        <div id="passcode-error-msg" style="color: #ef4444; font-size: 0.85rem; margin-top: 0.5rem; display: none; font-weight: 500;">รหัสผ่านเข้าสอบผิดพลาด! กรุณาตรวจสอบหรือขอจากครูผู้สอน</div>
-      </div>
-      
-      <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
-        <button class="btn btn-outline" style="flex: 1;" onclick="closePasscodeModal()">ยกเลิก</button>
-        <button class="btn btn-primary" style="flex: 1;" onclick="submitPasscode()">ยืนยันเข้าสอบ</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Hidden Printable Certificate Area -->
-  <div id="print-certificate-area">
-    <div class="certificate-border">
-      <div class="cert-logo">
-        <i class='bx bx-award'></i>
-      </div>
-      <div class="cert-title">ใบรับรองผลการทดสอบ</div>
-      <div class="cert-subtitle">รายวิชาการออกแบบและเทคโนโลยี ชั้นมัธยมศึกษาปีที่ 4</div>
-      
-      <p style="font-family: 'Sarabun', sans-serif; font-size: 1.25rem; color: #4b5563; margin-top: 1.5rem; margin-bottom: 1rem;">ขอมอบใบรับรองอิเล็กทรอนิกส์ฉบับนี้เพื่อแสดงว่า</p>
-      <div id="cert-student-name" class="cert-recipient">ชื่อนักเรียน</div>
-      <div id="cert-student-meta" style="font-family: 'Prompt', sans-serif; font-size: 1.15rem; color: #1e3a8a; margin-bottom: 2rem;">รหัส 12345 ชั้น ม.4/7</div>
-      
-      <p class="cert-body">
-        ได้เข้ารับการประเมินประมวลความรู้ผ่านระบบวัดผลจำลองข้อสอบท้ายบทเรียน กลุ่มสาระวิทยาศาสตร์และเทคโนโลยี ในหัวข้อการสอบ<br>
-        <strong id="cert-quiz-title" style="color: #0f172a; font-weight: 700; font-size: 1.4rem;">แบบทดสอบหน่วยที่ 1</strong>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="fade-in-up">
+        การออกแบบและ<br>
+        <span class="highlight">เทคโนโลยี ม.4</span>
+      </h1>
+      <p class="fade-in-up delay-1">
+        เรียนรู้แนวคิดหลักของเทคโนโลยี กระบวนการออกแบบเชิงวิศวกรรม เพื่อแก้ปัญหาหรือพัฒนางานอย่างมีความคิดสร้างสรรค์ และนำไปสู่การสร้างผลงานที่สามารถนำไปประยุกต์ใช้ในชีวิตประจำวันได้อย่างมีประสิทธิภาพ
       </p>
-      
-      <div id="cert-score-details" class="cert-score">ได้คะแนน 18 เต็ม 20 คะแนน (90%)</div>
-      
-      <p id="cert-date" style="font-family: 'Sarabun', sans-serif; font-size: 1.15rem; color: #4b5563; margin-bottom: 3.5rem;">เมื่อวันที่ 25 พฤษภาคม 2569</p>
-      
-      <div class="cert-signatures">
-        <div class="cert-sign-col">
-          <div class="cert-sign-line"></div>
-          <strong>ครูปณิษฐา บุญยงค์</strong>
-          <span>ครูผู้สอนประจำรายวิชา</span>
+      <div class="hero-buttons fade-in-up delay-2">
+        <a href="#lessons" class="btn btn-primary">เริ่มเรียนเลย <i class='bx bx-right-arrow-alt'></i></a>
+      </div>
+    </div>
+    <div class="hero-image fade-in-up delay-1">
+      <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800&h=600" alt="Technology and Engineering">
+    </div>
+  </section>
+
+  <!-- Course Info Section -->
+  <section id="course-info" style="padding: 4rem 2rem; background-color: var(--surface-color);">
+    <div class="container">
+      <div class="section-title">
+        <h2>คำอธิบายรายวิชา</h2>
+        <p>รายวิชาพื้นฐาน วิทยาศาสตร์และเทคโนโลยี ม.4</p>
+      </div>
+      <div class="info-content" style="background: white; padding: 2.5rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); border: 1px solid var(--border-color); margin-bottom: 4rem;">
+        <p style="line-height: 1.8; text-align: justify; text-indent: 2.5rem; margin-bottom: 1rem;">
+          ศึกษาแนวคิดหลักของเทคโนโลยีในชีวิตประจำวัน วิเคราะห์สาเหตุหรือปัจจัยที่ส่งผลต่อการเปลี่ยนแปลงของเทคโนโลยี ระบุปัญหาหรือความต้องการในชีวิตประจำวัน รวบรวม วิเคราะห์ข้อมูล แนวคิดที่เกี่ยวข้องกับปัญหา การออกแบบวิธีการแก้ปัญหา ตัดสินใจเลือกข้อมูลที่จำเป็น นำเสนอแนวทางการแก้ปัญหาให้ผู้อื่นเข้าใจ วางแผน ดำเนินการแก้ปัญหา ด้วยการทดสอบ ประเมินผล ระบุข้อบกพร่องที่เกิดขึ้น พร้อมทั้งหาแนวทางการปรับปรุงแก้ไข และนำเสนอผลการแก้ปัญหา เลือกใช้วัสดุ อุปกรณ์ เครื่องมือ กลไก ไฟฟ้า หรืออิเล็กทรอนิกส์เพื่อแก้ปัญหาได้อย่างถูกต้อง เหมาะสม และปลอดภัย
+        </p>
+        <p style="line-height: 1.8; text-align: justify; text-indent: 2.5rem; margin-bottom: 1rem;">
+          โดยอาศัยรูปแบบการจัดการเรียนรู้โดยใช้ปัญหาเป็นฐาน (Problem-Base Learning) และรูปแบบการจัดการเรียนรู้แบบสืบสอบความรู้ (5Es Instructional Model) เน้นให้ผู้เรียนได้ลงมือปฏิบัติ ฝึกทักษะการคิด เผชิญสถานการณ์การแก้ปัญหา วางแผนการเรียนรู้ และนำเสนอผ่านการทำกิจกรรมโครงงาน
+        </p>
+        <p style="line-height: 1.8; text-align: justify; text-indent: 2.5rem;">
+          เพื่อให้ผู้เรียนมีความรู้ความเข้าใจ ความสัมพันธ์ของความรู้วิทยาศาสตร์ที่มีผลต่อการพัฒนาเทคโนโลยีประเภทต่าง ๆ และการพัฒนาเทคโนโลยีที่ส่งผลให้มีการคิดค้นความรู้ทางวิทยาศาสตร์ที่ก้าวหน้า ผลของเทคโนโลยีต่อชีวิต สังคมและสิ่งแวดล้อม ตลอดจนนำความรู้ความเข้าใจในกลุ่มสาระการเรียนรู้วิทยาศาสตร์และเทคโนโลยีไปใช้ให้เกิดประโยชน์ต่อสังคมและการดำรงชีวิต จนสามารถพัฒนากระบวนการคิดและจินตนาการ ความสามารถในการแก้ปัญหาและการจัดการทักษะในการสื่อสาร ความสามารถในการตัดสินใจ เป็นผู้ที่มีจิตวิทยาศาสตร์ มีคุณธรรม จริยธรรม ค่านิยมในการใช้วิทยาศาสตร์และเทคโนโลยีอย่างสร้างสรรค์
+        </p>
+        <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px dashed var(--border-color);">
+          <strong style="color: var(--primary-color);"><i class='bx bx-check-circle'></i> ตัวชี้วัดรวม 5 ตัวชี้วัด:</strong> ว 4.1 ม.4/1, ม.4/2, ม.4/3, ม.4/4, ม.4/5
         </div>
-        <div class="cert-sign-col">
-          <div class="cert-sign-line"></div>
-          <strong>กลุ่มสาระการเรียนรู้วิทยาศาสตร์และเทคโนโลยี</strong>
-          <span>โรงเรียนวังน้ำเย็นวิทยาคม</span>
+      </div>
+
+      <div class="section-title">
+        <h2>โครงสร้างเวลาเรียน</h2>
+        <p>เวลาเรียนรวมตลอดภาคเรียน 40 ชั่วโมง</p>
+      </div>
+      
+      <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; background: white; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); border: 1px solid var(--border-color);">
+          <thead>
+            <tr style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; text-align: left;">
+              <th style="padding: 1.25rem 1rem; width: 5%; text-align: center;">หน่วยที่</th>
+              <th style="padding: 1.25rem 1rem; width: 20%;">ชื่อหน่วยการเรียนรู้</th>
+              <th style="padding: 1.25rem 1rem; width: 10%;">ตัวชี้วัด</th>
+              <th style="padding: 1.25rem 1rem; width: 55%;">สาระสำคัญ</th>
+              <th style="padding: 1.25rem 1rem; width: 10%; text-align: center;">เวลา (ชม.)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid var(--border-color);">
+              <td style="padding: 1.25rem 1rem; text-align: center; font-weight: bold; color: var(--primary-color);">1</td>
+              <td style="padding: 1.25rem 1rem; font-weight: bold; color: var(--secondary-color);">ระบบทางเทคโนโลยี</td>
+              <td style="padding: 1.25rem 1rem; font-size: 0.9rem;">ว 4.1 ม.4/1</td>
+              <td style="padding: 1.25rem 1rem; font-size: 0.95rem; line-height: 1.6; color: var(--text-color);">ระบบทางเทคโนโลยีเป็นกลุ่มของส่วนต่าง ๆ ตั้งแต่สองส่วนขึ้นไปประกอบเข้าด้วยกันและทำงานร่วมกัน เพื่อให้บรรลุวัตถุประสงค์ ประกอบด้วย ตัวป้อน กระบวนการ ผลผลิต และอาจมีข้อมูลย้อนกลับ รวมถึงระบบย่อยที่สัมพันธ์กัน</td>
+              <td style="padding: 1.25rem 1rem; text-align: center; font-weight: bold; color: var(--primary-color);">10</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border-color); background: var(--bg-color);">
+              <td style="padding: 1.25rem 1rem; text-align: center; font-weight: bold; color: var(--primary-color);">2</td>
+              <td style="padding: 1.25rem 1rem; font-weight: bold; color: var(--secondary-color);">กระบวนการออกแบบเชิงวิศวกรรม</td>
+              <td style="padding: 1.25rem 1rem; font-size: 0.9rem;">ว 4.1 ม.4/2<br>ม.4/3<br>ม.4/4<br>ม.4/5</td>
+              <td style="padding: 1.25rem 1rem; font-size: 0.95rem; line-height: 1.6; color: var(--text-color);">กระบวนการแก้ปัญหาอย่างเป็นระบบ 6 ขั้นตอน: ระบุปัญหา, รวบรวมข้อมูล, ออกแบบวิธีการแก้ปัญหา, วางแผนและดำเนินการ, ทดสอบประเมินผล และนำเสนอผลงาน</td>
+              <td style="padding: 1.25rem 1rem; text-align: center; font-weight: bold; color: var(--primary-color);">10</td>
+            </tr>
+            <tr>
+              <td style="padding: 1.25rem 1rem; text-align: center; font-weight: bold; color: var(--primary-color);">3</td>
+              <td style="padding: 1.25rem 1rem; font-weight: bold; color: var(--secondary-color);">ผลงานออกแบบเทคโนโลยี</td>
+              <td style="padding: 1.25rem 1rem; font-size: 0.9rem;">ว 4.1 ม.4/5</td>
+              <td style="padding: 1.25rem 1rem; font-size: 0.95rem; line-height: 1.6; color: var(--text-color);">การวิเคราะห์สมบัติของวัสดุ (เช่น ไม้ โลหะ) และประยุกต์ใช้กลไก ไฟฟ้า อิเล็กทรอนิกส์ (เช่น เซนเซอร์ เฟือง รอก) ตลอดจนใช้เครื่องมือในการสร้างชิ้นงานอย่างปลอดภัย</td>
+              <td style="padding: 1.25rem 1rem; text-align: center; font-weight: bold; color: var(--primary-color);">20</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lessons Section -->
+  <section id="lessons" class="courses">
+    <div class="container">
+      <div class="section-title">
+        <h2>บทเรียนออนไลน์</h2>
+        <p>เลือกหน่วยการเรียนรู้ที่ต้องการศึกษา</p>
+      </div>
+      
+      <div class="course-grid">
+        <!-- Unit 1 -->
+        <div class="course-card">
+          <div class="course-image">
+            <span class="course-badge">หน่วยที่ 1</span>
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800&h=500" alt="ระบบทางเทคโนโลยี">
+          </div>
+          <div class="course-content">
+            <h3>ระบบทางเทคโนโลยี</h3>
+            <p>
+              - องค์ประกอบของระบบเทคโนโลยี<br>
+              - ความสัมพันธ์ของวิทยาศาสตร์และคณิตศาสตร์กับเทคโนโลยี<br>
+              - ผลกระทบของการเปลี่ยนแปลงเทคโนโลยี
+            </p>
+            <a href="unit1.html" class="btn btn-primary">เข้าสู่บทเรียน</a>
+          </div>
+        </div>
+
+        <!-- Unit 2 -->
+        <div class="course-card">
+          <div class="course-image">
+            <span class="course-badge">หน่วยที่ 2</span>
+            <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800&h=500" alt="กระบวนการออกแบบเชิงวิศวกรรม">
+          </div>
+          <div class="course-content">
+            <h3>กระบวนการออกแบบเชิงวิศวกรรม</h3>
+            <p>
+              - ระบุปัญหาและรวบรวมข้อมูล<br>
+              - ออกแบบวิธีการแก้ปัญหาและวางแผน<br>
+              - ทดสอบ ประเมินผล และปรับปรุง<br>
+              - การนำเสนอผลงาน
+            </p>
+            <a href="unit2.html" class="btn btn-primary">เข้าสู่บทเรียน</a>
+          </div>
+        </div>
+
+        <!-- Unit 3 -->
+        <div class="course-card">
+          <div class="course-image">
+            <span class="course-badge">หน่วยที่ 3</span>
+            <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&q=80&w=800&h=500" alt="ผลงานการออกแบบและเทคโนโลยี">
+          </div>
+          <div class="course-content">
+            <h3>ผลงานการออกแบบและเทคโนโลยี</h3>
+            <p>
+              - สมบัติของวัสดุประเภทต่างๆ<br>
+              - กลไก ไฟฟ้า และอิเล็กทรอนิกส์<br>
+              - การพัฒนาโครงงานเพื่อแก้ปัญหา<br>
+              - กรณีศึกษาตัวอย่าง
+            </p>
+            <a href="unit3.html" class="btn btn-primary">เข้าสู่บทเรียน</a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
+  <!-- Footer -->
   <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <i class='bx bx-laptop'></i> Design<span>Tech</span>
+        </div>
+        <p>แหล่งเรียนรู้ออนไลน์ รายวิชาการออกแบบและเทคโนโลยี ชั้นมัธยมศึกษาปีที่ 4</p>
+      </div>
       <div class="footer-bottom">
         <p>&copy; 2026 วิชาการออกแบบและเทคโนโลยี | PANIITTHA BOONYONG </p>
         <p>WANGNAMYENWITTAYAKOM SCHOOL . SECONDARY EDUCATIONAL SERVICE AREA OFFICE SA KAEO</p>
       </div>
+    </div>
   </footer>
 
   <script src="script.js"></script>
-  
-  <script>
-    // ==========================================
-    // CONFIGURATION (กำหนดค่าเริ่มต้นตรงนี้)
-    // ==========================================
-    // URL ของ Google Apps Script Web App สำหรับส่งคะแนน
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxJ32VgAbMIwRJ2SDwr8QU-uZW63nI3iCI2_dORWJTBYtEObSQqayc0AE79eutX2UeA/exec';
-
-    // รหัสผ่านเข้าทำข้อสอบแต่ละหน่วย (คุณครูสามารถแก้ไขได้ตรงนี้ครับ)
-    const QUIZ_PASSCODES = {
-      1: "unit1", // รหัสผ่านสำหรับข้อสอบหน่วยที่ 1
-      2: "unit2", // รหัสผ่านสำหรับข้อสอบหน่วยที่ 2
-      3: "unit3"  // รหัสผ่านสำหรับข้อสอบหน่วยที่ 3
-    };
-
-    // 60 High-Quality Questions aligned with Aksorn Charoen Tat (อจท) curriculum (20 Questions per Unit)
-    const quizzesDatabase = {
-      1: {
-        title: "หน่วยการเรียนรู้ที่ 1: ระบบทางเทคโนโลยีที่ซับซ้อนและการวิเคราะห์ระบบ",
-        questions: [
-          {
-            question: "องค์ประกอบหลักของ \"ระบบทางเทคโนโลยี\" ประกอบด้วยอะไรบ้างที่ทำงานประสานกัน?",
-            choices: {
-              "A": "ตัวป้อน, กระบวนการ, ผลผลิต",
-              "B": "ตัวป้อน, กระบวนการ, ผลผลิต, ทรัพยากร",
-              "C": "ตัวป้อน, กระบวนการ, ผลผลิต, ข้อมูลย้อนกลับ",
-              "D": "ตัวป้อน, กระบวนการ, ผลผลิต, ข้อมูลย้อนกลับ, ทรัพยากร"
-            },
-            correctAnswer: "C",
-            explanation: "ตัวป้อน (Input), กระบวนการ (Process), ผลผลิต (Output) และข้อมูลย้อนกลับ (Feedback) เป็นองค์ประกอบพื้นฐาน 4 ส่วนของระบบทางเทคโนโลยี"
-          },
-          {
-            question: "ส่วนประกอบใดของระบบทางเทคโนโลยีที่ทำหน้าที่ดำเนินการหรือเปลี่ยนทรัพยากรตัวป้อนให้กลายเป็นผลผลิต?",
-            choices: {
-              "A": "ตัวป้อน (Input)",
-              "B": "กระบวนการ (Process)",
-              "C": "ผลผลิต (Output)",
-              "D": "ข้อมูลย้อนกลับ (Feedback)"
-            },
-            correctAnswer: "B",
-            explanation: "กระบวนการ (Process) คือขั้นตอนการปฏิบัติงานเพื่อเปลี่ยนทรัพยากรหรือตัวป้อนให้เป็นผลผลิตตามจุดประสงค์ของระบบ"
-          },
-          {
-            question: "\"ข้อมูลย้อนกลับ\" (Feedback) มีความสำคัญสูงสุดอย่างไรในการควบคุมระบบทางเทคโนโลยี?",
-            choices: {
-              "A": "ช่วยเพิ่มความเร็วการทำงานของระบบ",
-              "B": "ช่วยลดทรัพยากรที่ต้องป้อนเข้าระบบ",
-              "C": "ช่วยตรวจสอบค่าผลผลิตเพื่อส่งกลับไปปรับปรุงแก้ไขการทำงานให้ได้ตามเป้าหมาย",
-              "D": "ช่วยกำหนดเงื่อนไขการส่งออกผลผลิต"
-            },
-            correctAnswer: "C",
-            explanation: "ข้อมูลย้อนกลับ (Feedback) ช่วยควบคุมดูแลระบบโดยเปรียบเทียบผลผลิตที่ได้กับค่าเป้าหมายเพื่อนำไปปรับเปลี่ยนการทำงานของตัวป้อนหรือกระบวนการให้ถูกต้อง"
-          },
-          {
-            question: "ข้อใดจัดเป็นระบบทางเทคโนโลยีแบบปิด (Closed System) ที่ควบคุมตัวเองด้วยระบบอัตโนมัติ?",
-            choices: {
-              "A": "การใช้งานพัดลมทั่วไป",
-              "B": "การต้มน้ำด้วยกาต้มน้ำไฟฟ้าที่มีระบบควบคุมตัดไฟอัตโนมัติเมื่อน้ำเดือด",
-              "C": "การปลูกพืชไฮโดรโปนิกส์กลางแจ้ง",
-              "D": "การปั่นจักรยาน"
-            },
-            correctAnswer: "B",
-            explanation: "กาต้มน้ำไฟฟ้าตัดไฟอัตโนมัติเป็นระบบแบบปิด เนื่องจากมีข้อมูลสถานะการเดือด (อุณหภูมิ) ส่งกลับมาตัดการจ่ายไฟฟ้าโดยตรงโดยผู้ใช้ไม่ต้องสั่งงานซ้ำ"
-          },
-          {
-            question: "หากเครื่องปรับอากาศแจ้งเตือนไฟกระพริบเนื่องจากแผ่นกรองฝุ่นสกปรก จัดเป็นองค์ประกอบส่วนใดของระบบ?",
-            choices: {
-              "A": "ตัวป้อน",
-              "B": "กระบวนการ",
-              "C": "ผลผลิต",
-              "D": "ข้อมูลย้อนกลับ"
-            },
-            correctAnswer: "D",
-            explanation: "การแจ้งเตือนสถานะความบกพร่องของเครื่องปรับอากาศแก่ผู้ใช้งาน ถือเป็นข้อมูลย้อนกลับ (Feedback) เพื่อให้นำไปแก้ไขปรับปรุงระบบ"
-          },
-          {
-            question: "สิ่งใดคือตัวป้อน (Input) ในระบบหม้อหุงข้าวไฟฟ้า?",
-            choices: {
-              "A": "ข้าวสวยที่สุกพร้อมรับประทาน",
-              "B": "ข้าวสาร, น้ำ, พลังงานไฟฟ้า",
-              "C": "แผ่นความร้อนใต้หม้อข้าว",
-              "D": "การเปลี่ยนพลังงานไฟฟ้าเป็นความร้อน"
-            },
-            correctAnswer: "B",
-            explanation: "ตัวป้อน (Input) คือสิ่งที่จำเป็นต้องป้อนเข้าระบบเพื่อเริ่มต้นทำงาน ซึ่งในที่นี้คือ ข้าวสาร น้ำ และพลังงานไฟฟ้า"
-          },
-          {
-            question: "ข้อใดกล่าวถูกต้องเกี่ยวกับระบบทางเทคโนโลยีที่ซับซ้อน (Complex Technological System)?",
-            choices: {
-              "A": "เป็นระบบที่มีโครงสร้างเดี่ยวไม่มีระบบย่อยทำงานร่วมด้วยเลย",
-              "B": "เป็นระบบที่มนุษย์สร้างขึ้นโดยอาศัยพลังงานจากสัตว์เท่านั้น",
-              "C": "เป็นระบบที่ประกอบด้วยระบบย่อย (Subsystem) ตั้งแต่สองระบบขึ้นไปทำงานร่วมกันอย่างสัมพันธ์กัน",
-              "D": "เป็นระบบในธรรมชาติที่มนุษย์ไม่สามารถเลียนแบบได้"
-            },
-            correctAnswer: "C",
-            explanation: "ระบบที่ซับซ้อนประกอบไปด้วยระบบย่อยต่าง ๆ ทำงานสัมพันธ์กัน เช่น รถยนต์มีระบบย่อยขับเคลื่อน ระบบเบรก ระบบไฟฟ้า ทำงานประสานกัน"
-          },
-          {
-            question: "ในระบบย่อยของเครื่องซักผ้า หากเครื่องส่งเสียงร้องเตือนน้ำล้นออกนอกถัง ระบบย่อยใดมีหน้าที่ดำเนินการแก้ไขสถานะนี้นอกเหนือจากส่งเสียงเตือน?",
-            choices: {
-              "A": "ระบบย่อยระบายน้ำเปิดวาล์วปล่อยน้ำทิ้ง",
-              "B": "ระบบย่อยหมุนปั่นถังเร่งความเร็วถังซัก",
-              "C": "ระบบย่อยทำความร้อนจ่ายไฟให้ขดลวดทำความร้อน",
-              "D": "ระบบย่อยควบคุมปิดวาล์วจ่ายน้ำเข้าและปล่อยระบายน้ำส่วนเกินออก"
-            },
-            correctAnswer: "D",
-            explanation: "ระบบย่อยควบคุมมีหน้าที่ประมวลผลสัญญาณจากเซนเซอร์ระดับน้ำและสั่งการปิดวาล์วน้ำเข้าพร้อมควบคุมการปล่อยระบายน้ำล้นออก"
-          },
-          {
-            question: "วัตถุประสงค์หลักของการวิเคราะห์ระบบทางเทคโนโลยี (Technological System Analysis) คือข้อใด?",
-            choices: {
-              "A": "เพื่อตรวจสอบว่าเทคโนโลยีมีความคุ้มค่าทางการตลาดและการโฆษณาอย่างไร",
-              "B": "เพื่อทำความเข้าใจความสัมพันธ์ของระบบย่อยต่าง ๆ เพื่อหาแนวทางป้องกันแก้ไขปัญหาเมื่อระบบล้มเหลว",
-              "C": "เพื่อปรับแต่งชิ้นงานให้ทันสมัยที่สุดตามแฟชั่นการออกแบบ",
-              "D": "เพื่อลดทอนส่วนควบคุมออกเพื่อประหยัดต้นทุนวัสดุอุตสาหกรรม"
-            },
-            correctAnswer: "B",
-            explanation: "การวิเคราะห์ระบบทำเพื่อให้ทราบหลักการทำงานประสานกันของระบบย่อยและสามารถแก้ไขปัญหากรณีเกิดข้อบกพร่องในส่วนใดส่วนหนึ่งได้อย่างถูกต้อง"
-          },
-          {
-            question: "สิ่งใดจัดเป็นผลผลิต (Output) ของระบบการทำน้ำเย็นของตู้กดน้ำดื่ม?",
-            choices: {
-              "A": "น้ำประปาที่ต่อท่อเข้าตู้กดน้ำ",
-              "B": "พลังงานไฟฟ้าที่จ่ายให้กับตู้",
-              "C": "น้ำที่มีอุณหภูมิต่ำ (น้ำเย็น) พร้อมดื่ม",
-              "D": "สารทำความเย็นและการทำงานของคอมเพรสเซอร์"
-            },
-            correctAnswer: "C",
-            explanation: "ผลผลิต (Output) คือเป้าหมายสูงสุดที่ระบบส่งมอบออกมา ซึ่งก็คือน้ำเย็นอุณหภูมิต่ำพร้อมดื่ม"
-          },
-          {
-            question: "สิ่งใดจัดเป็น \"ระบบทางธรรมชาติ\" (Natural System) ที่ไม่ได้เกิดจากมนุษย์สร้างขึ้น?",
-            choices: {
-              "A": "ระบบเขื่อนไฟฟ้าพลังน้ำ",
-              "B": "ระบบหมุนเวียนโลหิตในร่างกายมนุษย์",
-              "C": "ระบบการกรองน้ำสามชั้นในโรงงานอุตสาหกรรม",
-              "D": "ระบบระบายอากาศอัตโนมัติในโดมกระจกปลูกพืช"
-            },
-            correctAnswer: "B",
-            explanation: "ระบบหมุนเวียนโลหิตเป็นระบบที่เกิดขึ้นตามธรรมชาติในสิ่งมีชีวิต ส่วนระบบอื่นเป็นระบบทางเทคโนโลยีที่มนุษย์สร้างขึ้นเพื่อจุดประสงค์บางอย่าง"
-          },
-          {
-            question: "ในระบบเครื่องอบผ้าแห้ง ลมร้อนและความชื้นที่ถูกระบายออกนอกเครื่อง จัดอยู่ในประเภทใดของระบบ?",
-            choices: {
-              "A": "ตัวป้อน",
-              "B": "กระบวนการ",
-              "C": "ผลผลิตหรือสิ่งที่ได้จากระบบ",
-              "D": "ข้อมูลย้อนกลับ"
-            },
-            correctAnswer: "C",
-            explanation: "ผลผลิตและผลพลอยได้จากการทำงานของระบบอบผ้าแห้งคือผ้าแห้งรวมถึงความร้อนและละอองน้ำระบายออก จัดเป็นผลลัพธ์ (Output)"
-          },
-          {
-            question: "ส่วนประกอบใดของระบบการทำความสะอาดของหุ่นยนต์ดูดฝุ่นที่ทำหน้าที่เปรียบเสมือน \"ข้อมูลย้อนกลับ\" เมื่อหุ่นยนต์ชนสิ่งกีดขวาง?",
-            choices: {
-              "A": "แบตเตอรี่สำรองไฟ",
-              "B": "เซนเซอร์กันชน (Bumper Sensor) ที่ส่งสัญญาณกลับไปประมวลผลเพื่อเปลี่ยนเส้นทางวิ่ง",
-              "C": "แปรงปัดกวาดหมุนสลับด้าน",
-              "D": "ล้อขับเคลื่อนไฟฟ้ากระแสตรง"
-            },
-            correctAnswer: "B",
-            explanation: "เซนเซอร์ตรวจจับและรายงานการชนทำหน้าที่ส่งข้อมูลสะท้อนกลับ (Feedback) ไปยังชิปประมวลผลควบคุมมอเตอร์ล้อให้สลับเส้นทางหนีสิ่งกีดขวาง"
-          },
-          {
-            question: "หากต้องการป้องกันไม่ให้ระบบคอมพิวเตอร์พังทลายจากความร้อนสะสม ระบบระบายความร้อนทำงานอย่างไรในฐานะระบบย่อย?",
-            choices: {
-              "A": "ลดกระแสไฟฟ้าหลักลงโดยปิดวงจรชิ้นส่วนหลักทั้งหมดทันที",
-              "B": "เร่งความเร็วพัดลมซีพียูตามอุณหภูมิเซนเซอร์ที่วัดได้สูงขึ้น",
-              "C": "นำส่งอากาศเย็นเข้าจากภายนอกด้วยตัวต้านทานคงที่",
-              "D": "ตัดระบบจ่ายพลังงานแบตเตอรี่สำรองไปชิ้นส่วนหน้าจอ"
-            },
-            correctAnswer: "B",
-            explanation: "ระบบระบายความร้อนจะรับข้อมูลอุณหภูมิและเร่งการทำงานของพัดลมเพื่อลดความร้อนสะสม ถือเป็นระบบย่อยที่รักษาสมดุลความร้อนของเครื่องคอมพิวเตอร์"
-          },
-          {
-            question: "ข้อใดอธิบายความหมายของระบบทางเทคโนโลยีแบบเปิด (Open System) ได้ชัดเจนที่สุด?",
-            choices: {
-              "A": "เป็นระบบเปิดเผยรหัสซอร์สโค้ดให้คนทั่วไปนำไปพัฒนาต่อยอดได้ฟรี",
-              "B": "เป็นระบบทำงานต่อเนื่องโดยไม่มีขอบเขตตัวป้อนและใช้พลังงานธรรมชาติภายนอกอย่างเดียว",
-              "C": "เป็นระบบทำงานตามขั้นตอนการตั้งค่าโดยไม่มีกลไกตรวจจับและส่งข้อมูลผลผลิตย้อนกลับมาปรับแก้อัตโนมัติ",
-              "D": "เป็นระบบผลิตวัตถุดิบและส่งมอบให้ระบบภายนอกนำไปประมวลผลต่อทันที"
-            },
-            correctAnswer: "C",
-            explanation: "ระบบแบบเปิด (Open System) ทำงานโดยไม่มีการนำเอาข้อมูลย้อนกลับ (Feedback) มาเปรียบเทียบเพื่อสั่งการชดเชยการทำงาน ตัวอย่างเช่น การปิ้งขนมปังแบบจับเวลา ซึ่งเตาจะทำงานตามเวลาที่ตั้งไว้โดยไม่สนใจว่าขนมปังจะไหม้หรือไม่"
-          },
-          {
-            question: "ในระบบเตาไมโครเวฟ กระบวนการ (Process) คือข้อใด?",
-            choices: {
-              "A": "อาหารดิบหรืออาหารแช่แข็งที่วางในเตา",
-              "B": "การเปลี่ยนพลังงานคลื่นความถี่วิทยุทำให้โมเลกุลน้ำในอาหารสั่นและเกิดความร้อน",
-              "C": "เสียงเตือนและระบบหยุดทำงานอัตโนมัติเมื่อครบเวลา",
-              "D": "อาหารที่ร้อนพร้อมรับประทาน"
-            },
-            correctAnswer: "B",
-            explanation: "กระบวนการ (Process) คือขั้นตอนปฏิบัติงานเพื่อดำเนินการเปลี่ยนรูปให้ตัวป้อนกลายเป็นผลผลิต ซึ่งในไมโครเวฟคือการส่งคลื่นไมโครเวฟไปเหนี่ยวนำโมเลกุลน้ำให้สั่นสะเทือนเกิดเป็นความร้อนสะสม"
-          },
-          {
-            question: "ปัจจัยใดต่อไปนี้มีส่วนสำคัญทำให้มนุษย์คิดค้นและพัฒนาเทคโนโลยีใหม่ทดแทนระบบเดิมน้อยที่สุด?",
-            choices: {
-              "A": "ข้อจำกัดด้านทรัพยากรธรรมชาติและสิ่งแวดล้อมเสื่อมโทรม",
-              "B": "ความจำเป็นในการแข่งขันทางเศรษฐกิจระหว่างประเทศ",
-              "C": "ความลื่นไหลของการเลือกซื้อเสื้อผ้าตามเทศกาลประเพณีดั้งเดิม",
-              "D": "ความก้าวหน้าทางวิทยาศาสตร์และการค้นพบทฤษฎีเคมีใหม่"
-            },
-            correctAnswer: "C",
-            explanation: "แฟชั่นตามเทศกาลดั้งเดิมไม่จัดเป็นปัจจัยพื้นฐานสำคัญในการปฏิรูประบบเทคโนโลยีเมื่อเทียบกับความก้าวหน้าทางวิทย์ วิกฤตสิ่งแวดล้อม และสภาพการแข่งขันทางเศรษฐกิจ"
-          },
-          {
-            question: "ในอดีตมีการใช้เครื่องพิมพ์ดีดในการพิมพ์เอกสาร แต่ปัจจุบันเปลี่ยนมาใช้คอมพิวเตอร์และเครื่องพิมพ์ สาเหตุการเปลี่ยนแปลงนี้จัดอยู่ในการวิเคราะห์ด้านใด?",
-            choices: {
-              "A": "การเปลี่ยนแปลงด้านการประหยัดพลังงานมอเตอร์ล้อ",
-              "B": "การเปลี่ยนแปลงตามความต้องการความเร็ว ความสะดวก และความยืดหยุ่นในการแก้ไขข้อมูลเอกสาร",
-              "C": "การรักษาข้อจำกัดด้านจริยธรรมของสิ่งพิมพ์ดั้งเดิม",
-              "D": "ความขาดแคลนวัสดุเหล็กทำโครงปุ่มพิมพ์ดีด"
-            },
-            correctAnswer: "B",
-            explanation: "การพัฒนาจากเครื่องพิมพ์ดีดมาเป็นคอมพิวเตอร์และพรินเตอร์สะท้อนความต้องการงานพิมพ์ที่มีประสิทธิภาพ แก้ไขข้อความง่าย คัดลอกเอกสารได้รวดเร็วขึ้น"
-          },
-          {
-            question: "การระบายความร้อนของตู้เย็นโดยใช้พัดลมระบายลมร้อนจากคอมเพรสเซอร์ออกด้านล่างตู้ จัดเป็นความสัมพันธ์ระบบย่อยด้านใด?",
-            choices: {
-              "A": "ระบบย่อยระบายความร้อนเอื้อประโยชน์ให้ระบบย่อยทำความเย็นทำงานได้มีประสิทธิภาพยาวนานขึ้น",
-              "B": "ระบบย่อยระบายความร้อนช่วยทำให้อาหารภายในตู้แข็งตัวเร็วขึ้น",
-              "C": "ระบบย่อยระบายความร้อนควบคุมระดับไฟตกของบ้าน",
-              "D": "ระบบย่อยระบายความร้อนเปลี่ยนสถานะของแข็งในตู้เย็นเป็นของเหลว"
-            },
-            correctAnswer: "A",
-            explanation: "การระบายลมร้อนจากคอมเพรสเซอร์ทำให้ระบบทำความเย็นในวงจรไม่เกิดความร้อนสะสมสูงเกินเกณฑ์ ช่วยรักษาประสิทธิภาพและยืดอายุการทำความเย็น"
-          },
-          {
-            question: "ในกรณีวิเคราะห์ความล้มเหลวของระบบหากเตารีดไฟฟ้าไม่ร้อนเลยหลังจากเสียบปลั๊กและเปิดสวิตช์แล้ว ขั้นแรกควรวิเคราะห์จุดบกพร่องที่จุดใด?",
-            choices: {
-              "A": "ตัวโครงพลาสติกป้องกันความร้อนและสายไฟภายนอก",
-              "B": "ระบบย่อยแหล่งจ่ายพลังงานและวงจรความต้านทานทำความร้อนภายใน (Heater Element)",
-              "C": "หน้าปัดบอกชนิดของผ้าที่ต้องการรีด",
-              "D": "น้ำที่ใช้เติมระบบพ่นเตารีดไอน้ำ"
-            },
-            correctAnswer: "B",
-            explanation: "การที่เตารีดไม่ร้อนเลยชี้ว่ากระแสไฟฟ้าไม่ไหลเข้าสู่ส่วนทำความร้อนหลัก จึงต้องตรวจสอบระบบจ่ายพลังงาน (สายไฟ ปลั๊ก) และตัวต้านทานความร้อนภายในเป็นจุดแรก"
-          }
-        ]
-      },
-      2: {
-        title: "หน่วยการเรียนรู้ที่ 2: กระบวนการออกแบบเชิงวิศวกรรม 6 ขั้นตอน",
-        questions: [
-          {
-            question: "กระบวนการออกแบบเชิงวิศวกรรม (Engineering Design Process) มีประโยชน์โดดเด่นอย่างไรเมื่อเทียบกับการสร้างสิ่งประดิษฐ์ตามสัญชาตญาณ?",
-            choices: {
-              "A": "ช่วยประหยัดเวลาผลิตทันทีโดยไม่ต้องร่างแบบชิ้นงาน",
-              "B": "เป็นระบบขั้นตอนที่ชัดเจนช่วยให้แก้ปัญหาได้อย่างมีหลักการ ย้อนกลับไปปรับปรุงแก้ไขข้อบกพร่องได้เป็นระบบ",
-              "C": "ช่วยลดการจัดหาอุปกรณ์เครื่องมือวัดระดับช่าง",
-              "D": "ทำให้ผลงานประดิษฐ์ได้รับสิทธิบัตรโดยไม่ต้องลงมือปฏิบัติจริง"
-            },
-            correctAnswer: "B",
-            explanation: "กระบวนการนี้เป็นระบบคิดแบบวนซ้ำ (Iterative) ที่ใช้เกณฑ์ประเมินจริงในการออกแบบ วางแผน แก้ไขจุดบกพร่องได้อย่างเป็นระบบ"
-          },
-          {
-            question: "ขั้นตอน \"การระบุปัญหา\" (Problem Definition) ต้องกำหนดเงื่อนไขให้ตอบคำถามใดบ้างเป็นอันดับแรก?",
-            choices: {
-              "A": "วิธีการประหยัดงบประมาณสร้างสิบเท่า",
-              "B": "ปัญหานั้นคืออะไร (What) เกิดกับใคร (Who) ทำไมต้องแก้ (Why) เกิดขึ้นที่ไหนเมื่อใด (Where/When) และมีข้อจำกัดอะไร",
-              "C": "ชื่อโปรแกรมและบอร์ดไมโครคอนโทรลเลอร์ที่ต้องใช้โค้ดควบคุม",
-              "D": "ประเภทวัสดุที่หาซื้อได้ในพื้นที่ชนบท"
-            },
-            correctAnswer: "B",
-            explanation: "การวิเคราะห์ปัญหาด้วยหลัก 5W1H ช่วยให้เราเข้าใจตัวตนของปัญหานั้นได้อย่างครอบคลุมและตั้งเป้าหมายการแก้ปัญหาได้ชัดเจน"
-          },
-          {
-            question: "หากวิศวกรต้องการสร้างเครื่องกำจัดฝุ่นละออง PM 2.5 ในระดับครัวเรือน ขั้นตอนถัดไปหลังการระบุปัญหาเสร็จสิ้นคือข้อใด?",
-            choices: {
-              "A": "การซื้อโครงวัสดุและล้อเลื่อนเตรียมเดินเครื่องยนต์",
-              "B": "การรวบรวมข้อมูล ค้นหาวิธีแผ่นกรองฝุ่น และศึกษาทฤษฎีฟิสิกส์การดักจับฝุ่นแบบต่าง ๆ",
-              "C": "การนำเสนอโครงงานฝุ่นแก่ครูที่ปรึกษา",
-              "D": "การวาดภาพสามมิติของเครื่อง"
-            },
-            correctAnswer: "B",
-            explanation: "เมื่อรู้กรอบปัญหาแล้ว ต้องทำการรวบรวมข้อมูลเชิงทฤษฎีและเทคโนโลยีที่มีอยู่เดิมเพื่อนำมาใช้เป็นฐานความรู้ในการออกแบบ"
-          },
-          {
-            question: "การจัดระเบียบความคิดโดยนำข้อมูลที่ค้นคว้ามาได้เปรียบเทียบข้อดี-ข้อเสียของแต่ละรูปแบบ จัดอยู่ในขั้นตอนใด?",
-            choices: {
-              "A": "การระบุปัญหา",
-              "B": "การรวบรวมข้อมูลและแนวคิดที่เกี่ยวข้องกับปัญหา",
-              "C": "การออกแบบวิธีการแก้ปัญหา",
-              "D": "การนำเสนอผลการทำงาน"
-            },
-            correctAnswer: "C",
-            explanation: "ในขั้นการออกแบบวิธีการแก้ปัญหา เราจะนำแนวคิดต่าง ๆ ที่ได้รวบรวมไว้มาสังเคราะห์ วาดทางเลือก และวิเคราะห์ข้อดีข้อเสียเพื่อคัดเลือกวิธีที่ดีที่สุด"
-          },
-          {
-            question: "เกณฑ์ข้อใดที่ไม่ควรนำมาพิจารณาในขั้นตอนการคัดเลือกแนวทางแก้ปัญหาเชิงวิศวกรรม?",
-            choices: {
-              "A": "ความเป็นไปได้ในการทำงานจริงของระบบ",
-              "B": "ความสวยงามลวดลายกราฟิกของสีตัวถังภายนอกผลิตภัณฑ์",
-              "C": "ความปลอดภัยของผู้ใช้และผลกระทบต่อสิ่งแวดล้อม",
-              "D": "ความพร้อมของงบประมาณและเวลาดำเนินงาน"
-            },
-            correctAnswer: "B",
-            explanation: "การเลือกแนวทางต้องคำนึงถึงฟังก์ชันความปลอดภัย ประสิทธิภาพ ทุน และเวลา ส่วนลวดลายกราฟิกหรือแฟชั่นเป็นเรื่องรองที่ยังไม่เกี่ยวกับประสิทธิภาพหลักในการแก้ปัญหา"
-          },
-          {
-            question: "เครื่องมือใดต่อไปนี้ที่ช่วยในการติดตามความก้าวหน้าและการกำหนดผู้รับผิดชอบงานตามตารางปฏิทินเวลาปฏิบัติงาน?",
-            choices: {
-              "A": "แผนภาพบล็อกไดอะแกรม (Block Diagram)",
-              "B": "ผังงานแกนต์ (Gantt Chart)",
-              "C": "ผังความคิดไมโอนิกส์ (Mind Map)",
-              "D": "ผังแบบร่างฉาย 3 ด้าน"
-            },
-            correctAnswer: "B",
-            explanation: "ผังแกนต์ (Gantt Chart) เป็นเครื่องมือหลักในการวางแผนงานเชิงปฏิบัติและแบ่งปฏิทินภาระงานตามกำหนดช่วงเวลาอย่างชัดเจน"
-          },
-          {
-            question: "การสร้างแบบจำลองเสมือนจริงหรือตัวต้นแบบ (Prototype) มีเป้าหมายสำคัญเพื่ออะไรในขั้นการดำเนินงาน?",
-            choices: {
-              "A": "เพื่อขายสินค้าล่วงหน้าให้ผู้บริโภคทั่วไป",
-              "B": "เพื่อความสวยงามประดับห้องกิจกรรมเทคโนโลยี",
-              "C": "เพื่อใช้ทดสอบการใช้งานจริง ค้นหาจุดอ่อน และวิเคราะห์ปัญหาการทำงานทางกายภาพก่อนผลิตจำนวนมาก",
-              "D": "เพื่อหลีกเลี่ยงการสืบค้นข้อมูลเชิงทฤษฎีฟิสิกส์"
-            },
-            correctAnswer: "C",
-            explanation: "การทำแบบจำลองหรือชิ้นงานต้นแบบช่วยให้นักออกแบบสามารถประเมินผลการใช้งานในสถานการณ์จริงเพื่อลดความเสี่ยงข้อผิดพลาดก่อนลงมือผลิตจำนวนมาก"
-          },
-          {
-            question: "หากทำการทดสอบเครื่องดักแมลงวันทองแล้วพบว่าใบพัดหมุนเป่าลมเบาไปทำให้กักแมลงไม่อยู่ ควรดำเนินการอย่างไรตามหลักวิศวกรรม?",
-            choices: {
-              "A": "เปลี่ยนไปทำชิ้นงานประดิษฐ์เรื่องอื่นแทน",
-              "B": "นำส่งครูผู้สอนทันทีและระบุว่าใช้งานได้ดีพอควร",
-              "C": "วิเคราะห์หาข้อบกพร่องและนำผลการทดสอบไปปรับปรุงสเปคมอเตอร์หรือเปลี่ยนขนาดใบพัด",
-              "D": "ออกแบบรูปทรงกล่องสีสันของเครื่องใหม่ให้แมลงตกใจบินหนีเอง"
-            },
-            correctAnswer: "C",
-            explanation: "เมื่อประเมินการทดสอบแล้วไม่ผ่านเกณฑ์การกักแมลง จะต้องนำข้อบกพร่องนั้นมาทบทวนเพื่อการปรับปรุงพัฒนาโครงสร้างชิ้นส่วนมอเตอร์ใบพัดใหม่"
-          },
-          {
-            question: "ขั้นตอนใดในกระบวนการออกแบบเชิงวิศวกรรมที่เป็นการเผยแพร่รายละเอียดชิ้นงาน ถ่ายทอดความรู้ และแนวทางพัฒนาต่อยอดให้ผู้อื่น?",
-            choices: {
-              "A": "การรวบรวมข้อมูล",
-              "B": "การวางแผนขั้นตอนงาน",
-              "C": "การนำเสนอวิธีการแก้ปัญหา ผลการแก้ปัญหา หรือชิ้นงาน",
-              "D": "การออกแบบชิ้นงานร่างภาพฉาย"
-            },
-            correctAnswer: "C",
-            explanation: "การนำเสนอ (Presentation) เป็นขั้นตอนถ่ายทอดแนวคิด กระบวนการทำงาน ผลคะแนนการทดสอบ และรับฟังคำวิจารณ์เพื่อพัฒนาปรับปรุงในอนาคต"
-          },
-          {
-            question: "ในขั้นตอนระบุปัญหา การตั้งคำถาม \"Why\" มุ่งเน้นการหาข้อมูลในมิติใด?",
-            choices: {
-              "A": "บุคคลที่ได้รับผลกระทบจากปัญหานั้น",
-              "B": "เหตุผลความจำเป็นและประโยชน์ในการแก้ปัญหานี้",
-              "C": "ช่วงเวลาที่เกิดข้อผิดพลาดขึ้นในวงรอบการทำงาน",
-              "D": "สถานที่หลักในการจัดวางอุปกรณ์ระบบควบคุม"
-            },
-            correctAnswer: "B",
-            explanation: "Why (ทำไม) คือความจำเป็นหรือเหตุผลที่ต้องแก้ไขปัญหานี้ เพื่อชี้ให้เห็นประโยชน์สูงสุดหลังแก้ปัญหาสำเร็จ"
-          },
-          {
-            question: "ภาพร่าง 3 มิติ (3D Sketch) มีประโยชน์แตกต่างจากการเขียนบรรยายอักษรอย่างไรในขั้นออกแบบ?",
-            choices: {
-              "A": "ช่วยเพิ่มมูลค่างบประมาณของชิ้นงานขึ้นสองเท่า",
-              "B": "ช่วยถ่ายทอดรูปร่าง สัดส่วน และรายละเอียดมิติทางกายภาพของชิ้นงานให้ผู้ปฏิบัติตามมองเห็นภาพตรงกันชัดเจน",
-              "C": "ช่วยทดแทนการวัดสเปคขนาดความยาวขณะทำงานจริง",
-              "D": "ช่วยทดสอบประสิทธิภาพต้านกระแสไฟฟ้าวาล์ว"
-            },
-            correctAnswer: "B",
-            explanation: "ภาพร่างและแบบฉายต่าง ๆ บ่งชี้มิติทางกายภาพ ขนาด ทิศทางประกอบชิ้นส่วน เพื่อให้ช่างและทีมงานเข้าใจและประดิษฐ์ขึ้นรูปได้ถูกต้องตรงสเปค"
-          },
-          {
-            question: "การสืบค้นสิทธิบัตร (Patents) ในขั้นตอนรวบรวมข้อมูลมีประโยชน์สูงสุดต่อวิศวกรอย่างไร?",
-            choices: {
-              "A": "เพื่อให้เกิดลิขสิทธิ์ความคุ้มครองระบบของตนอัตโนมัติ",
-              "B": "เพื่อตรวจสอบแนวคิด เทคโนโลยีที่มีอยู่ และหลีกเลี่ยงการลอกเลียนแบบโดยหาจุดต่างพัฒนาเพิ่มประสิทธิภาพ",
-              "C": "เพื่อคัดลอกพิมพ์เขียวมาทำจำหน่ายตรงตามสเปคทันที",
-              "D": "เพื่อนำรหัสข้อมูลไปเขียนในโครงงานโดยไม่ต้องร่างชิ้นงาน"
-            },
-            correctAnswer: "B",
-            explanation: "การค้นสิทธิบัตรช่วยให้รู้ขีดความสามารถการออกแบบที่มีในปัจจุบันเพื่อนำแนวคิดมาดัดแปลงแก้ไขและสร้างนวัตกรรมใหม่โดยไม่ละเมิดลิขสิทธิ์ผู้อื่น"
-          },
-          {
-            question: "วิชา \"การออกแบบและเทคโนโลยี\" รวมองค์ความรู้เรื่องใดเข้าด้วยกันในการพัฒนาแนวทางวิศวกรรม?",
-            choices: {
-              "A": "วิทยาศาสตร์, เทคโนโลยี, วิศวกรรมศาสตร์ และคณิตศาสตร์ (STEM)",
-              "B": "ศิลปะการวาดภาพทัศนียภาพ และภูมิศาสตร์สิ่งแวดล้อมป่าไม้",
-              "C": "วิชาประวัติศาสตร์การเมือง และกฎหมายสิทธิมนุษยชนอาเซียน",
-              "D": "วิชาเคมีของเสียอุตสาหกรรมหนักเพียงอย่างเดียว"
-            },
-            correctAnswer: "A",
-            explanation: "สะเต็ม (STEM) เป็นการบูรณาการหลักวิทยาศาสตร์ เทคโนโลยี วิศวกรรมศาสตร์ และคณิตศาสตร์ เพื่อนำมาประยุกต์แก้ไขปัญหาอย่างรอบด้านมีประสิทธิภาพ"
-          },
-          {
-            question: "การระดมความคิดเห็นในกลุ่มควรยึดหลักข้อใดเพื่อให้ได้แนวทางการแก้ไขปัญหาที่ดีหลากหลาย?",
-            choices: {
-              "A": "จำกัดสิทธิ์ให้พูดเฉพาะหัวหน้ากลุ่มเท่านั้นเพื่อตัดความวุ่นวาย",
-              "B": "เน้นปริมาณความคิดที่แปลกใหม่และสร้างบรรยากาศเปิดกว้างไม่ด่วนตัดสินความคลาดเคลื่อนทางความคิดของผู้อื่น",
-              "C": "เน้นคัดเลือกเฉพาะความคิดที่ประหยัดงบประมาณต่ำกว่าหนึ่งร้อยบาทเสมอ",
-              "D": "ให้ใช้แนวความคิดจากหนังสือเรียน อจท. เท่านั้นห้ามดัดแปลง"
-            },
-            correctAnswer: "B",
-            explanation: "การระดมสมอง (Brainstorming) ที่มีประสิทธิภาพต้องสร้างเวทีเสรี ปลอดการตัดสิน วิจารณ์ เพื่อดึงเอาแนวคิดที่หลากหลายออกมาก่อนจะนำมาจัดกลุ่มคัดกรองในภายหลัง"
-          },
-          {
-            question: "หากต้องการเก็บข้อมูลความพึงพอใจการใช้งานชิ้นงานต้นแบบ เพื่อนำมาปรับปรุง ขั้นตอนนี้จัดเป็นกระบวนการส่วนใด?",
-            choices: {
-              "A": "การระบุปัญหา",
-              "B": "การออกแบบชิ้นงาน",
-              "C": "การทดสอบ ประเมินผล และปรับปรุงแก้ไขวิธีการแก้ปัญหาหรือชิ้นงาน",
-              "D": "การรวบรวมข้อมูลเบื้องต้น"
-            },
-            correctAnswer: "C",
-            explanation: "การเก็บฟีดแบ็กความพึงพอใจจากกลุ่มผู้ใช้เป้าหมายหลังการทดลองใช้งาน เป็นข้อมูลประเมินผลประสิทธิภาพการทำงาน (Evaluation) ในส่วนการทดสอบปรับปรุง"
-          },
-          {
-            question: "สิ่งใดที่วิศวกรต้องปฏิบัติในขั้นตอนการทดสอบ (Testing) เพื่อให้แน่ใจว่าอุปกรณ์พร้อมจำหน่ายในเชิงคุณภาพ?",
-            choices: {
-              "A": "การออกแบบตารางราคาขายในตลาดเสรี",
-              "B": "กำหนดวิธีบันทึกค่าตัวแปรทดสอบและวัดค่าผลงานตามสถานการณ์เงื่อนไขที่กำหนดไว้อย่างแม่นยำ",
-              "C": "การจัดหาพรีเซนเตอร์โฆษณาสินค้า",
-              "D": "การยกเลิกส่วนที่ต้องเขียนโปรแกรมควบคุม"
-            },
-            correctAnswer: "B",
-            explanation: "การทำสอบที่เป็นวิทยาศาสตร์ต้องมีเกณฑ์วัดผล ตัวแปรควบคุม และวิธีการเก็บสถิติที่มีความเที่ยงตรงเพื่อสะท้อนประสิทธิภาพจริงของชิ้นงานนั้น"
-          },
-          {
-            question: "ข้อใดเปรียบเทียบความแตกต่างระหว่างวิทยาศาสตร์กับวิศวกรรมศาสตร์ได้ถูกต้อง?",
-            choices: {
-              "A": "วิทยาศาสตร์เน้นประดิษฐ์เครื่องประดับ ส่วนวิศวกรรมเน้นคำนวณการเดินป่า",
-              "B": "วิทยาศาสตร์เน้นการแสวงหาความรู้และความเข้าใจธรรมชาติ ส่วนวิศวกรรมเน้นการประยุกต์ความรู้แก้ปัญหาและสร้างเทคโนโลยีใหม่",
-              "C": "วิทยาศาสตร์เน้นสร้างสมาร์ทโฟน ส่วนวิศวกรรมเน้นค้นหาเซลล์แบคทีเรีย",
-              "D": "ไม่มีความแตกต่างกันเลย ทั้งสองศาสตร์เป็นเรื่องเดียวกันร้อยเปอร์เซ็นต์"
-            },
-            correctAnswer: "B",
-            explanation: "วิทยาศาสตร์ (Science) มุ่งอธิบายปรากฏการณ์ธรรมชาติและสร้างทฤษฎี ส่วนวิศวกรรมศาสตร์ (Engineering) เน้นนำทฤษฎีนั้นไปสร้างเทคโนโลยีและออกแบบระบบแก้ปัญหาชีวิตประจำวัน"
-          },
-          {
-            question: "ในการนำเสนอผลงานเชิงวิศวกรรม โครงสร้างสไลด์ที่ขาดไม่ได้เพื่อความโปร่งใสและหลักการที่ถูกต้องคือสิ่งใด?",
-            choices: {
-              "A": "ภาพถ่ายสมาชิกทีมแต่งตัวตามสตรีทแฟชั่น",
-              "B": "กระบวนการตัดสินใจคัดเลือกข้อมูล แนวคิดทางทฤษฎี อุปกรณ์ วิธีประเมิน และผลลัพธ์การแก้ไขข้อบกพร่องตามจริง",
-              "C": "รหัสโค้ดควบคุมทั้งหมดทุกบรรทัดยาวห้าหน้ากระดาษ",
-              "D": "รายชื่อร้านค้าภายนอกที่ให้การสปอนเซอร์งบประมาณกลุ่มทั้งหมด"
-            },
-            correctAnswer: "B",
-            explanation: "การนำเสนอเชิงเทคนิคต้องเน้นขั้นตอนการคิด ข้อมูลวิทยาศาสตร์รองรับ แนวคิดทางเลือก และหลักการตัดสินใจออกแบบทางวิศวกรรมที่สมเหตุสมผล"
-          },
-          {
-            question: "หากชิ้นงานชำรุดเสียหายระเบิดหลังการเปิดใช้เป็นครั้งแรก แสดงว่าขาดประสิทธิภาพที่รอบคอบในขั้นตอนใดของกระบวนการ?",
-            choices: {
-              "A": "การเลือกวิธีเผยแพร่นำเสนอผลงาน",
-              "B": "การวิเคราะห์คุณสมบัติวัสดุ การประเมินความปลอดภัย และขั้นตอนวางแผนประกอบเชิงทดสอบที่รัดกุม",
-              "C": "การระบุผู้ได้รับผลกระทบในขั้นตอน 5W1H",
-              "D": "การตั้งชื่อชุดแบบทดสอบรายสัปดาห์"
-            },
-            correctAnswer: "B",
-            explanation: "การแตกร้าว เสียหาย หรือไฟลัดวงจรชี้ถึงการคำนวณผิดพลาดด้านวัสดุ แรงดันไฟฟ้า หรือขาดการทดสอบชิ้นส่วนย่อยในสภาพปลอดภัยก่อนป้อนพลังงานจริง"
-          },
-          {
-            question: "เหตุใดกระบวนการออกแบบเชิงวิศวกรรมจึงมีลักษณะเป็น \"วงจรย้อนกลับ\" (Feedback loop)?",
-            choices: {
-              "A": "เพื่อให้นักเรียนต้องใช้เวลาทำรายงานสัปดาห์ละหลายแผ่นโดยไม่มีวันเสร็จสิ้น",
-              "B": "เนื่องจากข้อผิดพลาดในขั้นตอนทดสอบหรือใช้งานจริงช่วยกระตุ้นให้ย้อนกลับไปปรับปรุงไอเดียหรือแก้ไขการประกอบได้ตลอดเวลา",
-              "C": "เนื่องจากต้องการลดราคาวัสดุผลิตเชิงพาณิชย์ให้คงที่ตลอดปี",
-              "D": "เพราะเป็นโครงสร้างข้อบังคับตามสิทธิบัตรสากลเท่านั้น"
-            },
-            correctAnswer: "B",
-            explanation: "การทดสอบและประเมินผลมักเผยให้เห็นข้อจำกัดใหม่ ๆ ทำให้นักออกแบบสามารถย้อนกลับไปยังขั้นรวบรวมข้อมูลหรือร่างภาพเพื่อปรับแก้ได้จนกว่าจะได้ผลงานสมบูรณ์"
-          }
-        ]
-      },
-      3: {
-        title: "หน่วยการเรียนรู้ที่ 3: วัสดุ อุปกรณ์ เครื่องมือ กลไก ไฟฟ้า และอิเล็กทรอนิกส์",
-        questions: [
-          {
-            question: "ข้อใดคือนิยามและหน้าที่หลักของระบบ \"กลไก\" (Mechanism) ในสิ่งประดิษฐ์?",
-            choices: {
-              "A": "ตัวที่ป้อนข้อมูลสถานะให้แก่ซีพียูรับส่งพารามิเตอร์",
-              "B": "โครงสร้างการส่งถ่ายพลังงานเพื่อเปลี่ยนทิศทาง ขนาด หรือความเร็วของการเคลื่อนที่ของแรง",
-              "C": "วัสดุที่ทำหน้าทียืดหยุ่นรับแรงกระแทกจากยางนอกรถ",
-              "D": "ตัววัดปริมาณความดันของเหลวในถังแก๊สอุตสาหกรรม"
-            },
-            correctAnswer: "B",
-            explanation: "กลไก (Mechanism) คือ ส่วนที่รับหน้าที่รับแรงส่งจากต้นกำลัง (เช่น มอเตอร์, แรงคน) และควบคุมทิศทางหรือเปลี่ยนแปลงขนาดความเร็วเพื่อทำงานตามที่ต้องการ"
-          },
-          {
-            question: "เครื่องกลอย่างง่ายข้อใดต่อไปนี้ที่ช่วยควบคุมทิศทางการยกของขึ้นชั้นสูงโดยไม่ช่วยผ่อนแรงน้ำหนักวัตถุเลย?",
-            choices: {
-              "A": "รอกเดี่ยวเคลื่อนที่ (Movable Pulley)",
-              "B": "รอกเดี่ยวตายตัว (Fixed Pulley)",
-              "C": "ระนาบเอียงระดับ 30 องศา",
-              "D": "ระบบล้อและเพลาขับเคลื่อนเฟือง"
-            },
-            correctAnswer: "B",
-            explanation: "รอกเดี่ยวตายตัวทำหน้าที่อำนวยความสะดวกในการดึงทิศทางลงเพื่อยกวัตถุขึ้นเท่านั้น โดยแรงที่ใช้ดึงเท่ากับน้ำหนักวัตถุพอดีจึงไม่ผ่อนแรง"
-          },
-          {
-            question: "คานงัดมีกี่ประเภทหลักตามตำแหน่งทางกลศาสตร์ของจุดหมุน แรงกดพยายาม และแรงต้านน้ำหนัก?",
-            choices: {
-              "A": "2 ประเภทหลัก",
-              "B": "3 ประเภทหลัก",
-              "C": "4 ประเภทหลัก",
-              "D": "5 ประเภทหลัก"
-            },
-            correctAnswer: "B",
-            explanation: "คานงัดถูกแบ่งเป็น 3 ประเภทหลัก (คานอันดับ 1, 2, และ 3) โดยยึดตำแหน่งของ จุดหมุน (F), แรงต้าน/น้ำหนักวัตถุ (W), และแรงพยายาม/จุดออกแรง (E) เป็นเกณฑ์"
-          },
-          {
-            question: "หากวิเคราะห์ \"ที่ตัดเล็บ\" (Nail Clipper) ข้อใดระบุกลไกประเภทคานงัดที่ซ้อนกันอยู่ได้ถูกต้อง?",
-            choices: {
-              "A": "เป็นคานอันดับที่ 1 ซ้อนทับประสานงานร่วมกับคานอันดับที่ 2",
-              "B": "เป็นคานอันดับที่ 2 ซ้อนทับประสานงานร่วมกับคานอันดับที่ 3",
-              "C": "เป็นคานอันดับที่ 1 ซ้อนทับประสานงานร่วมกับคานอันดับที่ 3",
-              "D": "เป็นคานอันดับที่ 3 สองชิ้นยึดด้วยสปริงขดเหนี่ยวรั้ง"
-            },
-            correctAnswer: "C",
-            explanation: "ตัวกดด้านบนของที่ตัดเล็บทำหน้าที่เป็นคานอันดับ 1 (จุดหมุนอยู่ท้าย จุดออกแรงกดอยู่ปลาย) ส่วนโครงใบมีดประกบกันเป็นคานอันดับ 3 (จุดหมุนอยู่ท้าย จุดหนีบเล็บอยู่ปลาย โดยมีจุดดึงแกนกลางอยู่ระหว่างกลางทำหน้าที่กดตัด)"
-          },
-          {
-            question: "เมื่อลากขยะในรถเข็นปูนดินล้อเดี่ยว แรงต้านน้ำหนักของดินวางอยู่ตรงกลางระหว่างจุดหมุน (ล้อหน้า) และมือคนจับยกด้านหลัง จัดอยู่ในกลุ่มคานประเภทใด?",
-            choices: {
-              "A": "คานอันดับที่ 1",
-              "B": "คานอันดับที่ 2",
-              "C": "คานอันดับที่ 3",
-              "D": "ไม่ใช่คานงัดทางกลศาสตร์"
-            },
-            correctAnswer: "B",
-            explanation: "คานอันดับที่ 2 คือคานที่มีจุดต้านน้ำหนักหรือตัวโหลด (W) อยู่กึ่งกลางระหว่างจุดหมุน (F) และจุดออกแรงพยายาม (E) เช่น รถเข็นทราย ที่เปิดขวด"
-          },
-          {
-            question: "สมบัติทางฟิสิกส์เด่นสุดของ \"เซรามิก\" (Ceramics) คือข้อใดที่นิยมนำมาสร้างปลอกหัวเทียนหรือถ้วยเคลือบสายไฟ?",
-            choices: {
-              "A": "ความเหนียวสูงมาก ทนแรงดึงสามารถเคาะจัดรูปเป็นเส้นลวดบางเฉียบได้ง่าย",
-              "B": "ความต้านทานแรงดึงต่ำ แข็งและเปราะ ทนความร้อนสูงมาก และเป็นฉนวนกันไฟฟ้ายอดเยี่ยม",
-              "C": "สามารถยืดขยายขนาดตามความเปียกชื้นของอากาศโดยรอบ",
-              "D": "จุดหลอมเหลวต่ำมาก ละลายตัวเองที่อุณหภูมิ 80 องศาเซลเซียส"
-            },
-            correctAnswer: "B",
-            explanation: "เซรามิกมีจุดเด่นคือแข็ง ทนทานต่อการขูดขีด ทนไฟอุณหภูมิสูงมาก และไม่นำไฟฟ้า จึงนิยมประยุกต์ทำฉนวนถ้วยไฟฟ้าแรงสูงและชิ้นส่วนเตาเผา"
-          },
-          {
-            question: "วัสดุพอลิเมอร์ประเภทเทอร์โมพลาสติก (Thermoplastics) แตกต่างจากพลาสติกเทอร์โมเซตติ้ง (Thermosetting) ในด้านใดเป็นสำคัญ?",
-            choices: {
-              "A": "เทอร์โมพลาสติกนำความร้อนได้เทียบเท่ากับทองแดงบริสุทธิ์",
-              "B": "เทอร์โมพลาสติกหลอมละลายเพื่อกลับมารีไซเคิลขึ้นรูปซ้ำได้เมื่อได้รับความร้อน ส่วนเทอร์โมเซตติ้งจะไม่อ่อนตัวและไหม้เป็นเถ้าถ่านเมื่อร้อนจัด",
-              "C": "เทอร์โมพลาสติกมีความเปราะบางและทนต่อสารเคมีดีกว่าเซรามิก",
-              "D": "เทอร์โมพลาสติกไม่สามารถทำเป็นสีสันโปร่งใสได้เลย"
-            },
-            correctAnswer: "B",
-            explanation: "เทอร์โมพลาสติกมีสายโซ่โมเลกุลแบบเส้นตรงจึงสามารถหลอมละลายซ้ำได้ง่าย ส่วนเทอร์โมเซตติ้งเป็นโซ่โยงตาข่ายเหนียวแน่น เผาแล้วจะถ่านกรอบไม่หลอมเหลวซ้ำ"
-          },
-          {
-            question: "ถ้าต้องการวัดความกว้างภายนอก เส้นผ่านศูนย์กลางภายใน และความลึกของกระบอกสูบมอเตอร์อย่างละเอียด ควรเลือกใช้เครื่องมือใดวัด?",
-            choices: {
-              "A": "ตลับเมตรเหล็กยาว 5 เมตร",
-              "B": "เวอร์เนียร์คาลิปเปอร์ (Vernier Caliper)",
-              "C": "ไม้บรรทัดเหล็กเขียนแบบ",
-              "D": "สายวัดตัวช่างตัดเสื้อ"
-            },
-            correctAnswer: "B",
-            explanation: "เวอร์เนียร์คาลิปเปอร์ได้รับการออกแบบโครงสร้างให้มีปากวัดนอกสำหรับวัดความกว้าง ปากวัดในสำหรับวัดขนาดด้านใน และมีก้านยาวสำหรับวัดความลึกได้อย่างละเอียดระดับทศนิยมมิลลิเมตร"
-          },
-          {
-            question: "ข้อใดถือเป็นการเลือกปฏิบัติด้านความปลอดภัยในการเลือกใช้และจัดเก็บเครื่องมือช่างไม้พื้นฐาน?",
-            choices: {
-              "A": "ใช้คีมตัดลวดดึงเคาะแทนตะปูเมื่อค้อนสูญหาย",
-              "B": "เช็ดทำความสะอาดทาด้วยน้ำมันกันสนิมหลังใช้ และเก็บในตู้กล่องเครื่องมือที่พ้นมือเด็ก",
-              "C": "วางสิ่วปากคมหงายชี้ฟ้าบนพื้นเพื่อความสะดวกในการหยิบครั้งต่อไป",
-              "D": "ใช้เลื่อยลวดฉลุไม้สำหรับตัดเหล็กหนารูปทรงกระบอก"
-            },
-            correctAnswer: "B",
-            explanation: "การเช็ดถูทำความสะอาดด้วยน้ำมันป้องกันการเกิดอ็อกไซด์สนิมบนผิวเหล็ก และเก็บในที่มิดชิดเป็นวินัยหลักเพื่อรักษาความปลอดภัยและยืดอายุการใช้งานเครื่องมือ"
-          },
-          {
-            question: "หากต้องการจำกัดกระแสไฟฟ้าเพื่อควบคุมปริมาณความสว่างหลอดไฟ LED ในวงจร 5 โวลต์ อุปกรณ์ไฟฟ้าตัวใดที่ควรนำมาต่ออนุกรมร่วมกับหลอด?",
-            choices: {
-              "A": "ตัวต้านทาน (Resistor)",
-              "B": "ตัวเก็บประจุ (Capacitor)",
-              "C": "ไดโอดเชื่อมทางผ่านประจุ (Diode)",
-              "D": "รีเลย์สลับสายส่งกำลัง (Relay)"
-            },
-            correctAnswer: "A",
-            explanation: "ตัวต้านทานมีหน้าที่ต้านประจุกระแสไฟฟ้าตามกฎของโอห์ม (I = V/R) ยิ่งความต้านทานสูงขึ้นกระแสไฟฟ้ายิ่งไหลผ่านได้ลดลง ช่วยควบคุมระดับกระแสไฟไม่ให้เกินเกณฑ์หลอดไหม้"
-          },
-          {
-            question: "หน่วยวัดสากลสำหรับระบุค่าความสามารถ \"ความต้านทานไฟฟ้า\" ของตัวต้านทานคือหน่วยใด?",
-            choices: {
-              "A": "แอมแปร์ (Ampere)",
-              "B": "โวลต์ (Volt)",
-              "C": "วัตต์ (Watt)",
-              "D": "โอห์ม (Ohm)"
-            },
-            correctAnswer: "D",
-            explanation: "ความต้านทานไฟฟ้ามีหน่วยวัดทางสากลเรียกว่า โอห์ม (Ohm หรือสัญลักษณ์กรีกตัวโอเมก้า Ω)"
-          },
-          {
-            question: "ขั้วของไดโอดเปล่งแสง (LED) มีชื่อขั้วทางไฟฟ้าด้านบวกและลบเรียกว่าอย่างไรตามลำดับ?",
-            choices: {
-              "A": "ขั้วแคโทด (Cathode) และ ขั้วแอโนด (Anode)",
-              "B": "ขั้วแอโนด (Anode) และ ขั้วแคโทด (Cathode)",
-              "C": "ขั้วบวก และ ขั้วกลาง",
-              "D": "ขั้วกราวด์ และ ขั้วคอนเดนเซอร์"
-            },
-            correctAnswer: "B",
-            explanation: "ขั้วบวกของ LED เรียกว่า แอโนด (Anode) ซึ่งต่อรับแรงดันไฟบวก และขั้วลบเรียกว่า แคโทด (Cathode) ต่อลงกราวด์ไฟลบ"
-          },
-          {
-            question: "ในการสังเกตขั้วทางกายภาพของหลอดไฟ LED ที่ขาสัญญาณยังไม่ถูกตัดสั้น ขาของขั้วแอโนด (Anode) มีลักษณะอย่างไร?",
-            choices: {
-              "A": "ขามีความสั้นกว่าขั้วลบแคโทดเล็กน้อย",
-              "B": "ขามีความยาวกว่าขั้วลบแคโทด และรอยตัดขอบฐานหลอดจะกลมไม่แบน",
-              "C": "ขามีขนาดอ้วนและบิดงอเปรียบเทียบยาก",
-              "D": "ขามีเส้นลวดประกบด้วยฉนวนสีขาวหนา"
-            },
-            correctAnswer: "B",
-            explanation: "หลอดไฟ LED ทั่วไป ผลิตให้ขายาวฝั่งแอโนด (บวก) ยาวกว่า ขาแคโทด (ลบ) และที่ขอบกระจกฐานหลอดฝั่งลบจะมีรอยหยักปาดเรียบแบนเพื่อชี้แสดงประเภทขั้วลบทางสายตา"
-          },
-          {
-            question: "ไดโอดเปล่งแสง (LED) ทำงานแตกต่างจากหลอดไฟฟ้าไส้ทังสเตนแบบดั้งเดิมอย่างไร?",
-            choices: {
-              "A": "LED ใช้พลังงานความร้อนป้อนกลับสูงกว่า",
-              "B": "LED มีอัตราการแปลงพลังงานไฟฟ้าเป็นแสงสว่างโดยตรง ปลดปล่อยความร้อนต่ำมาก และมีอายุการทำงานยาวนานประหยัดไฟยอดเยี่ยม",
-              "C": "LED ยอมรับกระแสไฟไหลกลับทิศทางได้สะดวกและไม่มีขั้วบวกขั้วลบ",
-              "D": "LED เปล่งแสงสว่างเฉพาะเมื่อรับกระแสไฟฟ้าสลับความต่างศักย์สูง"
-            },
-            correctAnswer: "B",
-            explanation: "LED ใช้สารกึ่งตัวนำเปล่งแสงสว่างโดยไม่ต้องใช้ขดลวดนำความร้อน ทำให้ลดความสูญเสียทางพลังงานเป็นความร้อนสะสม ส่งผลให้ประหยัดพลังงานสูงมากและทนทาน"
-          },
-          {
-            question: "เซนเซอร์ตรวจจับและแปลงระดับความเข้มแสงเป็นค่ากระแสไฟฟ้าหรือความต้านทานเรียกว่าอุปกรณ์ใด?",
-            choices: {
-              "A": "ตัวต้านทานแปรค่าตามอุณหภูมิ (NTC Thermistor)",
-              "B": "ตัวต้านทานแปรค่าตามความเข้มแสงหรือแอลดีอาร์ (LDR - Light Dependent Resistor)",
-              "C": "ทรานซิสเตอร์ชนิดขยายกระแสไฟหลัก (NPN Transistor)",
-              "D": "สวิตช์แม่เหล็กรีเซ็ตปิดระบบ (Reed Switch)"
-            },
-            correctAnswer: "B",
-            explanation: "แอลดีอาร์ (LDR) เป็นอุปกรณ์สารกึ่งตัวนำประเภทแคดเมียมซัลไฟด์ที่มีคุณสมบัติแปรผันค่าความต้านทานตามระดับแสงตกกระทบ ยิ่งสว่างความต้านทานยิ่งต่ำ"
-          },
-          {
-            question: "เมื่อออกแบบโครงงาน \"ถังขยะอัจฉริยะเปิดปิดฝาอัตโนมัติ\" บอร์ดสมองกล Arduino ทำหน้าที่เป็นองค์ประกอบส่วนใดของระบบทางเทคโนโลยี?",
-            choices: {
-              "A": "ตัวป้อน (Input) สั่งการ",
-              "B": "กระบวนการ (Process) วิเคราะห์ประมวลผลเงื่อนไข",
-              "C": "ผลผลิต (Output) สัมผัสภายนอก",
-              "D": "ข้อมูลย้อนกลับ (Feedback) ป้องกันฝาหนีบ"
-            },
-            correctAnswer: "B",
-            explanation: "บอร์ดคอนโทรลเลอร์ Arduino ทำหน้าที่อ่านประมวลสัญญาณเทียบโปรแกรมซอฟต์แวร์ตามเงื่อนไข (Process) เพื่อควบคุมชิ้นงานเอาต์พุตเซอร์โวมอเตอร์ให้ทำงานตามโปรแกรม"
-          },
-          {
-            question: "หากวิเคราะห์ระบบขับเคลื่อนด้วยพลังงานกลไฟฟ้า ข้อใดเรียกว่า \"ตัวส่งกำลังส่งมอบแรงหมุนระยะไกลผ่านแนวแกนและช่วยเปลี่ยนรอบมอเตอร์\"?",
-            choices: {
-              "A": "โซ่ขับร่วมกับเฟืองสายพาน (Chain and Sprocket / Belt and Pulley)",
-              "B": "เหล็กพ่นสีโครงป้องกันความร้อนแบน",
-              "C": "ตัวนำไฟฉนวนแก้วกระจก",
-              "D": "แผ่นกรองฝุ่นใยแก้วสังเคราะห์"
-            },
-            correctAnswer: "A",
-            explanation: "สายพานคู่กับพูลเล่ย์ และโซ่ขับคู่กับเฟืองโซ่ ทำหน้าที่ส่งกำลังขับและแรงหมุนในทิศทางขนานกันจากแกนขับเคลื่อนไปยังแกนรับกำลังระยะไกลได้ดี"
-          },
-          {
-            question: "วัสดุในข้อใดที่จัดอยู่ในกลุ่ม \"โลหะนอกกลุ่มเหล็ก\" (Non-Ferrous Metals) ที่มีความต้านทานการเกิดสนิมเหล็กดีเยี่ยมและน้ำหนักเบา?",
-            choices: {
-              "A": "เหล็กหล่อสีเทาทำเสื้อสูบมอเตอร์",
-              "B": "เหล็กกล้าคาร์บอนต่ำทำสลักลวดตอก",
-              "C": "อลูมิเนียม (Aluminium) และทองแดง (Copper)",
-              "D": "แร่เหล็กกล้าผสมแมงกานีสทนแรงเสียดทาน"
-            },
-            correctAnswer: "C",
-            explanation: "โลหะนอกกลุ่มเหล็กคือโลหะที่ไม่มีส่วนผสมของแร่เหล็ก เช่น อลูมิเนียม ทองแดง ตะกั่ว ซึ่งจะไม่เกิดปฏิกิริยากับน้ำเกิดสนิมแดงของเหล็ก มีน้ำหนักเบาและทนความชื้นดี"
-          },
-          {
-            question: "ตัวเก็บประจุ (Capacitor) ทำหน้าที่อะไรที่เป็นประโยชน์หลักในระบบแผงวงจรอิเล็กทรอนิกส์กรองกระแส?",
-            choices: {
-              "A": "จำกัดการไหลของกระแสไฟให้คงที่เทียบเท่าตัวต้านทานเดี่ยว",
-              "B": "สะสมประจุไฟฟ้าชั่วคราวและคายประจุออกมาเพื่อช่วยกรองแรงดันไฟให้เรียบสม่ำเสมอหรือสกัดกั้นสัญญาณไฟตรง",
-              "C": "แปลงกระแสไฟสลับ 220 โวลต์เป็นพลังงานแสงสว่างกระพริบถถี่",
-              "D": "สลับทางเชื่อมขั้วมอเตอร์โดยรับคำสั่งผ่านโปรแกรมคอมพิวเตอร์"
-            },
-            correctAnswer: "B",
-            explanation: "ตัวเก็บประจุทำหน้าที่เก็บกักพลังงานไฟฟ้าในรูปสนามไฟฟ้าชั่วคราว และจะปล่อยพลังงานเพื่อพยุงรักษาระดับแรงดันไฟเลี้ยงไม่ให้เกิดการตกวูบของสัญญาณในแผงวงจร"
-          },
-          {
-            question: "หากประกอบสายไฟเส้นเล็กเข้ากับวงจรมอเตอร์แรงดันไฟสูงมากเกินพิกัด จะเกิดอันตรายที่เป็นความล้มเหลวทางไฟฟ้าอย่างไร?",
-            choices: {
-              "A": "ค่าความต้านทานจะลดลงเหลือศูนย์แอมแปร์ทันที",
-              "B": "ความร้อนจะสะสมสูงเกินไปส่งผลให้ฉนวนพลาสติกไหม้และเกิดการลัดวงจรไฟลุกเป็นเพลิง",
-              "C": "มอเตอร์ไฟฟ้าจะหมุนสวนทิศทางป้อนพัดลมระบายความชื้นกลับด้าน",
-              "D": "แรงดันไฟฟ้าโวลต์จะกลายเป็นศูนย์โดยปลั๊กสลับไฟบ้านไม่ได้รับผลกระทบใด ๆ"
-            },
-            correctAnswer: "B",
-            explanation: "กระแสไฟฟ้าที่ไหลเกินพิกัดความทนทานของหน้าตัดสายทองแดง ทำให้เกิดแรงเสียดทานความร้อนสะสมที่สูงจนฉนวนพลาสติกละลายและนำไปสู่การลัดวงจรและเพลิงไหม้ได้"
-          }
-        ]
-      }
-    };
-
-    let currentStudentId = '';
-    let currentStudentName = '';
-    let currentClassroom = '';
-    let currentUnitId = 1;
-    let currentQuestionIndex = 0;
-    let userAnswers = {}; // Map of question index -> selected choice (A, B, C, D)
-    let selectedUnitForExam = null;
-    
-    // Check if student is already logged in on load
-    document.addEventListener('DOMContentLoaded', () => {
-      const savedId = sessionStorage.getItem('studentId');
-      const savedName = sessionStorage.getItem('studentName');
-      const savedClass = sessionStorage.getItem('studentClassroom');
-      
-      if (savedId && savedName && savedClass) {
-        currentStudentId = savedId;
-        currentStudentName = savedName;
-        currentClassroom = savedClass;
-        showMenuScreen();
-      }
-
-      // Add Enter key event listener to passcode input
-      const passcodeInput = document.getElementById('quizPasscodeInput');
-      if (passcodeInput) {
-        passcodeInput.addEventListener('keypress', (e) => {
-          if (e.key === 'Enter') {
-            submitPasscode();
-          }
-        });
-      }
-    });
-
-    // Handle student login
-    function handleQuizLogin() {
-      const idInput = document.getElementById('studentIdInput').value.trim();
-      const nameInput = document.getElementById('studentNameInput').value.trim();
-      const classSelect = document.getElementById('classRoomSelect').value;
-      
-      if (idInput.length !== 5 || isNaN(idInput)) {
-        alert('กรุณากรอกรหัสประจำตัวนักเรียนเป็นตัวเลข 5 หลัก');
-        return;
-      }
-      if (!nameInput) {
-        alert('กรุณากรอกชื่อ-นามสกุล');
-        return;
-      }
-      if (!classSelect) {
-        alert('กรุณาเลือกห้องเรียน');
-        return;
-      }
-      
-      currentStudentId = idInput;
-      currentStudentName = nameInput;
-      currentClassroom = classSelect;
-      
-      // Save to sessionStorage
-      sessionStorage.setItem('studentId', currentStudentId);
-      sessionStorage.setItem('studentName', currentStudentName);
-      sessionStorage.setItem('studentClassroom', currentClassroom);
-      
-      showMenuScreen();
-    }
-
-    // Logout student
-    function handleQuizLogout() {
-      sessionStorage.removeItem('studentId');
-      sessionStorage.removeItem('studentName');
-      sessionStorage.removeItem('studentClassroom');
-      
-      currentStudentId = '';
-      currentStudentName = '';
-      currentClassroom = '';
-      
-      document.getElementById('quiz-menu-container').style.display = 'none';
-      document.getElementById('quiz-login-container').style.display = 'block';
-      document.getElementById('quizLoginForm').reset();
-    }
-
-    // Show selection menu screen
-    function showMenuScreen() {
-      document.getElementById('quiz-login-container').style.display = 'none';
-      
-      const welcomeInfo = document.getElementById('welcome-student-info');
-      welcomeInfo.innerText = `${currentStudentName} (รหัสประจำตัว: ${currentStudentId}) ชั้น ${currentClassroom}`;
-      
-      const menuContainer = document.getElementById('quiz-menu-container');
-      menuContainer.style.display = 'block';
-      menuContainer.classList.add('fade-in-up');
-    }
-    
-    // Triggered when clicking "เริ่มทำแบบทดสอบ" - shows passcode modal
-    function startQuiz(unitId) {
-      selectedUnitForExam = unitId;
-      
-      // Clear previous inputs
-      document.getElementById('quizPasscodeInput').value = '';
-      document.getElementById('passcode-error-msg').style.display = 'none';
-      
-      // Show modal
-      const modal = document.getElementById('quiz-passcode-modal');
-      modal.style.display = 'flex';
-      modal.classList.add('fade-in-up');
-    }
-
-    // Close passcode modal
-    function closePasscodeModal() {
-      document.getElementById('quiz-passcode-modal').style.display = 'none';
-      selectedUnitForExam = null;
-    }
-
-    // Check passcode and load quiz
-    function submitPasscode() {
-      const enteredPasscode = document.getElementById('quizPasscodeInput').value.trim();
-      const requiredPasscode = QUIZ_PASSCODES[selectedUnitForExam];
-      
-      if (enteredPasscode === requiredPasscode) {
-        // Correct passcode: close modal and start quiz
-        document.getElementById('quiz-passcode-modal').style.display = 'none';
-        
-        currentUnitId = selectedUnitForExam;
-        currentQuestionIndex = 0;
-        userAnswers = {};
-        
-        // Hide selection menu, show quiz container
-        document.getElementById('quiz-menu-container').style.display = 'none';
-        const playContainer = document.getElementById('quiz-play-container');
-        playContainer.style.display = 'block';
-        playContainer.classList.add('fade-in-up');
-        
-        renderQuestion();
-      } else {
-        // Incorrect passcode: show warning message
-        document.getElementById('passcode-error-msg').style.display = 'block';
-      }
-    }
-    
-    // Render current question and choices
-    function renderQuestion() {
-      const quiz = quizzesDatabase[currentUnitId];
-      const questionData = quiz.questions[currentQuestionIndex];
-      const totalQuestions = quiz.questions.length;
-      
-      // Set metadata
-      document.getElementById('quiz-unit-title').innerText = quiz.title;
-      document.getElementById('quiz-question-number').innerText = `ข้อที่ ${currentQuestionIndex + 1}/${totalQuestions}`;
-      
-      // Progress Bar width
-      const progressPercent = ((currentQuestionIndex + 1) / totalQuestions) * 100;
-      document.getElementById('quiz-progress').style.width = `${progressPercent}%`;
-      
-      // Question Text
-      document.getElementById('quiz-question-text').innerText = `${currentQuestionIndex + 1}. ${questionData.question}`;
-      
-      // Choices Container
-      const choicesContainer = document.getElementById('choices-container');
-      choicesContainer.innerHTML = '';
-      
-      // Render Choices
-      const selectedChoice = userAnswers[currentQuestionIndex] || null;
-      for (const [letter, text] of Object.entries(questionData.choices)) {
-        const option = document.createElement('div');
-        option.className = `choice-option ${selectedChoice === letter ? 'selected' : ''}`;
-        option.onclick = () => selectChoice(letter);
-        
-        option.innerHTML = `
-          <div class="choice-letter">${letter}</div>
-          <div class="choice-text">${text}</div>
-        `;
-        choicesContainer.appendChild(option);
-      }
-      
-      // Update Buttons
-      document.getElementById('prev-question-btn').disabled = currentQuestionIndex === 0;
-      
-      const nextBtn = document.getElementById('next-question-btn');
-      if (currentQuestionIndex === totalQuestions - 1) {
-        nextBtn.innerHTML = `ส่งข้อสอบ <i class='bx bx-send'></i>`;
-      } else {
-        nextBtn.innerHTML = `ถัดไป <i class='bx bx-chevron-right'></i>`;
-      }
-      
-      // Disable next/submit button until user selects an option
-      nextBtn.disabled = selectedChoice === null;
-    }
-    
-    // Handle choice selection
-    function selectChoice(letter) {
-      userAnswers[currentQuestionIndex] = letter;
-      renderQuestion();
-    }
-    
-    // Move to next question or submit quiz
-    function nextQuestion() {
-      const quiz = quizzesDatabase[currentUnitId];
-      
-      if (currentQuestionIndex === quiz.questions.length - 1) {
-        submitQuiz();
-      } else {
-        currentQuestionIndex++;
-        renderQuestion();
-      }
-    }
-    
-    // Move to previous question
-    function prevQuestion() {
-      if (currentQuestionIndex > 0) {
-        currentQuestionIndex--;
-        renderQuestion();
-      }
-    }
-    
-    // Submit Quiz & Show Result Panel
-    function submitQuiz() {
-      const quiz = quizzesDatabase[currentUnitId];
-      const questions = quiz.questions;
-      let score = 0;
-      
-      // Build review html content
-      const reviewContainer = document.getElementById('review-items-container');
-      reviewContainer.innerHTML = '';
-      
-      questions.forEach((q, idx) => {
-        const userAns = userAnswers[idx];
-        const isCorrect = userAns === q.correctAnswer;
-        if (isCorrect) score++;
-        
-        const reviewItem = document.createElement('div');
-        reviewItem.className = `review-item ${isCorrect ? 'correct' : 'incorrect'}`;
-        
-        reviewItem.innerHTML = `
-          <div class="review-question">
-            ${idx + 1}. ${q.question}
-          </div>
-          <div class="review-answers-grid">
-            <div class="review-ans-row">
-              <span class="badge-status ${isCorrect ? 'success' : 'danger'}">คำตอบของคุณ</span> 
-              <span>${q.choices[userAns]}</span>
-            </div>
-            ${!isCorrect ? `
-            <div class="review-ans-row">
-              <span class="badge-status success">คำตอบที่ถูกต้อง</span> 
-              <span>${q.choices[q.correctAnswer]}</span>
-            </div>` : ''}
-          </div>
-          <div class="review-explanation">
-            <i class='bx bx-bulb'></i> <strong>คำอธิบายหลักวิชาการ:</strong> ${q.explanation}
-          </div>
-        `;
-        reviewContainer.appendChild(reviewItem);
-      });
-      
-      // Render ring score gauge
-      const totalQuestions = questions.length;
-      document.getElementById('result-score-num').innerText = `${score}/${totalQuestions}`;
-      
-      // Calculate dash offset for SVG animation (440 is the perimeter of r=70 circle)
-      const pct = score / totalQuestions;
-      const offset = 440 - (440 * pct);
-      const scoreCircle = document.getElementById('score-circle-fill');
-      scoreCircle.style.strokeDashoffset = offset;
-      
-      // Rating evaluation text
-      let ratingTitle = "";
-      let ratingFeedback = "";
-      const scorePercentage = (score / totalQuestions) * 100;
-      
-      if (scorePercentage === 100) {
-        ratingTitle = `ยอดเยี่ยมระดับยอดมงกุฎ! 🌟`;
-        ratingFeedback = `คุณ ${currentStudentName} ทำคะแนนตอบถูกครบ 20 ข้อเต็ม! ยอดเยี่ยมมากครับ`;
-        scoreCircle.style.stroke = 'var(--accent-color)';
-      } else if (scorePercentage >= 80) {
-        ratingTitle = `ดีมาก! 👍`;
-        ratingFeedback = `ยินดีด้วยครับคุณ ${currentStudentName} ทำคะแนนผ่านเกณฑ์ระดับดีมาก ทบทวนข้อผิดพลาดเพิ่มเติมเพื่อคะแนนเต็มในรอบถัดไป`;
-        scoreCircle.style.stroke = 'var(--primary-color)';
-      } else if (scorePercentage >= 60) {
-        ratingTitle = `ผ่านเกณฑ์มาตรฐาน! 🤝`;
-        ratingFeedback = `คุณ ${currentStudentName} สอบผ่านเกณฑ์มาตรฐาน สามารถเลื่อนดูเฉลยอธิบายข้อที่ตอบผิดด้านล่างได้เลยครับ`;
-        scoreCircle.style.stroke = 'var(--secondary-color)';
-      } else {
-        ratingTitle = `ควรทบทวนเพิ่มเติม! 📚`;
-        ratingFeedback = `คุณ ${currentStudentName} ยังทำคะแนนไม่ผ่านเกณฑ์ 60% แนะนำให้อ่านใบสรุป E-book และลองเข้ามาทดสอบฝีมือใหม่อีกรอบนะครับ`;
-        scoreCircle.style.stroke = '#ef4444';
-      }
-      
-      document.getElementById('result-title').innerText = ratingTitle;
-      document.getElementById('result-feedback-text').innerText = ratingFeedback;
-      
-      // ส่งคะแนนไปยัง Google Sheets แบบเบื้องหลัง
-      sendScoreToSheet(score, totalQuestions);
-
-      // Toggle Views
-      document.getElementById('quiz-play-container').style.display = 'none';
-      const resultContainer = document.getElementById('quiz-result-container');
-      resultContainer.style.display = 'block';
-      resultContainer.classList.add('fade-in-up');
-    }
-    
-    // Restart Current Unit Quiz
-    function restartCurrentQuiz() {
-      // Re-trigger startQuiz to show passcode modal again for security
-      const unit = currentUnitId;
-      document.getElementById('quiz-result-container').style.display = 'none';
-      startQuiz(unit);
-    }
-    
-    // Return to main quiz selection
-    function exitToMenu() {
-      document.getElementById('quiz-result-container').style.display = 'none';
-      document.getElementById('quiz-play-container').style.display = 'none';
-      showMenuScreen();
-    }
-
-    // Print Achievement Certificate
-    function printCertificate() {
-      const quiz = quizzesDatabase[currentUnitId];
-      const questions = quiz.questions;
-      let score = 0;
-      questions.forEach((q, idx) => {
-        if (userAnswers[idx] === q.correctAnswer) score++;
-      });
-      
-      const scorePercentage = ((score / questions.length) * 100).toFixed(0);
-      const currentDate = new Date().toLocaleDateString('th-TH', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      });
-      
-      // Inject details into hidden certificate container
-      document.getElementById('cert-student-name').innerText = currentStudentName;
-      document.getElementById('cert-student-meta').innerText = `รหัสนักเรียน: ${currentStudentId}  ชั้นเรียน: ${currentClassroom}`;
-      document.getElementById('cert-quiz-title').innerText = quiz.title;
-      document.getElementById('cert-score-details').innerText = `ได้คะแนน ${score} เต็ม ${questions.length} คะแนน (คิดเป็น ${scorePercentage}%)`;
-      document.getElementById('cert-date').innerText = `ให้ไว้ ณ วันที่ ${currentDate}`;
-      
-      // Trigger browser print
-      window.print();
-    }
-
-    // ส่งคะแนนสอบไปยัง Google Sheets
-    async function sendScoreToSheet(score, totalQuestions) {
-      if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL') {
-        console.log('ยังไม่ได้กำหนด URL ของ Google Sheets หรืออยู่ในโหมดทดลองในเครื่อง');
-        return;
-      }
-      
-      const percentage = ((score / totalQuestions) * 100).toFixed(0);
-      const quiz = quizzesDatabase[currentUnitId];
-      
-      const payload = {
-        type: "quizScore",
-        timestamp: new Date().toLocaleString('th-TH'),
-        studentId: currentStudentId,
-        studentName: currentStudentName,
-        classRoom: currentClassroom,
-        unitId: currentUnitId,
-        unitTitle: quiz.title,
-        score: score,
-        totalQuestions: totalQuestions,
-        percentage: percentage
-      };
-      
-      try {
-        const response = await fetch(GOOGLE_SCRIPT_URL, {
-          method: 'POST',
-          mode: 'cors',
-          headers: {
-            'Content-Type': 'text/plain;charset=utf-8'
-          },
-          body: JSON.stringify(payload)
-        });
-        
-        if (response.ok) {
-          const result = await response.json();
-          console.log('บันทึกคะแนนสำเร็จ:', result);
-        } else {
-          console.warn('เกิดข้อผิดพลาดในการบันทึกคะแนน:', response.statusText);
-        }
-      } catch (error) {
-        console.error('ไม่สามารถส่งคะแนนไปยัง Google Sheets ได้:', error);
-      }
-    }
-  </script>
 </body>
 </html>
