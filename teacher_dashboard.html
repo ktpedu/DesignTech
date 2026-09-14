@@ -718,16 +718,28 @@
         </div>
         <a href="media.html" class="nav-link ">สื่อการเรียนรู้</a>
         <a href="worksheets.html" class="nav-link ">ใบงาน</a>
-        <div class="nav-dropdown">
-          <a href="#" class="nav-link active">ส่งงาน <i class='bx bx-chevron-down'></i></a>
+                <div class="nav-dropdown">
+          <a href="#" class="nav-link ">ส่งงาน <i class='bx bx-chevron-down'></i></a>
           <div class="dropdown-content">
-            <a href="submit.html">ส่งใบงาน</a>
-            <a href="check_submissions.html">ตรวจสอบการส่งงาน (นักเรียน)</a>
-            <a href="teacher_dashboard.html">แดชบอร์ดครูผู้สอน</a>
+            <a href="submit.html" >ส่งใบงาน</a>
+            <a href="check_submissions.html" >ตรวจสอบการส่งงาน (นักเรียน)</a>
           </div>
         </div>
-        <a href="quizzes.html" class="nav-link ">แบบทดสอบ</a>
-        <a href="midterm.html" class="nav-link ">ข้อสอบกลางภาค</a>
+                <div class="nav-dropdown">
+          <a href="#" class="nav-link ">แบบทดสอบ <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="quizzes.html" >แบบทดสอบย่อย</a>
+            <a href="midterm.html" >ข้อสอบกลางภาค</a>
+            <a href="final.html" >ข้อสอบปลายภาค</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link active">สำหรับครู <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="teacher_dashboard.html" style="color:var(--primary-color); font-weight:bold;">แดชบอร์ดครูผู้สอน</a>
+            <a href="admin.html" >ระบบผู้ดูแลระบบ (Admin)</a>
+          </div>
+        </div>
         <a href="contact.html" class="nav-link ">ติดต่อครูผู้สอน</a>
       </div>
       <div class="nav-toggle" id="navToggle">
@@ -743,7 +755,7 @@
     <div id="lockScreen" class="lock-screen">
       <i class='bx bx-lock-open-alt lock-icon'></i>
       <h2>ระบบจัดการครูผู้สอน</h2>
-      <p>กรุณากรอกรหัสผ่านเพื่อเข้าใช้งานระบแดชบอร์ดตารางคะแนน</p>
+      <p>กรุณากรอกรหัสผ่านเพื่อเข้าใช้งานระบบแดชบอร์ดตารางคะแนน</p>
       <form class="lock-form" onsubmit="event.preventDefault(); attemptUnlock();">
         <input type="password" id="passcodeInput" class="lock-input" placeholder="••••••" required>
         <button type="submit" class="btn btn-primary"><i class='bx bx-key'></i> ยืนยันรหัสผ่าน</button>
@@ -754,7 +766,10 @@
     <div id="dashboardContent" class="dashboard-content">
       <div class="dashboard-header">
         <h2><i class='bx bx-dashboard'></i> แดชบอร์ดคะแนนและการส่งงาน</h2>
-        <button class="btn-logout" onclick="lockDashboard()"><i class='bx bx-log-out'></i> ออกจากระบบ</button>
+        <div style="display: flex; gap: 0.5rem; align-items: center;">
+          <a href="admin.html" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.5rem 0.85rem; border-color: var(--primary-color); color: var(--primary-color); text-decoration: none;"><i class='bx bx-shield-quarter'></i> ระบบ Admin</a>
+          <button class="btn-logout" onclick="lockDashboard()"><i class='bx bx-log-out'></i> ออกจากระบบ</button>
+        </div>
       </div>
 
       <!-- KPI Summary -->
@@ -1286,12 +1301,14 @@
       submitBtn.innerHTML = `<i class='bx bx-loader-alt bx-spin'></i> กำลังบันทึกคะแนน...`;
 
       const payload = {
+        action: 'gradeSubmission',
         type: 'updateGrade',
         passcode: passcode,
         receiptId: selectedSub.receiptId,
         studentId: selectedSub.studentId,
         assignment: selectedSub.assignment,
         grade: grade,
+        teacherFeedback: feedback,
         feedback: feedback
       };
 

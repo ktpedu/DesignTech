@@ -558,6 +558,108 @@
         color: #6b7280;
       }
     }
+
+    /* Mobile Responsive Optimizations */
+    @media (max-width: 768px) {
+      body, html {
+        overflow-x: hidden !important;
+        width: 100% !important;
+      }
+      .content-section {
+        padding: 1.5rem 0.5rem !important;
+      }
+      .content-container {
+        max-width: 100% !important;
+        padding: 0 !important;
+      }
+      .lesson-header {
+        padding: 5rem 1rem 2rem !important;
+      }
+      .lesson-header h1 {
+        font-size: 1.75rem !important;
+      }
+      .topic-card {
+        padding: 1.25rem 0.9rem !important;
+        margin-bottom: 1.5rem !important;
+        border-radius: var(--radius-md) !important;
+      }
+      .topic-card h2 {
+        font-size: 1.35rem !important;
+      }
+      #quiz-student-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0.75rem !important;
+        padding: 0.75rem !important;
+      }
+      .q-grid {
+        grid-template-columns: repeat(auto-fill, minmax(32px, 1fr)) !important;
+        gap: 0.35rem !important;
+        padding: 0.5rem !important;
+      }
+      .q-grid-item {
+        height: 34px !important;
+        font-size: 0.8rem !important;
+        border-radius: 6px !important;
+      }
+      .quiz-question-text {
+        font-size: 1.05rem !important;
+        line-height: 1.6 !important;
+        margin-bottom: 1.25rem !important;
+        word-break: break-word !important;
+      }
+      .choices-container {
+        gap: 0.75rem !important;
+      }
+      .choice-option {
+        padding: 0.85rem 0.9rem !important;
+        border-radius: 8px !important;
+        word-break: break-word !important;
+      }
+      .choice-letter {
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 0.85rem !important;
+        margin-right: 0.65rem !important;
+      }
+      .choice-text {
+        font-size: 0.95rem !important;
+        line-height: 1.45 !important;
+      }
+      .quiz-actions {
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        gap: 0.5rem !important;
+      }
+      .quiz-actions .btn {
+        min-width: 0 !important;
+        flex: 1 !important;
+        padding: 0.75rem 0.5rem !important;
+        font-size: 0.9rem !important;
+        justify-content: center !important;
+      }
+      .result-score-ring {
+        width: 140px !important;
+        height: 140px !important;
+      }
+      .result-title {
+        font-size: 1.35rem !important;
+      }
+      .result-feedback-text {
+        font-size: 0.95rem !important;
+      }
+      .review-item {
+        padding: 1rem 0.85rem !important;
+      }
+      .review-question {
+        font-size: 0.95rem !important;
+      }
+      .review-choice-item {
+        font-size: 0.85rem !important;
+        padding: 0.5rem 0.75rem !important;
+        word-break: break-word !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -580,16 +682,28 @@
         </div>
         <a href="media.html" class="nav-link ">สื่อการเรียนรู้</a>
         <a href="worksheets.html" class="nav-link ">ใบงาน</a>
-        <div class="nav-dropdown">
+                <div class="nav-dropdown">
           <a href="#" class="nav-link ">ส่งงาน <i class='bx bx-chevron-down'></i></a>
           <div class="dropdown-content">
-            <a href="submit.html">ส่งใบงาน</a>
-            <a href="check_submissions.html">ตรวจสอบการส่งงาน (นักเรียน)</a>
-            <a href="teacher_dashboard.html">แดชบอร์ดครูผู้สอน</a>
+            <a href="submit.html" >ส่งใบงาน</a>
+            <a href="check_submissions.html" >ตรวจสอบการส่งงาน (นักเรียน)</a>
           </div>
         </div>
-        <a href="quizzes.html" class="nav-link ">แบบทดสอบ</a>
-        <a href="midterm.html" class="nav-link active">ข้อสอบกลางภาค</a>
+                <div class="nav-dropdown">
+          <a href="#" class="nav-link active">แบบทดสอบ <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="quizzes.html" >แบบทดสอบย่อย</a>
+            <a href="midterm.html" style="color:var(--primary-color); font-weight:bold;">ข้อสอบกลางภาค</a>
+            <a href="final.html" >ข้อสอบปลายภาค</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link ">สำหรับครู <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="teacher_dashboard.html" >แดชบอร์ดครูผู้สอน</a>
+            <a href="admin.html" >ระบบผู้ดูแลระบบ (Admin)</a>
+          </div>
+        </div>
         <a href="contact.html" class="nav-link ">ติดต่อครูผู้สอน</a>
       </div>
       <div class="nav-toggle" id="navToggle">
@@ -602,7 +716,7 @@
   <header class="lesson-header">
     <div class="container">
       <h1><i class='bx bx-book-open'></i> ข้อสอบวัดผลสัมฤทธิ์กลางภาค (Midterm Exam)</h1>
-      <p>วิชาการออกแบบและเทคโนโลยี ม.4 โรงเรียนวังน้ำเย็นวิทยาคม</p>
+      <p>วิชาการออกแบบและเทคโนโลยี ม.4 โรงเรียนวังน้ำเย็นวิทยาคม <span style="background: rgba(16, 185, 129, 0.25); color: #a7f3d0; padding: 0.35rem 0.85rem; border-radius: 20px; font-size: 0.85rem; margin-left: 0.5rem; display: inline-flex; align-items: center; gap: 0.35rem; font-weight: 600; border: 1px solid rgba(16, 185, 129, 0.4);"><i class='bx bx-devices'></i> รองรับทุกอุปกรณ์ (PC / แท็บเล็ต / มือถือ)</span></p>
     </div>
   </header>
 
@@ -618,6 +732,11 @@
         <!-- 1.1 LOGIN SCREEN CONTAINER -->
         <div id="quiz-login-container" class="topic-card fade-in-up">
           <h2><i class='bx bx-user-check'></i> ลงชื่อเข้าสอบกลางภาค</h2>
+          
+          <div style="margin-bottom: 1.25rem; padding: 0.85rem 1.25rem; background: rgba(16, 185, 129, 0.08); border-left: 4px solid #10b981; border-radius: var(--radius-md); display: flex; align-items: center; gap: 0.6rem; color: #065f46; font-size: 0.95rem; font-family: 'Prompt', sans-serif; font-weight: 500;">
+            <i class='bx bx-mobile-alt' style="font-size: 1.4rem; color: #10b981;"></i> ระบบได้รับการปรับปรุงการแสดงผลและปรับ Anti-Cheat ให้รองรับการทำข้อสอบบนโทรศัพท์มือถือและแท็บเล็ตเรียบร้อยแล้ว
+          </div>
+
           <p style="color: var(--text-muted); margin-bottom: 2rem;">
             ข้อสอบชุดนี้ประกอบด้วยเนื้อหาหน่วยที่ 1 (ระบบทางเทคโนโลยี) 20 ข้อ และหน่วยที่ 2 (กระบวนการออกแบบเชิงวิศวกรรม) 20 ข้อ รวม 40 คะแนน กรุณากรอกข้อมูลเพื่อเข้าสู่ระบบทำข้อสอบ
           </p>
@@ -808,7 +927,7 @@
     const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxJ32VgAbMIwRJ2SDwr8QU-uZW63nI3iCI2_dORWJTBYtEObSQqayc0AE79eutX2UeA/exec';
 
     // Midterm Questions (Unit 1: 20 Questions + Unit 2: 20 Questions = 40 Total Questions)
-    const midtermQuestions = [
+    const defaultMidtermQuestions = [
       // ----------------------------------------------------
       // UNIT 1: ระบบทางเทคโนโลยีที่ซับซ้อนและการวิเคราะห์ระบบ (20 ข้อ)
       // ----------------------------------------------------
@@ -1338,6 +1457,20 @@
       }
     ];
 
+    // Dynamic Question Bank Loader (ดึงคลังข้อสอบที่เพิ่ม/แก้ไขจากระบบ Admin หากมี)
+    let midtermQuestions = (function() {
+      const saved = localStorage.getItem('designtech_custom_midterm_questions');
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        } catch (e) {
+          console.warn('Failed to parse custom midterm questions:', e);
+        }
+      }
+      return defaultMidtermQuestions;
+    })();
+
     // Passcode Configuration (คุณครูสามารถปรับเปลี่ยนรหัสผ่านเข้าสอบตรงนี้ได้)
     const MIDTERM_PASSCODE = "midterm2569";
 
@@ -1396,18 +1529,20 @@
     // Anti-Cheat Event Listeners
     document.addEventListener('visibilitychange', () => {
       if (document.hidden && isExamActive && !examSubmitted) {
-        handleAntiCheatViolation('สลับแท็บไปหน้าอื่นหรือย่อหน้าจอ');
+        handleAntiCheatViolation('สลับแท็บไปหน้าอื่น หรือพับหน้าจอแอป');
       }
     });
 
     window.addEventListener('blur', () => {
-      if (isExamActive && !examSubmitted) {
+      // ยกเว้นอุปกรณ์มือถือ/แท็บเล็ต เนื่องจากอีเวนต์ blur บนมือถือเกิดขึ้นเมื่อแตะเลือกคำตอบหรือแถบเบราว์เซอร์เลื่อน
+      if (!isMobileDevice() && isExamActive && !examSubmitted) {
         handleAntiCheatViolation('สลับความสนใจออกจากหน้าต่างข้อสอบ');
       }
     });
 
     document.addEventListener('fullscreenchange', () => {
-      if (!document.fullscreenElement && isExamActive && !examSubmitted) {
+      // ยกเว้นอุปกรณ์มือถือ/แท็บเล็ต เนื่องจากมือถือส่วนใหญ่ไม่รองรับ Fullscreen API มาตรฐาน
+      if (!isMobileDevice() && !document.fullscreenElement && isExamActive && !examSubmitted) {
         handleAntiCheatViolation('ออกจากโหมดเต็มหน้าจอ (Full Screen)');
       }
     });
@@ -1442,6 +1577,14 @@
     let userAnswers = {}; // { 0: "A", 1: "B", ... }
     let examSubmitted = false;
     let currentScore = 0;
+
+    // Detect Mobile / Tablet Devices
+    function isMobileDevice() {
+      const userAgentCheck = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobi/i.test(navigator.userAgent);
+      const screenWidthCheck = window.innerWidth <= 768;
+      const touchCheck = ('ontouchstart' in window || navigator.maxTouchPoints > 0) && window.innerWidth <= 1024;
+      return userAgentCheck || screenWidthCheck || touchCheck;
+    }
 
     // Initialize Page
     document.addEventListener('DOMContentLoaded', () => {

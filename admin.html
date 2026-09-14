@@ -1,0 +1,1781 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ระบบผู้ดูแลระบบ (Admin System Management) รายวิชาการออกแบบและเทคโนโลยี ม.4 โรงเรียนวังน้ำเย็นวิทยาคม">
+  <title>ระบบผู้ดูแลระบบ (Admin) - วิชาการออกแบบและเทคโนโลยี ม.4</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/gif" href="assets/LOGOprofile.gif">
+  <!-- Boxicons -->
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+  
+  <style>
+    :root {
+      --admin-primary: #0f172a;
+      --admin-accent: #2563eb;
+      --success-color: #10b981;
+      --danger-color: #ef4444;
+      --warning-color: #f59e0b;
+    }
+    
+    body {
+      background-color: #f1f5f9;
+      color: var(--text-main);
+    }
+
+    .admin-wrapper {
+      max-width: 1280px;
+      margin: 7.5rem auto 4rem;
+      padding: 0 1.5rem;
+    }
+
+    /* Lock Screen Panel */
+    .lock-screen {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 3rem 2rem;
+      box-shadow: var(--shadow-lg);
+      border: 2px solid var(--admin-primary);
+      max-width: 460px;
+      margin: 8rem auto;
+      text-align: center;
+    }
+
+    .lock-screen i.lock-icon {
+      font-size: 4.5rem;
+      color: var(--admin-primary);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .lock-screen h2 {
+      margin-bottom: 0.5rem;
+      color: var(--admin-primary);
+      font-family: 'Prompt', sans-serif;
+    }
+
+    .lock-screen p {
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+
+    .lock-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .lock-input {
+      padding: 0.9rem 1.25rem;
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-md);
+      font-size: 1.1rem;
+      text-align: center;
+      letter-spacing: 4px;
+      outline: none;
+      transition: all 0.3s;
+      font-weight: 700;
+    }
+
+    .lock-input:focus {
+      border-color: var(--admin-accent);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+    }
+
+    /* Main Admin Panel Layout */
+    .admin-content {
+      display: none;
+    }
+
+    .admin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      background: white;
+      padding: 1.5rem 2rem;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .admin-header h2 {
+      margin: 0;
+      color: var(--admin-primary);
+      font-size: 1.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .admin-header-actions {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    /* KPI Cards */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .kpi-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: transform 0.2s ease;
+    }
+
+    .kpi-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .kpi-details h3 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+      color: var(--admin-primary);
+    }
+
+    .kpi-details p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin: 0;
+    }
+
+    .kpi-icon {
+      font-size: 2.5rem;
+      opacity: 0.85;
+    }
+
+    /* Tabs & Controls */
+    .admin-tabs {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 0.75rem 1.25rem;
+      border-radius: var(--radius-md);
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: 'Prompt', sans-serif;
+      font-weight: 600;
+      font-size: 0.92rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s;
+    }
+
+    .tab-btn:hover {
+      background: rgba(15, 23, 42, 0.05);
+      color: var(--admin-primary);
+    }
+
+    .tab-btn.active {
+      background: var(--admin-primary);
+      color: white;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .tab-panel {
+      display: none;
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    /* Filters & Tables */
+    .filter-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .search-box {
+      position: relative;
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 0.65rem 1rem 0.65rem 2.5rem;
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-md);
+      outline: none;
+      font-family: inherit;
+    }
+
+    .search-box i {
+      position: absolute;
+      left: 0.85rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+    }
+
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    .admin-table th {
+      background: #f8fafc;
+      padding: 0.85rem 1rem;
+      font-family: 'Prompt', sans-serif;
+      color: var(--admin-primary);
+      font-weight: 600;
+      border-bottom: 2px solid var(--border-color);
+      white-space: nowrap;
+    }
+
+    .admin-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border-color);
+      vertical-align: middle;
+    }
+
+    .admin-table tr:hover {
+      background: #f8fafc;
+    }
+
+    /* Badges & Buttons */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      font-family: 'Prompt', sans-serif;
+    }
+    .badge-success { background: #d1fae5; color: #065f46; }
+    .badge-warning { background: #fef3c7; color: #92400e; }
+    .badge-danger { background: #fee2e2; color: #991b1b; }
+    .badge-info { background: #dbeafe; color: #1e40af; }
+
+    .btn-action {
+      padding: 0.35rem 0.65rem;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      background: white;
+      color: var(--text-main);
+      font-size: 0.82rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: all 0.2s;
+      font-family: 'Prompt', sans-serif;
+    }
+    .btn-action:hover {
+      border-color: var(--admin-accent);
+      color: var(--admin-accent);
+      background: rgba(37, 99, 235, 0.05);
+    }
+    .btn-action.danger:hover {
+      border-color: var(--danger-color);
+      color: var(--danger-color);
+      background: #fef2f2;
+    }
+
+    /* Modal Overlay */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(4px);
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .modal-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      max-width: 650px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 2rem;
+      box-shadow: var(--shadow-lg);
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 1rem;
+    }
+    .modal-header h3 {
+      margin: 0;
+      color: var(--admin-primary);
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .spinner {
+      display: none;
+      width: 40px;
+      height: 40px;
+      border: 4px solid var(--border-color);
+      border-top: 4px solid var(--admin-accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 2rem auto;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <i class='bx bx-laptop'></i> Design<span>Tech</span>
+      </a>
+      <div class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link">หน้าแรก</a>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link">บทเรียน <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="unit1.html">หน่วยที่ 1</a>
+            <a href="unit2.html">หน่วยที่ 2</a>
+            <a href="unit3.html">หน่วยที่ 3</a>
+          </div>
+        </div>
+        <a href="media.html" class="nav-link">สื่อการเรียนรู้</a>
+        <a href="worksheets.html" class="nav-link">ใบงาน</a>
+                <div class="nav-dropdown">
+          <a href="#" class="nav-link ">ส่งงาน <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="submit.html" >ส่งใบงาน</a>
+            <a href="check_submissions.html" >ตรวจสอบการส่งงาน (นักเรียน)</a>
+          </div>
+        </div>
+                <div class="nav-dropdown">
+          <a href="#" class="nav-link ">แบบทดสอบ <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="quizzes.html" >แบบทดสอบย่อย</a>
+            <a href="midterm.html" >ข้อสอบกลางภาค</a>
+            <a href="final.html" >ข้อสอบปลายภาค</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link active">สำหรับครู <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="teacher_dashboard.html" >แดชบอร์ดครูผู้สอน</a>
+            <a href="admin.html" style="color:var(--primary-color); font-weight:bold;">ระบบผู้ดูแลระบบ (Admin)</a>
+          </div>
+        </div>
+        <a href="contact.html" class="nav-link">ติดต่อครูผู้สอน</a>
+      </div>
+      <div class="nav-toggle" id="navToggle">
+        <i class='bx bx-menu'></i>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Admin Main Wrapper -->
+  <div class="admin-wrapper">
+    
+    <!-- 1. LOCK SCREEN CONTAINER -->
+    <div id="adminLockScreen" class="lock-screen fade-in-up">
+      <i class='bx bx-shield-quarter lock-icon'></i>
+      <h2>ระบบผู้ดูแลระบบ (Admin Control)</h2>
+      <p>กรุณากรอกรหัสผ่านเพื่อเข้าสู่ศูนย์ควบคุมระบบหลังบ้านทั้งหมด</p>
+      <form class="lock-form" onsubmit="event.preventDefault(); attemptAdminUnlock();">
+        <input type="password" id="adminPasscodeInput" class="lock-input" placeholder="••••••••" required>
+        <button type="submit" class="btn btn-primary" style="background: var(--admin-primary); border-color: var(--admin-primary);">
+          <i class='bx bx-key'></i> ยืนยันสิทธิ์ผู้ดูแลระบบ
+        </button>
+      </form>
+    </div>
+
+    <!-- 2. ADMIN DASHBOARD CONTENT -->
+    <div id="adminDashboardContent" class="admin-content">
+      
+      <!-- Header Bar -->
+      <div class="admin-header">
+        <h2><i class='bx bx-slider-alt'></i> ศูนย์ควบคุมระบบผู้ดูแลระบบ (Admin Panel)</h2>
+        <div class="admin-header-actions">
+          <button class="btn btn-outline" onclick="loadAllAdminData()"><i class='bx bx-refresh'></i> รีเฟรชข้อมูล</button>
+          <button class="btn btn-outline" style="border-color: var(--danger-color); color: var(--danger-color);" onclick="lockAdminPanel()"><i class='bx bx-log-out'></i> ออกจากระบบ</button>
+        </div>
+      </div>
+
+      <!-- KPI Summary Cards -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-details">
+            <h3 id="adminKpiTotalSubmissions">0</h3>
+            <p>ใบงานส่งสะสมทั้งหมด</p>
+          </div>
+          <div class="kpi-icon" style="color: var(--admin-accent);"><i class='bx bx-file'></i></div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-details">
+            <h3 id="adminKpiMidtermExams" style="color: #8b5cf6;">0</h3>
+            <p>ประวัติเข้าสอบกลางภาค</p>
+          </div>
+          <div class="kpi-icon" style="color: #8b5cf6;"><i class='bx bx-award'></i></div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-details">
+            <h3 id="adminKpiTotalQuestions" style="color: #059669;">40</h3>
+            <p>จำนวนข้อสอบในคลัง</p>
+          </div>
+          <div class="kpi-icon" style="color: #059669;"><i class='bx bx-edit-alt'></i></div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-details">
+            <h3 id="adminKpiUniqueStudents" style="color: var(--warning-color);">0</h3>
+            <p>จำนวนนักเรียนในระบบ</p>
+          </div>
+          <div class="kpi-icon" style="color: var(--warning-color);"><i class='bx bx-group'></i></div>
+        </div>
+      </div>
+
+      <!-- Admin Tabs Navigation -->
+      <div class="admin-tabs">
+        <button class="tab-btn active" onclick="switchAdminTab('tabQuestionEditor')"><i class='bx bx-edit'></i> จัดการคลังข้อสอบ (Question Editor)</button>
+        <button class="tab-btn" onclick="switchAdminTab('tabMidtermScores')"><i class='bx bx-award'></i> คะแนนสอบกลางภาค (Mid_Scores)</button>
+        <button class="tab-btn" onclick="switchAdminTab('tabFinalScores')"><i class='bx bx-trophy'></i> คะแนนสอบปลายภาค (Final_Scores)</button>
+        <button class="tab-btn" onclick="switchAdminTab('tabSubmissions')"><i class='bx bx-folder'></i> จัดการใบงานส่ง (Submissions)</button>
+        <button class="tab-btn" onclick="switchAdminTab('tabWorksheets')"><i class='bx bx-file-blank'></i> จัดการไฟล์ใบงาน (Worksheets)</button>
+        <button class="tab-btn" onclick="switchAdminTab('tabMediaEditor')"><i class='bx bx-video'></i> จัดการสื่อการเรียนรู้ (Media)</button>
+        <button class="tab-btn" onclick="switchAdminTab('tabSystemSettings')"><i class='bx bx-cog'></i> ตั้งค่าระบบ & ปลดล็อกสอบ</button>
+      </div>
+
+      <div id="adminSpinner" class="spinner"></div>
+
+      <!-- TAB 1: QUESTION BANK EDITOR (เพิ่ม/แก้ไข/ลบ ข้อสอบ) -->
+      <div id="tabQuestionEditor" class="tab-panel active">
+        <div class="filter-bar">
+          <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+            <label class="form-label" style="margin: 0; font-weight: 700; color: var(--admin-primary);"><i class='bx bx-paper-plane'></i> เลือกคลังข้อสอบ:</label>
+            <select id="adminExamTypeSelect" class="form-control" style="width: auto; padding: 0.5rem 1rem; font-weight: 600; border-color: var(--admin-primary);" onchange="switchQuestionBankType(this.value)">
+              <option value="midterm">ข้อสอบกลางภาค (Midterm Exam - 40 ข้อ)</option>
+              <option value="final">ข้อสอบปลายภาค (Final Exam)</option>
+            </select>
+          </div>
+          <div class="search-box" style="flex: 1; min-width: 200px;">
+            <i class='bx bx-search'></i>
+            <input type="text" id="searchQuestionInput" placeholder="ค้นหาข้อสอบ คำถาม หรือคำเฉลย..." onkeyup="filterQuestionTable()">
+          </div>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <button class="btn btn-primary" style="background: #059669; border-color: #059669;" onclick="openQuestionModal()"><i class='bx bx-plus-circle'></i> เพิ่มข้อสอบใหม่</button>
+            <button id="btnSyncSheets" class="btn btn-outline" style="border-color: #2563eb; color: #2563eb;" onclick="syncAllQuestionBanksToCloud()"><i class='bx bx-cloud-upload'></i> ซิงก์คลังข้อสอบลง Google Sheets</button>
+            <button class="btn btn-outline" style="border-color: var(--danger-color); color: var(--danger-color);" onclick="resetQuestionBankDefault()"><i class='bx bx-reset'></i> คืนค่าข้อสอบเริ่มต้น</button>
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th style="width: 60px;">ข้อที่</th>
+                <th style="width: 140px;">หน่วยการเรียนรู้</th>
+                <th>โจทย์ข้อสอบ</th>
+                <th>ตัวเลือก A, B, C, D</th>
+                <th style="width: 80px;">เฉลย</th>
+                <th style="width: 140px;">จัดการ</th>
+              </tr>
+            </thead>
+            <tbody id="questionTableBody">
+              <!-- Injected dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 2: MIDTERM EXAM SCORES (Mid_Scores) -->
+      <div id="tabMidtermScores" class="tab-panel">
+        <div class="filter-bar">
+          <div class="search-box">
+            <i class='bx bx-search'></i>
+            <input type="text" id="searchMidtermInput" placeholder="ค้นหาด้วยรหัสนักเรียน ชื่อ หรือห้องเรียน..." onkeyup="filterMidtermTable()">
+          </div>
+          <div style="display: flex; gap: 0.5rem; align-items: center;">
+            <select id="filterMidtermRoom" class="form-control" style="width: auto; padding: 0.5rem 1rem;" onchange="filterMidtermTable()">
+              <option value="">-- ทุกห้องเรียน --</option>
+              <option value="ม.4/7">ม.4/7</option>
+              <option value="ม.4/8">ม.4/8</option>
+              <option value="ม.4/9">ม.4/9</option>
+              <option value="ม.4/10">ม.4/10</option>
+              <option value="ม.4/11">ม.4/11</option>
+              <option value="ม.4/12">ม.4/12</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>เวลาส่ง</th>
+                <th>รหัสนักเรียน</th>
+                <th>ชื่อ-นามสกุล</th>
+                <th>ชั้นเรียน</th>
+                <th>คะแนนที่ได้</th>
+                <th>เต็ม</th>
+                <th>คิดเป็น %</th>
+                <th>ผลการประเมิน</th>
+                <th>จัดการ</th>
+              </tr>
+            </thead>
+            <tbody id="midtermTableBody">
+              <!-- Injected dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB: FINAL EXAM SCORES (Final_Scores) -->
+      <div id="tabFinalScores" class="tab-panel">
+        <div class="filter-bar">
+          <div class="search-box">
+            <i class='bx bx-search'></i>
+            <input type="text" id="searchFinalInput" placeholder="ค้นหาด้วยรหัสนักเรียน ชื่อ หรือห้องเรียน..." onkeyup="filterFinalTable()">
+          </div>
+          <div style="display: flex; gap: 0.5rem; align-items: center;">
+            <select id="filterFinalRoom" class="form-control" style="width: auto; padding: 0.5rem 1rem;" onchange="filterFinalTable()">
+              <option value="">-- ทุกห้องเรียน --</option>
+              <option value="ม.4/7">ม.4/7</option>
+              <option value="ม.4/8">ม.4/8</option>
+              <option value="ม.4/9">ม.4/9</option>
+              <option value="ม.4/10">ม.4/10</option>
+              <option value="ม.4/11">ม.4/11</option>
+              <option value="ม.4/12">ม.4/12</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>เวลาส่ง</th>
+                <th>รหัสนักเรียน</th>
+                <th>ชื่อ-นามสกุล</th>
+                <th>ชั้นเรียน</th>
+                <th>คะแนนที่ได้</th>
+                <th>เต็ม</th>
+                <th>คิดเป็น %</th>
+                <th>ผลการประเมิน</th>
+                <th>จัดการ</th>
+              </tr>
+            </thead>
+            <tbody id="finalTableBody">
+              <!-- Injected dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 3: HOMEWORK SUBMISSIONS (Submissions) -->
+      <div id="tabSubmissions" class="tab-panel">
+        <div class="filter-bar">
+          <div class="search-box">
+            <i class='bx bx-search'></i>
+            <input type="text" id="searchSubmissionInput" placeholder="ค้นหารหัสนักเรียน ชื่อ ใบงาน หรือรหัสใบเสร็จ..." onkeyup="filterSubmissionTable()">
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>เวลาส่ง</th>
+                <th>รหัสใบเสร็จ</th>
+                <th>รหัสนักเรียน</th>
+                <th>ชื่อ-นามสกุล</th>
+                <th>ห้อง</th>
+                <th>หัวข้อใบงาน</th>
+                <th>ไฟล์งาน</th>
+                <th>สถานะ</th>
+                <th>คะแนน</th>
+                <th>คำแนะนำครู</th>
+              </tr>
+            </thead>
+            <tbody id="submissionTableBody">
+              <!-- Injected dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 4: WORKSHEET MANAGER (เพิ่ม/แก้ไข/ลบ ใบงาน) -->
+      <div id="tabWorksheets" class="tab-panel">
+        <div class="filter-bar">
+          <div class="search-box">
+            <i class='bx bx-search'></i>
+            <input type="text" id="searchWorksheetInput" placeholder="ค้นหาชื่อใบงาน หรือหน่วยการเรียนรู้..." onkeyup="filterWorksheetTable()">
+          </div>
+          <button class="btn btn-primary" style="background: #059669; border-color: #059669;" onclick="openWorksheetModal()"><i class='bx bx-plus-circle'></i> เพิ่มใบงานใหม่</button>
+        </div>
+
+        <div class="table-container">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>ลำดับ</th>
+                <th>หน่วยการเรียนรู้</th>
+                <th>ชื่อใบงาน / หัวข้อ</th>
+                <th>ลิงก์ไฟล์ PDF</th>
+                <th>จัดการ</th>
+              </tr>
+            </thead>
+            <tbody id="worksheetTableBody">
+              <!-- Injected dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 5: MEDIA MANAGER (เพิ่ม/แก้ไข/ลบ สื่อการเรียนรู้) -->
+      <div id="tabMediaEditor" class="tab-panel">
+        <div class="filter-bar">
+          <div class="search-box">
+            <i class='bx bx-search'></i>
+            <input type="text" id="searchMediaInput" placeholder="ค้นหาชื่อสื่อ หรือคำอธิบาย..." onkeyup="filterMediaTable()">
+          </div>
+          <button class="btn btn-primary" style="background: #7c3aed; border-color: #7c3aed;" onclick="openMediaModal()"><i class='bx bx-plus-circle'></i> เพิ่มสื่อการเรียนรู้ใหม่</button>
+        </div>
+
+        <div class="table-container">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>ลำดับ</th>
+                <th>หมวดหมู่</th>
+                <th>ชนิดสื่อ</th>
+                <th>ชื่อหัวข้อ / สื่อ</th>
+                <th>คำอธิบาย</th>
+                <th>ลิงก์สื่อ</th>
+                <th>จัดการ</th>
+              </tr>
+            </thead>
+            <tbody id="mediaTableBody">
+              <!-- Injected dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 6: SYSTEM SETTINGS & RETAKE UNLOCK -->
+      <div id="tabSystemSettings" class="tab-panel">
+        <h3 style="margin-bottom: 1rem; color: var(--admin-primary);"><i class='bx bx-key'></i> ปลดล็อกสิทธิ์การเข้าทำข้อสอบกลางภาค / ปลายภาคซ้ำ</h3>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+          กรอกรหัสนักเรียนที่ต้องการปลดล็อกการจำสิทธิ์ในเครื่องเพื่อให้นักเรียนกลับมาสอบซ้ำได้ (กรณีได้รับการอนุญาตพิเศษ)
+        </p>
+
+        <div style="max-width: 500px; padding: 1.5rem; background: #f8fafc; border-radius: var(--radius-md); border: 1px solid var(--border-color); margin-bottom: 2.5rem;">
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label class="form-label" for="unlockStudentId"><i class='bx bx-id-card'></i> รหัสนักเรียน 5 หลัก ที่ต้องการปลดล็อก:</label>
+            <input type="text" id="unlockStudentId" class="form-control" placeholder="เช่น 12345">
+          </div>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <button class="btn btn-primary" style="flex: 1; background: var(--admin-primary); border-color: var(--admin-primary);" onclick="resetStudentExamLock('midterm')">
+              <i class='bx bx-lock-open-alt'></i> ปลดล็อกสอบกลางภาค
+            </button>
+            <button class="btn btn-primary" style="flex: 1; background: #059669; border-color: #059669;" onclick="resetStudentExamLock('final')">
+              <i class='bx bx-lock-open-alt'></i> ปลดล็อกสอบปลายภาค
+            </button>
+          </div>
+        </div>
+
+        <h3 style="margin-bottom: 1rem; color: var(--admin-primary);"><i class='bx bx-server'></i> สถานะการเชื่อมต่อหลังบ้าน (Backend Server Status)</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+          <div style="padding: 1.25rem; background: #f0fdf4; border: 1px solid #86efac; border-radius: var(--radius-md);">
+            <strong style="color: #166534;"><i class='bx bx-check-circle'></i> Google Apps Script Web App</strong>
+            <p style="font-size: 0.85rem; color: #14532d; margin-top: 0.5rem; word-break: break-all;">
+              https://script.google.com/macros/s/AKfycbxJ32VgAbMIwRJ2SDwr8QU-uZW63nI3iCI2_dORWJTBYtEObSQqayc0AE79eutX2UeA/exec
+            </p>
+          </div>
+
+          <div style="padding: 1.25rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: var(--radius-md);">
+            <strong style="color: #1e40af;"><i class='bx bx-folder'></i> Google Drive Storage Folder ID</strong>
+            <p style="font-size: 0.85rem; color: #1e3a8a; margin-top: 0.5rem;">
+              1s9w3texzqb8Ons1cJKySdvT1qOl1-0Wg
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL: ADD / EDIT QUESTION -->
+  <div id="questionModal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="questionModalTitle"><i class='bx bx-edit'></i> เพิ่ม / แก้ไข ข้อสอบ</h3>
+        <button type="button" class="btn-action" onclick="closeQuestionModal()"><i class='bx bx-x' style="font-size: 1.5rem;"></i></button>
+      </div>
+      <form id="questionForm" onsubmit="event.preventDefault(); saveQuestionForm();">
+        <input type="hidden" id="qEditIndex" value="-1">
+        
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label">หน่วยการเรียนรู้:</label>
+          <select id="qUnitSelect" class="form-control" required>
+            <option value="1">หน่วยที่ 1: ระบบทางเทคโนโลยีที่ซับซ้อนและการวิเคราะห์ระบบ</option>
+            <option value="2">หน่วยที่ 2: กระบวนการออกแบบเชิงวิศวกรรม</option>
+            <option value="3">หน่วยที่ 3: ผลงานและการแก้ปัญหาทางเทคโนโลยี</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label">โจทย์คำถาม:</label>
+          <textarea id="qQuestionText" class="form-control" rows="3" placeholder="ระบุคำถาม..." required></textarea>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; margin-bottom: 1rem;">
+          <div>
+            <label class="form-label">ตัวเลือก A:</label>
+            <input type="text" id="qChoiceA" class="form-control" placeholder="ข้อความช้อยส์ A" required>
+          </div>
+          <div>
+            <label class="form-label">ตัวเลือก B:</label>
+            <input type="text" id="qChoiceB" class="form-control" placeholder="ข้อความช้อยส์ B" required>
+          </div>
+          <div>
+            <label class="form-label">ตัวเลือก C:</label>
+            <input type="text" id="qChoiceC" class="form-control" placeholder="ข้อความช้อยส์ C" required>
+          </div>
+          <div>
+            <label class="form-label">ตัวเลือก D:</label>
+            <input type="text" id="qChoiceD" class="form-control" placeholder="ข้อความช้อยส์ D" required>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label">คำตอบที่ถูกต้อง (เฉลย):</label>
+          <select id="qCorrectAnswer" class="form-control" required style="font-weight: 700;">
+            <option value="A">ข้อ A</option>
+            <option value="B">ข้อ B</option>
+            <option value="C">ข้อ C</option>
+            <option value="D">ข้อ D</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1.5rem;">
+          <label class="form-label">คำอธิบายเฉลยเพิ่มเติม:</label>
+          <textarea id="qExplanation" class="form-control" rows="2" placeholder="อธิบายเหตุผลของคำตอบที่ถูกต้อง..."></textarea>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+          <button type="button" class="btn btn-outline" onclick="closeQuestionModal()">ยกเลิก</button>
+          <button type="submit" class="btn btn-primary" style="background: var(--admin-primary); border-color: var(--admin-primary);"><i class='bx bx-save'></i> บันทึกข้อสอบ</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: ADD / EDIT WORKSHEET -->
+  <div id="worksheetModal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="worksheetModalTitle"><i class='bx bx-file-blank'></i> เพิ่ม / แก้ไข ใบงาน</h3>
+        <button type="button" class="btn-action" onclick="closeWorksheetModal()"><i class='bx bx-x' style="font-size: 1.5rem;"></i></button>
+      </div>
+      <form id="worksheetForm" onsubmit="event.preventDefault(); saveWorksheetForm();">
+        <input type="hidden" id="wsEditIndex" value="-1">
+
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label">หน่วยการเรียนรู้:</label>
+          <select id="wsUnitSelect" class="form-control" required>
+            <option value="หน่วยที่ 1: ระบบทางเทคโนโลยี">หน่วยที่ 1: ระบบทางเทคโนโลยี</option>
+            <option value="หน่วยที่ 2: กระบวนการออกแบบเชิงวิศวกรรม">หน่วยที่ 2: กระบวนการออกแบบเชิงวิศวกรรม</option>
+            <option value="หน่วยที่ 3: ผลงานเทคโนโลยี">หน่วยที่ 3: ผลงานเทคโนโลยี</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label">ชื่อใบงาน / หัวข้อ:</label>
+          <input type="text" id="wsTitleInput" class="form-control" placeholder="เช่น ใบงานที่ 1.1: องค์ประกอบของระบบทางเทคโนโลยี" required>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1.5rem;">
+          <label class="form-label">ลิงก์ไฟล์ PDF / พิมพ์ใบงาน:</label>
+          <input type="text" id="wsUrlInput" class="form-control" placeholder="เช่น assets/worksheet_1_1.html หรือ ลิงก์ไฟล์ Google Drive" required>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+          <button type="button" class="btn btn-outline" onclick="closeWorksheetModal()">ยกเลิก</button>
+          <button type="submit" class="btn btn-primary" style="background: var(--admin-primary); border-color: var(--admin-primary);"><i class='bx bx-save'></i> บันทึกใบงาน</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: ADD / EDIT MEDIA ITEM -->
+  <div id="mediaModal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="mediaModalTitle"><i class='bx bx-video'></i> เพิ่ม / แก้ไข สื่อการเรียนรู้</h3>
+        <button type="button" class="btn-action" onclick="closeMediaModal()"><i class='bx bx-x' style="font-size: 1.5rem;"></i></button>
+      </div>
+      <form id="mediaForm" onsubmit="event.preventDefault(); saveMediaForm();">
+        <input type="hidden" id="mediaEditIndex" value="-1">
+
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label">หมวดหมู่สื่อ:</label>
+          <select id="mediaCategorySelect" class="form-control" required>
+            <option value="Video">สื่อวีดีโอ (Video Learning)</option>
+            <option value="E-book">หนังสืออิเล็กทรอนิกส์ (E-book)</option>
+            <option value="Slide">สื่อนำเสนอ (Slide)</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label">ป้ายชนิดสื่อ (Type Badge):</label>
+          <input type="text" id="mediaTypeInput" class="form-control" placeholder="เช่น Video (หน่วยที่ 1), E-book (อจท.), Slide" required>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label">ชื่อสื่อ / หัวข้อ:</label>
+          <input type="text" id="mediaTitleInput" class="form-control" placeholder="เช่น ระบบทางเทคโนโลยีคืออะไร?" required>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label">คำอธิบายย่อ:</label>
+          <input type="text" id="mediaDescInput" class="form-control" placeholder="เช่น ทำความเข้าใจเกี่ยวกับระบบทางเทคโนโลยีในชีวิตประจำวัน">
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label">ลิงก์สื่อ (Link URL):</label>
+          <input type="text" id="mediaUrlInput" class="form-control" placeholder="เช่น ลิงก์ YouTube, ลิงก์ Google Slides หรือ ebook_summary.html" required>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1.5rem;">
+          <label class="form-label">ลิงก์รูปภาพตัวอย่าง (Thumbnail URL):</label>
+          <input type="text" id="mediaThumbInput" class="form-control" placeholder="เช่น https://img.youtube.com/vi/xlb05anAhZw/hqdefault.jpg">
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+          <button type="button" class="btn btn-outline" onclick="closeMediaModal()">ยกเลิก</button>
+          <button type="submit" class="btn btn-primary" style="background: #7c3aed; border-color: #7c3aed;"><i class='bx bx-save'></i> บันทึกสื่อการเรียนรู้</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="questions_data.js"></script>
+  <script src="script.js"></script>
+
+  <script>
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxJ32VgAbMIwRJ2SDwr8QU-uZW63nI3iCI2_dORWJTBYtEObSQqayc0AE79eutX2UeA/exec';
+    const DEFAULT_ADMIN_PASSCODE = 'teacher123';
+
+    let rawSubmissions = [];
+    let rawMidtermScores = [];
+    let rawFinalScores = [];
+    let questionBank = [];
+    let worksheetList = [];
+    let mediaList = [];
+    let currentExamType = 'midterm';
+
+    // Default Media Fallback
+    const defaultMediaItems = [
+      { category: "Video", title: "ระบบทางเทคโนโลยีคืออะไร?", description: "ทำความเข้าใจเกี่ยวกับระบบทางเทคโนโลยีในชีวิตประจำวัน", type: "Video (หน่วยที่ 1)", url: "https://www.youtube.com/watch?v=xlb05anAhZw", thumbnail: "https://img.youtube.com/vi/xlb05anAhZw/hqdefault.jpg" },
+      { category: "Video", title: "กระบวนการออกแบบเชิงวิศวกรรม", description: "ขั้นตอนการแก้ปัญหาอย่างเป็นระบบ 6 ขั้นตอน", type: "Video (หน่วยที่ 2)", url: "https://www.youtube.com/watch?v=IM_F6cECpYo", thumbnail: "https://img.youtube.com/vi/IM_F6cECpYo/hqdefault.jpg" },
+      { category: "Video", title: "ผลงานออกแบบและเทคโนโลยี", description: "กรณีศึกษาการพัฒนาผลงานและการประยุกต์ใช้เทคโนโลยีเพื่อแก้ปัญหา", type: "Video (หน่วยที่ 3)", url: "https://www.youtube.com/watch?v=ByWNdcOfnsQ", thumbnail: "https://img.youtube.com/vi/ByWNdcOfnsQ/hqdefault.jpg" },
+      { category: "E-book", title: "สรุปเนื้อหา บทที่ 1-3", description: "เอกสารและแบบฝึกสรุปความรู้วิชาการออกแบบและเทคโนโลยี ม.4", type: "E-book (อจท.)", url: "ebook_summary.html", thumbnail: "https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&q=80&w=600&h=400" },
+      { category: "Slide", title: "หน่วยการเรียนรู้ที่ 1 ระบบทางเทคโนโลยี", description: "สื่อนำเสนอเรื่องระบบทางเทคโนโลยีและการวิเคราะห์ระบบ", type: "Slide", url: "https://docs.google.com/presentation/d/1bfcxZxAbQ7o90oAZITjgEfcBoGGeNgIeUGg0b1cHOsk/edit?usp=sharing", thumbnail: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=600&h=400" },
+      { category: "Slide", title: "หน่วยการเรียนรู้ที่ 2 กระบวนการออกแบบเชิงวิศวกรรม", description: "สื่อนำเสนอเรื่องขั้นตอนและกระบวนการแก้ปัญหา 6 ขั้นตอน", type: "Slide", url: "https://docs.google.com/presentation/d/14aUJ5Zn6j9CqKYuH1yUaLUbTGchSTh5vKp6wYO5AbQw/edit?usp=sharing", thumbnail: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=600&h=400" },
+      { category: "Slide", title: "หน่วยการเรียนรู้ที่ 3 ผลงานการออกแบบและเทคโนโลยี", description: "สื่อนำเสนอตัวอย่างผลงานกรณีศึกษาและการประยุกต์ใช้เทคโนโลยี", type: "Slide", url: "https://docs.google.com/presentation/d/1-ubOPHKJLQ4DVbNUuvxd7yhGd3IvbpVPeV7d0iXs500/edit?usp=sharing", thumbnail: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&q=80&w=600&h=400" }
+    ];
+
+    // Default Worksheets Fallback
+    const defaultWorksheets = [
+      { unit: "หน่วยที่ 1: ระบบทางเทคโนโลยี", title: "ใบงานที่ 1.1: องค์ประกอบของระบบทางเทคโนโลยี", url: "assets/worksheet_1_1.html" },
+      { unit: "หน่วยที่ 1: ระบบทางเทคโนโลยี", title: "ใบงานที่ 1.2: การวิเคราะห์การเปลี่ยนแปลงของเทคโนโลยี", url: "assets/worksheet_1_2.html" },
+      { unit: "หน่วยที่ 1: ระบบทางเทคโนโลยี", title: "ใบงานที่ 1.3: การวิเคราะห์ผลกระทบของเทคโนโลยีรอบตัว", url: "assets/worksheet_1_3.html" },
+      { unit: "หน่วยที่ 2: กระบวนการออกแบบเชิงวิศวกรรม", title: "ใบงานที่ 2.1: การวิเคราะห์และออกแบบวิธีการแก้ปัญหา", url: "assets/worksheet_2_1.html" },
+      { unit: "หน่วยที่ 2: กระบวนการออกแบบเชิงวิศวกรรม", title: "ใบงานที่ 2.2: การวางแผนและดำเนินการแก้ปัญหา", url: "assets/worksheet_2_2.html" },
+      { unit: "หน่วยที่ 2: กระบวนการออกแบบเชิงวิศวกรรม", title: "ใบงานที่ 2.3: การทดสอบ ประเมินผล และปรับปรุงแก้ไข", url: "assets/worksheet_2_3.html" },
+      { unit: "หน่วยที่ 3: ผลงานเทคโนโลยี", title: "ใบงานที่ 3.1: การสร้างชิ้นงานและนวัตกรรมทางเทคโนโลยี", url: "assets/worksheet_3_1.html" }
+    ];
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initQuestionBank();
+      initWorksheetList();
+      initMediaList();
+
+      const savedPass = sessionStorage.getItem('adminPasscode');
+      if (savedPass) {
+        document.getElementById('adminPasscodeInput').value = savedPass;
+        attemptAdminUnlock(true);
+      }
+    });
+
+    function initQuestionBank() {
+      const key = (currentExamType === 'final') ? 'designtech_custom_final_questions' : 'designtech_custom_midterm_questions';
+      const saved = localStorage.getItem(key);
+      questionBank = [];
+      if (saved) {
+        try {
+          questionBank = JSON.parse(saved);
+        } catch(e) { questionBank = []; }
+      }
+      if (!questionBank || questionBank.length === 0) {
+        if (currentExamType === 'final') {
+          questionBank = (typeof defaultFinalQuestions !== 'undefined') ? defaultFinalQuestions : [];
+        } else {
+          questionBank = (typeof defaultMidtermQuestions !== 'undefined') ? defaultMidtermQuestions : [];
+        }
+      }
+    }
+
+    function switchQuestionBankType(type) {
+      currentExamType = type;
+      initQuestionBank();
+      renderQuestionTable();
+    }
+
+    function initWorksheetList() {
+      const saved = localStorage.getItem('designtech_custom_worksheets');
+      if (saved) {
+        try { worksheetList = JSON.parse(saved); } catch(e) { worksheetList = []; }
+      }
+      if (!worksheetList || worksheetList.length === 0) {
+        worksheetList = defaultWorksheets;
+      }
+    }
+
+    async function attemptAdminUnlock(quiet = false) {
+      const passcode = document.getElementById('adminPasscodeInput').value.trim();
+      const lockScreen = document.getElementById('adminLockScreen');
+      const content = document.getElementById('adminDashboardContent');
+      const spinner = document.getElementById('adminSpinner');
+
+      if (!passcode) {
+        alert('กรุณากรอกรหัสผ่านผู้ดูแลระบบ');
+        return;
+      }
+
+      spinner.style.display = 'block';
+
+      try {
+        const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getAllSubmissions&passcode=${passcode}`);
+        if (!response.ok) throw new Error('การเชื่อมต่อหลังบ้านล้มเหลว');
+        
+        const result = await response.json();
+        spinner.style.display = 'none';
+
+        if (result.status === 'success') {
+          sessionStorage.setItem('adminPasscode', passcode);
+          rawSubmissions = result.submissions || [];
+          
+          lockScreen.style.display = 'none';
+          content.style.display = 'block';
+
+          await loadAllAdminData();
+        } else {
+          sessionStorage.removeItem('adminPasscode');
+          if (!quiet) alert('รหัสผ่านผู้ดูแลระบบไม่ถูกต้อง!');
+        }
+      } catch (err) {
+        spinner.style.display = 'none';
+        console.error(err);
+        if (!quiet) alert('เกิดข้อผิดพลาดในการยืนยันสิทธิ์ผู้ดูแลระบบ กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ต');
+      }
+    }
+
+    async function loadAllAdminData() {
+      const passcode = sessionStorage.getItem('adminPasscode') || DEFAULT_ADMIN_PASSCODE;
+      const spinner = document.getElementById('adminSpinner');
+      spinner.style.display = 'block';
+
+      try {
+        const subRes = await fetch(`${GOOGLE_SCRIPT_URL}?action=getAllSubmissions&passcode=${passcode}`);
+        const subData = await subRes.json();
+        if (subData.status === 'success') {
+          rawSubmissions = subData.submissions || [];
+        }
+
+        const scoreRes = await fetch(`${GOOGLE_SCRIPT_URL}?action=getExamScores&passcode=${passcode}`);
+        if (scoreRes.ok) {
+          const scoreData = await scoreRes.json();
+          if (scoreData.status === 'success') {
+            rawMidtermScores = scoreData.midtermScores || [];
+            rawFinalScores = scoreData.finalScores || [];
+          }
+        }
+
+        // Fetch Question Banks from Google Sheets if available
+        const qBankRes = await fetch(`${GOOGLE_SCRIPT_URL}?action=getQuestionBank`);
+        if (qBankRes.ok) {
+          const qBankData = await qBankRes.json();
+          if (qBankData.status === 'success') {
+            if (qBankData.midtermQuestions && qBankData.midtermQuestions.length > 0) {
+              localStorage.setItem('designtech_custom_midterm_questions', JSON.stringify(qBankData.midtermQuestions));
+            }
+            if (qBankData.finalQuestions && qBankData.finalQuestions.length > 0) {
+              localStorage.setItem('designtech_custom_final_questions', JSON.stringify(qBankData.finalQuestions));
+            }
+            initQuestionBank();
+          }
+        }
+
+        // Fetch Worksheets from Google Sheets if available
+        const wsRes = await fetch(`${GOOGLE_SCRIPT_URL}?action=getWorksheets`);
+        if (wsRes.ok) {
+          const wsData = await wsRes.json();
+          if (wsData.status === 'success' && wsData.worksheets && wsData.worksheets.length > 0) {
+            worksheetList = wsData.worksheets;
+            localStorage.setItem('designtech_custom_worksheets', JSON.stringify(worksheetList));
+          }
+        }
+
+        // Fetch Media Items from Google Sheets if available
+        const mRes = await fetch(`${GOOGLE_SCRIPT_URL}?action=getMediaBank`);
+        if (mRes.ok) {
+          const mData = await mRes.json();
+          if (mData.status === 'success' && mData.mediaItems && mData.mediaItems.length > 0) {
+            mediaList = mData.mediaItems;
+            localStorage.setItem('designtech_custom_media', JSON.stringify(mediaList));
+          }
+        }
+      } catch (e) {
+        console.warn('Backend fetch error:', e);
+      } finally {
+        spinner.style.display = 'none';
+        updateAdminKPIs();
+        renderQuestionTable();
+        renderMidtermTable();
+        renderFinalTable();
+        renderSubmissionTable();
+        renderWorksheetTable();
+        renderMediaTable();
+      }
+    }
+
+    function lockAdminPanel() {
+      sessionStorage.removeItem('adminPasscode');
+      document.getElementById('adminPasscodeInput').value = '';
+      document.getElementById('adminLockScreen').style.display = 'block';
+      document.getElementById('adminDashboardContent').style.display = 'none';
+    }
+
+    function switchAdminTab(tabId) {
+      document.querySelectorAll('.admin-tabs .tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
+
+      event.currentTarget.classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+    }
+
+    function getCombinedMidtermScores() {
+      const map = new Map();
+      rawMidtermScores.forEach(m => {
+        const key = `${m.studentId}_${m.timestamp}`;
+        map.set(key, m);
+      });
+      rawSubmissions.forEach(s => {
+        if (s.assignment && (s.assignment.includes('กลางภาค') || s.assignment.includes('Midterm'))) {
+          const key = `${s.studentId}_${s.timestamp}`;
+          if (!map.has(key)) {
+            map.set(key, {
+              timestamp: s.timestamp,
+              studentId: s.studentId,
+              studentName: s.studentName,
+              classRoom: s.classRoom,
+              unitId: "Midterm",
+              unitTitle: s.assignment,
+              score: s.grade || s.comments || "-",
+              totalQuestions: 40,
+              percentage: s.grade || "-"
+            });
+          }
+        }
+      });
+      return Array.from(map.values());
+    }
+
+    function getCombinedFinalScores() {
+      const map = new Map();
+      rawFinalScores.forEach(f => {
+        const key = `${f.studentId}_${f.timestamp}`;
+        map.set(key, f);
+      });
+      rawSubmissions.forEach(s => {
+        if (s.assignment && (s.assignment.includes('ปลายภาค') || s.assignment.includes('Final'))) {
+          const key = `${s.studentId}_${s.timestamp}`;
+          if (!map.has(key)) {
+            map.set(key, {
+              timestamp: s.timestamp,
+              studentId: s.studentId,
+              studentName: s.studentName,
+              classRoom: s.classRoom,
+              unitId: "Final",
+              unitTitle: s.assignment,
+              score: s.grade || s.comments || "-",
+              totalQuestions: 5,
+              percentage: s.grade || "-"
+            });
+          }
+        }
+      });
+      return Array.from(map.values());
+    }
+
+    function updateAdminKPIs() {
+      const combinedMidterm = getCombinedMidtermScores();
+      const combinedFinal = getCombinedFinalScores();
+
+      document.getElementById('adminKpiTotalSubmissions').textContent = rawSubmissions.length;
+      document.getElementById('adminKpiMidtermExams').textContent = combinedMidterm.length;
+      document.getElementById('adminKpiTotalQuestions').textContent = questionBank.length;
+
+      const studentIds = new Set([
+        ...rawSubmissions.map(s => s.studentId),
+        ...combinedMidterm.map(s => s.studentId),
+        ...combinedFinal.map(s => s.studentId)
+      ].filter(Boolean));
+
+      document.getElementById('adminKpiUniqueStudents').textContent = studentIds.size;
+    }
+
+    // ==========================================
+    // QUESTION BANK CRUD FUNCTIONS
+    // ==========================================
+    function renderQuestionTable() {
+      const tbody = document.getElementById('questionTableBody');
+      tbody.innerHTML = '';
+
+      if (questionBank.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding: 2rem; color: var(--text-muted);">ยังไม่มีข้อสอบในคลัง</td></tr>`;
+        return;
+      }
+
+      questionBank.forEach((q, idx) => {
+        const tr = document.createElement('tr');
+        const unitLabel = q.unitTitle ? q.unitTitle.split(':')[0] : `หน่วยที่ ${q.unit}`;
+
+        tr.innerHTML = `
+          <td><strong>${idx + 1}</strong></td>
+          <td><span class="badge badge-info">${unitLabel}</span></td>
+          <td style="max-width: 300px; font-weight: 500;">${q.question}</td>
+          <td style="font-size: 0.85rem; color: var(--text-muted);">
+            A: ${q.choices.A}<br>
+            B: ${q.choices.B}<br>
+            C: ${q.choices.C}<br>
+            D: ${q.choices.D}
+          </td>
+          <td><span class="badge badge-success" style="font-size: 0.9rem;">ข้อ ${q.correctAnswer}</span></td>
+          <td>
+            <button class="btn-action" onclick="editQuestion(${idx})"><i class='bx bx-edit'></i> แก้ไข</button>
+            <button class="btn-action danger" onclick="deleteQuestion(${idx})"><i class='bx bx-trash'></i> ลบ</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function openQuestionModal(editIndex = -1) {
+      document.getElementById('qEditIndex').value = editIndex;
+      if (editIndex >= 0 && questionBank[editIndex]) {
+        const q = questionBank[editIndex];
+        document.getElementById('questionModalTitle').innerHTML = "<i class='bx bx-edit'></i> แก้ไขข้อสอบ ข้อที่ " + (editIndex + 1);
+        document.getElementById('qUnitSelect').value = q.unit || 1;
+        document.getElementById('qQuestionText').value = q.question || '';
+        document.getElementById('qChoiceA').value = q.choices ? q.choices.A : '';
+        document.getElementById('qChoiceB').value = q.choices ? q.choices.B : '';
+        document.getElementById('qChoiceC').value = q.choices ? q.choices.C : '';
+        document.getElementById('qChoiceD').value = q.choices ? q.choices.D : '';
+        document.getElementById('qCorrectAnswer').value = q.correctAnswer || 'A';
+        document.getElementById('qExplanation').value = q.explanation || '';
+      } else {
+        document.getElementById('questionModalTitle').innerHTML = "<i class='bx bx-plus-circle'></i> เพิ่มข้อสอบใหม่";
+        document.getElementById('questionForm').reset();
+        document.getElementById('qEditIndex').value = -1;
+      }
+      document.getElementById('questionModal').style.display = 'flex';
+    }
+
+    function closeQuestionModal() {
+      document.getElementById('questionModal').style.display = 'none';
+    }
+
+    function saveQuestionForm() {
+      const idx = parseInt(document.getElementById('qEditIndex').value);
+      const unit = parseInt(document.getElementById('qUnitSelect').value);
+      const unitTitleMap = {
+        1: "หน่วยที่ 1: ระบบทางเทคโนโลยีที่ซับซ้อนและการวิเคราะห์ระบบ",
+        2: "หน่วยที่ 2: กระบวนการออกแบบเชิงวิศวกรรม",
+        3: "หน่วยที่ 3: ผลงานและการแก้ปัญหาทางเทคโนโลยี"
+      };
+
+      const newQ = {
+        unit: unit,
+        unitTitle: unitTitleMap[unit] || `หน่วยที่ ${unit}`,
+        question: document.getElementById('qQuestionText').value.trim(),
+        choices: {
+          "A": document.getElementById('qChoiceA').value.trim(),
+          "B": document.getElementById('qChoiceB').value.trim(),
+          "C": document.getElementById('qChoiceC').value.trim(),
+          "D": document.getElementById('qChoiceD').value.trim()
+        },
+        correctAnswer: document.getElementById('qCorrectAnswer').value,
+        explanation: document.getElementById('qExplanation').value.trim()
+      };
+
+      const storageKey = (currentExamType === 'final') ? 'designtech_custom_final_questions' : 'designtech_custom_midterm_questions';
+
+      if (idx >= 0) {
+        questionBank[idx] = newQ;
+      } else {
+        questionBank.push(newQ);
+      }
+
+      localStorage.setItem(storageKey, JSON.stringify(questionBank));
+      closeQuestionModal();
+      renderQuestionTable();
+      updateAdminKPIs();
+      syncQuestionBankToCloud(currentExamType);
+      alert(`✅ บันทึกข้อสอบลงในคลัง (${currentExamType === 'final' ? 'ปลายภาค' : 'กลางภาค'}) และบันทึกลง Google Sheets เรียบร้อยแล้ว!`);
+    }
+
+    async function syncQuestionBankToCloud(type) {
+      const passcode = sessionStorage.getItem('adminPasscode') || DEFAULT_ADMIN_PASSCODE;
+      const targetType = type || currentExamType;
+      const key = (targetType === 'final') ? 'designtech_custom_final_questions' : 'designtech_custom_midterm_questions';
+      
+      let list = [];
+      const saved = localStorage.getItem(key);
+      if (saved) {
+        try { list = JSON.parse(saved); } catch(e) {}
+      }
+      if (!list || list.length === 0) {
+        list = (targetType === 'final') ? defaultFinalQuestions : defaultMidtermQuestions;
+      }
+
+      try {
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          body: JSON.stringify({
+            action: 'saveQuestionBank',
+            passcode: passcode,
+            examType: targetType,
+            questions: list
+          })
+        });
+        const res = await response.json();
+        console.log(`Cloud sync (${targetType}):`, res);
+      } catch (e) {
+        console.warn('Sync question bank to cloud failed:', e);
+      }
+    }
+
+    async function syncAllQuestionBanksToCloud() {
+      const btn = document.getElementById('btnSyncSheets');
+      if (btn) btn.disabled = true;
+      alert('🔄 กำลังเริ่มต้นซิงก์คลังข้อสอบทั้งหมด (กลางภาค + ปลายภาค) ลงแยกชีตใน Google Sheets...');
+      
+      await syncQuestionBankToCloud('midterm');
+      await syncQuestionBankToCloud('final');
+      
+      if (btn) btn.disabled = false;
+      alert('🎉 ซิงก์คลังข้อสอบลงแท็บ Mid_Questions และ Final_Questions ใน Google Sheets สำเร็จเรียบร้อยแล้ว!');
+    }
+
+    function editQuestion(idx) {
+      openQuestionModal(idx);
+    }
+
+    function deleteQuestion(idx) {
+      const storageKey = (currentExamType === 'final') ? 'designtech_custom_final_questions' : 'designtech_custom_midterm_questions';
+      if (confirm(`คุณแน่ใจหรือไม่ว่าต้องการลบข้อสอบ ข้อที่ ${idx + 1}?`)) {
+        questionBank.splice(idx, 1);
+        localStorage.setItem(storageKey, JSON.stringify(questionBank));
+        renderQuestionTable();
+        updateAdminKPIs();
+        syncQuestionBankToCloud(currentExamType);
+      }
+    }
+
+    function resetQuestionBankDefault() {
+      const storageKey = (currentExamType === 'final') ? 'designtech_custom_final_questions' : 'designtech_custom_midterm_questions';
+      if (confirm(`คุณแน่ใจหรือไม่ว่าต้องการรีเซ็ตคลังข้อสอบ${currentExamType === 'final' ? 'ปลายภาค' : 'กลางภาค'}กลับเป็นค่าเริ่มต้น?`)) {
+        localStorage.removeItem(storageKey);
+        initQuestionBank();
+        renderQuestionTable();
+        updateAdminKPIs();
+        syncQuestionBankToCloud(currentExamType);
+        alert('🔄 คืนค่าคลังข้อสอบเริ่มต้นเรียบร้อยแล้ว');
+      }
+    }
+
+    // ==========================================
+    // WORKSHEET CRUD FUNCTIONS
+    // ==========================================
+    function renderWorksheetTable() {
+      const tbody = document.getElementById('worksheetTableBody');
+      tbody.innerHTML = '';
+
+      if (worksheetList.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding: 2rem; color: var(--text-muted);">ยังไม่มีใบงานในระบบ</td></tr>`;
+        return;
+      }
+
+      worksheetList.forEach((w, idx) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><strong>${idx + 1}</strong></td>
+          <td><span class="badge badge-info">${w.unit}</span></td>
+          <td style="font-weight: 600;">${w.title}</td>
+          <td><a href="${w.url}" target="_blank" class="btn-action"><i class='bx bx-file-pdf'></i> เปิดดูไฟล์</a></td>
+          <td>
+            <button class="btn-action" onclick="editWorksheet(${idx})"><i class='bx bx-edit'></i> แก้ไข</button>
+            <button class="btn-action danger" onclick="deleteWorksheet(${idx})"><i class='bx bx-trash'></i> ลบ</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function openWorksheetModal(editIndex = -1) {
+      document.getElementById('wsEditIndex').value = editIndex;
+      if (editIndex >= 0 && worksheetList[editIndex]) {
+        const w = worksheetList[editIndex];
+        document.getElementById('worksheetModalTitle').innerHTML = "<i class='bx bx-edit'></i> แก้ไขใบงาน";
+        document.getElementById('wsUnitSelect').value = w.unit;
+        document.getElementById('wsTitleInput').value = w.title;
+        document.getElementById('wsUrlInput').value = w.url;
+      } else {
+        document.getElementById('worksheetModalTitle').innerHTML = "<i class='bx bx-plus-circle'></i> เพิ่มใบงานใหม่";
+        document.getElementById('worksheetForm').reset();
+        document.getElementById('wsEditIndex').value = -1;
+      }
+      document.getElementById('worksheetModal').style.display = 'flex';
+    }
+
+    function closeWorksheetModal() {
+      document.getElementById('worksheetModal').style.display = 'none';
+    }
+
+    function saveWorksheetForm() {
+      const idx = parseInt(document.getElementById('wsEditIndex').value);
+      const newWs = {
+        unit: document.getElementById('wsUnitSelect').value,
+        title: document.getElementById('wsTitleInput').value.trim(),
+        url: document.getElementById('wsUrlInput').value.trim()
+      };
+
+      if (idx >= 0) {
+        worksheetList[idx] = newWs;
+      } else {
+        worksheetList.push(newWs);
+      }
+
+      localStorage.setItem('designtech_custom_worksheets', JSON.stringify(worksheetList));
+      closeWorksheetModal();
+      renderWorksheetTable();
+      syncWorksheetsToCloud();
+      alert('✅ บันทึกข้อมูลใบงานและบันทึกลง Google Sheets เรียบร้อยแล้ว!');
+    }
+
+    async function syncWorksheetsToCloud() {
+      const passcode = sessionStorage.getItem('adminPasscode') || DEFAULT_ADMIN_PASSCODE;
+      try {
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          body: JSON.stringify({
+            action: 'saveWorksheets',
+            passcode: passcode,
+            worksheets: worksheetList
+          })
+        });
+      } catch(e) {
+        console.warn('Sync worksheets to cloud failed:', e);
+      }
+    }
+
+    function editWorksheet(idx) {
+      openWorksheetModal(idx);
+    }
+
+    function deleteWorksheet(idx) {
+      if (confirm(`คุณแน่ใจหรือไม่ว่าต้องการลบใบงาน "${worksheetList[idx].title}"?`)) {
+        worksheetList.splice(idx, 1);
+        localStorage.setItem('designtech_custom_worksheets', JSON.stringify(worksheetList));
+        renderWorksheetTable();
+        syncWorksheetsToCloud();
+      }
+    }
+
+    // ==========================================
+    // MEDIA CRUD FUNCTIONS
+    // ==========================================
+    function initMediaList() {
+      const saved = localStorage.getItem('designtech_custom_media');
+      if (saved) {
+        try { mediaList = JSON.parse(saved); } catch(e) { mediaList = []; }
+      }
+      if (!mediaList || mediaList.length === 0) {
+        mediaList = defaultMediaItems;
+      }
+    }
+
+    function renderMediaTable() {
+      const tbody = document.getElementById('mediaTableBody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      if (mediaList.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding: 2rem; color: var(--text-muted);">ยังไม่มีสื่อการเรียนรู้ในระบบ</td></tr>`;
+        return;
+      }
+
+      mediaList.forEach((m, idx) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><strong>${idx + 1}</strong></td>
+          <td><span class="badge badge-info">${m.category}</span></td>
+          <td><code>${m.type}</code></td>
+          <td style="font-weight: 600;">${m.title}</td>
+          <td style="color: var(--text-muted); font-size: 0.9rem;">${m.description || '-'}</td>
+          <td><a href="${m.url}" target="_blank" class="btn-action"><i class='bx bx-link-external'></i> เปิดสื่อ</a></td>
+          <td>
+            <button class="btn-action" onclick="editMedia(${idx})"><i class='bx bx-edit'></i> แก้ไข</button>
+            <button class="btn-action danger" onclick="deleteMedia(${idx})"><i class='bx bx-trash'></i> ลบ</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function openMediaModal(editIndex = -1) {
+      document.getElementById('mediaEditIndex').value = editIndex;
+      if (editIndex >= 0 && mediaList[editIndex]) {
+        const m = mediaList[editIndex];
+        document.getElementById('mediaModalTitle').innerHTML = "<i class='bx bx-edit'></i> แก้ไขสื่อการเรียนรู้";
+        document.getElementById('mediaCategorySelect').value = m.category || "Video";
+        document.getElementById('mediaTypeInput').value = m.type || "";
+        document.getElementById('mediaTitleInput').value = m.title || "";
+        document.getElementById('mediaDescInput').value = m.description || "";
+        document.getElementById('mediaUrlInput').value = m.url || "";
+        document.getElementById('mediaThumbInput').value = m.thumbnail || "";
+      } else {
+        document.getElementById('mediaModalTitle').innerHTML = "<i class='bx bx-plus-circle'></i> เพิ่มสื่อการเรียนรู้ใหม่";
+        document.getElementById('mediaForm').reset();
+        document.getElementById('mediaEditIndex').value = -1;
+      }
+      document.getElementById('mediaModal').style.display = 'flex';
+    }
+
+    function closeMediaModal() {
+      document.getElementById('mediaModal').style.display = 'none';
+    }
+
+    function saveMediaForm() {
+      const idx = parseInt(document.getElementById('mediaEditIndex').value);
+      const newM = {
+        category: document.getElementById('mediaCategorySelect').value,
+        type: document.getElementById('mediaTypeInput').value.trim(),
+        title: document.getElementById('mediaTitleInput').value.trim(),
+        description: document.getElementById('mediaDescInput').value.trim(),
+        url: document.getElementById('mediaUrlInput').value.trim(),
+        thumbnail: document.getElementById('mediaThumbInput').value.trim()
+      };
+
+      if (idx >= 0) {
+        mediaList[idx] = newM;
+      } else {
+        mediaList.push(newM);
+      }
+
+      localStorage.setItem('designtech_custom_media', JSON.stringify(mediaList));
+      closeMediaModal();
+      renderMediaTable();
+      syncMediaToCloud();
+      alert('✅ บันทึกสื่อการเรียนรู้และบันทึกลง Google Sheets เรียบร้อยแล้ว!');
+    }
+
+    async function syncMediaToCloud() {
+      const passcode = sessionStorage.getItem('adminPasscode') || DEFAULT_ADMIN_PASSCODE;
+      try {
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          body: JSON.stringify({
+            action: 'saveMediaBank',
+            passcode: passcode,
+            mediaItems: mediaList
+          })
+        });
+      } catch(e) {
+        console.warn('Sync media to cloud failed:', e);
+      }
+    }
+
+    function editMedia(idx) {
+      openMediaModal(idx);
+    }
+
+    function deleteMedia(idx) {
+      if (confirm(`คุณแน่ใจหรือไม่ว่าต้องการลบสื่อ "${mediaList[idx].title}"?`)) {
+        mediaList.splice(idx, 1);
+        localStorage.setItem('designtech_custom_media', JSON.stringify(mediaList));
+        renderMediaTable();
+        syncMediaToCloud();
+      }
+    }
+
+    function filterMediaTable() {
+      const query = document.getElementById('searchMediaInput').value.toLowerCase();
+      const rows = document.querySelectorAll('#mediaTableBody tr');
+      rows.forEach(r => {
+        r.style.display = r.textContent.toLowerCase().includes(query) ? '' : 'none';
+      });
+    }
+
+    // Render Midterm Scores Table
+    function renderMidtermTable() {
+      const tbody = document.getElementById('midtermTableBody');
+      tbody.innerHTML = '';
+
+      const scores = getCombinedMidtermScores();
+
+      if (scores.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="9" style="text-align:center; padding: 2rem; color: var(--text-muted);">ยังไม่มีข้อมูลการเข้าสอบกลางภาคในระบบ (หากส่งแล้วกรุณากด Deploy หลังบ้านใน Google Apps Script)</td></tr>`;
+        return;
+      }
+
+      scores.forEach((m, idx) => {
+        const tr = document.createElement('tr');
+        const scoreNum = parseInt(m.score) || 0;
+        const totalNum = parseInt(m.totalQuestions) || 40;
+        const percent = isNaN(scoreNum) ? 0 : Math.round((scoreNum / totalNum) * 100);
+
+        let badgeClass = 'badge-danger';
+        let statusText = 'ควรปรับปรุง (เกรด 1)';
+        if (percent >= 80) { badgeClass = 'badge-success'; statusText = 'ดีเยี่ยม (เกรด 4)'; }
+        else if (percent >= 65) { badgeClass = 'badge-info'; statusText = 'ดีมาก (เกรด 3)'; }
+        else if (percent >= 50) { badgeClass = 'badge-warning'; statusText = 'ผ่านเกณฑ์ (เกรด 2)'; }
+
+        tr.innerHTML = `
+          <td>${m.timestamp || '-'}</td>
+          <td><strong>${m.studentId || '-'}</strong></td>
+          <td>${m.studentName || '-'}</td>
+          <td><span class="badge badge-info">${m.classRoom || '-'}</span></td>
+          <td><strong style="color: var(--primary-color);">${m.score}</strong></td>
+          <td>${totalNum}</td>
+          <td><strong>${m.percentage || percent + '%'}</strong></td>
+          <td><span class="badge ${badgeClass}">${statusText}</span></td>
+          <td>
+            <button class="btn-action danger" onclick="unlockStudentLockDirect('${m.studentId}')">
+              <i class='bx bx-refresh'></i> อนุญาตสอบซ้ำ
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+      filterMidtermTable();
+    }
+
+    // Render Final Scores Table
+    function renderFinalTable() {
+      const tbody = document.getElementById('finalTableBody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      const scores = getCombinedFinalScores();
+
+      if (scores.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="9" style="text-align:center; padding: 2rem; color: var(--text-muted);">ยังไม่มีข้อมูลการเข้าสอบปลายภาคในระบบ (หากส่งแล้วกรุณากด Deploy หลังบ้านใน Google Apps Script)</td></tr>`;
+        return;
+      }
+
+      scores.forEach((f, idx) => {
+        const tr = document.createElement('tr');
+        const scoreNum = parseInt(f.score) || 0;
+        const totalNum = parseInt(f.totalQuestions) || 5;
+        const percent = isNaN(scoreNum) ? 0 : Math.round((scoreNum / totalNum) * 100);
+
+        let badgeClass = 'badge-danger';
+        let statusText = 'ควรปรับปรุง (เกรด 1)';
+        if (percent >= 80) { badgeClass = 'badge-success'; statusText = 'ดีเยี่ยม (เกรด 4)'; }
+        else if (percent >= 65) { badgeClass = 'badge-info'; statusText = 'ดีมาก (เกรด 3)'; }
+        else if (percent >= 50) { badgeClass = 'badge-warning'; statusText = 'ผ่านเกณฑ์ (เกรด 2)'; }
+
+        tr.innerHTML = `
+          <td>${f.timestamp || '-'}</td>
+          <td><strong>${f.studentId || '-'}</strong></td>
+          <td>${f.studentName || '-'}</td>
+          <td><span class="badge badge-info">${f.classRoom || '-'}</span></td>
+          <td><strong style="color: #059669;">${f.score}</strong></td>
+          <td>${totalNum}</td>
+          <td><strong>${f.percentage || percent + '%'}</strong></td>
+          <td><span class="badge ${badgeClass}">${statusText}</span></td>
+          <td>
+            <button class="btn-action danger" onclick="unlockStudentLockDirect('${f.studentId}', 'final')">
+              <i class='bx bx-refresh'></i> อนุญาตสอบซ้ำ
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+      filterFinalTable();
+    }
+
+    // Render Submissions Table
+    function renderSubmissionTable() {
+      const tbody = document.getElementById('submissionTableBody');
+      tbody.innerHTML = '';
+
+      if (rawSubmissions.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="10" style="text-align:center; padding: 2rem; color: var(--text-muted);">ยังไม่มีข้อมูลใบงานส่งในระบบ</td></tr>`;
+        return;
+      }
+
+      rawSubmissions.forEach(s => {
+        const tr = document.createElement('tr');
+        const isChecked = s.status === 'checked';
+        const fileBtn = s.fileLink ? `<a href="${s.fileLink}" target="_blank" class="btn-action"><i class='bx bx-link-external'></i> เปิดดูไฟล์</a>` : '-';
+
+        tr.innerHTML = `
+          <td>${s.timestamp || '-'}</td>
+          <td><code>${s.receiptId || '-'}</code></td>
+          <td><strong>${s.studentId || '-'}</strong></td>
+          <td>${s.studentName || '-'}</td>
+          <td><span class="badge badge-info">${s.classRoom || '-'}</span></td>
+          <td>${s.assignment || '-'}</td>
+          <td>${fileBtn}</td>
+          <td><span class="badge ${isChecked ? 'badge-success' : 'badge-warning'}">${isChecked ? 'ตรวจแล้ว' : 'รอตรวจ'}</span></td>
+          <td><strong>${s.grade || '-'}</strong></td>
+          <td>${s.teacherFeedback || '-'}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // Filter Functions
+    function filterQuestionTable() {
+      const query = document.getElementById('searchQuestionInput').value.toLowerCase();
+      const rows = document.querySelectorAll('#questionTableBody tr');
+      rows.forEach(r => {
+        r.style.display = r.textContent.toLowerCase().includes(query) ? '' : 'none';
+      });
+    }
+
+    function filterWorksheetTable() {
+      const query = document.getElementById('searchWorksheetInput').value.toLowerCase();
+      const rows = document.querySelectorAll('#worksheetTableBody tr');
+      rows.forEach(r => {
+        r.style.display = r.textContent.toLowerCase().includes(query) ? '' : 'none';
+      });
+    }
+
+    function filterMidtermTable() {
+      const query = document.getElementById('searchMidtermInput').value.toLowerCase();
+      const room = document.getElementById('filterMidtermRoom').value;
+      const rows = document.querySelectorAll('#midtermTableBody tr');
+
+      rows.forEach(r => {
+        const text = r.textContent.toLowerCase();
+        const matchesQuery = text.includes(query);
+        const matchesRoom = !room || text.includes(room.toLowerCase());
+        r.style.display = (matchesQuery && matchesRoom) ? '' : 'none';
+      });
+    }
+
+    function filterFinalTable() {
+      const query = document.getElementById('searchFinalInput').value.toLowerCase();
+      const room = document.getElementById('filterFinalRoom') ? document.getElementById('filterFinalRoom').value : '';
+      const rows = document.querySelectorAll('#finalTableBody tr');
+
+      rows.forEach(r => {
+        const text = r.textContent.toLowerCase();
+        const matchesQuery = text.includes(query);
+        const matchesRoom = !room || text.includes(room.toLowerCase());
+        r.style.display = (matchesQuery && matchesRoom) ? '' : 'none';
+      });
+    }
+
+    function filterSubmissionTable() {
+      const query = document.getElementById('searchSubmissionInput').value.toLowerCase();
+      const rows = document.querySelectorAll('#submissionTableBody tr');
+      rows.forEach(r => {
+        r.style.display = r.textContent.toLowerCase().includes(query) ? '' : 'none';
+      });
+    }
+
+    function resetStudentExamLock(type = 'midterm') {
+      const id = document.getElementById('unlockStudentId').value.trim();
+      if (!id || id.length !== 5 || isNaN(id)) {
+        alert('กรุณากรอกรหัสนักเรียน 5 หลักให้ถูกต้อง');
+        return;
+      }
+      unlockStudentLockDirect(id, type);
+    }
+
+    function unlockStudentLockDirect(id, type = 'midterm') {
+      if (type === 'final') {
+        localStorage.removeItem(`final_completed_${id}`);
+        alert(`✅ ปลดล็อกสิทธิ์สำเร็จ!\n\nรหัสนักเรียน ${id} สามารถเข้าทำข้อสอบปลายภาคใหม่อีกครั้งได้เรียบร้อยแล้ว`);
+      } else {
+        localStorage.removeItem(`midterm_completed_${id}`);
+        alert(`✅ ปลดล็อกสิทธิ์สำเร็จ!\n\nรหัสนักเรียน ${id} สามารถเข้าทำข้อสอบกลางภาคใหม่อีกครั้งได้เรียบร้อยแล้ว`);
+      }
+      document.getElementById('unlockStudentId').value = '';
+    }
+  </script>
+</body>
+</html>

@@ -3,46 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="แหล่งเรียนรู้ออนไลน์ รายวิชาการออกแบบและเทคโนโลยี ม.4 โรงเรียนวังน้ำเย็นวิทยาคม รวบรวมใบงาน สื่อการเรียนรู้ E-book และแบบทดสอบเก็บคะแนน">
-  <meta name="keywords" content="การออกแบบและเทคโนโลยี, ม.4, วังน้ำเย็นวิทยาคม, ใบงาน, สื่อการสอน, ข้อสอบ อจท, แบบทดสอบ ม.4">
-  <meta property="og:title" content="วิชาการออกแบบและเทคโนโลยี ม.4">
-  <meta property="og:description" content="แหล่งเรียนรู้ออนไลน์ รายวิชาการออกแบบและเทคโนโลยี ม.4 โรงเรียนวังน้ำเย็นวิทยาคม รวบรวมใบงาน สื่อการเรียนรู้ E-book และแบบทดสอบเก็บคะแนน">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/LOGOprofile.gif">
-  <title>สื่อการเรียนรู้ - วิชาการออกแบบและเทคโนโลยี ม.4</title>
-  
-  <!-- Favicon -->
-  <link rel="icon" type="image/gif" href="assets/LOGOprofile.gif">
-  
+  <title>สื่อการเรียนรู้เพิ่มเติม | Design Tech M.4</title>
+  <meta name="description" content="สื่อการเรียนรู้เพิ่มเติม วีดีโอ และ E-book สำหรับวิชาการออกแบบและเทคโนโลยี ม.4">
+  <!-- Google Fonts & Boxicons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    .lesson-header {
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-      color: white;
-      padding: 8rem 2rem 4rem;
-      text-align: center;
-    }
-    .lesson-header h1 {
-      color: white;
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
-    .lesson-header p {
-      font-size: 1.25rem;
-      opacity: 0.9;
-    }
-    .content-section {
-      padding: 4rem 2rem;
-      background-color: var(--surface-color);
-      min-height: 50vh;
-    }
-    .content-container {
-      max-width: 900px;
-      margin: 0 auto;
-    }
     .topic-card {
-      background: white;
+      background: var(--surface-color);
       border-radius: var(--radius-lg);
       padding: 2rem;
       margin-bottom: 2rem;
@@ -109,7 +80,7 @@
 </head>
 <body>
 
-    <!-- Navbar -->
+  <!-- Navbar -->
   <nav class="navbar">
     <div class="nav-container">
       <a href="index.html" class="nav-logo">
@@ -130,13 +101,25 @@
         <div class="nav-dropdown">
           <a href="#" class="nav-link ">ส่งงาน <i class='bx bx-chevron-down'></i></a>
           <div class="dropdown-content">
-            <a href="submit.html">ส่งใบงาน</a>
-            <a href="check_submissions.html">ตรวจสอบการส่งงาน (นักเรียน)</a>
-            <a href="teacher_dashboard.html">แดชบอร์ดครูผู้สอน</a>
+            <a href="submit.html" >ส่งใบงาน</a>
+            <a href="check_submissions.html" >ตรวจสอบการส่งงาน (นักเรียน)</a>
           </div>
         </div>
-        <a href="quizzes.html" class="nav-link ">แบบทดสอบ</a>
-        <a href="midterm.html" class="nav-link ">ข้อสอบกลางภาค</a>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link ">แบบทดสอบ <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="quizzes.html" >แบบทดสอบย่อย</a>
+            <a href="midterm.html" >ข้อสอบกลางภาค</a>
+            <a href="final.html" >ข้อสอบปลายภาค</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link ">สำหรับครู <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="teacher_dashboard.html" >แดชบอร์ดครูผู้สอน</a>
+            <a href="admin.html" >ระบบผู้ดูแลระบบ (Admin)</a>
+          </div>
+        </div>
         <a href="contact.html" class="nav-link ">ติดต่อครูผู้สอน</a>
       </div>
       <div class="nav-toggle" id="navToggle">
@@ -149,7 +132,7 @@
   <header class="lesson-header">
     <div class="container">
       <h1>สื่อการเรียนรู้เพิ่มเติม</h1>
-      <p>รวบรวมวีดีโอและหนังสืออิเล็กทรอนิกส์ (E-book) สำหรับศึกษาเพิ่มเติม</p>
+      <p>รวบรวมวีดีโอ หนังสืออิเล็กทรอนิกส์ (E-book) และสไลด์นำเสนอสำหรับศึกษาเพิ่มเติม</p>
     </div>
   </header>
 
@@ -158,7 +141,7 @@
     <div class="content-container">
       
       <!-- Videos Section -->
-      <div class="topic-card">
+      <div id="videoSection" class="topic-card">
         <h2><i class='bx bx-video'></i> สื่อวีดีโอ (Video Learning)</h2>
         
         <div class="media-grid">
@@ -196,7 +179,7 @@
       </div>
 
       <!-- E-books Section -->
-      <div class="topic-card">
+      <div id="ebookSection" class="topic-card">
         <h2><i class='bx bx-book-open'></i> หนังสืออิเล็กทรอนิกส์ (E-book)</h2>
         
         <div class="media-grid">
@@ -214,7 +197,7 @@
       </div>
 
       <!-- Slides Section -->
-      <div class="topic-card">
+      <div id="slideSection" class="topic-card">
         <h2><i class='bx bx-slideshow'></i> สื่อนำเสนอ (Slide)</h2>
         
         <div class="media-grid">
@@ -262,5 +245,74 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxJ32VgAbMIwRJ2SDwr8QU-uZW63nI3iCI2_dORWJTBYtEObSQqayc0AE79eutX2UeA/exec';
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const res = await fetch(`${GOOGLE_SCRIPT_URL}?action=getMediaBank`);
+        if (res.ok) {
+          const data = await res.json();
+          if (data.status === 'success' && data.mediaItems && data.mediaItems.length > 0) {
+            renderDynamicMedia(data.mediaItems);
+          }
+        }
+      } catch (e) {
+        console.warn('Fallback to static media');
+      }
+    });
+
+    function renderDynamicMedia(items) {
+      const videoGrid = document.querySelector('#videoSection .media-grid');
+      const ebookGrid = document.querySelector('#ebookSection .media-grid');
+      const slideGrid = document.querySelector('#slideSection .media-grid');
+
+      const videos = items.filter(i => i.category === 'Video');
+      const ebooks = items.filter(i => i.category === 'E-book');
+      const slides = items.filter(i => i.category === 'Slide');
+
+      if (videoGrid && videos.length > 0) {
+        videoGrid.innerHTML = videos.map(v => `
+          <div class="media-card">
+            <img src="${v.thumbnail || 'https://img.youtube.com/vi/xlb05anAhZw/hqdefault.jpg'}" alt="${v.title}" class="media-thumbnail">
+            <div class="media-content">
+              <span class="media-type" style="background: var(--secondary-color);"><i class='bx bx-play-circle'></i> ${v.type || 'Video'}</span>
+              <h3>${v.title}</h3>
+              <p>${v.description || ''}</p>
+              <a href="${v.url}" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="width: 100%;">รับชมวีดีโอ</a>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      if (ebookGrid && ebooks.length > 0) {
+        ebookGrid.innerHTML = ebooks.map(e => `
+          <div class="media-card">
+            <img src="${e.thumbnail || 'https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&q=80&w=600&h=400'}" alt="${e.title}" class="media-thumbnail">
+            <div class="media-content">
+              <span class="media-type ebook"><i class='bx bx-book-reader'></i> ${e.type || 'E-book'}</span>
+              <h3>${e.title}</h3>
+              <p>${e.description || ''}</p>
+              <a href="${e.url}" class="btn btn-outline btn-sm" style="width: 100%;">อ่านสรุปบทเรียน</a>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      if (slideGrid && slides.length > 0) {
+        slideGrid.innerHTML = slides.map(s => `
+          <div class="media-card">
+            <img src="${s.thumbnail || 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=600&h=400'}" alt="${s.title}" class="media-thumbnail">
+            <div class="media-content">
+              <span class="media-type" style="background: var(--accent-color);"><i class='bx bx-presentation'></i> ${s.type || 'Slide'}</span>
+              <h3>${s.title}</h3>
+              <p>${s.description || ''}</p>
+              <a href="${s.url}" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="width: 100%;">เปิดสไลด์นำเสนอ</a>
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+  </script>
 </body>
 </html>

@@ -529,93 +529,28 @@
         </div>
         <a href="media.html" class="nav-link ">สื่อการเรียนรู้</a>
         <a href="worksheets.html" class="nav-link ">ใบงาน</a>
-        <div class="nav-dropdown">
+                <div class="nav-dropdown">
           <a href="#" class="nav-link ">ส่งงาน <i class='bx bx-chevron-down'></i></a>
           <div class="dropdown-content">
-            <a href="submit.html">ส่งใบงาน</a>
-            <a href="check_submissions.html">ตรวจสอบการส่งงาน (นักเรียน)</a>
-            <a href="teacher_dashboard.html">แดชบอร์ดครูผู้สอน</a>
+            <a href="submit.html" >ส่งใบงาน</a>
+            <a href="check_submissions.html" >ตรวจสอบการส่งงาน (นักเรียน)</a>
           </div>
         </div>
-        <a href="quizzes.html" class="nav-link active">แบบทดสอบ</a>
-        <a href="midterm.html" class="nav-link ">ข้อสอบกลางภาค</a>
-        <a href="contact.html" class="nav-link ">ติดต่อครูผู้สอน</a>
-      </div>
-      <div class="nav-toggle" id="navToggle">
-        <i class='bx bx-menu'></i>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Header -->
-  <header class="lesson-header">
-    <div class="container">
-      <h1>แบบทดสอบเก็บคะแนนจำลอง</h1>
-      <p>ประเมินความรู้และความเข้าใจตามหลักสูตร อจท. วิชาการออกแบบและเทคโนโลยี ม.4 (ข้อสอบหน่วยละ 20 ข้อ และข้อสอบกลางภาค 40 ข้อ)</p>
-    </div>
-  </header>
-
-  <!-- Content Area -->
-  <main class="content-section">
-    <div class="content-container">
-      
-      <!-- 1. LOGIN SCREEN CONTAINER -->
-      <div id="quiz-login-container" class="topic-card fade-in-up">
-        <h2><i class='bx bx-user-circle'></i> ลงชื่อเข้าทำแบบทดสอบ</h2>
-        <p style="color: var(--text-muted); margin-bottom: 2rem;">กรุณากรอกข้อมูลรหัสประจำตัวนักเรียน ชื่อ-นามสกุล และระดับชั้นเรียนเพื่อเข้าสู่ระบบทำข้อสอบสะสมคะแนน</p>
-        
-        <form id="quizLoginForm" onsubmit="event.preventDefault(); handleQuizLogin();">
-          <div class="form-group">
-            <label class="form-label" for="studentIdInput"><i class='bx bx-id-card'></i> เลขประจำตัวนักเรียน (5 หลัก):</label>
-            <input type="text" id="studentIdInput" class="form-control" placeholder="เช่น 12345" required pattern="[0-9]{5}" title="กรุณากรอกตัวเลขรหัสประจำตัวนักเรียน 5 หลัก">
+                <div class="nav-dropdown">
+          <a href="#" class="nav-link active">แบบทดสอบ <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="quizzes.html" style="color:var(--primary-color); font-weight:bold;">แบบทดสอบย่อย</a>
+            <a href="midterm.html" >ข้อสอบกลางภาค</a>
+            <a href="final.html" >ข้อสอบปลายภาค</a>
           </div>
-          
-          <div class="form-group">
-            <label class="form-label" for="studentNameInput"><i class='bx bx-user'></i> ชื่อ-นามสกุล (ระบุ คำนำหน้าชื่อ ด้วย):</label>
-            <input type="text" id="studentNameInput" class="form-control" placeholder="เช่น นายสมชาย ใจดี" required>
-          </div>
-          
-          <div class="form-group" style="margin-bottom: 2rem;">
-            <label class="form-label" for="classRoomSelect"><i class='bx bx-cabinet'></i> ระดับชั้นเรียน (ม.4/X):</label>
-            <select id="classRoomSelect" class="form-control" style="background: white;" required>
-              <option value="" disabled selected>-- เลือกห้องเรียน --</option>
-              <option value="ม.4/7">ม.4/7</option>
-              <option value="ม.4/8">ม.4/8</option>
-              <option value="ม.4/9">ม.4/9</option>
-              <option value="ม.4/10">ม.4/10</option>
-              <option value="ม.4/11">ม.4/11</option>
-              <option value="ม.4/12">ม.4/12</option>
-            </select>
-          </div>
-          
-          <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.1rem; padding: 0.9rem;"><i class='bx bx-log-in-circle'></i> ลงทะเบียนเข้าทำข้อสอบ</button>
-        </form>
-      </div>
-      
-      <!-- 2. QUIZ SELECTION MENU -->
-      <div id="quiz-menu-container" class="topic-card" style="display: none;">
-        <div id="quiz-student-welcome" style="margin-bottom: 2rem; padding: 1rem 1.5rem; background-color: rgba(37, 99, 235, 0.05); border-left: 4px solid var(--primary-color); border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-          <div style="font-family: 'Prompt', sans-serif;">
-            <span style="color: var(--text-muted); font-size: 0.9rem;">ผู้เข้าสอบ:</span> 
-            <strong id="welcome-student-info" style="color: var(--primary-color);">กำลังโหลด...</strong>
-          </div>
-          <button class="btn btn-outline" style="padding: 0.4rem 1rem; font-size: 0.85rem;" onclick="handleQuizLogout()"><i class='bx bx-log-out'></i> ออกจากระบบ</button>
         </div>
-        
-        <h2><i class='bx bx-edit-alt'></i> เลือกชุดแบบทดสอบ</h2>
-        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">คลิกเริ่มทำข้อสอบเพื่อทำแบบทดสอบแบบเลือกตอบ ระบบจะตรวจผลคะแนนและออกใบรับรองเกียรติบัตรทันทีเมื่อทำเสร็จสิ้น</p>
-        
-        <div class="quiz-list">
-          <!-- Quiz Midterm -->
-          <div class="quiz-card" style="border: 2px solid var(--primary-color); background: rgba(37, 99, 235, 0.02);">
-            <div class="quiz-icon-wrapper" style="background: var(--primary-color); color: white;"><i class='bx bx-award'></i></div>
-            <h3 style="color: var(--primary-color);">ข้อสอบกลางภาค (หน่วยที่ 1-2)</h3>
-            <p class="quiz-desc">ประมวลความรู้ระบบเทคโนโลยีและกระบวนการออกแบบเชิงวิศวกรรม (40 ข้อ)</p>
-            <div class="quiz-info">
-              <span><i class='bx bx-list-ol'></i> 40 ข้อ</span>
-              <span><i class='bx bx-check-shield' style="color: var(--accent-color);"></i> สอบวัดผลกลางภาค</span>
-            </div>
-            <a href="midterm.html" class="btn btn-primary" style="text-decoration: none;"><i class='bx bx-pencil'></i> ทำข้อสอบกลางภาค</a>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link ">สำหรับครู <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="teacher_dashboard.html" >แดชบอร์ดครูผู้สอน</a>
+            <a href="admin.html" >ระบบผู้ดูแลระบบ (Admin)</a>
+          </div>
+        </div>
           </div>
 
           <!-- Quiz 1 -->

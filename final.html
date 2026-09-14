@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="แบบทดสอบวัดผลสัมฤทธิ์ปลายภาค (Final Exam) รายวิชาการออกแบบและเทคโนโลยี ม.4 โรงเรียนวังน้ำเย็นวิทยาคม">
+  <meta name="keywords" content="ข้อสอบปลายภาค, การออกแบบและเทคโนโลยี, ม.4, วังน้ำเย็นวิทยาคม, เฉลยข้อสอบปลายภาค">
+  <title>ข้อสอบปลายภาค วิชาการออกแบบและเทคโนโลยี ม.4</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/gif" href="assets/LOGOprofile.gif">
+  
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .lesson-header {
+      background: linear-gradient(135deg, #065f46, #10b981);
+      color: white;
+      padding: 8rem 2rem 4rem;
+      text-align: center;
+    }
+    .lesson-header h1 {
+      color: white;
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      font-family: 'Prompt', sans-serif;
+    }
+    .lesson-header p {
+      font-size: 1.2rem;
+      opacity: 0.95;
+    }
+    .content-section {
+      padding: 3rem 1.5rem;
+      background-color: var(--bg-color);
+      min-height: 75vh;
+    }
+    .content-container {
+      max-width: 950px;
+      margin: 0 auto;
+    }
+    .topic-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+    .topic-card h2 {
+      color: #065f46;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Student Info Bar */
+    #quiz-student-header {
+      background: #ecfdf5;
+      border-left: 5px solid #10b981;
+      padding: 1rem 1.5rem;
+      border-radius: var(--radius-md);
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .student-badge {
+      font-family: 'Prompt', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #065f46;
+    }
+    .anti-cheat-badge {
+      background: #fee2e2;
+      color: #991b1b;
+      padding: 0.3rem 0.75rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      font-family: 'Prompt', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    /* Question Navigator Grid */
+    .q-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(42px, 1fr));
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      background: #f8fafc;
+      padding: 1rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+    }
+    .q-grid-item {
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      border: 1.5px solid var(--border-color);
+      border-radius: 8px;
+      font-family: 'Prompt', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .q-grid-item:hover {
+      border-color: #10b981;
+      color: #10b981;
+    }
+    .q-grid-item.answered {
+      background: #10b981;
+      color: white;
+      border-color: #10b981;
+    }
+    .q-grid-item.active {
+      border-color: #065f46;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+      color: #065f46;
+    }
+
+    /* Question Container */
+    .quiz-question-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+    }
+    .question-unit-tag {
+      background: rgba(16, 185, 129, 0.1);
+      color: #065f46;
+      padding: 0.3rem 0.75rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      font-family: 'Prompt', sans-serif;
+    }
+    .quiz-question-text {
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: 1.6;
+      color: var(--text-main);
+      margin-bottom: 1.5rem;
+      font-family: 'Sarabun', sans-serif;
+    }
+
+    /* Choice List */
+    .choices-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .choice-option {
+      display: flex;
+      align-items: flex-start;
+      padding: 1.1rem 1.25rem;
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-md);
+      background: white;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+    .choice-option:hover {
+      border-color: #10b981;
+      background: #f0fdf4;
+    }
+    .choice-option.selected {
+      border-color: #10b981;
+      background: #ecfdf5;
+      box-shadow: var(--shadow-sm);
+    }
+    .choice-letter {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--bg-color);
+      border: 1.5px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Prompt', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-right: 1rem;
+      flex-shrink: 0;
+      color: var(--text-muted);
+      transition: all 0.2s;
+    }
+    .choice-option.selected .choice-letter {
+      background: #10b981;
+      color: white;
+      border-color: #10b981;
+    }
+    .choice-text {
+      font-size: 1.05rem;
+      line-height: 1.5;
+      color: var(--text-main);
+      margin-top: 0.2rem;
+    }
+
+    /* Action Buttons */
+    .quiz-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      border-top: 1px solid var(--border-color);
+      padding-top: 1.5rem;
+    }
+
+    /* Result Screen */
+    #quiz-result-container {
+      text-align: center;
+      display: none;
+    }
+    .result-score-ring {
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      background: conic-gradient(#10b981 calc(var(--score-percent) * 1%), #e2e8f0 0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 1.5rem auto;
+      box-shadow: var(--shadow-md);
+      position: relative;
+    }
+    .result-score-ring-inner {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .result-score-number {
+      font-family: 'Prompt', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #065f46;
+      line-height: 1;
+    }
+    .result-score-total {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+
+    /* Answer Review */
+    .review-item {
+      padding: 1.25rem 1.5rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      margin-bottom: 1.25rem;
+      background: var(--bg-color);
+      text-align: left;
+    }
+    .review-unit-tag {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #065f46;
+      margin-bottom: 0.5rem;
+      font-family: 'Prompt', sans-serif;
+    }
+    .review-question {
+      font-weight: 600;
+      font-size: 1.05rem;
+      margin-bottom: 1rem;
+    }
+    .review-choice-item {
+      padding: 0.6rem 1rem;
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .review-choice-item.correct-ans {
+      background: #d1fae5;
+      color: #065f46;
+      font-weight: 600;
+    }
+    .review-choice-item.user-wrong {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    /* Anti-Cheat Fullscreen & Copy Protection CSS */
+    body.exam-active-fullscreen {
+      overflow: hidden !important;
+      user-select: none !important;
+      -webkit-user-select: none !important;
+      -moz-user-select: none !important;
+      -ms-user-select: none !important;
+    }
+    body.exam-active-fullscreen .navbar,
+    body.exam-active-fullscreen .lesson-header,
+    body.exam-active-fullscreen .footer {
+      display: none !important;
+    }
+    body.exam-active-fullscreen .content-section {
+      padding: 1rem 0.5rem !important;
+      min-height: 100vh !important;
+    }
+
+    /* Anti-Cheat Modal */
+    #anti-cheat-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(8px);
+      z-index: 99999;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      box-sizing: border-box;
+    }
+
+    /* Mobile & Tablet Optimizations (Portrait & Landscape for iPad/Tablet/Phone) */
+    
+    /* 1. Mobile Portrait & General Touch Devices (<= 768px) */
+    @media (max-width: 768px) {
+      body, html {
+        overflow-x: hidden !important;
+        width: 100% !important;
+      }
+      .content-section { padding: 1rem 0.5rem !important; }
+      .content-container { max-width: 100% !important; padding: 0 !important; }
+      .lesson-header { padding: 5rem 1rem 2rem !important; }
+      .lesson-header h1 { font-size: 1.75rem !important; }
+      .topic-card { padding: 1.25rem 0.9rem !important; margin-bottom: 1.5rem !important; }
+      .topic-card h2 { font-size: 1.3rem !important; }
+      #quiz-student-header { flex-direction: column !important; align-items: flex-start !important; gap: 0.5rem !important; }
+      .q-grid { grid-template-columns: repeat(auto-fill, minmax(34px, 1fr)) !important; gap: 0.35rem !important; padding: 0.6rem !important; }
+      .q-grid-item { height: 34px !important; font-size: 0.85rem !important; border-radius: 6px !important; }
+      .quiz-question-text { font-size: 1.05rem !important; line-height: 1.6 !important; word-break: break-word !important; }
+      .choice-option { padding: 0.85rem 0.9rem !important; word-break: break-word !important; min-height: 48px; align-items: center; }
+      .choice-letter { width: 28px; height: 28px; font-size: 0.85rem; margin-right: 0.75rem; }
+      .choice-text { font-size: 0.95rem; }
+      .quiz-actions { flex-direction: row !important; gap: 0.5rem !important; }
+      .quiz-actions .btn { min-width: 0 !important; flex: 1 !important; justify-content: center !important; font-size: 0.9rem !important; padding: 0.75rem 0.5rem !important; }
+    }
+
+    /* 2. Tablet / iPad (769px - 1024px) Portrait & Landscape */
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .content-container { max-width: 95% !important; }
+      .topic-card { padding: 2rem 1.5rem !important; }
+      .q-grid { grid-template-columns: repeat(auto-fill, minmax(38px, 1fr)) !important; gap: 0.5rem !important; }
+      .quiz-question-text { font-size: 1.15rem !important; }
+    }
+
+    /* 3. Mobile & Tablet Landscape Mode (โทรศัพท์/แท็บเล็ตแนวนอน) */
+    @media screen and (max-height: 550px) and (orientation: landscape) {
+      .lesson-header { padding: 3rem 1rem 1.5rem !important; }
+      .lesson-header h1 { font-size: 1.5rem !important; }
+      .topic-card { padding: 1rem !important; margin-bottom: 1rem !important; }
+      #quiz-student-header { padding: 0.5rem 1rem !important; margin-bottom: 0.75rem !important; flex-direction: row !important; }
+      .q-grid { grid-template-columns: repeat(auto-fill, minmax(32px, 1fr)) !important; gap: 0.3rem !important; padding: 0.5rem !important; margin-bottom: 0.75rem !important; max-height: 100px; overflow-y: auto; }
+      .q-grid-item { height: 30px !important; font-size: 0.8rem !important; }
+      .quiz-question-text { font-size: 1rem !important; margin-bottom: 0.75rem !important; }
+      .choices-container { gap: 0.5rem !important; margin-bottom: 1rem !important; }
+      .choice-option { padding: 0.6rem 0.8rem !important; min-height: 40px !important; }
+      .quiz-actions { padding-top: 0.75rem !important; }
+    }
+
+    /* Fullscreen mode scroll & layout lock for Mobile / iPad when exam active */
+    body.exam-active-fullscreen #exam-mode-view {
+      max-width: 1000px;
+      margin: 0 auto;
+      height: 100vh;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 0.5rem;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <i class='bx bx-laptop'></i> Design<span>Tech</span>
+      </a>
+      <div class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link ">หน้าแรก</a>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link ">บทเรียน <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="unit1.html">หน่วยที่ 1</a>
+            <a href="unit2.html">หน่วยที่ 2</a>
+            <a href="unit3.html">หน่วยที่ 3</a>
+          </div>
+        </div>
+        <a href="media.html" class="nav-link ">สื่อการเรียนรู้</a>
+        <a href="worksheets.html" class="nav-link ">ใบงาน</a>
+                <div class="nav-dropdown">
+          <a href="#" class="nav-link ">ส่งงาน <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="submit.html" >ส่งใบงาน</a>
+            <a href="check_submissions.html" >ตรวจสอบการส่งงาน (นักเรียน)</a>
+          </div>
+        </div>
+                <div class="nav-dropdown">
+          <a href="#" class="nav-link active">แบบทดสอบ <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="quizzes.html" >แบบทดสอบย่อย</a>
+            <a href="midterm.html" >ข้อสอบกลางภาค</a>
+            <a href="final.html" style="color:var(--primary-color); font-weight:bold;">ข้อสอบปลายภาค</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link ">สำหรับครู <i class='bx bx-chevron-down'></i></a>
+          <div class="dropdown-content">
+            <a href="teacher_dashboard.html" >แดชบอร์ดครูผู้สอน</a>
+            <a href="admin.html" >ระบบผู้ดูแลระบบ (Admin)</a>
+          </div>
+        </div>
+        <a href="contact.html" class="nav-link ">ติดต่อครูผู้สอน</a>
+      </div>
+      <div class="nav-toggle" id="navToggle">
+        <i class='bx bx-menu'></i>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="lesson-header">
+    <div class="container">
+      <h1><i class='bx bx-award'></i> ข้อสอบวัดผลสัมฤทธิ์ปลายภาค (Final Exam)</h1>
+      <p>วิชาการออกแบบและเทคโนโลยี ม.4 โรงเรียนวังน้ำเย็นวิทยาคม <span style="background: rgba(255, 255, 255, 0.25); color: #ffffff; padding: 0.35rem 0.85rem; border-radius: 20px; font-size: 0.85rem; margin-left: 0.5rem; display: inline-flex; align-items: center; gap: 0.35rem; font-weight: 600; border: 1px solid rgba(255, 255, 255, 0.4);"><i class='bx bx-devices'></i> รองรับทุกอุปกรณ์ (PC / แท็บเล็ต / มือถือ)</span></p>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="content-section">
+    <div class="content-container">
+      
+      <!-- EXAM MODE -->
+      <div id="exam-mode-view">
+        
+        <!-- 1. LOGIN SCREEN CONTAINER -->
+        <div id="quiz-login-container" class="topic-card fade-in-up">
+          <h2><i class='bx bx-user-check'></i> ลงชื่อเข้าสอบปลายภาค</h2>
+          
+          <div style="margin-bottom: 1.25rem; padding: 0.85rem 1.25rem; background: rgba(16, 185, 129, 0.08); border-left: 4px solid #10b981; border-radius: var(--radius-md); display: flex; align-items: center; gap: 0.6rem; color: #065f46; font-size: 0.95rem; font-family: 'Prompt', sans-serif; font-weight: 500;">
+            <i class='bx bx-mobile-alt' style="font-size: 1.4rem; color: #10b981;"></i> ระบบสอบปลายภาค รองรับการทำข้อสอบบนคอมพิวเตอร์ แท็บเล็ต และมือถือทุกรุ่น
+          </div>
+
+          <p style="color: var(--text-muted); margin-bottom: 2rem;">
+            ข้อสอบปลายภาคประมวลความรู้หน่วยที่ 3 (ผลงานเทคโนโลยีและการแก้ปัญหา) และคลังข้อสอบปลายภาค กรุณากรอกข้อมูลและรหัสผ่านเพื่อเริ่มทำข้อสอบ
+          </p>
+          
+          <form id="quizLoginForm" onsubmit="event.preventDefault(); startFinalExam();">
+            <div class="form-group">
+              <label class="form-label" for="studentIdInput"><i class='bx bx-id-card'></i> เลขประจำตัวนักเรียน (5 หลัก):</label>
+              <input type="text" id="studentIdInput" class="form-control" placeholder="เช่น 12345" required pattern="[0-9]{5}" title="กรุณากรอกตัวเลขรหัสประจำตัวนักเรียน 5 หลัก">
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label" for="studentNameInput"><i class='bx bx-user'></i> ชื่อ-นามสกุล (ระบุ คำนำหน้าชื่อ ด้วย):</label>
+              <input type="text" id="studentNameInput" class="form-control" placeholder="เช่น นายสมชาย ใจดี" required>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label" for="classRoomSelect"><i class='bx bx-cabinet'></i> ระดับชั้นเรียน (ม.4/X):</label>
+              <select id="classRoomSelect" class="form-control" style="background: white;" required>
+                <option value="" disabled selected>-- เลือกห้องเรียน --</option>
+                <option value="ม.4/7">ม.4/7</option>
+                <option value="ม.4/8">ม.4/8</option>
+                <option value="ม.4/9">ม.4/9</option>
+                <option value="ม.4/10">ม.4/10</option>
+                <option value="ม.4/11">ม.4/11</option>
+                <option value="ม.4/12">ม.4/12</option>
+              </select>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 2rem;">
+              <label class="form-label" for="passcodeInput" style="color: #065f46;"><i class='bx bx-key'></i> รหัสผ่านเข้าสอบปลายภาค (ขอรับจากครูผู้สอน):</label>
+              <input type="password" id="passcodeInput" class="form-control" placeholder="กรอกรหัสผ่านเข้าสอบปลายภาค" required style="border-color: #10b981;">
+            </div>
+            
+            <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.1rem; padding: 0.9rem; background: #065f46; border-color: #065f46;"><i class='bx bx-log-in-circle'></i> เริ่มทำข้อสอบปลายภาค</button>
+          </form>
+        </div>
+
+        <!-- 2. QUIZ PLAY CONTAINER -->
+        <div id="quiz-play-container" class="topic-card fade-in-up" style="display: none;">
+          <div id="quiz-student-header">
+            <div class="student-badge">
+              <i class='bx bx-user-circle'></i> <span id="active-student-info">นักเรียนผู้เข้าสอบ</span>
+            </div>
+            <div class="anti-cheat-badge">
+              <i class='bx bx-shield-quarter'></i> Anti-Cheat สลับแท็บ: <strong id="cheat-count-badge">0</strong>/3
+            </div>
+          </div>
+
+          <!-- Quick Jump Grid -->
+          <div class="q-grid" id="questionNavGrid">
+            <!-- Injected dynamically -->
+          </div>
+
+          <!-- Current Question Content -->
+          <div class="quiz-question-meta">
+            <span class="question-unit-tag" id="current-unit-tag">หน่วยที่ 3</span>
+            <span style="font-family: 'Prompt', sans-serif; font-weight: 600; color: var(--text-muted);" id="question-progress-label">ข้อ 1 จากทั้งหมด</span>
+          </div>
+
+          <div class="quiz-question-text" id="question-text-box">
+            กำลังโหลดคำถามข้อสอบปลายภาค...
+          </div>
+
+          <div class="choices-container" id="choices-box">
+            <!-- Injected dynamically -->
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn btn-outline" id="prevQuestionBtn" onclick="prevQuestion()"><i class='bx bx-chevron-left'></i> ข้อก่อนหน้า</button>
+            <button class="btn btn-primary" id="nextQuestionBtn" onclick="nextQuestion()" style="background: #065f46; border-color: #065f46;">ข้อถัดไป <i class='bx bx-chevron-right'></i></button>
+            <button class="btn btn-primary" id="submitExamBtn" onclick="confirmSubmitExam()" style="display: none; background: #10b981; border-color: #10b981;"><i class='bx bx-send'></i> ส่งข้อสอบปลายภาค</button>
+          </div>
+        </div>
+
+        <!-- 3. RESULT & CERTIFICATE CONTAINER -->
+        <div id="quiz-result-container" class="topic-card fade-in-up" style="display: none;">
+          <h2 class="result-title"><i class='bx bx-trophy'></i> ผลการสอบวัดผลสัมฤทธิ์ปลายภาค</h2>
+          
+          <div class="result-score-ring" id="resultScoreRing" style="--score-percent: 0;">
+            <div class="result-score-ring-inner">
+              <div class="result-score-number" id="resultScoreNum">0</div>
+              <div class="result-score-total" id="resultScoreTotal">จากคะแนนเต็ม</div>
+            </div>
+          </div>
+
+          <div class="result-feedback-text" id="resultFeedbackText">
+            ประมวลผลคะแนนสอบเรียบร้อยแล้ว
+          </div>
+
+          <div style="margin-bottom: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <button class="btn btn-primary" onclick="window.print()" style="background: #065f46; border-color: #065f46;"><i class='bx bx-printer'></i> พิมพ์ใบรับรองผลสอบปลายภาค (PDF)</button>
+            <a href="index.html" class="btn btn-outline"><i class='bx bx-home-alt'></i> กลับสู่หน้าหลัก</a>
+          </div>
+
+          <!-- Detailed Review Section -->
+          <div class="review-section">
+            <h3><i class='bx bx-list-check'></i> เฉลยและทบทวนข้อสอบปลายภาค</h3>
+            <div id="answersReviewContainer">
+              <!-- Injected dynamically -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Anti-Cheat Warning Modal -->
+  <div id="anti-cheat-modal">
+    <div style="background: white; border-radius: var(--radius-lg); padding: 2.5rem; max-width: 500px; text-align: center; border: 3px solid #ef4444; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);">
+      <div style="font-size: 3.5rem; color: #ef4444; margin-bottom: 1rem;"><i class='bx bx-shield-x'></i></div>
+      <h3 style="color: #ef4444; font-family: 'Prompt', sans-serif; font-size: 1.5rem; margin-bottom: 1rem;">ตรวจพบการออกจากโหมดเต็มหน้าจอ / สลับแอป!</h3>
+      <p id="cheat-warning-text" style="color: var(--text-main); font-size: 1.05rem; line-height: 1.6; margin-bottom: 1.5rem;">
+        ระบบตรวจพบการพับหน้าจอ สลับแท็บ หรือออกจากโหมดเต็มหน้าจอขณะทำข้อสอบปลายภาค
+      </p>
+      <button class="btn btn-primary" onclick="closeCheatWarning()" style="background: #ef4444; border-color: #ef4444; width: 100%; font-size: 1.05rem; padding: 0.85rem; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;">
+        <i class='bx bx-fullscreen' style="font-size: 1.3rem;"></i> เข้าใจแล้ว กลับสู่โหมดเต็มหน้าจอเพื่อทำข้อสอบต่อ
+      </button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+  <script>
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxJ32VgAbMIwRJ2SDwr8QU-uZW63nI3iCI2_dORWJTBYtEObSQqayc0AE79eutX2UeA/exec';
+    const FINAL_PASSCODE = "final2569";
+
+    // Default Unit 3 Final Exam Questions (30 ข้อ)
+    const defaultFinalQuestions = [
+      {
+        unit: 3,
+        unitTitle: "หน่วยที่ 3: ผลงานและการแก้ปัญหาทางเทคโนโลยี",
+        question: "1. ข้อใดกล่าวถึงสมบัติของไม้ธรรมชาติได้ถูกต้อง",
+        choices: {
+          "A": "มีความสวยงาม แข็งแรง แต่ดูดซับความชื้นได้ง่าย",
+          "B": "นำไฟฟ้าได้ดีและทนต่อไฟไหม้",
+          "C": "ป้องกันความชื้นได้ดีและไม่ยืดหดตัว",
+          "D": "มีราคาถูกกว่าไม้สังเคราะห์ทุกชนิด"
+        },
+        correctAnswer: "A",
+        explanation: "ไม้ธรรมชาติมีลายสวยงาม แข็งแรง แต่มีข้อเสียคือดูดซับความชื้นและติดไฟง่าย"
+      },
+      {
+        unit: 3,
+        unitTitle: "หน่วยที่ 3: ผลงานและการแก้ปัญหาทางเทคโนโลยี",
+        question: "2. หากต้องการทำเฟอร์นิเจอร์น็อคดาวน์ที่เน้นการประหยัดต้นทุนและควบคุมขนาดได้ง่าย ควรเลือกใช้วัสดุชนิดใด",
+        choices: {
+          "A": "ไม้สักทอง",
+          "B": "ไม้แดง",
+          "C": "ไม้พาร์ติเคิลบอร์ด",
+          "D": "ไม้ประดู่"
+        },
+        correctAnswer: "C",
+        explanation: "ไม้พาร์ติเคิลบอร์ดเป็นไม้แปรรูปที่มีราคาประหยัด และแปรรูปควบคุมขนาดได้ง่าย"
+      },
+      {
+        unit: 3,
+        unitTitle: "หน่วยที่ 3: ผลงานและการแก้ปัญหาทางเทคโนโลยี",
+        question: "3. โลหะในกลุ่มเหล็ก (Ferrous Metal) มีคุณสมบัติเด่นตามข้อใด",
+        choices: {
+          "A": "ไม่เป็นสนิมเมื่อโดนน้ำและอากาศ",
+          "B": "มีเหล็กเป็นองค์ประกอบหลัก และเกิดสนิมได้ง่าย",
+          "C": "เป็นฉนวนไฟฟ้าและฉนวนความร้อน",
+          "D": "มีน้ำหนักเบากว่าอลูมิเนียมมาก"
+        },
+        correctAnswer: "B",
+        explanation: "โลหะกลุ่มเหล็กมีเหล็กเป็นส่วนผสมหลัก ทำให้เกิดสนิมได้ง่ายเมื่อสัมผัสความชื้นและอากาศ"
+      },
+      {
+        unit: 3,
+        unitTitle: "หน่วยที่ 3: ผลงานและการแก้ปัญหาทางเทคโนโลยี",
+        question: "4. ชิ้นส่วนโครงสร้างโดรนที่ต้องการความแข็งแรงแต่มีน้ำหนักเบาและไม่เกิดสนิม ควรเลือกใช้โลหะชนิดใด",
+        choices: {
+          "A": "เหล็กเหนียว",
+          "B": "เหล็กกล้า",
+          "C": "เหล็กหล่อ",
+          "D": "อลูมิเนียม"
+        },
+        correctAnswer: "D",
+        explanation: "อลูมิเนียมเป็นโลหะนอกกลุ่มเหล็ก (Non-Ferrous) มีน้ำหนักเบาและไม่เกิดสนิมเหล็ก"
+      },
+      {
+        unit: 3,
+        unitTitle: "หน่วยที่ 3: ผลงานและการแก้ปัญหาทางเทคโนโลยี",
+        question: "5. พลาสติกชนิดใดสามารถนำกลับมารีดหรือหลอมขึ้นรูปใหม่ได้เมื่อได้รับความร้อน",
+        choices: {
+          "A": "เมลามีน",
+          "B": "อีพ็อกซี",
+          "C": "เรซิน",
+          "D": "ท่อ PVC"
+        },
+        correctAnswer: "D",
+        explanation: "ท่อ PVC จัดเป็นเทอร์โมพลาสติก อ่อนตัวเมื่อได้รับความร้อนและสามารถนำกลับมารีไซเคิลหลอมซ้ำได้"
+      },
+      {
+        unit: 3,
+        unitTitle: "หน่วยที่ 3: ผลงานและการแก้ปัญหาทางเทคโนโลยี",
+        question: "6. ภาชนะบรรจุอาหารที่ต้องทนความร้อนสูง ไม่อมน้ำมัน และไม่บิดรูปทรงเมื่อโดนความร้อน จัดเป็นพลาสติกประเภทใด",
+        choices: {
+          "A": "เทอร์โมเซตติ้ง",
+          "B": "เทอร์โมพลาสติก",
+          "C": "พลาสติกชีวภาพ",
+          "D": "เอลาสโตเมอร์"
+        },
+        correctAnswer: "A",
+        explanation: "พลาสติกเทอร์โมเซตติ้งจะทนความร้อนสูง ไม่หลอมเหลวหรือบิดรูปซ้ำเมื่อโดนความร้อน"
+      },
+      {
+        unit: 3,
+        unitTitle: "หน่วยที่ 3: ผลงานและการแก้ปัญหาทางเทคโนโลยี",
+        question: "7. ข้อเสียสำคัญของยางธรรมชาติในการนำมาใช้งานกลางแจ้งคือข้อใด",
+        choices: {
+          "A": "ไม่สามารถยืดหยุ่นได้",
+          "B": "ไม่สามารถกันน้ำซึมผ่านได้",
+          "C": "นำไฟฟ้าและนำความร้อนได้สูงมาก",
+          "D": "เสื่อมสภาพเร็วเมื่อถูกความร้อนและแสงแดด"
+        },
+        correctAnswer: "D",
+        explanation: "ยางธรรมชาติเสื่อมสภาพและกรอบเสื่อมเร็วเมื่อสัมผัสความร้อนและแสงแดดเป็นเวลานาน"
+      },
+      {
+        unit: 3,
+        unitTitle: "หน่วยที่ 3: ผลงานและการแก้ปัญหาทางเทคโนโลยี",
+        question: "8. ยางสังเคราะห์ประเภทนีโอพรีน นิยมนำมาทำท่อน้ำมันเนื่องจากมีสมบัติโดดเด่นในด้านใด",
+        choices: {
+          "A": "สปริงตัวได้ดีกว่ายางธรรมชาติทุกชนิด",
+          "B": "ทนต่อความร้อน สารเคมี และน้ำมันได้ดี",
+          "C": "สามารถละลายในน้ำได้ง่าย",
+          "D": "มีราคาถูกกว่ายางธรรมชาติหลายเท่า"
+        },
+        correctAnswer: "B",
+        explanation: "ยางสังเคราะห์ชนิดนีโอพรีนถูกพัฒนาขึ้นมาเพื่อทนความร้อน สารเคมี และน้ำมันได้ดีกว่ายางธรรมชาติ"
+      },
+      {
+        unit: 3,
+        unitTitle: "หน่วยที่ 3: ผลงานและการแก้ปัญหาทางเทคโนโลยี",
+        question: "9. ในการสร้างชิ้นงานที่ต้องรองรับแรงกระแทกจากการชน ควรเลือกใช้วัสดุชนิดใดเป็นส่วนกันกระแทก",
+        choices: {
+          "A": "อะคริลิก",
+          "B": "กระจก",
+          "C": "ยาง",
+          "D": "ไม้อัด"
+        },
+        correctAnswer: "C",
+        explanation: "ยางมีความยืดหยุ่นสูงและสามารถดูดซับแรงกระแทกได้เป็นอย่างดี"
+      },
+      {
+        unit: 3,
+        unitTitle: "หน่วยที่ 3: ผลงานและการแก้ปัญหาทางเทคโนโลยี",
+        question: "10. เครื่องมือวัดชนิดใดเหมาะสำหรับการวัดความกว้าง ความยาว และความหนาของแผ่นไม้ทั่วไปในการทำโต๊ะเรียน",
+        choices: {
+          "A": "ไมโครมิเตอร์",
+          "B": "ตลับเมตร",
+          "C": "เวอร์เนียร์คาลิเปอร์",
+          "D": "ไม้โปรแทรคเตอร์"
+        },
+        correctAnswer: "B",
+        explanation: "ตลับเมตรเป็นเครื่องมือวัดระยะความกว้าง ความยาว ความหนาของชิ้นงานไม้ทั่วไป"
+      },
+      {
+        unit: 3,
+        unitTitle: "หน่วยที่ 3: ผลงานและการแก้ปัญหาทางเทคโนโลยี",
+        question: "11. หากต้องการวัดขนาดเส้นผ่านศูนย์กลางภายในของท่อ PVC อย่างละเอียดระดับมิลลิเมตร ควรเลือกใช้เครื่องมือใด",
+        choices: {
+          "A": "เวอร์เนียร์คาลิเปอร์",
+          "B": "ไม้บรรทัดเหล็ก",
+          "C": "ตลับเมตร",
+          "D": "สายวัดตัว"
+        },
+        correctAnswer: "A",
+        explanation: "เวอร์เนียร์คาลิเปอร์สามารถวัดขนาดความโตใน ความโตนอก และความลึกได้อย่างละเอียดระดับมิลลิเมตร"
+      },
+      {
+        unit: 3,
+        unitTitle: "หน่วยที่ 3: ผลงานและการแก้ปัญหาทางเทคโนโลยี",
+        question: "12. การตัดแผ่นอะคริลิกให้เรียบตรงและไม่เกิดรอยแตกร้าว ควรเลือกใช้เครื่องมือตัดชนิดใด",
+        choices: {
+          "A": "กรรไกรตัดกระดาษ",
+          "B": "คัตเตอร์ตัดพลาสติก/แผ่นอะคริลิก",
+          "C": "เลื่อยตัดเหล็ก",
+          "D": "คีมตัดสายไฟ"
+        },
+        correctAnswer: "B",
+        explanation: "คัตเตอร์ตัดพลาสติก/อะคริลิกใช้สำหรับกรีดนำร่องก่อนหักแผ่นอะคริลิกให้ขาดตรงเนียน"
+      },
+      {
+        unit: 3,
+        unitTitle: "หน่วยที่ 3: ผลงานและการแก้ปัญหาทางเทคโนโลยี",
+        question: "13. เลื่อยชนิดใดเหมาะสำหรับงานตัดฉลุส่วนโค้งส่วนเว้าของไม้แผ่นบาง",
+        choices: {
+          "A": "เลื่อยลันดา",
+          "B": "เลื่อยโครงเหล็ก",
+          "C": "เลื่อยฉลุ",
+          "D": "เลื่อยตัดแต่งกิ่งไม้"
+        },
+        correctAnswer: "C",
+        explanation: "เลื่อยฉลุมีใบเลื่อยขนาดเล็ก ชนิดละเอียด เหมาะสำหรับการตัดโค้งลวดลายบนแผ่นไม้บาง"
+      },
+      {
+        unit: 3,
+        unitTitle: "หน่วยที่ 3: ผลงานและการแก้ปัญหาทางเทคโนโลยี",
+        question: "14. การใช้ \"เหล็กนำศูนย์\" มีวัตถุประสงค์หลักอย่างไรก่อนทำการเจาะรูด้วยสว่าน",
+        choices: {
+          "A": "ขยายรูเจาะให้มีขนาดใหญ่ขึ้น",
+          "B": "วัดความลึกของรูเจาะ",
+          "C": "ลบรอยเสี้ยนบริเวณขอบรู",
+          "D": "ทำรอยตอกนำร่องไม่ให้ดอกสว่านลื่นไถล"
+        },
+        correctAnswer: "D",
+        explanation: "เหล็กนำศูนย์ใช้สำหรับตอกนำร่องตรงจุดเจาะ เพื่อป้องกันไม่ให้ดอกสว่านไถลออกจากตำแหน่ง"
+      },
+      {
+        unit: 3,
+        unitTitle: "หน่วยที่ 3: ผลงานและการแก้ปัญหาทางเทคโนโลยี",
+        question: "15. ข้อใดเป็นการปฏิบัติตามหลักความปลอดภัยที่ถูกต้องในการใช้สว่านไฟฟ้า",
+        choices: {
+          "A": "ขันดอกสว่านด้วยจำปาให้แน่นก่อนเปิดเครื่องใช้งาน",
+          "B": "สวมถุงมือผ้าขนาดใหญ่หลวมๆ ขณะจับสว่าน",
+          "C": "เอามือจับชิ้นงานไว้ให้แน่นแทนการใช้ปากกายึดชิ้นงาน",
+          "D": "กดสว่านด้วยแรงทั้งหมดที่มีโดยไม่ต้องถอนดอกสว่านออก"
+        },
+        correctAnswer: "A",
+        explanation: "การขันดอกสว่านด้วยจำปาให้แน่นก่อนใช้งาน ป้องกันดอกสว่านหลุดคลายตัวและเกิดอันตราย"
+      },
+      {
+        unit: 3,
+        unitTitle: "หน่วยที่ 3: ผลงานและการแก้ปัญหาทางเทคโนโลยี",
+        question: "16. หากต้องการยึดแผ่นโลหะสองชิ้นเข้าด้วยกันโดยที่สามารถถอดแยกชิ้นส่วนภายหลังได้ ควรเลือกใช้อุปกรณ์ชนิดใด",
+        choices: {
+          "A": "ปืนกาวร้อน",
+          "B": "สกรูและน็อต",
+          "C": "กาวตราช้าง",
+          "D": "ตะกั่วบัดกรี"
+        },
+        correctAnswer: "B",
+        explanation: "สกรูและน็อตเป็นการยึดติดประเภทถอดประกอบได้"
+      },
+      {
+        unit: 3,
+        unitTitle: "หน่วยที่ 3: ผลงานและการแก้ปัญหาทางเทคโนโลยี",
+        question: "17. อุปกรณ์ใดใช้สำหรับยึดประสานขาอุปกรณ์อิเล็กทรอนิกส์เข้ากับแผ่นวงจรพิมพ์ (PCB)",
+        choices: {
+          "A": "ปืนกาวร้อน",
+          "B": "เลื่อยฉลุ",
+          "C": "หัวแร้งบัดกรีและตะกั่ว",
+          "D": "ไขควงเช็คไฟ"
+        },
+        correctAnswer: "C",
+        explanation: "หัวแร้งบัดกรีและตะกั่วใช้ความร้อนหลอมละลายตะกั่วเพื่อยึดขาอุปกรณ์อิเล็กทรอนิกส์เข้ากับวงจร"
+      },
+      {
+        unit: 3,
+        unitTitle: "หน่วยที่ 3: ผลงานและการแก้ปัญหาทางเทคโนโลยี",
+        question: "18. อุปกรณ์ในข้อใดใช้หลักการทำงานของกลไก \"ล้อและเพลา\" ในการผ่อนแรงหมุน",
+        choices: {
+          "A": "กรรไกรตัดกระดาษ",
+          "B": "บันไดลิง",
+          "C": "คีมปากจระเข้",
+          "D": "พวงมาลัยรถยนต์"
+        },
+        correctAnswer: "D",
+        explanation: "พวงมาลัยรถยนต์ใช้หลักการล้อและเพลา หมุนล้อวงใหญ่เพื่อผ่อนแรงแกนเพลาหมุน"
+      },
+      {
+        unit: 3,
+        unitTitle: "หน่วยที่ 3: ผลงานและการแก้ปัญหาทางเทคโนโลยี",
+        question: "19. การยกวัตถุหนักขึ้นสู่ที่สูงในงานก่อสร้าง นิยมใช้กลไกใดเพื่อช่วยผ่อนแรงหรือเปลี่ยนทิศทางของแรง",
+        choices: {
+          "A": "รอก",
+          "B": "สกรู",
+          "C": "สลักเกลียว",
+          "D": "สปริง"
+        },
+        correctAnswer: "A",
+        explanation: "รอกเป็นกลไกผ่อนแรงและเปลี่ยนทิศทางแรงในการเคลื่อนย้ายวัตถุขึ้นที่สูง"
+      },
+      {
+        unit: 3,
+        unitTitle: "หน่วยที่ 3: ผลงานและการแก้ปัญหาทางเทคโนโลยี",
+        question: "20. ข้อใดไม่ใช่หน้าที่หลักของระบบกลไกเฟือง (Gears)",
+        choices: {
+          "A": "ส่งผ่านกำลังการหมุน",
+          "B": "เปลี่ยนความเร็วรอบการหมุน",
+          "C": "เก็บสะสมพลังงานไฟฟ้า",
+          "D": "เปลี่ยนทิศทางการหมุน"
+        },
+        correctAnswer: "C",
+        explanation: "เฟืองทำหน้าที่ส่งผ่านกำลัง ปรับความเร็วรอบ หรือเปลี่ยนทิศทางหมุน ไม่ได้เก็บสะสมพลังงานไฟฟ้า"
+      },
+      {
+        unit: 3,
+        unitTitle: "หน่วยที่ 3: ผลงานและการแก้ปัญหาทางเทคโนโลยี",
+        question: "21. ตัวต้านทาน (Resistor) ทำหน้าที่อะไรในวงจรอิเล็กทรอนิกส์",
+        choices: {
+          "A": "จำกัดปริมาณกระแสไฟฟ้าที่ไหลผ่านวงจร",
+          "B": "กำเนิดกระแสไฟฟ้า",
+          "C": "แปลงไฟฟ้ากระแสสลับเป็นกระแสตรง",
+          "D": "ส่องสว่างเมื่อมีกระแสไฟฟ้าไหลผ่าน"
+        },
+        correctAnswer: "A",
+        explanation: "ตัวต้านทานมีหน้าที่ควบคุมและจำกัดปริมาณกระแสไฟฟ้าที่ไหลผ่านวงจรให้อยู่ในระดับที่ปลอดภัย"
+      },
+      {
+        unit: 3,
+        unitTitle: "หน่วยที่ 3: ผลงานและการแก้ปัญหาทางเทคโนโลยี",
+        question: "22. ไดโอดเปล่งแสง (LED) มีสมบัติและการใช้งานตรงตามข้อใด",
+        choices: {
+          "A": "เปลี่ยนพลังงานแสงเป็นพลังงานไฟฟ้า",
+          "B": "เปล่งแสงเมื่อได้รับกระแสไฟฟ้า และใช้แสดงสถานะการทำงาน",
+          "C": "ควบคุมการไหลของกระแสไฟฟ้าให้ไหลได้สองทิศทางเท่ากัน",
+          "D": "สำรองไฟฟ้าไว้ใช้ยามฉุกเฉิน"
+        },
+        correctAnswer: "B",
+        explanation: "LED เปล่งแสงสว่างออกมาเมื่อมีกระแสไฟฟ้าไหลผ่าน นิยมใช้แสดงสถานะการทำงานของอุปกรณ์"
+      },
+      {
+        unit: 3,
+        unitTitle: "หน่วยที่ 3: ผลงานและการแก้ปัญหาทางเทคโนโลยี",
+        question: "23. ระบบไฟส่องสว่างริมถนนที่เปิดอัตโนมัติในตอนกลางคืนและปิดในตอนกลางวัน อาศัยการทำงานของเซนเซอร์ชนิดใด",
+        choices: {
+          "A": "เซนเซอร์ตรวจจับความชื้น",
+          "B": "เซนเซอร์อัลตราโซนิก",
+          "C": "เซนเซอร์ตรวจจับความเข้มแสง (LDR)",
+          "D": "เซนเซอร์อุณหภูมิ"
+        },
+        correctAnswer: "C",
+        explanation: "LDR ปรับเปลี่ยนค่าความต้านทานตามความเข้มของแสง ใช้ควบคุมการเปิดปิดไฟถนนอัตโนมัติ"
+      },
+      {
+        unit: 3,
+        unitTitle: "หน่วยที่ 3: ผลงานและการแก้ปัญหาทางเทคโนโลยี",
+        question: "24. หุ่นยนต์หลบหลีกสิ่งกีดขวางใช้เซนเซอร์อัลตราโซนิก (Ultrasonic Sensor) วัดระยะห่างวัตถุโดยอาศัยสิ่งใด",
+        choices: {
+          "A": "คลื่นความร้อน",
+          "B": "รังสีแกมมา",
+          "C": "สนามแม่เหล็ก",
+          "D": "คลื่นเสียงความถี่สูง"
+        },
+        correctAnswer: "D",
+        explanation: "เซนเซอร์อัลตราโซนิกส่งคลื่นเสียงความถี่สูงออกไปกระทบวัตถุและวัดระยะเวลาสะท้อนกลับเพื่อคำนวณระยะทาง"
+      },
+      {
+        unit: 3,
+        unitTitle: "หน่วยที่ 3: ผลงานและการแก้ปัญหาทางเทคโนโลยี",
+        question: "25. การคำนวณหาอัตราการไหลของน้ำและการเลือกใช้ถังเก็บน้ำทรงกระบอกในโครงงานรดน้ำต้นไม้อัตโนมัติ บูรณาการความรู้ด้านใด",
+        choices: {
+          "A": "วิทยาศาสตร์และคณิตศาสตร์",
+          "B": "ศิลปะและภาษาศาสตร์",
+          "C": "ประวัติศาสตร์และภูมิศาสตร์",
+          "D": "สังคมศึกษาและสุขศึกษา"
+        },
+        correctAnswer: "A",
+        explanation: "การคำนวณอัตราไหลและแรงดันเป็น วิทยาศาสตร์ (S) และการคำนวณปริมาตรทรงกระบอกเป็น คณิตศาสตร์ (M)"
+      },
+      {
+        unit: 3,
+        unitTitle: "หน่วยที่ 3: ผลงานและการแก้ปัญหาทางเทคโนโลยี",
+        question: "26. ขั้นตอนใดในโครงงานพัฒนาถังขยะอัตโนมัติที่จัดเป็นองค์ประกอบด้านเทคโนโลยี (T - Technology)",
+        choices: {
+          "A": "การศึกษากฎหมายขยะมูลฝอย",
+          "B": "การทำความสะอาดพื้นที่ติดตั้ง",
+          "C": "การทาสีตกแต่งภายนอกถังขยะ",
+          "D": "การเขียนโปรแกรมควบคุมบอร์ดไมโครคอนโทรลเลอร์"
+        },
+        correctAnswer: "D",
+        explanation: "การเขียนโปรแกรมและประยุกต์ใช้ฮาร์ดแวร์บอร์ดคอนโทรลเลอร์จัดเป็นองค์ประกอบด้านเทคโนโลยี (Technology)"
+      },
+      {
+        unit: 3,
+        unitTitle: "หน่วยที่ 3: ผลงานและการแก้ปัญหาทางเทคโนโลยี",
+        question: "27. ข้อใดจัดเป็นกระบวนการด้านวิศวกรรมศาสตร์ (E - Engineering) ในการทำโครงงานสะเต็ม",
+        choices: {
+          "A": "การลงมือออกแบบ ภาพร่าง 3 มิติ และทดสอบปรับปรุงชิ้นงาน",
+          "B": "การท่องจำสูตรแรงและความดัน",
+          "C": "การสืบค้นข้อมูลประวัติความเป็นมาของเครื่องมือ",
+          "D": "การสรุปยอดขายผลิตภัณฑ์ในตลาด"
+        },
+        correctAnswer: "A",
+        explanation: "การคิดออกแบบ วาดภาพร่าง 3 มิติ สร้างชิ้นงาน และทดสอบปรับปรุง เป็นกระบวนการออกแบบเชิงวิศวกรรม"
+      },
+      {
+        unit: 3,
+        unitTitle: "หน่วยที่ 3: ผลงานและการแก้ปัญหาทางเทคโนโลยี",
+        question: "28. การคำนวณงบประมาณค่าวัสดุและการวัดมุมตัดแผ่นไม้ถือเป็นการบูรณาการความรู้ตามข้อใด",
+        choices: {
+          "A": "S (Science)",
+          "B": "T (Technology)",
+          "C": "E (Engineering)",
+          "D": "M (Mathematics)"
+        },
+        correctAnswer: "D",
+        explanation: "การคำนวณงบประมาณ การวัดมุม สัดส่วน และมิติขนาด ใช้ความรู้ทางด้านคณิตศาสตร์ (Mathematics)"
+      },
+      {
+        unit: 3,
+        unitTitle: "หน่วยที่ 3: ผลงานและการแก้ปัญหาทางเทคโนโลยี",
+        question: "29. การนำความรู้สะเต็มศึกษา (STEM) มาใช้ในการสร้างสิ่งประดิษฐ์แก้ปัญหา มีเป้าหมายสำคัญตามข้อใด",
+        choices: {
+          "A": "เพื่อเน้นความสวยงามโดดเด่นเพียงอย่างเดียว",
+          "B": "เพื่อบูรณาการความรู้แก้ปัญหาจริงอย่างเป็นระบบและมีประสิทธิภาพ",
+          "C": "เพื่อเลียนแบบผลงานของต่างประเทศโดยไม่ต้องทดสอบ",
+          "D": "เพื่อใช้อุปกรณ์อิเล็กทรอนิกส์ให้มีจำนวนมากที่สุด"
+        },
+        correctAnswer: "B",
+        explanation: "สะเต็มศึกษามุ่งเน้นให้นักเรียนนำองค์ความรู้แบบบูรณาการไปแก้ไขปัญหาจริงในชีวิตประทาวันอย่างเป็นระบบ"
+      },
+      {
+        unit: 3,
+        unitTitle: "หน่วยที่ 3: ผลงานและการแก้ปัญหาทางเทคโนโลยี",
+        question: "30. สิ่งสำคัญที่สุดในการประเมินและเลือกชิ้นงานนวัตกรรมเพื่อใช้งานจริงในชุมชนคือข้อใด",
+        choices: {
+          "A": "ความคุ้มค่า ความปลอดภัย และความเหมาะสมกับวิถีชีวิตผู้ใช้",
+          "B": "การเลือกใช้เทคโนโลยีราคาสูงที่สุด",
+          "C": "ความซับซ้อนของโครงสร้างวงจร",
+          "D": "การตัดขั้นตอนการทดสอบความปลอดภัยออกเพื่อความรวดเร็ว"
+        },
+        correctAnswer: "A",
+        explanation: "ชิ้นงานนวัตกรรมที่ดีต้องคำนึงถึงความคุ้มค่า ประสิทธิภาพ ความปลอดภัย และความเหมาะสมกับผู้ใช้งานจริง"
+      }
+    ];
+
+    // Dynamic Question Bank Loader (ดึงจากคลังข้อสอบปลายภาคที่แก้ไขผ่าน Admin)
+    let finalQuestions = (function() {
+      const saved = localStorage.getItem('designtech_custom_final_questions');
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        } catch (e) {}
+      }
+      return defaultFinalQuestions;
+    })();
+
+    const MAX_TAB_VIOLATIONS = 3;
+    let tabSwitchCount = 0;
+    let isExamActive = false;
+    let currentStudent = null;
+    let currentQuestionIndex = 0;
+    let userAnswers = {};
+    let examSubmitted = false;
+    let currentScore = 0;
+
+    function isMobileDevice() {
+      const userAgentCheck = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobi/i.test(navigator.userAgent);
+      const screenWidthCheck = window.innerWidth <= 768;
+      const touchCheck = ('ontouchstart' in window || navigator.maxTouchPoints > 0) && window.innerWidth <= 1024;
+      return userAgentCheck || screenWidthCheck || touchCheck;
+    }
+
+    function isFullScreenActive() {
+      return !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
+    }
+
+    function enterFullScreen() {
+      const elem = document.documentElement;
+      try {
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen().catch(() => {});
+        } else if (elem.webkitRequestFullscreen) {
+          elem.webkitRequestFullscreen();
+        } else if (elem.mozRequestFullScreen) {
+          elem.mozRequestFullScreen();
+        } else if (elem.msRequestFullscreen) {
+          elem.msRequestFullscreen();
+        }
+      } catch (e) {}
+
+      // Fallback CSS fullscreen for devices/browsers where API is restricted or not supported (e.g. iOS Safari)
+      document.body.classList.add('exam-active-fullscreen');
+    }
+
+    function exitFullScreen() {
+      document.body.classList.remove('exam-active-fullscreen');
+      try {
+        if (document.exitFullscreen && isFullScreenActive()) {
+          document.exitFullscreen().catch(() => {});
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        }
+      } catch (e) {}
+    }
+
+    function handleAntiCheatViolation(reason) {
+      if (!isExamActive || examSubmitted) return;
+
+      tabSwitchCount++;
+      const badge = document.getElementById('cheat-count-badge');
+      if (badge) badge.textContent = tabSwitchCount;
+
+      if (tabSwitchCount >= MAX_TAB_VIOLATIONS) {
+        isExamActive = false;
+        alert(`❌ ยุติการสอบอัตโนมัติ!\n\nคุณได้สลับหน้าจอ/ออกจากโหมดเต็มหน้าจอครบ ${MAX_TAB_VIOLATIONS} ครั้ง ระบบทำการยึดและส่งข้อสอบปลายภาคทันทีเพื่อป้องกันการทุจริต`);
+        document.getElementById('anti-cheat-modal').style.display = 'none';
+        exitFullScreen();
+        gradeFinalExam(true);
+      } else {
+        const warningText = document.getElementById('cheat-warning-text');
+        warningText.innerHTML = `⚠️ <strong>ตรวจพบการ${reason}! (ครั้งที่ ${tabSwitchCount}/${MAX_TAB_VIOLATIONS})</strong><br><br>ห้ามสลับแท็บ เปิดแอปอื่น คัดลอกข้อความ หรือออกจากโหมดเต็มหน้าจอขณะทำข้อสอบปลายภาค<br>หากสลับหน้าจอครบ <strong>${MAX_TAB_VIOLATIONS} ครั้ง</strong> ระบบจะยึดและส่งข้อสอบลงคะแนนทันที!`;
+        document.getElementById('anti-cheat-modal').style.display = 'flex';
+      }
+    }
+
+    function closeCheatWarning() {
+      document.getElementById('anti-cheat-modal').style.display = 'none';
+      enterFullScreen();
+    }
+
+    // 1. Fullscreen Change Event Listener (ตรวจจับเมื่อกด Esc หรือออกจากโหมดเต็มหน้าจอ)
+    ['fullscreenchange', 'webkitfullscreenchange', 'mozfullscreenchange', 'MSFullscreenChange'].forEach(evt => {
+      document.addEventListener(evt, () => {
+        if (isExamActive && !examSubmitted && !isFullScreenActive()) {
+          handleAntiCheatViolation('ออกจากโหมดเต็มหน้าจอ (Full Screen Exited)');
+        }
+      });
+    });
+
+    // 2. Prevent Copy, Cut, Paste, Context Menu & Drag Selection
+    ['contextmenu', 'copy', 'paste', 'cut', 'selectstart', 'dragstart'].forEach(evtName => {
+      document.addEventListener(evtName, (e) => {
+        if (isExamActive && !examSubmitted) {
+          e.preventDefault();
+          return false;
+        }
+      });
+    });
+
+    // 3. Prevent DevTools & Keyboard Shortcuts (F12, F11, F5, Ctrl+C, Ctrl+V, Ctrl+U, Ctrl+Shift+I, etc.)
+    document.addEventListener('keydown', (e) => {
+      if (!isExamActive || examSubmitted) return;
+
+      if (e.key === 'F12' || e.key === 'F11' || e.key === 'F5' || (e.ctrlKey && e.key.toLowerCase() === 'r')) {
+        e.preventDefault();
+        handleAntiCheatViolation('พยายามกดปุ่มลัดระบบหรือรีเฟรชหน้าจอ (Keyboard Shortcut)');
+        return false;
+      }
+
+      if (e.ctrlKey || e.metaKey) {
+        const key = e.key.toLowerCase();
+        if (['c', 'v', 'x', 'u', 's', 'p', 'a', 'i', 'j'].includes(key)) {
+          e.preventDefault();
+          handleAntiCheatViolation(`พยายามใช้ปุ่มลัดคัดลอก/วาง/ซอร์สโค้ด (Ctrl+${key.toUpperCase()})`);
+          return false;
+        }
+      }
+    });
+
+    // 4. Tab & Window Switch Listeners
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden && isExamActive && !examSubmitted) {
+        handleAntiCheatViolation('สลับแท็บไปหน้าอื่น หรือพับหน้าจอแอป');
+      }
+    });
+
+    let blurTimer = null;
+    window.addEventListener('blur', () => {
+      if (!isMobileDevice() && isExamActive && !examSubmitted) {
+        clearTimeout(blurTimer);
+        blurTimer = setTimeout(() => {
+          if (isExamActive && !examSubmitted && !document.hidden) {
+            handleAntiCheatViolation('สลับความสนใจออกจากหน้าต่างข้อสอบ');
+          }
+        }, 200);
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      checkExistingLogin();
+    });
+
+    function checkExistingLogin() {
+      const saved = localStorage.getItem('designtech_student');
+      if (saved) {
+        try {
+          currentStudent = JSON.parse(saved);
+          showPlayContainer();
+        } catch (e) {
+          localStorage.removeItem('designtech_student');
+        }
+      }
+    }
+
+    function startFinalExam() {
+      const id = document.getElementById('studentIdInput').value.trim();
+      const name = document.getElementById('studentNameInput').value.trim();
+      const room = document.getElementById('classRoomSelect').value;
+      const passcode = document.getElementById('passcodeInput').value.trim();
+
+      if (!id || id.length !== 5 || isNaN(id)) {
+        alert('กรุณากรอกรหัสประจำตัวนักเรียน 5 หลักให้ถูกต้อง');
+        return;
+      }
+      if (!name || !room) {
+        alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+        return;
+      }
+      if (passcode.toLowerCase() !== FINAL_PASSCODE.toLowerCase()) {
+        alert('รหัสผ่านเข้าสอบปลายภาคไม่ถูกต้อง!');
+        return;
+      }
+
+      const completedKey = `final_completed_${id}`;
+      if (localStorage.getItem(completedKey) === 'true') {
+        alert(`❌ รหัสนักเรียน ${id} (${name}) ได้ส่งข้อสอบปลายภาคเรียบร้อยแล้ว ไม่สามารถทำซ้ำได้`);
+        return;
+      }
+
+      currentStudent = { id, name, room };
+      localStorage.setItem('designtech_student', JSON.stringify(currentStudent));
+      showPlayContainer();
+    }
+
+    function showPlayContainer() {
+      document.getElementById('quiz-login-container').style.display = 'none';
+      document.getElementById('quiz-play-container').style.display = 'block';
+      document.getElementById('quiz-result-container').style.display = 'none';
+      
+      document.getElementById('active-student-info').textContent = `${currentStudent.name} (รหัส ${currentStudent.id} ห้อง ${currentStudent.room})`;
+      
+      isExamActive = true;
+      tabSwitchCount = 0;
+      document.getElementById('cheat-count-badge').textContent = '0';
+      enterFullScreen();
+
+      currentQuestionIndex = 0;
+      userAnswers = {};
+      examSubmitted = false;
+      
+      renderQuickGrid();
+      loadQuestionIndex(currentQuestionIndex);
+    }
+
+    function renderQuickGrid() {
+      const grid = document.getElementById('questionNavGrid');
+      grid.innerHTML = '';
+      finalQuestions.forEach((q, idx) => {
+        const item = document.createElement('div');
+        item.className = `q-grid-item ${userAnswers[idx] ? 'answered' : ''} ${idx === currentQuestionIndex ? 'active' : ''}`;
+        item.textContent = idx + 1;
+        item.onclick = () => loadQuestionIndex(idx);
+        grid.appendChild(item);
+      });
+    }
+
+    function loadQuestionIndex(index) {
+      if (index < 0 || index >= finalQuestions.length) return;
+      currentQuestionIndex = index;
+
+      const q = finalQuestions[index];
+      document.getElementById('current-unit-tag').textContent = q.unitTitle || `หน่วยที่ ${q.unit}`;
+      document.getElementById('question-progress-label').textContent = `ข้อ ${index + 1} จาก ${finalQuestions.length}`;
+      document.getElementById('question-text-box').textContent = `${index + 1}. ${q.question.replace(/^[0-9]+\.\s*/, '')}`;
+
+      const choicesBox = document.getElementById('choices-box');
+      choicesBox.innerHTML = '';
+
+      Object.keys(q.choices).forEach(key => {
+        const option = document.createElement('div');
+        const isSelected = userAnswers[index] === key;
+        option.className = `choice-option ${isSelected ? 'selected' : ''}`;
+        option.onclick = () => selectChoice(index, key);
+
+        option.innerHTML = `
+          <div class="choice-letter">${key}</div>
+          <div class="choice-text">${q.choices[key]}</div>
+        `;
+        choicesBox.appendChild(option);
+      });
+
+      document.getElementById('prevQuestionBtn').style.display = index === 0 ? 'none' : 'inline-flex';
+      if (index === finalQuestions.length - 1) {
+        document.getElementById('nextQuestionBtn').style.display = 'none';
+        document.getElementById('submitExamBtn').style.display = 'inline-flex';
+      } else {
+        document.getElementById('nextQuestionBtn').style.display = 'inline-flex';
+        document.getElementById('submitExamBtn').style.display = 'none';
+      }
+
+      renderQuickGrid();
+    }
+
+    function selectChoice(qIndex, key) {
+      if (examSubmitted) return;
+      userAnswers[qIndex] = key;
+      loadQuestionIndex(qIndex);
+    }
+
+    function prevQuestion() { loadQuestionIndex(currentQuestionIndex - 1); }
+    function nextQuestion() { loadQuestionIndex(currentQuestionIndex + 1); }
+
+    function confirmSubmitExam() {
+      const answeredCount = Object.keys(userAnswers).length;
+      const total = finalQuestions.length;
+      if (answeredCount < total) {
+        if (!confirm(`คุณตอบข้อสอบไปแล้ว ${answeredCount} จาก ${total} ข้อ คุณต้องการส่งข้อสอบปลายภาคทันทีหรือไม่?`)) return;
+      } else {
+        if (!confirm('คุณตอบข้อสอบครบแล้ว ยืนยันการส่งข้อสอบปลายภาคหรือไม่?')) return;
+      }
+      gradeFinalExam(false);
+    }
+
+    function gradeFinalExam(isForced = false) {
+      isExamActive = false;
+      examSubmitted = true;
+
+      let score = 0;
+      finalQuestions.forEach((q, idx) => {
+        if (userAnswers[idx] === q.correctAnswer) score++;
+      });
+      currentScore = score;
+
+      const total = finalQuestions.length;
+      const percent = Math.round((score / total) * 100);
+
+      document.getElementById('quiz-play-container').style.display = 'none';
+      document.getElementById('quiz-result-container').style.display = 'block';
+
+      document.getElementById('resultScoreRing').style.setProperty('--score-percent', percent);
+      document.getElementById('resultScoreNum').textContent = score;
+      document.getElementById('resultScoreTotal').textContent = `จากคะแนนเต็ม ${total} ข้อ (${percent}%)`;
+
+      const completedKey = `final_completed_${currentStudent.id}`;
+      localStorage.setItem(completedKey, 'true');
+
+      submitScoreToGoogleSheet(score, total, percent);
+      renderAnswersReview();
+    }
+
+    async function submitScoreToGoogleSheet(score, total, percent) {
+      if (!GOOGLE_SCRIPT_URL) return;
+
+      const payload = {
+        type: "quizScore",
+        timestamp: new Date().toLocaleString('th-TH'),
+        studentId: currentStudent.id,
+        studentName: currentStudent.name,
+        classRoom: currentStudent.room,
+        unitId: "Final",
+        unitTitle: 'ข้อสอบปลายภาค (Final Exam)',
+        sheetName: "Final_Scores",
+        score: score,
+        totalQuestions: total,
+        percentage: percent
+      };
+
+      try {
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        });
+      } catch (e) {}
+    }
+
+    function renderAnswersReview() {
+      const container = document.getElementById('answersReviewContainer');
+      container.innerHTML = '';
+
+      finalQuestions.forEach((q, idx) => {
+        const item = document.createElement('div');
+        const userAns = userAnswers[idx];
+        const isCorrect = userAns === q.correctAnswer;
+        item.className = `review-item ${isCorrect ? 'correct' : 'incorrect'}`;
+
+        let choicesHtml = '';
+        Object.keys(q.choices).forEach(key => {
+          let cls = '';
+          if (key === q.correctAnswer) cls = 'correct-ans';
+          else if (key === userAns && !isCorrect) cls = 'user-wrong';
+
+          choicesHtml += `
+            <div class="review-choice-item ${cls}">
+              <span>${key}. ${q.choices[key]}</span>
+              ${key === q.correctAnswer ? '<i class="bx bx-check-circle"></i>' : (key === userAns ? '<i class="bx bx-x-circle"></i>' : '')}
+            </div>
+          `;
+        });
+
+        item.innerHTML = `
+          <div class="review-unit-tag">${q.unitTitle}</div>
+          <div class="review-question">ข้อ ${idx + 1}. ${q.question.replace(/^[0-9]+\.\s*/, '')}</div>
+          <div>${choicesHtml}</div>
+          <div class="review-explanation"><i class='bx bx-info-circle'></i> <strong>เฉลยอธิบาย:</strong> ${q.explanation}</div>
+        `;
+        container.appendChild(item);
+      });
+    }
+  </script>
+</body>
+</html>
